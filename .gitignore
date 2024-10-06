@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+/HiveGameClient/HiveGameWPFApp/bin
+/HiveGameClient/HiveGameWPFApp/obj
