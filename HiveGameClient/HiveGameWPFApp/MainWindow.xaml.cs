@@ -15,14 +15,16 @@ using System.Windows.Shapes;
 
 namespace HiveGameWPFApp
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+        private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            NavigationFrame.Navigate(new Views.LoginView());
+        }
+
     }
 }
