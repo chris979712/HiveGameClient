@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="HiveGameService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IUserManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IFriendshipManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IFriendRequestManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IChatManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" />
+      <xs:element name="AddUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="profile" nillable="true" type="q1:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="AddUserResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserProfile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserProfileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetUserProfileResult" nillable="true" type="q2:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateLoginCredentials">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="profile" nillable="true" type="q3:AccessAccount" />
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="updatedProfile" nillable="true" type="q4:AccessAccount" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateLoginCredentialsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateLoginCredentialsResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProfile">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="profile" nillable="true" type="q5:Profile" />
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateProfileResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateProfileResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingAccesAccount">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingAccesAccountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyExistingAccesAccountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyCredentials">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyCredentialsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyCredentialsResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteFriend">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="removingPlayer" nillable="true" type="q6:Profile" />
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="friendToRemove" nillable="true" type="q7:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteFriendResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DeleteFriendResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllFriends">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="player" nillable="true" type="q8:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllFriendsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllFriendsResult" nillable="true" type="q9:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFriendByUsername">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="player" nillable="true" type="q10:Profile" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFriendByUsernameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetFriendByUsernameResult" nillable="true" type="q11:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateFriendRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerOne" nillable="true" type="q12:Profile" />
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerTwo" nillable="true" type="q13:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateFriendRequestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CreateFriendRequestResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFriendRequests">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="player" nillable="true" type="q14:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetFriendRequestsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetFriendRequestsResult" nillable="true" type="q15:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AcceptFriendRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerOne" nillable="true" type="q16:Profile" />
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerTwo" nillable="true" type="q17:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AcceptFriendRequestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="AcceptFriendRequestResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeclineFriendRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerOne" nillable="true" type="q18:Profile" />
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerTwo" nillable="true" type="q19:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeclineFriendRequestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DeclineFriendRequestResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyFriendRequestRegistered">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerOne" nillable="true" type="q20:Profile" />
+            <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="playerTwo" nillable="true" type="q21:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyFriendRequestRegisteredResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyFriendRequestRegisteredResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ConnectToChatLobby">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q22:Profile" />
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendMessages">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="message" nillable="true" type="q23:Message" />
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetConnectedUsers">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetConnectedUsersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetConnectedUsersResult" nillable="true" type="q24:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="messages" nillable="true" type="q25:ArrayOfMessage" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveMessageResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UserConnected">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="users" nillable="true" type="q26:ArrayOfProfile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UserConnectedResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Profile">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:AccessAccount">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="createdDate" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+              <xs:element minOccurs="0" name="idProfile" type="xs:int" />
+              <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="Profile" nillable="true" type="tns:Profile" />
+      <xs:complexType name="AccessAccount">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idAccesAccount" type="xs:int" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="reputation" type="xs:int" />
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AccessAccount" nillable="true" type="tns:AccessAccount" />
+      <xs:complexType name="ArrayOfProfile">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
+      <xs:complexType name="Message">
+        <xs:sequence>
+          <xs:element name="text" nillable="true" type="xs:string" />
+          <xs:element name="username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Message" nillable="true" type="tns:Message" />
+      <xs:complexType name="ArrayOfMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserManager_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_GetUserProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_GetUserProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_UpdateLoginCredentials_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoginCredentials" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_UpdateLoginCredentials_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoginCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_UpdateProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfile" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_UpdateProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_VerifyExistingAccesAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingAccesAccount" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_VerifyExistingAccesAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingAccesAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_VerifyCredentials_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyCredentials" />
+  </wsdl:message>
+  <wsdl:message name="IUserManager_VerifyCredentials_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_DeleteFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriend" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_DeleteFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_GetAllFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFriends" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_GetAllFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_GetFriendByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendByUsername" />
+  </wsdl:message>
+  <wsdl:message name="IFriendshipManager_GetFriendByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_CreateFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_CreateFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_GetFriendRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequests" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_GetFriendRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_AcceptFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_AcceptFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_DeclineFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeclineFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_DeclineFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeclineFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_VerifyFriendRequestRegistered_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyFriendRequestRegistered" />
+  </wsdl:message>
+  <wsdl:message name="IFriendRequestManager_VerifyFriendRequestRegistered_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyFriendRequestRegisteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_ConnectToChatLobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToChatLobby" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_SendMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessages" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_GetConnectedUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_GetConnectedUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_ReceiveMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_ReceiveMessage_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_UserConnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserConnected" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_UserConnected_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserConnectedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUserManager">
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/AddUser" message="tns:IUserManager_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/AddUserResponse" message="tns:IUserManager_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/GetUserProfile" message="tns:IUserManager_GetUserProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/GetUserProfileResponse" message="tns:IUserManager_GetUserProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginCredentials">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/UpdateLoginCredentials" message="tns:IUserManager_UpdateLoginCredentials_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/UpdateLoginCredentialsResponse" message="tns:IUserManager_UpdateLoginCredentials_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/UpdateProfile" message="tns:IUserManager_UpdateProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/UpdateProfileResponse" message="tns:IUserManager_UpdateProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingAccesAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/VerifyExistingAccesAccount" message="tns:IUserManager_VerifyExistingAccesAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/VerifyExistingAccesAccountResponse" message="tns:IUserManager_VerifyExistingAccesAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCredentials">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/VerifyCredentials" message="tns:IUserManager_VerifyCredentials_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserManager/VerifyCredentialsResponse" message="tns:IUserManager_VerifyCredentials_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFriendshipManager">
+    <wsdl:operation name="DeleteFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendshipManager/DeleteFriend" message="tns:IFriendshipManager_DeleteFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendshipManager/DeleteFriendResponse" message="tns:IFriendshipManager_DeleteFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendshipManager/GetAllFriends" message="tns:IFriendshipManager_GetAllFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendshipManager/GetAllFriendsResponse" message="tns:IFriendshipManager_GetAllFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendshipManager/GetFriendByUsername" message="tns:IFriendshipManager_GetFriendByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendshipManager/GetFriendByUsernameResponse" message="tns:IFriendshipManager_GetFriendByUsername_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFriendRequestManager">
+    <wsdl:operation name="CreateFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendRequestManager/CreateFriendRequest" message="tns:IFriendRequestManager_CreateFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendRequestManager/CreateFriendRequestResponse" message="tns:IFriendRequestManager_CreateFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendRequestManager/GetFriendRequests" message="tns:IFriendRequestManager_GetFriendRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendRequestManager/GetFriendRequestsResponse" message="tns:IFriendRequestManager_GetFriendRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendRequestManager/AcceptFriendRequest" message="tns:IFriendRequestManager_AcceptFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendRequestManager/AcceptFriendRequestResponse" message="tns:IFriendRequestManager_AcceptFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeclineFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendRequestManager/DeclineFriendRequest" message="tns:IFriendRequestManager_DeclineFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendRequestManager/DeclineFriendRequestResponse" message="tns:IFriendRequestManager_DeclineFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyFriendRequestRegistered">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendRequestManager/VerifyFriendRequestRegistered" message="tns:IFriendRequestManager_VerifyFriendRequestRegistered_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendRequestManager/VerifyFriendRequestRegisteredResponse" message="tns:IFriendRequestManager_VerifyFriendRequestRegistered_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IChatManager">
+    <wsdl:operation name="ConnectToChatLobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/ConnectToChatLobby" message="tns:IChatManager_ConnectToChatLobby_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/SendMessages" message="tns:IChatManager_SendMessages_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectedUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsers" message="tns:IChatManager_GetConnectedUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsersResponse" message="tns:IChatManager_GetConnectedUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/ReceiveMessage" message="tns:IChatManager_ReceiveMessage_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/ReceiveMessageResponse" message="tns:IChatManager_ReceiveMessage_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserConnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/UserConnected" message="tns:IChatManager_UserConnected_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/UserConnectedResponse" message="tns:IChatManager_UserConnected_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUserManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/AddUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/GetUserProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginCredentials">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/UpdateLoginCredentials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/UpdateProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingAccesAccount">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/VerifyExistingAccesAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCredentials">
+      <soap12:operation soapAction="http://tempuri.org/IUserManager/VerifyCredentials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IFriendshipManager" type="tns:IFriendshipManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IFriendshipManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="DeleteFriend">
+      <soap12:operation soapAction="http://tempuri.org/IFriendshipManager/DeleteFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendshipManager/GetAllFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendByUsername">
+      <soap12:operation soapAction="http://tempuri.org/IFriendshipManager/GetFriendByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IFriendRequestManager" type="tns:IFriendRequestManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IFriendRequestManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendRequestManager/CreateFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendRequests">
+      <soap12:operation soapAction="http://tempuri.org/IFriendRequestManager/GetFriendRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendRequestManager/AcceptFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeclineFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendRequestManager/DeclineFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyFriendRequestRegistered">
+      <soap12:operation soapAction="http://tempuri.org/IFriendRequestManager/VerifyFriendRequestRegistered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IChatManager" type="tns:IChatManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IChatManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ConnectToChatLobby">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/ConnectToChatLobby" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessages">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/SendMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectedUsers">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/GetConnectedUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/ReceiveMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserConnected">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/UserConnected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HiveGameService">
+    <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
+      <soap12:address location="net.tcp://localhost:1441/UserService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/UserService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IFriendshipManager" binding="tns:NetTcpBinding_IFriendshipManager">
+      <soap12:address location="net.tcp://localhost:1441/FriendshipService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/FriendshipService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IFriendRequestManager" binding="tns:NetTcpBinding_IFriendRequestManager">
+      <soap12:address location="net.tcp://localhost:1441/FriendRequestService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/FriendRequestService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IChatManager" binding="tns:NetTcpBinding_IChatManager">
+      <soap12:address location="net.tcp://localhost:1441/ChatService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/ChatService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
