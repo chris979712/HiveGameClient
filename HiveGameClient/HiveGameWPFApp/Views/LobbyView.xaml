@@ -9,7 +9,6 @@
       d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
         <Grid>
-
             <Border>
                 <Border.Background>
                     <ImageBrush ImageSource="/Images/Background/LobbyBackground.png" Stretch="UniformToFill" />

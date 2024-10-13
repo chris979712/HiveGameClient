@@ -133,6 +133,9 @@
     <value>Iniciar sesión</value>
   </data>
   <data name="btn_CreateAccount" xml:space="preserve">
-    <value>Crear cuenta</value>
+    <value>Registrarse</value>
+  </data>
+  <data name="lbl_RecoverPassword" xml:space="preserve">
+    <value>¿Olvidaste tu contraseña?</value>
   </data>
 </root>

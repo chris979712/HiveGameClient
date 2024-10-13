@@ -2,21 +2,50 @@
 using System.Net;
 using System.Security;
 using System.ServiceModel;
+using System.Web.SessionState;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace HiveGameWPFApp.Views
 {
     public partial class LoginView : Page
     {
-
+        private MediaPlayer mediaPlayer;
         public LoginView()
         {
             InitializeComponent();
-            pwbPassword.PasswordChanged += PwbPassword_PasswordChanged; 
+            pwbPassword.PasswordChanged += PwbPassword_PasswordChanged;
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Audio/Lobby.mp3"));
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            mediaPlayer.Play();
         }
+        private void MediaPlayer_MediaEnded(object sender, EventArgs e)
+        {
+            mediaPlayer.Position = TimeSpan.Zero; // Reinicia el audio
+            mediaPlayer.Play(); // Reproduce de nuevo
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnLogin_Guest(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnLogin_Register(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnRegister_Click(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
 
         private void BtnPasswordVisibility_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -78,5 +107,7 @@ namespace HiveGameWPFApp.Views
         {
             imgPet.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }
+
+        
     }
 }
