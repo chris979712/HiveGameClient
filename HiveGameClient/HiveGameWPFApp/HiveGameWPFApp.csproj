@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=3.0.1.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.3.0.1\lib\net462\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -62,6 +65,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\HiveProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\LoggerManager.cs" />
+    <Compile Include="Logic\UserProfileSingleton.cs" />
     <Compile Include="Properties\Resources.en-US.Designer.cs">
       <DependentUpon>Resources.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -126,6 +136,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\HiveProxy\HiveGameService.wsdl" />
+    <None Include="Connected Services\HiveProxy\HiveGameWPFApp.HiveProxy.Profile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
-    <Folder Include="Logic\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Background\loginBackground.png" />
@@ -151,9 +165,21 @@
     <Resource Include="Images\Icons\Code Swarm.png" />
     <Resource Include="Images\Icons\Lobby.png" />
     <Resource Include="Images\Background\LobbyBackground.png" />
+    <None Include="Connected Services\HiveProxy\configuration91.svcinfo" />
+    <None Include="Connected Services\HiveProxy\configuration.svcinfo" />
+    <None Include="Connected Services\HiveProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Video\loadingScreen.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\HiveProxy\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
