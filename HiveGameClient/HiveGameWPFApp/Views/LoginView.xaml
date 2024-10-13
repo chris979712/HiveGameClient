@@ -66,14 +66,14 @@
                             VerticalAlignment="Center"/>
 
                     <!-- Contenedor de la Contraseña (PasswordBox y ToggleButton juntos) -->
-                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="896,430,0,0">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="840,385,0,0" Width="385">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
 
                         <!-- Campo para ingresar Contraseña (PasswordBox) -->
-                        <Border x:Name="brPassword" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0" Margin="-56,-36,-248,36" Grid.ColumnSpan="2">
+                        <Border x:Name="brPassword" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0"   >
                             <PasswordBox x:Name="pwbPassword"
                                          FontSize="16"
                                          FontWeight="Medium"
@@ -94,8 +94,7 @@
                                       Grid.Column="1" Cursor="Hand"
                                         PreviewMouseLeftButtonDown="BtnPasswordVisibility_MouseDown"
                                         PreviewMouseLeftButtonUp="BtnPasswordVisibility_MouseUp"
-                                      Visibility="Collapsed"
-                                      Margin="7,3,-7,5">
+                                      Visibility="Collapsed">
                             <ToggleButton.Template>
                                 <ControlTemplate>
                                     <Image x:Name="imgPasswordIcon" Source="/Images/Icons/Visible.png" Width="30" Height="30"/>
@@ -107,7 +106,7 @@
                     <!-- Campo de Texto visible para la contraseña (usado cuando se muestra la contraseña) -->
                     <Border x:Name="brPasswordDisplay" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
                             HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="896,430,0,0" Width="250" Height="40" Visibility="Collapsed">
+                            Margin="840,385,0,0" Width="346" Height="40" Visibility="Collapsed">
                         <TextBox x:Name="txtPasswordDisplay"
                                  FontSize="16"
                                  FontWeight="Medium"
@@ -158,7 +157,7 @@
                                HorizontalAlignment="Left" VerticalAlignment="Top"
                                Margin="926,578,0,0" TextDecorations="Underline"
                                Cursor="Hand"
-                               MouseLeftButtonDown="BtnRegister_Click">
+                               MouseLeftButtonDown="BtnRecoverPassword_Click">
                         <TextBlock.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="2" Opacity="0.7" BlurRadius="5" />
                         </TextBlock.Effect>
