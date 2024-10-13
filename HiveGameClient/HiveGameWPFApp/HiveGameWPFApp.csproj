@@ -149,13 +149,28 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Audio\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Background\loginBackground.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Audio\Game.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\Lobby.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\Login.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Audio\MainMenu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\Icons\GuestIcon.png" />
+    <Resource Include="Images\Icons\Register.png" />
+    <Content Include="Video\LobbyBackground.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\Characters\Pet closing one eye.png" />
     <Resource Include="Images\Icons\NotVisible.png" />
     <Resource Include="Images\Characters\Pet closing eyes.png" />

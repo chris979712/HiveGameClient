@@ -61,7 +61,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Create Account.
+        ///   Busca una cadena traducida similar a Register.
         /// </summary>
         public static string btn_CreateAccount {
             get {
@@ -111,6 +111,15 @@ namespace HiveGameWPFApp.Properties {
         public static string globalLbl_UserName {
             get {
                 return ResourceManager.GetString("globalLbl_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Forgot your password?.
+        /// </summary>
+        public static string lbl_RecoverPassword {
+            get {
+                return ResourceManager.GetString("lbl_RecoverPassword", resourceCulture);
             }
         }
     }
