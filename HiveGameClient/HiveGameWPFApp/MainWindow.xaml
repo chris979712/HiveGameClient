@@ -12,7 +12,7 @@
             <MediaElement x:Name="IntroVideo" 
                           LoadedBehavior="Play" 
                           UnloadedBehavior="Stop"
-                          Source="Video/loadingScreen.avi"
+                          Source="Video/loadingScreen.mp4"
                           Stretch="Fill"
                           MediaEnded="IntroVideo_MediaEnded"/>
 
