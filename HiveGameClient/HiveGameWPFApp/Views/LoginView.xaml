@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HiveGameWPFApp.Views"
+        xmlns:p="clr-namespace:HiveGameWPFApp.Properties"
+
         mc:Ignorable="d"
         d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
@@ -14,6 +16,110 @@
                         <ImageBrush ImageSource="/Images/Background/loginBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
                 </Border>
+                <Grid>
+                    <Image x:Name="imgPet"  
+                           Source="/Images/Characters/pet.png"
+                           Width="195" Height="198"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="685,290,0,0"
+                           RenderTransformOrigin="0.5,0.5"
+                           Panel.ZIndex="1"/>
+
+                    <!-- Etiqueta para Nombre de Usuario -->
+                    <Label x:Name="lblUsername" Content="{x:Static p:Resources.globalLbl_UserName}"
+                            Foreground="#FFD700"
+                            FontWeight="Bold"
+                            FontSize="30"
+                            HorizontalAlignment="Left" 
+                            Margin="941,265,0,0" 
+                            VerticalAlignment="Top"/>
+
+                    <!-- Cuadro de Texto para Nombre de Usuario -->
+                    <TextBox x:Name="txtbUsername"
+                         Width="250"
+                         Height="40"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Margin="896,320,0,0"
+                         Background="#1C1C1C"
+                         Foreground="White"
+                         BorderBrush="#FFD700"
+                         BorderThickness="2"
+                         Padding="5"
+                         FontSize="16">
+                        <TextBox.Effect>
+                            <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                        </TextBox.Effect>
+                    </TextBox>
+
+                    <!-- Etiqueta para Contraseña -->
+                    <Label x:Name="lblPassword" Content="{x:Static p:Resources.globalLbl_Password}"
+                            Foreground="#FFD700"
+                            FontWeight="Bold"
+                            FontSize="30"
+                            HorizontalAlignment="Left" 
+                            Margin="941,380,0,0" 
+                            VerticalAlignment="Top"/>
+
+                    <!-- Contenedor de la Contraseña (PasswordBox y ToggleButton juntos) -->
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="896,430,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="40" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Campo para ingresar Contraseña (PasswordBox) -->
+                        <Border x:Name="brPassword" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
+                                Width="250" Height="40" Grid.Column="0">
+                            <PasswordBox x:Name="pwbPassword"
+                                         FontSize="16"
+                                         FontWeight="Medium"
+                                         FontFamily="Segoe UI Variable Display"
+                                         Background="#1C1C1C"
+                                         Foreground="White"
+                                         BorderThickness="0"
+                                         Padding="5">
+                                <PasswordBox.Effect>
+                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                                </PasswordBox.Effect>
+                            </PasswordBox>
+                        </Border>
+
+                        <!-- Botón para mostrar/ocultar contraseña -->
+                        <ToggleButton x:Name="tgbtnPasswordVisibility" 
+                                      Background="Transparent" BorderBrush="Transparent"
+                                      Grid.Column="1" Cursor="Hand"
+                                        PreviewMouseLeftButtonDown="BtnPasswordVisibility_MouseDown"
+                                        PreviewMouseLeftButtonUp="BtnPasswordVisibility_MouseUp"
+                                      Visibility="Collapsed"
+                                      Margin="7,3,-7,5">
+                            <ToggleButton.Template>
+                                <ControlTemplate>
+                                    <Image x:Name="imgPasswordIcon" Source="/Images/Icons/Visible.png" Width="30" Height="30"/>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                    </Grid>
+
+                    <!-- Campo de Texto visible para la contraseña (usado cuando se muestra la contraseña) -->
+                    <Border x:Name="brPasswordDisplay" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
+                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Margin="896,430,0,0" Width="250" Height="40" Visibility="Collapsed">
+                        <TextBox x:Name="txtPasswordDisplay"
+                                 FontSize="16"
+                                 FontWeight="Medium"
+                                 FontFamily="Montserrat"
+                                 Background="#1C1C1C"
+                                 Foreground="White"
+                                 BorderThickness="0"
+                                 Padding="5">
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </TextBox.Effect>
+                        </TextBox>
+                    </Border>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </DockPanel>
