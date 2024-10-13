@@ -9,7 +9,6 @@
       d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
         <Grid>
-            <!-- Fondo del lobby -->
             <Border>
                 <Border.Background>
                     <ImageBrush ImageSource="/Images/Background/LobbyBackground.png" Stretch="UniformToFill" />
@@ -17,28 +16,28 @@
             </Border>
 
             <Grid>
-                <!-- Imagen del lobby -->
+
                 <Image x:Name="imgPet"  
                        Source="/Images/Icons/Lobby.png"
-                       Width="212" Height="64"
+                       Width="242" Height="86"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="205,96,0,0"
+                       Margin="182,68,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
-                <!-- Panel transparente para los mensajes con scroll -->
+
                 <ScrollViewer VerticalScrollBarVisibility="Auto" 
                               Background="#66FFFFFF" 
-                              Margin="658,96,142,185">
+                              Margin="658,96,142,180">
                     <StackPanel x:Name="ChatMessagesPanel">
                         <!-- Aquí irán los mensajes (esto se llenará dinámicamente) -->
                     </StackPanel>
                 </ScrollViewer>
 
-                <!-- Panel para escribir el mensaje y contador de caracteres -->
+
                 <StackPanel VerticalAlignment="Bottom" Background="Black" Height="84" Margin="658,0,142,96" Orientation="Horizontal">
-                    <!-- TextBox para ingresar el mensaje -->
+
                     <TextBox x:Name="txtMessageInput" Height="40"
                          Background="#2F2F2F"
                          Foreground="White"
@@ -56,7 +55,6 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <!-- Botón para enviar el mensaje -->
                     <Button Content="Enviar"
                         Width="90" Height="40"
                         Background="#FFD700"
@@ -71,7 +69,6 @@
                         </Button.Effect>
                     </Button>
 
-                    <!-- Contador de caracteres -->
                     <TextBlock x:Name="txtCharCount"
                                Text="0/100"
                                Foreground="White"
