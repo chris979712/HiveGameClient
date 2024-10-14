@@ -109,6 +109,15 @@ namespace HiveGameWPFApp.Views
             imgPet.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }
 
-        
+        private void BtnGuest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
