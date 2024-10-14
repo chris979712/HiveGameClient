@@ -11,7 +11,6 @@ namespace HiveGameWPFApp.Logic
     {
 
         private static readonly UserProfileSingleton singletonInstance = new UserProfileSingleton();
-        public static UserProfileSingleton Instance = singletonInstance;
         public static string username { get; set; }
         public static string password { get; set; }
         public static string email {  get; set; }
@@ -22,9 +21,7 @@ namespace HiveGameWPFApp.Logic
         public static DateTime createdDate { get; set; }
         public static int idAssociatedAccount { get; set; }
 
-        private UserProfileSingleton()
-        {
-        }
+        public static UserProfileSingleton Instance => singletonInstance;
 
         public void CreateInstance(Profile profile)
         {

@@ -280,10 +280,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task<int> AddUserAsync(HiveGameWPFApp.HiveProxy.Profile profile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/GetUserProfile", ReplyAction="http://tempuri.org/IUserManager/GetUserProfileResponse")]
-        HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string email, string username);
+        HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/GetUserProfile", ReplyAction="http://tempuri.org/IUserManager/GetUserProfileResponse")]
-        System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileAsync(string email, string username);
+        System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateLoginCredentials", ReplyAction="http://tempuri.org/IUserManager/UpdateLoginCredentialsResponse")]
         int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile);
@@ -345,12 +345,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.AddUserAsync(profile);
         }
         
-        public HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string email, string username) {
-            return base.Channel.GetUserProfile(email, username);
+        public HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string username, string password) {
+            return base.Channel.GetUserProfile(username, password);
         }
         
-        public System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileAsync(string email, string username) {
-            return base.Channel.GetUserProfileAsync(email, username);
+        public System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileAsync(string username, string password) {
+            return base.Channel.GetUserProfileAsync(username, password);
         }
         
         public int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile) {

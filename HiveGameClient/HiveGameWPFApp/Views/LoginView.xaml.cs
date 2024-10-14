@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
+using System;
 using System.Net;
 using System.Security;
 using System.ServiceModel;
@@ -32,6 +34,98 @@ namespace HiveGameWPFApp.Views
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            txtbUsername.BorderBrush = new SolidColorBrush(Colors.White);
+            brPassword.BorderBrush = new SolidColorBrush(Colors.White);
+            Profile userAccount = new Profile();
+            userAccount.username = txtbUsername.Text;
+            userAccount.password = pwbPassword.Password;
+            if (verifyFields())
+            {
+                if (validateCredentials(userAccount))
+                {
+                    DisplayMainMenuView();
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        public bool verifyFields()
+        {
+            bool passwordValidation = Validator.validatePassword(pwbPassword.Password);
+            bool usernameValidation = Validator.validateUsername(txtbUsername.Text);
+            if (!passwordValidation)
+            {
+                brPassword.BorderBrush = Brushes.Red;
+            }
+            if (!usernameValidation)
+            {
+                txtbUsername.BorderBrush = Brushes.Red;
+            }
+            return passwordValidation&&passwordValidation;
+        }
+
+        public bool validateCredentials(Profile profile)
+        {
+            bool validateResult = false;
+            LoggerManager logger = new LoggerManager(this.GetType());
+            int validationResult = 0;
+            try
+            {
+                string hashedPassword = Hasher.hashToSHA1(profile.password);
+                string username = profile.username;
+                IUserManager userManager = new HiveProxy.UserManagerClient();
+                validationResult = userManager.VerifyCredentials(username, hashedPassword);
+            }
+            catch(EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+            }catch(TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+            }catch(CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+            }
+            switch (validationResult)
+            {
+                case -1:
+                    validateResult = false;
+                    break;
+                case 1:
+                    validateResult = true;
+                    obtainSingletonData(profile);
+                    break;
+                default:
+                    break;
+            }
+            return validateResult;
+        }
+
+        public void obtainSingletonData(Profile profile)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                IUserManager userManager = new UserManagerClient();
+                string hashedPassword = Hasher.hashToSHA1(profile.password);
+                Profile userAccount = userManager.GetUserProfile(profile.username, hashedPassword);
+                if(userAccount != null)
+                {
+                    UserProfileSingleton.Instance.CreateInstance(userAccount);
+                }
+            }catch(EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+            }catch(TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+            }catch(CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+            }
         }
 
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
@@ -109,6 +203,21 @@ namespace HiveGameWPFApp.Views
             imgPet.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }
 
-        
+        private void DisplayMainMenuView()
+        {
+            LobbyView lobbyView = new LobbyView();
+            this.NavigationService.Navigate(lobbyView);
+        }
+
+        private void BtnGuest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
