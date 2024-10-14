@@ -21,12 +21,8 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             InitializeComponent();
             chatManager = new ChatManagerClient(new InstanceContext(this));
-            string[] nombres = { "Carlos", "Chris", "Luis", "Marian", "Fernando", "Lucía", "Miguel", "Sofía" };
-            Random random = new Random();
-            int indexAleatorio = random.Next(nombres.Length);
-            string nombreSeleccionado = nombres[indexAleatorio];
-            userProfile.username = nombreSeleccionado;
-            userProfile.idAccesAccount = 1;
+            userProfile.username = UserProfileSingleton.username;
+            userProfile.idAccesAccount = UserProfileSingleton.idAccount;
             try
             {
                 chatManager.ConnectToChatLobby(userProfile, "1234");
@@ -56,7 +52,7 @@ namespace HiveGameWPFApp.Views
             {
                 if (message[indexListMessage].username.Equals(userProfile.username))
                 {
-                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text}";
+                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
                     Border messageContainer = new Border
                     {
                         Background = new SolidColorBrush(Colors.White),
