@@ -70,8 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Constants.cs" />
+    <Compile Include="Logic\Hasher.cs" />
     <Compile Include="Logic\LoggerManager.cs" />
     <Compile Include="Logic\UserProfileSingleton.cs" />
+    <Compile Include="Logic\Validator.cs" />
     <Compile Include="Properties\Resources.en-US.Designer.cs">
       <DependentUpon>Resources.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -166,11 +169,12 @@
     <Content Include="Audio\MainMenu.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\Icons\GuestIcon.png" />
-    <Resource Include="Images\Icons\Register.png" />
-    <Content Include="Video\LobbyBackground.mp4">
+    <Content Include="Video\loadingScreen.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Video\LobbyBackground.mp4" />
+    <Resource Include="Images\Icons\GuestIcon.png" />
+    <Resource Include="Images\Icons\Register.png" />
     <Resource Include="Images\Characters\Pet closing one eye.png" />
     <Resource Include="Images\Icons\NotVisible.png" />
     <Resource Include="Images\Characters\Pet closing eyes.png" />
@@ -186,9 +190,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Video\loadingScreen.mp4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
