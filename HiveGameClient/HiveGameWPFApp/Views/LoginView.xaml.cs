@@ -21,7 +21,8 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             pwbPassword.PasswordChanged += PwbPassword_PasswordChanged;
             mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Audio/Lobby.mp3"));
+            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Audio/Login.mp3"));
+            mediaPlayer.Volume = 0.05;
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             mediaPlayer.Play();
         }
@@ -127,15 +128,15 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void BtnLogin_Guest(object sender, RoutedEventArgs e)
+        private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void BtnLogin_Register(object sender, RoutedEventArgs e)
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
         }
 
-        private void BtnRegister_Click(object sender, MouseButtonEventArgs e)
+        private void BtnRecoverPassword_Click(object sender, MouseButtonEventArgs e)
         {
             
         }
