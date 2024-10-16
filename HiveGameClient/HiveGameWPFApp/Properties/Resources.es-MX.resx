@@ -138,4 +138,37 @@
   <data name="lbl_RecoverPassword" xml:space="preserve">
     <value>¿Olvidaste tu contraseña?</value>
   </data>
+  <data name="dialogTitleError" xml:space="preserve">
+    <value>Un error ha ocurrido</value>
+  </data>
+  <data name="dialogTitleWarning " xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="dialogTitleSucces" xml:space="preserve">
+    <value>Operación exitosa</value>
+  </data>
+  <data name="ConfirmationTitle" xml:space="preserve">
+    <value>Confirmación de acción</value>
+  </data>
+  <data name="dialogEndPointException" xml:space="preserve">
+    <value>Fallo al encontrar el punto de acceso. Por favor cheque la configuración al servidor e inténtelo de nuevo.</value>
+  </data>
+  <data name="dialogComunicationException" xml:space="preserve">
+    <value>Se ha producido un fallo para establecer la conexión al servidor. Cheque su conexión a internet e inténtelo de nuevo</value>
+  </data>
+  <data name="dialogTimeOutException" xml:space="preserve">
+    <value>El tiempo de espera ha caducado, inténtelo de nuevo. Por favor cheque su conexión a internet.</value>
+  </data>
+  <data name="dialogDataBaseError" xml:space="preserve">
+    <value>Ha ocurrido un error en la base</value>
+  </data>
+  <data name="dialogWrongData" xml:space="preserve">
+    <value>La información que ha ingresado es incorrecta. Intentelo de nuevo.</value>
+  </data>
+  <data name="dialogMissmatchesCredentials" xml:space="preserve">
+    <value>No se ha podido encontrar la cuenta. Por favor verifique que el nombre de usuario y contraseña sea correcto.</value>
+  </data>
+  <data name="dialogMessageJoinChat" xml:space="preserve">
+    <value>Se ha unido al chat. Denle una calida bienvenida!</value>
+  </data>
 </root>
