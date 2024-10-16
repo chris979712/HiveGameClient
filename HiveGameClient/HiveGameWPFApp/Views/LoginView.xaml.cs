@@ -45,10 +45,14 @@ namespace HiveGameWPFApp.Views
                 {
                     DisplayMainMenuView();
                 }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogMissmatchesCredentials);
+                }
             }
             else
             {
-
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogWrongData);
             }
         }
 
@@ -82,17 +86,21 @@ namespace HiveGameWPFApp.Views
             catch(EndpointNotFoundException endPointException)
             {
                 logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
             }catch(TimeoutException timeOutException)
             {
                 logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
             }catch(CommunicationException communicationException)
             {
                 logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             switch (validationResult)
             {
                 case -1:
                     validateResult = false;
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                     break;
                 case 1:
                     validateResult = true;
@@ -116,15 +124,21 @@ namespace HiveGameWPFApp.Views
                 {
                     UserProfileSingleton.Instance.CreateInstance(userAccount);
                 }
-            }catch(EndpointNotFoundException endPointException)
+            }
+            catch (EndpointNotFoundException endPointException)
             {
                 logger.LogError(endPointException);
-            }catch(TimeoutException timeOutException)
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
             {
                 logger.LogError(timeOutException);
-            }catch(CommunicationException communicationException)
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
             {
                 logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
         }
 
@@ -207,16 +221,6 @@ namespace HiveGameWPFApp.Views
         {
             LobbyView lobbyView = new LobbyView();
             this.NavigationService.Navigate(lobbyView);
-        }
-
-        private void BtnGuest_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnRegister_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
     }

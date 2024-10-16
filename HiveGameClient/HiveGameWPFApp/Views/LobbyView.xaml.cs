@@ -26,23 +26,55 @@ namespace HiveGameWPFApp.Views
             try
             {
                 chatManager.ConnectToChatLobby(userProfile, "1234");
-            }catch (EndpointNotFoundException endpointException)
-            {
-                logger.LogError(endpointException);
             }
-            catch (TimeoutException timeoutException)
+            catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(timeoutException);
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
             }
             catch (CommunicationException communicationException)
             {
                 logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
-            catch (Exception exception)
-            {
-                logger.LogFatal(exception);
-            }
+        }
 
+        public void sendWelcomeNotificationMessage(string codeLobby)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            chatManager = new ChatManagerClient(new InstanceContext(this));
+            Profile serverProfile = new Profile();
+            serverProfile.username = "Server notification";
+            string message = UserProfileSingleton.username +" "+ Properties.Resources.dialogMessageJoinChat;
+            Message messageServer = new Message()
+            {
+                text = message,
+                username = serverProfile.username,
+            };
+            try
+            {
+                chatManager.SendMessages(messageServer,codeLobby);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
 
         public void ReceiveMessage(Message[] message)
@@ -73,6 +105,29 @@ namespace HiveGameWPFApp.Views
                     messageContainer.Child = messageBlock;
                     ChatMessagesPanel.Children.Add(messageContainer);
                 }
+                else if (message[indexListMessage].username.Equals("Server notification"))
+                {
+                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text}";
+                    Border messageContainer = new Border
+                    {
+                        Background = new SolidColorBrush(Colors.White),
+                        BorderThickness = new Thickness(1),
+                        Padding = new Thickness(10),
+                        Margin = new Thickness(20, 5, 20, 5),
+                        HorizontalAlignment = HorizontalAlignment.Center
+                    };
+                    TextBlock messageBlock = new TextBlock
+                    {
+                        Text = messageReceived,
+                        Foreground = new SolidColorBrush(Colors.Black),
+                        FontSize = 12,
+                        FontWeight = FontWeights.Bold,
+                        TextWrapping = TextWrapping.Wrap,
+                        MaxWidth = 250
+                    };
+                    messageContainer.Child = messageBlock;
+                    ChatMessagesPanel.Children.Add(messageContainer);
+                }
                 else
                 {
                     string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text}";
@@ -82,7 +137,7 @@ namespace HiveGameWPFApp.Views
                         BorderThickness = new Thickness(1),
                         Padding = new Thickness(10),
                         Margin = new Thickness(20, 5, 20, 5),
-                        HorizontalAlignment = HorizontalAlignment.Left
+                        HorizontalAlignment = HorizontalAlignment.Right
                     };
                     TextBlock messageBlock = new TextBlock
                     {
@@ -122,21 +177,20 @@ namespace HiveGameWPFApp.Views
                     chatManager.SendMessages(messageToSend,"1234");
                     txtMessageInput.Clear();
                 }
-                catch (EndpointNotFoundException endpointException)
+                catch (EndpointNotFoundException endPointException)
                 {
-                    logger.LogError(endpointException);
+                    logger.LogError(endPointException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 }
-                catch (TimeoutException timeoutException)
+                catch (TimeoutException timeOutException)
                 {
-                    logger.LogError(timeoutException);
+                    logger.LogError(timeOutException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 }
                 catch (CommunicationException communicationException)
                 {
                     logger.LogError(communicationException);
-                }
-                catch (Exception exception)
-                {
-                    logger.LogFatal(exception);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
                 }
                 txtMessageInput.Clear();
                 txtCharCount.Text = "0/100"; 
