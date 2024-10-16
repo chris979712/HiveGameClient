@@ -208,16 +208,5 @@ namespace HiveGameWPFApp.Views
             LobbyView lobbyView = new LobbyView();
             this.NavigationService.Navigate(lobbyView);
         }
-
-        private void BtnGuest_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnRegister_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }
