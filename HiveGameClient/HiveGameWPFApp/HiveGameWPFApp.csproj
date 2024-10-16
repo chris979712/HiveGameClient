@@ -71,6 +71,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Logic\Constants.cs" />
+    <Compile Include="Logic\DialogManager.cs" />
     <Compile Include="Logic\Hasher.cs" />
     <Compile Include="Logic\LoggerManager.cs" />
     <Compile Include="Logic\UserProfileSingleton.cs" />

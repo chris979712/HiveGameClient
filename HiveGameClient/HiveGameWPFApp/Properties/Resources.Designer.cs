@@ -88,6 +88,105 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Failed to establish a connection with the server. Please check your internet connection and try it again..
+        /// </summary>
+        public static string dialogComunicationException {
+            get {
+                return ResourceManager.GetString("dialogComunicationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a An error has ocurred with the database, please try again..
+        /// </summary>
+        public static string dialogDataBaseError {
+            get {
+                return ResourceManager.GetString("dialogDataBaseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Failed to find the endpoint. Please check the server configuration and try again..
+        /// </summary>
+        public static string dialogEndPointException {
+            get {
+                return ResourceManager.GetString("dialogEndPointException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a has joined to the lobby. Give it a welcome! .
+        /// </summary>
+        public static string dialogMessageJoinChat {
+            get {
+                return ResourceManager.GetString("dialogMessageJoinChat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unable to find the account. Please verify to type the correct email and password..
+        /// </summary>
+        public static string dialogMissmatchesCredentials {
+            get {
+                return ResourceManager.GetString("dialogMissmatchesCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Try again waiting time has expired. Please check your connection to the server..
+        /// </summary>
+        public static string dialogTimeOutException {
+            get {
+                return ResourceManager.GetString("dialogTimeOutException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Action confirmation.
+        /// </summary>
+        public static string dialogTitleConfirmation {
+            get {
+                return ResourceManager.GetString("dialogTitleConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a An error has ocurred.
+        /// </summary>
+        public static string dialogTitleError {
+            get {
+                return ResourceManager.GetString("dialogTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Operation succesfull.
+        /// </summary>
+        public static string dialogTitleSucces {
+            get {
+                return ResourceManager.GetString("dialogTitleSucces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Warning.
+        /// </summary>
+        public static string dialogTitleWarning {
+            get {
+                return ResourceManager.GetString("dialogTitleWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The information that you type is incorrect, try it again..
+        /// </summary>
+        public static string dialogWrongData {
+            get {
+                return ResourceManager.GetString("dialogWrongData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Email.
         /// </summary>
         public static string globalLbl_Email {

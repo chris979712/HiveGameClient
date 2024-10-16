@@ -138,4 +138,37 @@
   <data name="lbl_RecoverPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
+  <data name="dialogTitleError" xml:space="preserve">
+    <value>An error has ocurred</value>
+  </data>
+  <data name="dialogTitleWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="dialogTitleSucces" xml:space="preserve">
+    <value>Operation succesfull</value>
+  </data>
+  <data name="dialogTitleConfirmation" xml:space="preserve">
+    <value>Action confirmation</value>
+  </data>
+  <data name="dialogEndPointException" xml:space="preserve">
+    <value>Failed to find the endpoint. Please check the server configuration and try again.</value>
+  </data>
+  <data name="dialogComunicationException" xml:space="preserve">
+    <value>Failed to establish a connection with the server. Please check your internet connection and try it again.</value>
+  </data>
+  <data name="dialogTimeOutException" xml:space="preserve">
+    <value>Try again waiting time has expired. Please check your connection to the server.</value>
+  </data>
+  <data name="dialogDataBaseError" xml:space="preserve">
+    <value>An error has ocurred with the database, please try again.</value>
+  </data>
+  <data name="dialogWrongData" xml:space="preserve">
+    <value>The information that you type is incorrect, try it again.</value>
+  </data>
+  <data name="dialogMissmatchesCredentials" xml:space="preserve">
+    <value>Unable to find the account. Please verify to type the correct email and password.</value>
+  </data>
+  <data name="dialogMessageJoinChat" xml:space="preserve">
+    <value>has joined to the lobby. Give it a welcome! </value>
+  </data>
 </root>
