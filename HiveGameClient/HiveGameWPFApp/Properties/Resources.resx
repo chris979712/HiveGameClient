@@ -171,4 +171,16 @@
   <data name="dialogMessageJoinChat" xml:space="preserve">
     <value>has joined to the lobby. Give it a welcome! </value>
   </data>
+  <data name="ConfirmationTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dialogMissmatchesPassword" xml:space="preserve">
+    <value>Verify that the password that you typed are the same.</value>
+  </data>
+  <data name="dialogExistinAccount" xml:space="preserve">
+    <value>The email or username to regist are already registered.</value>
+  </data>
+  <data name="dialogAccountCreated" xml:space="preserve">
+    <value>Your account has been successfully created. Welcome! :D</value>
+  </data>
 </root>

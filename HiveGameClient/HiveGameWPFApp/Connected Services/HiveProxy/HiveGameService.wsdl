@@ -358,6 +358,7 @@
           <xs:extension base="tns:AccessAccount">
             <xs:sequence>
               <xs:element minOccurs="0" name="createdDate" type="xs:dateTime" />
+              <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
               <xs:element minOccurs="0" name="idAccount" type="xs:int" />
               <xs:element minOccurs="0" name="idProfile" type="xs:int" />
               <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />

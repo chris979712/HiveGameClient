@@ -183,7 +183,11 @@
                         Margin="218,280,0,0" 
                         VerticalAlignment="Top"/>
 
-                    <TextBox x:Name="txtName"
+
+                    
+                    
+                    <TextBox x:Name="txtEmail"
+
                          Width="348"
                          Height="40"
                          HorizontalAlignment="Left"
