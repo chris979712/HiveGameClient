@@ -1,5 +1,6 @@
 ﻿using HiveGameWPFApp.HiveProxy;
 using HiveGameWPFApp.Logic;
+using Microsoft.Win32;
 using System;
 using System.Net;
 using System.Security;
@@ -145,9 +146,11 @@ namespace HiveGameWPFApp.Views
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
         }
-
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
+            
+            RegisterView registerView = new RegisterView();
+            this.NavigationService.Navigate(registerView);
         }
 
         private void BtnRecoverPassword_Click(object sender, MouseButtonEventArgs e)
