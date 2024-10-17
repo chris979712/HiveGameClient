@@ -171,13 +171,13 @@ namespace HiveGameWPFApp.Views
         private void PwbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             UpdatePasswordVisibilityIcon(pwbPassword, tgbtnPasswordVisibility);
-            UpdatePetImageBasedOnPassword(pwbPassword.Password);
+            UpdatePetImageBasedOnPassword();
         }
 
         private void ConfirmPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             UpdatePasswordVisibilityIcon(ConfirmPassword, tgbtnConfirmPasswordVisibility);
-            UpdatePetImageBasedOnPassword(ConfirmPassword.Password);
+            UpdatePetImageBasedOnPassword();
         }
 
         private void BtnPasswordVisibility_MouseDown(object sender, MouseButtonEventArgs e)
@@ -241,15 +241,16 @@ namespace HiveGameWPFApp.Views
                 else ConfirmPassword.Password = txtConfirmPasswordDisplay.Text;
             }
         }
-        private void UpdatePetImageBasedOnPassword(string password)
+        private void UpdatePetImageBasedOnPassword()
         {
-            if (!string.IsNullOrEmpty(password))
+            
+            if (string.IsNullOrEmpty(pwbPassword.Password) && string.IsNullOrEmpty(ConfirmPassword.Password))
             {
-                ChangePetImage("/Images/Characters/Pet closing eyes.png");
+                ChangePetImage("/Images/Characters/pet.png"); 
             }
             else
             {
-                ChangePetImage("/Images/Characters/pet.png");
+                ChangePetImage("/Images/Characters/Pet closing eyes.png");
             }
         }
 

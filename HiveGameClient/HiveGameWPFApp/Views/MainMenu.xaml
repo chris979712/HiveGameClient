@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="1297">
             <Grid>
                 <Border>
                     <Border.Background>
@@ -16,14 +16,55 @@
                     </Border.Background>
                 </Border>
                 <Grid>
+                    <StackPanel Margin="520,169,-15,88">
+                        <MediaElement x:Name="mediaElement"
+                                      Source="pack://siteoforigin:,,,/Video/VideoMenu.mp4"
+                                      LoadedBehavior="Manual"
+                                      UnloadedBehavior="Stop"
+                                      Stretch="Uniform"
+                                      MediaEnded="MediaElement_MediaEnded"
+                                      Width="774" Height="458" />
+                    </StackPanel>
+
+                    <Button x:Name="btnPlay" Content="PLAY"
+                         Width="347" Height="41" FontSize="30"
+                         Background="#FFC300" Foreground="Black"
+                         HorizontalAlignment="Left" VerticalAlignment="Top"
+                         HorizontalContentAlignment="Right" 
+                         Padding="0,0,10,0"
+                        Margin="97,256,0,0" RenderTransformOrigin="0.5,0.393"
+                         Click="BtnPlay_Click"/>
+                    <Button x:Name="btnMyAccount" Content="MY ACCOUNT"
+                         Width="347" Height="41" FontSize="30"
+                         Background="#FFC300" Foreground="Black"
+                         HorizontalAlignment="Left" VerticalAlignment="Top"
+                         HorizontalContentAlignment="Right" 
+                         Padding="0,0,10,0"
+                        Margin="97,311,0,0" RenderTransformOrigin="0.5,0.393"
+                         Click="BtnMyAccount_Click"/>
+
                     <Image x:Name="imgPet"  
                        Source="/Images/Icons/Code Swarm.png"
                        Width="296" Height="58"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="68,104,0,0"
+                       Margin="148,107,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
+
+                    <Image x:Name="VideoFrame"  
+                       Source="/Images/Background/VideoFrame.png"
+                       Width="760" Height="464"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="520,169,0,0"
+                       RenderTransformOrigin="0.5,0.5"
+                       Panel.ZIndex="1"/>
+
+                    <Image Source="/Images/Icons/Go out.png" 
+                       Width="84" Height="85" 
+                       MouseDown="Image_MouseDown" 
+                       Cursor="Hand" Margin="10,10,1186,626"/>
                 </Grid>
             </Grid>
         </ScrollViewer>
