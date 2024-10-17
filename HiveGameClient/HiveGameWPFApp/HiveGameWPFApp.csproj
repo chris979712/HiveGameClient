@@ -96,6 +96,9 @@
     <Compile Include="Views\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditProfileView.xaml.cs">
+      <DependentUpon>EditProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,9 +174,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Avatars\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Background\loginBackground.png" />
   </ItemGroup>
@@ -186,12 +191,39 @@
     <Content Include="Audio\MainMenu.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Background\VideoFrame.png" />
+    <Resource Include="Images\Background\LobbyBackground.png" />
+    <Resource Include="Images\Avatars\Avatar1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Avatars\Avatar2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Avatars\Avatar3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Avatars\Avatar4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Avatars\Avatar5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Avatars\Avatar6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Video\VideoMenu.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\Icons\Go out.png" />
+    <Resource Include="Images\Background\MainMenuBackground.png" />
     <Resource Include="Images\Background\RegisterBackground.png" />
     <Resource Include="Images\Icons\Back2.png" />
     <Content Include="Video\loadingScreen.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Video\LobbyBackground.mp4" />
+    <Content Include="Video\LobbyBackground.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\Icons\GuestIcon.png" />
     <Resource Include="Images\Icons\Register.png" />
     <Resource Include="Images\Characters\Pet closing one eye.png" />
@@ -199,10 +231,8 @@
     <Resource Include="Images\Characters\Pet closing eyes.png" />
     <Resource Include="Images\Characters\Pet.png" />
     <Resource Include="Images\Icons\Visible.png" />
-    <Resource Include="Images\Background\MainMenuBackground.png" />
     <Resource Include="Images\Icons\Code Swarm.png" />
     <Resource Include="Images\Icons\Lobby.png" />
-    <Resource Include="Images\Background\LobbyBackground.png" />
     <None Include="Connected Services\HiveProxy\configuration91.svcinfo" />
     <None Include="Connected Services\HiveProxy\configuration.svcinfo" />
     <None Include="Connected Services\HiveProxy\Reference.svcmap">

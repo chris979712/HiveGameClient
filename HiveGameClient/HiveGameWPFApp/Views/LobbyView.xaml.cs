@@ -43,6 +43,7 @@ namespace HiveGameWPFApp.Views
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
         }
+        
 
         public void sendWelcomeNotificationMessage(string codeLobby)
         {

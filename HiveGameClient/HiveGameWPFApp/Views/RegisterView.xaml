@@ -28,15 +28,13 @@
                        Margin="938,0,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
-
-                    <!-- Contenedor de la Contraseña (PasswordBox y ToggleButton juntos) -->
+                    
                     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="468,365,0,0" Width="390">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Campo para ingresar Contraseña (PasswordBox) -->
                         <Border x:Name="brPassword" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0"   >
                             <PasswordBox x:Name="pwbPassword"
                               FontSize="16"
@@ -52,7 +50,6 @@
                             </PasswordBox>
                         </Border>
 
-                        <!-- Botón para mostrar/ocultar contraseña -->
                         <ToggleButton x:Name="tgbtnPasswordVisibility" 
                                Background="Transparent" BorderBrush="Transparent"
                                Grid.Column="1" Cursor="Hand"
@@ -67,7 +64,6 @@
                         </ToggleButton>
                     </Grid>
 
-                    <!-- Campo de Texto visible para la contraseña (usado cuando se muestra la contraseña) -->
                     <Border x:Name="brPasswordDisplay" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          Margin="468,365,0,0" Width="350" Height="40" Visibility="Collapsed" Cursor="">
@@ -85,14 +81,12 @@
                         </TextBox>
                     </Border>
 
-                    <!-- Contenedor para la confirmacion la Contraseña (PasswordBox y ToggleButton juntos) -->
                     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="468,452,0,0" Width="390">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Campo para ingresar Contraseña (PasswordBox) -->
                         <Border x:Name="brPasswordConfirm" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0"   >
                             <PasswordBox x:Name="ConfirmPassword"
                                  FontSize="16"
@@ -108,7 +102,6 @@
                             </PasswordBox>
                         </Border>
 
-                        <!-- Botón para mostrar/ocultar contraseña -->
                         <ToggleButton x:Name="tgbtnConfirmPasswordVisibility" 
                               Background="Transparent" BorderBrush="Transparent"
                               Grid.Column="1" Cursor="Hand"
@@ -123,7 +116,6 @@
                         </ToggleButton>
                     </Grid>
 
-                    <!-- Campo de Texto visible para la contraseña (usado cuando se muestra la contraseña) -->
                     <Border x:Name="brPasswordDisplayConfirm" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
                             HorizontalAlignment="Left" VerticalAlignment="Top"
                             Margin="468,452,0,0" Width="350" Height="40" Visibility="Collapsed">
@@ -141,7 +133,6 @@
                         </TextBox>
                     </Border>
 
-                    <!-- Etiqueta para Contraseña -->
                     <Label x:Name="lblPassword" Content="{x:Static p:Resources.globalLbl_Password}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
@@ -150,7 +141,6 @@
                         Margin="218,363,0,0" 
                         VerticalAlignment="Top"/>
 
-                    <!-- Etiqueta para Contraseña -->
                     <Label x:Name="lblConfirmPassword" Content="Confirm Password"
                         Foreground="#FFC300"
                         FontWeight="Bold"
@@ -159,7 +149,7 @@
                         Margin="218,444,0,0" 
                         VerticalAlignment="Top"/>
 
-                    <!-- Etiqueta para Nombre de Usuario -->
+
                     <Label x:Name="lblUsername" Content="{x:Static p:Resources.globalLbl_UserName}"
                             Foreground="#FFC300"
                             FontWeight="Bold"
@@ -167,7 +157,7 @@
                             HorizontalAlignment="Left" 
                             Margin="218,201,0,0" 
                             VerticalAlignment="Top"/>
-                    <!-- Cuadro de Texto para Nombre de Usuario -->
+                    
                     <TextBox x:Name="txtbUsername"
                          Width="348"
                          Height="40"
@@ -185,7 +175,6 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <!-- Etiqueta para Nombre de Usuario -->
                     <Label x:Name="lblName" Content="Email"
                         Foreground="#FFC300"
                         FontWeight="Bold"
@@ -193,8 +182,12 @@
                         HorizontalAlignment="Left" 
                         Margin="218,280,0,0" 
                         VerticalAlignment="Top"/>
-                    <!-- Cuadro de Texto para Nombre de Usuario -->
+
+
+                    
+                    
                     <TextBox x:Name="txtEmail"
+
                          Width="348"
                          Height="40"
                          HorizontalAlignment="Left"
@@ -226,7 +219,7 @@
 
                     <Button x:Name="btn_CreateAccount" Content="{x:Static p:Resources.btn_CreateAccount}"
                             Width="348" Height="36" FontSize="24"
-                            Background="#FFC300" Foreground="Black"
+                            Background="Gray" Foreground="Black"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Margin="0,556,0,0" RenderTransformOrigin="0.5,0.393" 
                             Click="BtnCreateAccount_Click"/>

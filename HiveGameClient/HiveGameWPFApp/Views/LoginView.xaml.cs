@@ -21,17 +21,9 @@ namespace HiveGameWPFApp.Views
         {
             InitializeComponent();
             pwbPassword.PasswordChanged += PwbPassword_PasswordChanged;
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Audio/Login.mp3"));
-            mediaPlayer.Volume = 0.05;
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Play();
+            
         }
-        private void MediaPlayer_MediaEnded(object sender, EventArgs e)
-        {
-            mediaPlayer.Position = TimeSpan.Zero; // Reinicia el audio
-            mediaPlayer.Play(); // Reproduce de nuevo
-        }
+        
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -148,7 +140,6 @@ namespace HiveGameWPFApp.Views
         }
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            
             RegisterView registerView = new RegisterView();
             this.NavigationService.Navigate(registerView);
         }

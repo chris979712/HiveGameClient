@@ -4,21 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HiveGameWPFApp"
-        mc:Ignorable="d" >
-    
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <Storyboard x:Key="FadeOutAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="1" To="0" Duration="0:0:1.5" />
+        </Storyboard>
+
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:1.5" />
+        </Storyboard>
+    </Window.Resources>
+
     <Viewbox Stretch="Fill">
         <Grid Height="720" Width="1280">
-       
             <MediaElement x:Name="IntroVideo" 
                           LoadedBehavior="Play" 
                           UnloadedBehavior="Stop"
                           Source="Video/loadingScreen.mp4"
-                          Volume="0.01"
+                          Volume="0.1"
                           Stretch="Fill"
                           MediaEnded="IntroVideo_MediaEnded"/>
 
-            <Frame x:Name="NavigationFrame" NavigationUIVisibility="Hidden"  />
+            <Frame x:Name="NavigationFrame" 
+                   NavigationUIVisibility="Hidden"
+                   Opacity="1"
+                   Navigating="NavigationFrame_Navigating"
+                   Navigated="NavigationFrame_Navigated" />
 
+            <MediaElement x:Name="BackgroundMusicPlayer"
+                          LoadedBehavior="Manual"
+                          UnloadedBehavior="Stop"
+                          Volume="0.09"
+                          IsHitTestVisible="False"
+                          MediaEnded="BackgroundMusicPlayer_MediaEnded"/>
         </Grid>
     </Viewbox>
 </Window>

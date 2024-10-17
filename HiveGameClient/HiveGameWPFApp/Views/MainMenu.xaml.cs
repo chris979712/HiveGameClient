@@ -20,17 +20,41 @@ namespace HiveGameWPFApp.Views
         public MainMenu()
         {
             InitializeComponent();
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/.mp3"));
-            mediaPlayer.Volume = 0.05;
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Play();
+            Loaded += MainMenu_Loaded;
+            Unloaded += MainMenu_Unloaded;
+
+        }
+        private void MainMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
         }
 
-        private void MediaPlayer_MediaEnded(object sender, EventArgs e)
+        private void MainMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-            mediaPlayer.Position = TimeSpan.Zero; // Reinicia el audio
-            mediaPlayer.Play(); // Reproduce de nuevo
+            mediaElement.Pause();
+        }
+
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Position = TimeSpan.Zero;
+            mediaElement.Play();
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void BtnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            LobbyView lobbyView = new LobbyView();
+            this.NavigationService.Navigate(lobbyView);
+        }
+
+        private void BtnMyAccount_Click(object sender, RoutedEventArgs e)
+        {
+            EditProfileView editProfileView = new EditProfileView();
+            this.NavigationService.Navigate(editProfileView);
         }
     }
 }
