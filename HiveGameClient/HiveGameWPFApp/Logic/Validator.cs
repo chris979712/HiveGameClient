@@ -67,6 +67,7 @@ namespace HiveGameWPFApp.Logic
                 try
                 {
                     var mailAddress = new MailAddress(cleanedEmail);
+                    isValid = true;
                 }
                 catch (FormatException)
                 {

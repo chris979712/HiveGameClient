@@ -141,13 +141,13 @@
   <data name="dialogTitleError" xml:space="preserve">
     <value>Un error ha ocurrido</value>
   </data>
-  <data name="dialogTitleWarning " xml:space="preserve">
+  <data name="dialogTitleWarning" xml:space="preserve">
     <value>Advertencia</value>
   </data>
   <data name="dialogTitleSucces" xml:space="preserve">
     <value>Operación exitosa</value>
   </data>
-  <data name="ConfirmationTitle" xml:space="preserve">
+  <data name="dialogTitleConfirmation" xml:space="preserve">
     <value>Confirmación de acción</value>
   </data>
   <data name="dialogEndPointException" xml:space="preserve">
@@ -170,5 +170,17 @@
   </data>
   <data name="dialogMessageJoinChat" xml:space="preserve">
     <value>Se ha unido al chat. Denle una calida bienvenida!</value>
+  </data>
+  <data name="ConfirmationTitle" xml:space="preserve">
+    <value>Confirmación de acción</value>
+  </data>
+  <data name="dialogMissmatchesPassword" xml:space="preserve">
+    <value>Verifique que las contraseñas ingresadas sean identicas.</value>
+  </data>
+  <data name="dialogExistinAccount" xml:space="preserve">
+    <value>El correo o nombre de usuario a registrar. Han sido registrados previamente.</value>
+  </data>
+  <data name="dialogAccountCreated" xml:space="preserve">
+    <value>Su cuenta ha sido creada exitosamente. Bienvenido! :D</value>
   </data>
 </root>
