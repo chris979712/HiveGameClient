@@ -133,6 +133,9 @@ namespace HiveGameWPFApp.HiveProxy {
         private System.DateTime createdDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idAccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -153,6 +156,19 @@ namespace HiveGameWPFApp.HiveProxy {
                 if ((this.createdDateField.Equals(value) != true)) {
                     this.createdDateField = value;
                     this.RaisePropertyChanged("createdDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
+                    this.descriptionField = value;
+                    this.RaisePropertyChanged("description");
                 }
             }
         }

@@ -138,16 +138,16 @@
   <data name="lbl_RecoverPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
-  <data name="ErrorTitle" xml:space="preserve">
+  <data name="dialogTitleError" xml:space="preserve">
     <value>An error has ocurred</value>
   </data>
-  <data name="WarningTitle" xml:space="preserve">
+  <data name="dialogTitleWarning" xml:space="preserve">
     <value>Warning</value>
   </data>
-  <data name="SuccessTitle" xml:space="preserve">
+  <data name="dialogTitleSucces" xml:space="preserve">
     <value>Operation succesfull</value>
   </data>
-  <data name="ConfirmationTitle" xml:space="preserve">
+  <data name="dialogTitleConfirmation" xml:space="preserve">
     <value>Action confirmation</value>
   </data>
   <data name="dialogEndPointException" xml:space="preserve">
@@ -170,5 +170,17 @@
   </data>
   <data name="dialogMessageJoinChat" xml:space="preserve">
     <value>has joined to the lobby. Give it a welcome! </value>
+  </data>
+  <data name="ConfirmationTitle" xml:space="preserve">
+    <value>Action confirmation</value>
+  </data>
+  <data name="dialogMissmatchesPassword" xml:space="preserve">
+    <value>Verify that the password that you typed are the same.</value>
+  </data>
+  <data name="dialogExistinAccount" xml:space="preserve">
+    <value>The email or username to regist are already registered.</value>
+  </data>
+  <data name="dialogAccountCreated" xml:space="preserve">
+    <value>Your account has been successfully created. Welcome! :D</value>
   </data>
 </root>

@@ -88,6 +88,24 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a .
+        /// </summary>
+        public static string ConfirmationTitle {
+            get {
+                return ResourceManager.GetString("ConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Your account has been successfully created. Welcome! :D.
+        /// </summary>
+        public static string dialogAccountCreated {
+            get {
+                return ResourceManager.GetString("dialogAccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Failed to establish a connection with the server. Please check your internet connection and try it again..
         /// </summary>
         public static string dialogComunicationException {
@@ -115,6 +133,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The email or username to regist are already registered..
+        /// </summary>
+        public static string dialogExistinAccount {
+            get {
+                return ResourceManager.GetString("dialogExistinAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a has joined to the lobby. Give it a welcome! .
         /// </summary>
         public static string dialogMessageJoinChat {
@@ -129,6 +156,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogMissmatchesCredentials {
             get {
                 return ResourceManager.GetString("dialogMissmatchesCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Verify that the password that you typed are the same..
+        /// </summary>
+        public static string dialogMissmatchesPassword {
+            get {
+                return ResourceManager.GetString("dialogMissmatchesPassword", resourceCulture);
             }
         }
         
