@@ -63,5 +63,10 @@ namespace HiveGameWPFApp.Views
             EditProfileView editProfileView = new EditProfileView();
             this.NavigationService.Navigate(editProfileView);
         }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

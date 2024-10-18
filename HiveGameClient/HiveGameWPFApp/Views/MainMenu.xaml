@@ -14,7 +14,17 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
+                    <Image x:Name="BottonFrame"  
+                       Source="/Images/Background/BottonFrame.png"
+                       Width="400" Height="464"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="74,169,0,0"
+                       RenderTransformOrigin="0.5,0.5"
+                       Panel.ZIndex="1"/>
+
                 </Border>
+
                 <Grid>
                     <StackPanel Margin="520,169,-15,88">
                         <MediaElement x:Name="mediaElement"
@@ -25,23 +35,61 @@
                                       MediaEnded="MediaElement_MediaEnded"
                                       Width="774" Height="458" />
                     </StackPanel>
-
                     <Button x:Name="btnPlay" Content="PLAY"
-                         Width="347" Height="41" FontSize="30"
-                         Background="#FFC300" Foreground="Black"
-                         HorizontalAlignment="Left" VerticalAlignment="Top"
-                         HorizontalContentAlignment="Right" 
-                         Padding="0,0,10,0"
-                        Margin="97,256,0,0" RenderTransformOrigin="0.5,0.393"
-                         Click="BtnPlay_Click"/>
+                        Width="324" Height="41" FontSize="30"
+                        Foreground="Black"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        HorizontalContentAlignment="Right" 
+                        Padding="0,0,10,0"
+                        Margin="108,215,0,0" RenderTransformOrigin="0.5,0.393"
+                        Click="BtnPlay_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button x:Name="btn_settings" 
+                        Width="54" Height="41"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Cursor="Hand"
+                        Margin="1173,32,0,0" RenderTransformOrigin="0.5,0.393"
+                        Click="BtnSettings_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="10" BorderThickness="0">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                                    </Border.Background>
+                                    <StackPanel Orientation="Horizontal"  Width="43">
+                                        <Image Source="/Images/Icons/SettingsIcon.png" Width="43" Height="40"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Image x:Name="playButtonIcon"  
+                           Source="/Images/Icons/PlayButtonIcon.png"
+                           Width="91" Height="55"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="123,215,0,0"
+                           RenderTransformOrigin="0.5,0.5"
+                           Panel.ZIndex="1"/>
+
                     <Button x:Name="btnMyAccount" Content="MY ACCOUNT"
-                         Width="347" Height="41" FontSize="30"
-                         Background="#FFC300" Foreground="Black"
+                         Width="324" Height="41" FontSize="30"
+                         Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          HorizontalContentAlignment="Right" 
                          Padding="0,0,10,0"
-                        Margin="97,311,0,0" RenderTransformOrigin="0.5,0.393"
-                         Click="BtnMyAccount_Click"/>
+                        Margin="108,275,0,0" RenderTransformOrigin="0.5,0.393"
+                         Click="BtnMyAccount_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                        </Button.Background>
+                    </Button>
 
                     <Image x:Name="imgPet"  
                        Source="/Images/Icons/Code Swarm.png"
@@ -60,6 +108,8 @@
                        Margin="520,169,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
+
+
 
                     <Image Source="/Images/Icons/Go out.png" 
                        Width="84" Height="85" 
