@@ -183,4 +183,37 @@
   <data name="dialogAccountCreated" xml:space="preserve">
     <value>Su cuenta ha sido creada exitosamente. Bienvenido! :D</value>
   </data>
+  <data name="lbl_ConfirmPassword" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="lbl_CreateAccount" xml:space="preserve">
+    <value>Crear Cuenta</value>
+  </data>
+  <data name="lbl_EditProfile" xml:space="preserve">
+    <value>Editar Perfil</value>
+  </data>
+  <data name="lbl_Nickname" xml:space="preserve">
+    <value>Apodo</value>
+  </data>
+  <data name="lbl_Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="lbl_ProfilePicture" xml:space="preserve">
+    <value>Imagen de perfil</value>
+  </data>
+  <data name="globalbtn_Confirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="btn_SendMessage" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="dialogExitMainMenu" xml:space="preserve">
+    <value>Regresará a la ventana de inicio de sesión. ¿Está seguro de salir?</value>
+  </data>
+  <data name="dialogSameDataProfileModification" xml:space="preserve">
+    <value>No hay modificaciones por hacer, si desea modificar su perfil, haga algún cambio en los campos.</value>
+  </data>
+  <data name="dialogUpdatedData" xml:space="preserve">
+    <value>La información ha sido modificada exitosamente.</value>
+  </data>
 </root>
