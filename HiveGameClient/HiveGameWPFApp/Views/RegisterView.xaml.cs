@@ -69,12 +69,12 @@ namespace HiveGameWPFApp.Views
         public int AddUser(Profile profile)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
             int insertionResult = -1;
-            int validationExisted = userManagerClient.VerifyExistingAccesAccount(profile.email, profile.username);
             bool additionResult = false;
             try
             {
+                HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+                int validationExisted = userManagerClient.VerifyExistingAccesAccount(profile.email, profile.username);
                 if (validationExisted == 0)
                 {
                     Profile newProfileToAdd = AddDefaultInformationToProfile(profile);
@@ -115,9 +115,9 @@ namespace HiveGameWPFApp.Views
             newProfile.username = profile.username;
             newProfile.password = hashedPassword;
             newProfile.nickname = profile.username;
-            newProfile.imagePath = "ImageOne.png";
+            newProfile.imagePath = ProfileGenerator.RandomChooserAvatarIcon();
             newProfile.createdDate = DateTime.Now;
-            newProfile.description = "Hi";
+            newProfile.description = ProfileGenerator.RandomDescriptionGenerator();
             newProfile.reputation = 100;
             return newProfile;
         }
@@ -163,7 +163,7 @@ namespace HiveGameWPFApp.Views
             }
             if (!confirmPassword)
             {
-                brPassword.BorderBrush = Brushes.Red;
+                brPasswordConfirm.BorderBrush = Brushes.Red;
             }
             return username && password && email && confirmPassword;
         }

@@ -34,11 +34,12 @@ namespace HiveGameWPFApp.Views
             userAccount.password = pwbPassword.Password;
             if (verifyFields())
             {
-                if (validateCredentials(userAccount))
+                int validateCredentials = ValidateCredentials(userAccount);
+                if (validateCredentials == 1)
                 {
                     DisplayMainMenuView();
                 }
-                else
+                else if(validateCredentials == 0)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogMissmatchesCredentials);
                 }
@@ -64,11 +65,10 @@ namespace HiveGameWPFApp.Views
             return passwordValidation&&passwordValidation;
         }
 
-        public bool validateCredentials(Profile profile)
+        public int ValidateCredentials(Profile profile)
         {
-            bool validateResult = false;
             LoggerManager logger = new LoggerManager(this.GetType());
-            int validationResult = 0;
+            int validationResult = -1;
             try
             {
                 string hashedPassword = Hasher.hashToSHA1(profile.password);
@@ -92,17 +92,17 @@ namespace HiveGameWPFApp.Views
             switch (validationResult)
             {
                 case -1:
-                    validateResult = false;
+                    validationResult = -1;
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                     break;
                 case 1:
-                    validateResult = true;
+                    validationResult = 1;
                     obtainSingletonData(profile);
                     break;
                 default:
                     break;
             }
-            return validateResult;
+            return validationResult;
         }
 
         public void obtainSingletonData(Profile profile)
@@ -213,8 +213,8 @@ namespace HiveGameWPFApp.Views
 
         private void DisplayMainMenuView()
         {
-            LobbyView lobbyView = new LobbyView();
-            this.NavigationService.Navigate(lobbyView);
+            MainMenu mainWindow = new MainMenu();
+            this.NavigationService.Navigate(mainWindow);
         }
 
     }

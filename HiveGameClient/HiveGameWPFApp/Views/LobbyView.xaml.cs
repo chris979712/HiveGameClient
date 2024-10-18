@@ -106,39 +106,16 @@ namespace HiveGameWPFApp.Views
                     messageContainer.Child = messageBlock;
                     ChatMessagesPanel.Children.Add(messageContainer);
                 }
-                else if (message[indexListMessage].username.Equals("Server notification"))
-                {
-                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text}";
-                    Border messageContainer = new Border
-                    {
-                        Background = new SolidColorBrush(Colors.White),
-                        BorderThickness = new Thickness(1),
-                        Padding = new Thickness(10),
-                        Margin = new Thickness(20, 5, 20, 5),
-                        HorizontalAlignment = HorizontalAlignment.Center
-                    };
-                    TextBlock messageBlock = new TextBlock
-                    {
-                        Text = messageReceived,
-                        Foreground = new SolidColorBrush(Colors.Black),
-                        FontSize = 12,
-                        FontWeight = FontWeights.Bold,
-                        TextWrapping = TextWrapping.Wrap,
-                        MaxWidth = 250
-                    };
-                    messageContainer.Child = messageBlock;
-                    ChatMessagesPanel.Children.Add(messageContainer);
-                }
                 else
                 {
-                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text}";
+                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
                     Border messageContainer = new Border
                     {
                         Background = new SolidColorBrush(Colors.White),
                         BorderThickness = new Thickness(1),
                         Padding = new Thickness(10),
                         Margin = new Thickness(20, 5, 20, 5),
-                        HorizontalAlignment = HorizontalAlignment.Right
+                        HorizontalAlignment = HorizontalAlignment.Left
                     };
                     TextBlock messageBlock = new TextBlock
                     {

@@ -25,28 +25,28 @@
                            MouseDown="Image_MouseDown" 
                            Cursor="Hand" Margin="43,19,1153,616"/>
                     
-                    <Button x:Name="btnConfirm" Content="CONFIRM"
+                    <Button x:Name="btn_Confirm" Content="CONFIRM"
                          Width="347" Height="47" FontSize="26"
                          Background="#FFC300" Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          Margin="485,625,0,0" RenderTransformOrigin="0.5,0.393" 
                          Click="BtnConfirm_Click"/>
 
-                    <Label x:Name="lbl_editProfile" Content="Edit Profile"
+                    <Label x:Name="lbl_editProfile" Content="{x:Static p:Resources.lbl_EditProfile}"
                         Foreground="#e6a500"
                         FontFamily="Impact"
                         FontSize="60"
                         HorizontalAlignment="Center" 
                         Margin="0,62,0,0" 
                         VerticalAlignment="Top"/>
-                    <Label x:Name="lblNickname" Content="Nickname"
+                    <Label x:Name="lbl_Nickname" Content="{x:Static p:Resources.lbl_Nickname}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
                         FontSize="25"
                         HorizontalAlignment="Left" 
                         Margin="747,210,0,0" 
                         VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtbNickname"
+                    <TextBox x:Name="txtb_Nickname"
                          Width="347"
                          Height="40"
                          HorizontalAlignment="Left"
@@ -62,7 +62,7 @@
                             <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                         </TextBox.Effect>
                     </TextBox>
-                    <Label x:Name="lblDescription" Content="Description"
+                    <Label x:Name="lbl_Description" Content="{x:Static p:Resources.lbl_Description}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
                         FontSize="25"
@@ -70,7 +70,7 @@
                         Margin="738,328,0,0" 
                         VerticalAlignment="Top"/>
 
-                    <TextBox x:Name="txtbDescription"
+                    <TextBox x:Name="txtb_Description"
                          Width="347"
                          Height="80"
                          HorizontalAlignment="Left"
@@ -88,7 +88,7 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Label x:Name="lblProfilePic" Content="Profile Picture"
+                    <Label x:Name="lbl_ProfilePic" Content="{x:Static p:Resources.lbl_ProfilePicture}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
                         FontSize="25"
@@ -98,7 +98,7 @@
 
                     <Border Width="257" Height="220" BorderBrush="#FFC300" BorderThickness="2"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,260,0,0">
-                        <Image x:Name="imgProfilePic" Source="/Images/Avatars/Avatar1.png" Stretch="UniformToFill"/>
+                        <Image x:Name="img_ProfilePic" Source="/Images/Avatars/Avatar1.png" Stretch="UniformToFill"/>
                     </Border>
 
 
@@ -110,12 +110,12 @@
                     </Button>
 
 
-                    <Popup x:Name="profilePicPopup" StaysOpen="False" Placement="Center" IsOpen="False" 
+                    <Popup x:Name="popup_Profile" StaysOpen="False" Placement="Center" IsOpen="False" 
                            AllowsTransparency="True" Width="600" Height="200" HorizontalOffset="0" VerticalOffset="0">
                         <Border BorderBrush="#FFC300" BorderThickness="2" Background="White" Width="600" Height="200">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <ListBox x:Name="lstProfilePics" SelectionChanged="lstProfilePics_SelectionChanged"
+                                    <ListBox x:Name="lsb_ProfilePics" SelectionChanged="ListProfilePics_SelectionChanged"
                                              ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="580" 
                                              Height="180" BorderThickness="0">
                                         <ListBox.ItemsPanel>
@@ -131,6 +131,15 @@
                                         </ListBoxItem>
                                         <ListBoxItem Tag="/Images/Avatars/Avatar3.png">
                                             <Image Source="/Images/Avatars/Avatar3.png" Width="100" Height="100"/>
+                                        </ListBoxItem>
+                                        <ListBoxItem Tag="/Images/Avatars/Avatar4.png">
+                                            <Image Source="/Images/Avatars/Avatar4.png" Width="100" Height="100"/>
+                                        </ListBoxItem>
+                                        <ListBoxItem Tag="/Images/Avatars/Avatar5.png">
+                                            <Image Source="/Images/Avatars/Avatar5.png" Width="100" Height="100"/>
+                                        </ListBoxItem>
+                                        <ListBoxItem Tag="/Images/Avatars/Avatar6.png">
+                                            <Image Source="/Images/Avatars/Avatar6.png" Width="100" Height="100"/>
                                         </ListBoxItem>
                                     </ListBox>
                                 </StackPanel>

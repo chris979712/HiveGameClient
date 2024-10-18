@@ -19,9 +19,10 @@ namespace HiveGameWPFApp.Logic
             MessageBox.Show(successMessage, Properties.Resources.dialogTitleSucces, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public static void ShowConfirmationMessageAlert(string confirmMessage)
+        public static bool ShowConfirmationMessageAlert(string confirmMessage)
         {
-            MessageBox.Show(confirmMessage, Properties.Resources.dialogTitleConfirmation, MessageBoxButton.OK, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show(confirmMessage, Properties.Resources.dialogTitleConfirmation, MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            return result == MessageBoxResult.OK;
         }
     }
 }
