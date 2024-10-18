@@ -16,8 +16,6 @@
                     </Border.Background>
 
                 </Border>
-
-
                 <Grid>
 
                     <Image Source="/Images/Icons/Back2.png" 
@@ -98,12 +96,16 @@
 
                     <Border Width="257" Height="220" BorderBrush="#FFC300" BorderThickness="2"
                         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="178,260,0,0">
-                        <Image x:Name="img_ProfilePic" Source="/Images/Avatars/Avatar1.png" Stretch="UniformToFill"/>
+                        <Grid>
+                            <Viewbox>
+                                <Image x:Name="img_ProfilePic" Source="/Images/Avatars/Avatar1.png" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
                     </Border>
 
-
                     <Button Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="467,260,0,0"
-                        Content="..." Click="ChangeProfilePic_Click">
+                        FontSize="40"  Click="ChangeProfilePic_Click" >
+                        <Image Source="/Images/Icons/DropdownIcon.png" />
                         <Button.ToolTip>
                             <ToolTip Content="Change profile picture" />
                         </Button.ToolTip>
@@ -117,7 +119,7 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <ListBox x:Name="lsb_ProfilePics" SelectionChanged="ListProfilePics_SelectionChanged"
                                              ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="580" 
-                                             Height="180" BorderThickness="0">
+                                             Height="180" BorderThickness="0" Background="Transparent">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <StackPanel Orientation="Horizontal"/>

@@ -219,10 +219,10 @@
 
                     <Button x:Name="btn_CreateAccount" Content="{x:Static p:Resources.btn_CreateAccount}"
                             Width="348" Height="36" FontSize="24"
-                            Background="Gray" Foreground="Black"
+                            Background="#FFC300" Foreground="Black"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Margin="0,556,0,0" RenderTransformOrigin="0.5,0.393" 
-                            Click="BtnCreateAccount_Click"/>
+                            Click="BtnCreateAccount_Click" Cursor=""/>
 
                 </Grid>
             </Grid>
