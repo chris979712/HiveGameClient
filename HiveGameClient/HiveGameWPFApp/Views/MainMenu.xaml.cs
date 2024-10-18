@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HiveGameWPFApp.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,13 @@ namespace HiveGameWPFApp.Views
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            bool resultConfirmation = DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogExitMainMenu);
+            if(resultConfirmation)
+            {
+                UserProfileSingleton.Instance.ResetSingleton();
+                LoginView login = new LoginView();
+                this.NavigationService.Navigate(login);
+            }
         }
 
         private void BtnPlay_Click(object sender, RoutedEventArgs e)

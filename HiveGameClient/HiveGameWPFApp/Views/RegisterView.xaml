@@ -141,7 +141,7 @@
                         Margin="218,363,0,0" 
                         VerticalAlignment="Top"/>
 
-                    <Label x:Name="lblConfirmPassword" Content="Confirm Password"
+                    <Label x:Name="lblConfirmPassword" Content="{x:Static p:Resources.lbl_ConfirmPassword}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
                         FontSize="25"
@@ -175,7 +175,7 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Label x:Name="lblName" Content="Email"
+                    <Label x:Name="lblName" Content="{x:Static p:Resources.globalLbl_Email}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
                         FontSize="25"
@@ -215,7 +215,7 @@
                     <Image Source="/Images/Icons/Back2.png" 
                            Width="84" Height="85" 
                            MouseDown="Image_MouseDown" 
-                           Cursor="Hand" Margin="43,19,1153,616"/>
+                           Cursor="Hand" Margin="43,19,1153,616" RenderTransformOrigin="0.5,0.506"/>
 
                     <Button x:Name="btn_CreateAccount" Content="{x:Static p:Resources.btn_CreateAccount}"
                             Width="348" Height="36" FontSize="24"

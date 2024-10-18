@@ -1,6 +1,10 @@
-﻿using System;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,14 +22,24 @@ namespace HiveGameWPFApp.Views
 
     public partial class EditProfileView : Page
     {
+        private string imageRouteProfile = UserProfileSingleton.imageRoute;
+
         public EditProfileView()
         {
             InitializeComponent();
+            ChargeAccountProfileInformation();
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GoToMainMenuView();
+        }
+
+        private void ChargeAccountProfileInformation()
+        {
+            txtb_Description.Text = UserProfileSingleton.description;
+            txtb_Nickname.Text = UserProfileSingleton.nickname;
+            img_ProfilePic.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
         }
 
         private void GoToMainMenuView()
@@ -35,26 +49,103 @@ namespace HiveGameWPFApp.Views
         }
         private void ChangeProfilePic_Click(object sender, RoutedEventArgs e)
         {
-            
-            profilePicPopup.IsOpen = true;
+            popup_Profile.IsOpen = true;
         }
 
-        private void lstProfilePics_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListProfilePics_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            if (lstProfilePics.SelectedItem is ListBoxItem selectedItem)
+            if (lsb_ProfilePics.SelectedItem is ListBoxItem selectedItem)
             {
                 string selectedImage = selectedItem.Tag.ToString();
-                imgProfilePic.Source = new BitmapImage(new Uri(selectedImage, UriKind.Relative));
-
-               
-                profilePicPopup.IsOpen = false;
+                img_ProfilePic.Source = new BitmapImage(new Uri(selectedImage, UriKind.Relative));
+                imageRouteProfile = selectedImage;
+                popup_Profile.IsOpen = false;
             }
         }
 
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
-
+            RecolorFields();
+            if (ValidateFields())
+            {
+                if (!ValidateModification())
+                {
+                    ModifyUserProfile();
+                }
+                else
+                {
+                    DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogSameDataProfileModification);
+                }
+            }
+            else
+            {
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogWrongData);
+            }
         }
+
+        public void ModifyUserProfile()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            Profile profileToUpdate = new Profile();
+            profileToUpdate.nickname = txtb_Nickname.Text;
+            profileToUpdate.description = txtb_Description.Text;
+            profileToUpdate.imagePath = imageRouteProfile;
+            try
+            {
+                HiveProxy.UserManagerClient userManager = new HiveProxy.UserManagerClient();
+                int modificationResult = userManager.UpdateProfile(profileToUpdate, UserProfileSingleton.email);
+                if(modificationResult == 1)
+                {
+                    DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
+                    GoToMainMenuView();
+                }else if(modificationResult == -1)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+        }
+
+        private bool ValidateModification()
+        {
+            return txtb_Description.Text == UserProfileSingleton.description && txtb_Nickname.Text == UserProfileSingleton.nickname &&
+                imageRouteProfile == UserProfileSingleton.imageRoute;
+        }
+
+        public bool ValidateFields()
+        {
+            bool nicknameValidation = Validator.validateNickName(txtb_Nickname.Text);
+            bool descriptionValidation = Validator.ValidateDescription(txtb_Description.Text);
+            if (!nicknameValidation)
+            {
+                txtb_Nickname.BorderBrush = Brushes.Red;
+            }
+            if (!descriptionValidation)
+            {
+                txtb_Description.BorderBrush = Brushes.Red;
+            }
+            return nicknameValidation && descriptionValidation;
+        }
+
+        public void RecolorFields()
+        {
+            txtb_Description.BorderBrush = Brushes.White;
+            txtb_Nickname.BorderBrush = Brushes.White;
+        }
+
     }
 }

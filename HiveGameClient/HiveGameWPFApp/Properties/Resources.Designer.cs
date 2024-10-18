@@ -88,7 +88,16 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a Send.
+        /// </summary>
+        public static string btn_SendMessage {
+            get {
+                return ResourceManager.GetString("btn_SendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Action confirmation.
         /// </summary>
         public static string ConfirmationTitle {
             get {
@@ -142,6 +151,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure to exit?.
+        /// </summary>
+        public static string dialogExitMainMenu {
+            get {
+                return ResourceManager.GetString("dialogExitMainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a has joined to the lobby. Give it a welcome! .
         /// </summary>
         public static string dialogMessageJoinChat {
@@ -165,6 +183,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogMissmatchesPassword {
             get {
                 return ResourceManager.GetString("dialogMissmatchesPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are no modifications to do, if you want to modify your profile, change any field..
+        /// </summary>
+        public static string dialogSameDataProfileModification {
+            get {
+                return ResourceManager.GetString("dialogSameDataProfileModification", resourceCulture);
             }
         }
         
@@ -214,11 +241,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The information has been modified successfully..
+        /// </summary>
+        public static string dialogUpdatedData {
+            get {
+                return ResourceManager.GetString("dialogUpdatedData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The information that you type is incorrect, try it again..
         /// </summary>
         public static string dialogWrongData {
             get {
                 return ResourceManager.GetString("dialogWrongData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirm.
+        /// </summary>
+        public static string globalbtn_Confirm {
+            get {
+                return ResourceManager.GetString("globalbtn_Confirm", resourceCulture);
             }
         }
         
@@ -246,6 +291,60 @@ namespace HiveGameWPFApp.Properties {
         public static string globalLbl_UserName {
             get {
                 return ResourceManager.GetString("globalLbl_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirm Password.
+        /// </summary>
+        public static string lbl_ConfirmPassword {
+            get {
+                return ResourceManager.GetString("lbl_ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Create Account.
+        /// </summary>
+        public static string lbl_CreateAccount {
+            get {
+                return ResourceManager.GetString("lbl_CreateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Description.
+        /// </summary>
+        public static string lbl_Description {
+            get {
+                return ResourceManager.GetString("lbl_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit Profile.
+        /// </summary>
+        public static string lbl_EditProfile {
+            get {
+                return ResourceManager.GetString("lbl_EditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nickname.
+        /// </summary>
+        public static string lbl_Nickname {
+            get {
+                return ResourceManager.GetString("lbl_Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Profile Picture.
+        /// </summary>
+        public static string lbl_ProfilePicture {
+            get {
+                return ResourceManager.GetString("lbl_ProfilePicture", resourceCulture);
             }
         }
         

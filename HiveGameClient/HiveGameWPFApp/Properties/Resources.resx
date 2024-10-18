@@ -172,7 +172,7 @@
     <value>has joined to the lobby. Give it a welcome! </value>
   </data>
   <data name="ConfirmationTitle" xml:space="preserve">
-    <value />
+    <value>Action confirmation</value>
   </data>
   <data name="dialogMissmatchesPassword" xml:space="preserve">
     <value>Verify that the password that you typed are the same.</value>
@@ -182,5 +182,38 @@
   </data>
   <data name="dialogAccountCreated" xml:space="preserve">
     <value>Your account has been successfully created. Welcome! :D</value>
+  </data>
+  <data name="lbl_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="lbl_CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="lbl_EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="lbl_Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="lbl_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lbl_ProfilePicture" xml:space="preserve">
+    <value>Profile Picture</value>
+  </data>
+  <data name="globalbtn_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="btn_SendMessage" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="dialogExitMainMenu" xml:space="preserve">
+    <value>Are you sure to exit?</value>
+  </data>
+  <data name="dialogSameDataProfileModification" xml:space="preserve">
+    <value>There are no modifications to do, if you want to modify your profile, change any field.</value>
+  </data>
+  <data name="dialogUpdatedData" xml:space="preserve">
+    <value>The information has been modified successfully.</value>
   </data>
 </root>

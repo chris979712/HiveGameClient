@@ -20,6 +20,7 @@ namespace HiveGameWPFApp.Logic
         public static string imageRoute { get; set; }
         public static DateTime createdDate { get; set; }
         public static int idAssociatedAccount { get; set; }
+        public static string description { get; set; }
 
         public static UserProfileSingleton Instance => singletonInstance;
 
@@ -34,6 +35,7 @@ namespace HiveGameWPFApp.Logic
             imageRoute = profile.imagePath;
             createdDate = profile.createdDate;
             idAssociatedAccount = profile.idAccount;
+            description = profile.description;
         }
 
         public void ResetSingleton()
@@ -45,8 +47,9 @@ namespace HiveGameWPFApp.Logic
             idProfile = 0;
             nickname = null;
             imageRoute = null;
-            createdDate = DateTime.Parse("0000-00-00");
+            createdDate = DateTime.MinValue;
             idAssociatedAccount = 0;
+            description = null;
         }
     }
 }
