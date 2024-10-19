@@ -37,6 +37,8 @@ namespace HiveGameWPFApp.Views
                 int validateCredentials = ValidateCredentials(userAccount);
                 if (validateCredentials == 1)
                 {
+                    HiveProxy.EmailVerificationManagerClient hiveClient = new HiveProxy.EmailVerificationManagerClient();
+                    hiveClient.SendVerificationEmail(UserProfileSingleton.email);
                     DisplayMainMenuView();
                 }
                 else if(validateCredentials == 0)
@@ -68,7 +70,7 @@ namespace HiveGameWPFApp.Views
         public int ValidateCredentials(Profile profile)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            int validationResult = -1;
+            int validationResult = 0;
             try
             {
                 string hashedPassword = Hasher.hashToSHA1(profile.password);

@@ -48,6 +48,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ILeaderBoardManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IEmailVerificationManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" />
@@ -310,6 +334,102 @@
           <xs:sequence />
         </xs:complexType>
       </xs:element>
+      <xs:element name="UpdateWinnerResultToPlayerLeaderBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idAccounr" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateWinnerResultToPlayerLeaderBoardResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateWinnerResultToPlayerLeaderBoardResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateLoserResultToPlayerLeaderBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateLoserResultToPlayerLeaderBoardResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateLoserResultToPlayerLeaderBoardResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDrawResultToPlayerLeaderBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDrawResultToPlayerLeaderBoardResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateDrawResultToPlayerLeaderBoardResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPersonalLeaderBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPersonalLeaderBoardResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetPersonalLeaderBoardResult" nillable="true" type="q27:LeaderBoardPlayer" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllPlayersLeaderboards">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllPlayersLeaderboardsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllPlayersLeaderboardsResult" nillable="true" type="q28:ArrayOfLeaderBoardPlayer" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendVerificationEmail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="emailToSend" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendVerificationEmailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendVerificationEmailResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyCodeVerification">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userVerificator" nillable="true" type="q29:UserVerificator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyCodeVerificationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyCodeVerificationResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -397,6 +517,30 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+      <xs:complexType name="LeaderBoardPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          <xs:element minOccurs="0" name="totalDrawMatches" type="xs:int" />
+          <xs:element minOccurs="0" name="totalLostMatches" type="xs:int" />
+          <xs:element minOccurs="0" name="totalMatches" type="xs:int" />
+          <xs:element minOccurs="0" name="totalWonMatches" type="xs:int" />
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="LeaderBoardPlayer" nillable="true" type="tns:LeaderBoardPlayer" />
+      <xs:complexType name="ArrayOfLeaderBoardPlayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="LeaderBoardPlayer" nillable="true" type="tns:LeaderBoardPlayer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfLeaderBoardPlayer" nillable="true" type="tns:ArrayOfLeaderBoardPlayer" />
+      <xs:complexType name="UserVerificator">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UserVerificator" nillable="true" type="tns:UserVerificator" />
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="IUserManager_AddUser_InputMessage">
@@ -507,6 +651,48 @@
   <wsdl:message name="IChatManager_UserConnected_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserConnectedResponse" />
   </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateWinnerResultToPlayerLeaderBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWinnerResultToPlayerLeaderBoard" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateWinnerResultToPlayerLeaderBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWinnerResultToPlayerLeaderBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateLoserResultToPlayerLeaderBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoserResultToPlayerLeaderBoard" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateLoserResultToPlayerLeaderBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoserResultToPlayerLeaderBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateDrawResultToPlayerLeaderBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDrawResultToPlayerLeaderBoard" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_UpdateDrawResultToPlayerLeaderBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDrawResultToPlayerLeaderBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_GetPersonalLeaderBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalLeaderBoard" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_GetPersonalLeaderBoard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalLeaderBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_GetAllPlayersLeaderboards_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlayersLeaderboards" />
+  </wsdl:message>
+  <wsdl:message name="ILeaderBoardManager_GetAllPlayersLeaderboards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlayersLeaderboardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_SendVerificationEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendVerificationEmail" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_SendVerificationEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendVerificationEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_VerifyCodeVerification_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyCodeVerification" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_VerifyCodeVerification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyCodeVerificationResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/AddUser" message="tns:IUserManager_AddUser_InputMessage" />
@@ -587,6 +773,38 @@
     <wsdl:operation name="UserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/UserConnected" message="tns:IChatManager_UserConnected_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/UserConnectedResponse" message="tns:IChatManager_UserConnected_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ILeaderBoardManager">
+    <wsdl:operation name="UpdateWinnerResultToPlayerLeaderBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateWinnerResultToPlayerLeaderBoard" message="tns:ILeaderBoardManager_UpdateWinnerResultToPlayerLeaderBoard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateWinnerResultToPlayerLeaderBoardResponse" message="tns:ILeaderBoardManager_UpdateWinnerResultToPlayerLeaderBoard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoserResultToPlayerLeaderBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateLoserResultToPlayerLeaderBoard" message="tns:ILeaderBoardManager_UpdateLoserResultToPlayerLeaderBoard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateLoserResultToPlayerLeaderBoardResponse" message="tns:ILeaderBoardManager_UpdateLoserResultToPlayerLeaderBoard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDrawResultToPlayerLeaderBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateDrawResultToPlayerLeaderBoard" message="tns:ILeaderBoardManager_UpdateDrawResultToPlayerLeaderBoard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILeaderBoardManager/UpdateDrawResultToPlayerLeaderBoardResponse" message="tns:ILeaderBoardManager_UpdateDrawResultToPlayerLeaderBoard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalLeaderBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILeaderBoardManager/GetPersonalLeaderBoard" message="tns:ILeaderBoardManager_GetPersonalLeaderBoard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILeaderBoardManager/GetPersonalLeaderBoardResponse" message="tns:ILeaderBoardManager_GetPersonalLeaderBoard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPlayersLeaderboards">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILeaderBoardManager/GetAllPlayersLeaderboards" message="tns:ILeaderBoardManager_GetAllPlayersLeaderboards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILeaderBoardManager/GetAllPlayersLeaderboardsResponse" message="tns:ILeaderBoardManager_GetAllPlayersLeaderboards_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEmailVerificationManager">
+    <wsdl:operation name="SendVerificationEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailVerificationManager/SendVerificationEmail" message="tns:IEmailVerificationManager_SendVerificationEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailVerificationManager/SendVerificationEmailResponse" message="tns:IEmailVerificationManager_SendVerificationEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCodeVerification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailVerificationManager/VerifyCodeVerification" message="tns:IEmailVerificationManager_VerifyCodeVerification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailVerificationManager/VerifyCodeVerificationResponse" message="tns:IEmailVerificationManager_VerifyCodeVerification_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -770,6 +988,77 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ILeaderBoardManager" type="tns:ILeaderBoardManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_ILeaderBoardManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="UpdateWinnerResultToPlayerLeaderBoard">
+      <soap12:operation soapAction="http://tempuri.org/ILeaderBoardManager/UpdateWinnerResultToPlayerLeaderBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoserResultToPlayerLeaderBoard">
+      <soap12:operation soapAction="http://tempuri.org/ILeaderBoardManager/UpdateLoserResultToPlayerLeaderBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDrawResultToPlayerLeaderBoard">
+      <soap12:operation soapAction="http://tempuri.org/ILeaderBoardManager/UpdateDrawResultToPlayerLeaderBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalLeaderBoard">
+      <soap12:operation soapAction="http://tempuri.org/ILeaderBoardManager/GetPersonalLeaderBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPlayersLeaderboards">
+      <soap12:operation soapAction="http://tempuri.org/ILeaderBoardManager/GetAllPlayersLeaderboards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IEmailVerificationManager" type="tns:IEmailVerificationManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IEmailVerificationManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SendVerificationEmail">
+      <soap12:operation soapAction="http://tempuri.org/IEmailVerificationManager/SendVerificationEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCodeVerification">
+      <soap12:operation soapAction="http://tempuri.org/IEmailVerificationManager/VerifyCodeVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HiveGameService">
     <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
       <soap12:address location="net.tcp://localhost:1441/UserService" />
@@ -793,6 +1082,18 @@
       <soap12:address location="net.tcp://localhost:1441/ChatService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:1441/ChatService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ILeaderBoardManager" binding="tns:NetTcpBinding_ILeaderBoardManager">
+      <soap12:address location="net.tcp://localhost:1441/LeaderBoardService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/LeaderBoardService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IEmailVerificationManager" binding="tns:NetTcpBinding_IEmailVerificationManager">
+      <soap12:address location="net.tcp://localhost:1441/EmailVerificationService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/EmailVerificationService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
