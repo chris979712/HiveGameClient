@@ -37,8 +37,6 @@ namespace HiveGameWPFApp.Views
                 int validateCredentials = ValidateCredentials(userAccount);
                 if (validateCredentials == 1)
                 {
-                    HiveProxy.EmailVerificationManagerClient hiveClient = new HiveProxy.EmailVerificationManagerClient();
-                    hiveClient.SendVerificationEmail(UserProfileSingleton.email);
                     DisplayMainMenuView();
                 }
                 else if(validateCredentials == 0)
@@ -76,7 +74,7 @@ namespace HiveGameWPFApp.Views
                 string hashedPassword = Hasher.hashToSHA1(profile.password);
                 string username = profile.username;
                 IUserManager userManager = new HiveProxy.UserManagerClient();
-                validationResult = userManager.VerifyCredentials(username, hashedPassword);
+                validationResult = userManager.VerifyPasswordCredentials(username, hashedPassword);
             }
             catch(EndpointNotFoundException endPointException)
             {

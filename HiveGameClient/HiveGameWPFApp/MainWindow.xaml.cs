@@ -22,11 +22,12 @@ namespace HiveGameWPFApp
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
         {
-            NavigationFrame.Navigate(new Views.EditCredentialsView());
+            NavigationFrame.Navigate(new Views.LoginView());
         }
 
         private void NavigationFrame_Navigating(object sender, NavigatingCancelEventArgs e)

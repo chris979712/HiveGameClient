@@ -216,4 +216,52 @@
   <data name="dialogUpdatedData" xml:space="preserve">
     <value>The information has been modified successfully.</value>
   </data>
+  <data name="lbl_EditCredentials" xml:space="preserve">
+    <value>Edit credentials</value>
+  </data>
+  <data name="lbl_CodeSendMessage" xml:space="preserve">
+    <value>We have send a code to your email, please verify it and type it. </value>
+  </data>
+  <data name="lbl_UserEmail" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="txt_Timer" xml:space="preserve">
+    <value>You can resend a new code in</value>
+  </data>
+  <data name="lbl_NoReceivedCode" xml:space="preserve">
+    <value>You didn't received the code?</value>
+  </data>
+  <data name="lbl_ResendCode" xml:space="preserve">
+    <value>Resend code</value>
+  </data>
+  <data name="lbl_NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="globalbtn_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="dialogCouldntSendEmail" xml:space="preserve">
+    <value>There has been an error while sending email message. Try it again.</value>
+  </data>
+  <data name="dialogEmailVerificationMessage" xml:space="preserve">
+    <value>Email sended. Please check your email account in order to see the verification code.</value>
+  </data>
+  <data name="btn_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="btn_MyAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="btn_EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="btn_EditCredentials" xml:space="preserve">
+    <value>Edit Credentials</value>
+  </data>
+  <data name="lbl_WrondVerificationCode" xml:space="preserve">
+    <value>Wrong verification code</value>
+  </data>
+  <data name="dialogEmailAlreadyRegistered" xml:space="preserve">
+    <value>The email that you want to save, is already registered in another account.</value>
+  </data>
 </root>

@@ -70,6 +70,24 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Edit Credentials.
+        /// </summary>
+        public static string btn_EditCredentials {
+            get {
+                return ResourceManager.GetString("btn_EditCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit Profile.
+        /// </summary>
+        public static string btn_EditProfile {
+            get {
+                return ResourceManager.GetString("btn_EditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Guest.
         /// </summary>
         public static string btn_Guest {
@@ -84,6 +102,24 @@ namespace HiveGameWPFApp.Properties {
         public static string btn_Login {
             get {
                 return ResourceManager.GetString("btn_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a My Account.
+        /// </summary>
+        public static string btn_MyAccount {
+            get {
+                return ResourceManager.GetString("btn_MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Play.
+        /// </summary>
+        public static string btn_Play {
+            get {
+                return ResourceManager.GetString("btn_Play", resourceCulture);
             }
         }
         
@@ -124,11 +160,38 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a There has been an error while sending email message. Try it again..
+        /// </summary>
+        public static string dialogCouldntSendEmail {
+            get {
+                return ResourceManager.GetString("dialogCouldntSendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a An error has ocurred with the database, please try again..
         /// </summary>
         public static string dialogDataBaseError {
             get {
                 return ResourceManager.GetString("dialogDataBaseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The email that you want to save, is already registered in another account..
+        /// </summary>
+        public static string dialogEmailAlreadyRegistered {
+            get {
+                return ResourceManager.GetString("dialogEmailAlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Email sended. Please check your email account in order to see the verification code..
+        /// </summary>
+        public static string dialogEmailVerificationMessage {
+            get {
+                return ResourceManager.GetString("dialogEmailVerificationMessage", resourceCulture);
             }
         }
         
@@ -259,6 +322,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cancel.
+        /// </summary>
+        public static string globalbtn_Cancel {
+            get {
+                return ResourceManager.GetString("globalbtn_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirm.
         /// </summary>
         public static string globalbtn_Confirm {
@@ -295,6 +367,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a We have send a code to your email, please verify it and type it. .
+        /// </summary>
+        public static string lbl_CodeSendMessage {
+            get {
+                return ResourceManager.GetString("lbl_CodeSendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirm Password.
         /// </summary>
         public static string lbl_ConfirmPassword {
@@ -322,6 +403,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Edit credentials.
+        /// </summary>
+        public static string lbl_EditCredentials {
+            get {
+                return ResourceManager.GetString("lbl_EditCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit Profile.
         /// </summary>
         public static string lbl_EditProfile {
@@ -331,11 +421,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a New password.
+        /// </summary>
+        public static string lbl_NewPassword {
+            get {
+                return ResourceManager.GetString("lbl_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nickname.
         /// </summary>
         public static string lbl_Nickname {
             get {
                 return ResourceManager.GetString("lbl_Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You didn&apos;t received the code?.
+        /// </summary>
+        public static string lbl_NoReceivedCode {
+            get {
+                return ResourceManager.GetString("lbl_NoReceivedCode", resourceCulture);
             }
         }
         
@@ -354,6 +462,42 @@ namespace HiveGameWPFApp.Properties {
         public static string lbl_RecoverPassword {
             get {
                 return ResourceManager.GetString("lbl_RecoverPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resend code.
+        /// </summary>
+        public static string lbl_ResendCode {
+            get {
+                return ResourceManager.GetString("lbl_ResendCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Email:.
+        /// </summary>
+        public static string lbl_UserEmail {
+            get {
+                return ResourceManager.GetString("lbl_UserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Wrong verification code.
+        /// </summary>
+        public static string lbl_WrondVerificationCode {
+            get {
+                return ResourceManager.GetString("lbl_WrondVerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You can resend a new code in .
+        /// </summary>
+        public static string txt_Timer {
+            get {
+                return ResourceManager.GetString("txt_Timer", resourceCulture);
             }
         }
     }

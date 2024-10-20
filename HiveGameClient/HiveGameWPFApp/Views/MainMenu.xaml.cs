@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,8 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             Loaded += MainMenu_Loaded;
             Unloaded += MainMenu_Unloaded;
-
+            btn_EditCredentials.Visibility = Visibility.Collapsed;
+            btn_EditProfile.Visibility = Visibility.Collapsed;
         }
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
@@ -59,6 +61,47 @@ namespace HiveGameWPFApp.Views
         }
 
         private void BtnMyAccount_Click(object sender, RoutedEventArgs e)
+        {
+            btn_EditCredentials.Visibility = Visibility.Visible;
+            btn_EditProfile.Visibility = Visibility.Visible;
+        }
+
+        private void BtnEditCredentials_Click(object sender, RoutedEventArgs e)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
+            try
+            {
+                int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
+                if (resultEmailSend == Constants.SUCCES_OPERATION)
+                {
+                    DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
+                    EditCredentialsView editCredentialsView = new EditCredentialsView();
+                    this.NavigationService.Navigate(editCredentialsView);
+                }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntSendEmail);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void BtnEditProfile_Click(object sender, RoutedEventArgs e)
         {
             EditProfileView editProfileView = new EditProfileView();
             this.NavigationService.Navigate(editProfileView);

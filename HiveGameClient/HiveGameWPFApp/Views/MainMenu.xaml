@@ -35,7 +35,7 @@
                                       MediaEnded="MediaElement_MediaEnded"
                                       Width="774" Height="458" />
                     </StackPanel>
-                    <Button x:Name="btnPlay" Content="PLAY"
+                    <Button x:Name="btn_Play" Content="{x:Static p:Resources.btn_Play}"
                         Width="324" Height="41" FontSize="30"
                         Foreground="Black"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -69,7 +69,7 @@
                     </Button>
 
 
-                    <Image x:Name="playButtonIcon"  
+                    <Image x:Name="img_PlayButton"  
                            Source="/Images/Icons/PlayButtonIcon.png"
                            Width="91" Height="55"
                            HorizontalAlignment="Left"
@@ -78,7 +78,7 @@
                            RenderTransformOrigin="0.5,0.5"
                            Panel.ZIndex="1"/>
 
-                    <Button x:Name="btnMyAccount" Content="MY ACCOUNT"
+                    <Button x:Name="btn_MyAccount" Content="{x:Static p:Resources.btn_MyAccount}"
                          Width="324" Height="41" FontSize="30"
                          Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -91,7 +91,7 @@
                         </Button.Background>
                     </Button>
 
-                    <Image x:Name="imgPet"  
+                    <Image x:Name="img_Pet"  
                        Source="/Images/Icons/Code Swarm.png"
                        Width="296" Height="58"
                        HorizontalAlignment="Left"
@@ -100,7 +100,7 @@
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
-                    <Image x:Name="VideoFrame"  
+                    <Image x:Name="img_VideoFrame"  
                        Source="/Images/Background/VideoFrame.png"
                        Width="760" Height="464"
                        HorizontalAlignment="Left"
@@ -111,11 +111,35 @@
 
 
 
-                    <Image Source="/Images/Icons/Go out.png" 
+                    <Image Name="img_GoOut" Source="/Images/Icons/Go out.png" 
                        Width="84" Height="85" 
                        MouseDown="Image_MouseDown" 
                        Cursor="Hand" Margin="10,10,1186,626" RenderTransformOrigin="0.5,0.506"/>
                 </Grid>
+                <Button x:Name="btn_EditProfile" Content="{x:Static p:Resources.btn_EditProfile}"
+                    Width="324" Height="41" FontSize="30"
+                    Foreground="Black"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right" 
+                    Padding="0,0,10,0"
+                    Margin="777,327,0,0" RenderTransformOrigin="0.5,0.393"
+                    Click="BtnEditProfile_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btn_EditCredentials" Content="{x:Static p:Resources.btn_EditCredentials}"
+                    Width="324" Height="41" FontSize="30"
+                    Foreground="Black"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right" 
+                    Padding="0,0,10,0"
+                    Margin="777,431,0,0" RenderTransformOrigin="0.5,0.393"
+                    Click="BtnEditCredentials_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
             </Grid>
         </ScrollViewer>
     </DockPanel>

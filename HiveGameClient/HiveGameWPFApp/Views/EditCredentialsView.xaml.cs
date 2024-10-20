@@ -1,6 +1,10 @@
-﻿using System;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +30,13 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             StartTimer();
             FocusFirstTextBox();
+            InitializeUserData();
+        }
+
+        public void InitializeUserData()
+        {
+            lbl_Email.Content = UserProfileSingleton.email;
+            txt_Email.Text = UserProfileSingleton.email;
         }
         private void StartTimer()
         {
@@ -37,18 +48,18 @@ namespace HiveGameWPFApp.Views
         private void Timer_Tick(object sender, EventArgs e)
         {
             timeLeft--;
-            txt_Timer.Text = $"Podrás solicitar un código nuevo en {timeLeft} segundos";
+            txt_Timer.Text = Properties.Resources.txt_Timer + timeLeft;
             if (timeLeft <= 0)
             {
                 timer.Stop();
                 txt_Timer.Visibility = Visibility.Collapsed;
                 txt_ResendLink.Visibility = Visibility.Visible;
-                txt_ResendCode_Click.Visibility = Visibility.Visible;
+                txt_ResendCodeClick.Visibility = Visibility.Visible;
             }
         }
         private void FocusFirstTextBox()
         {
-            TextBox firstTextBox = (TextBox)border1.Child; 
+            TextBox firstTextBox = (TextBox)brd_BubbleOne.Child; 
             firstTextBox.Focus();
         }
 
@@ -86,40 +97,40 @@ namespace HiveGameWPFApp.Views
 
         private void MoveToNextTextBox(TextBox currentTextBox)
         {
-            if (currentTextBox == (TextBox)border1.Child)
-                ((TextBox)border2.Child).Focus();
-            else if (currentTextBox == (TextBox)border2.Child)
-                ((TextBox)border3.Child).Focus();
-            else if (currentTextBox == (TextBox)border3.Child)
-                ((TextBox)border4.Child).Focus();
-            else if (currentTextBox == (TextBox)border4.Child)
-                ((TextBox)border5.Child).Focus();
-            else if (currentTextBox == (TextBox)border5.Child)
-                ((TextBox)border6.Child).Focus();
+            if (currentTextBox == (TextBox)brd_BubbleOne.Child)
+                ((TextBox)brd_BubbleTwo.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleTwo.Child)
+                ((TextBox)brd_BubbleThree.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleThree.Child)
+                ((TextBox)brd_BubbleFour.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleFour.Child)
+                ((TextBox)brd_BubbleFive.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleFive.Child)
+                ((TextBox)brd_BubbleSix.Child).Focus();
         }
 
         private void MoveToPreviousTextBox(TextBox currentTextBox)
         {
-            if (currentTextBox == (TextBox)border6.Child)
-                ((TextBox)border5.Child).Focus();
-            else if (currentTextBox == (TextBox)border5.Child)
-                ((TextBox)border4.Child).Focus();
-            else if (currentTextBox == (TextBox)border4.Child)
-                ((TextBox)border3.Child).Focus();
-            else if (currentTextBox == (TextBox)border3.Child)
-                ((TextBox)border2.Child).Focus();
-            else if (currentTextBox == (TextBox)border2.Child)
-                ((TextBox)border1.Child).Focus();
+            if (currentTextBox == (TextBox)brd_BubbleSix.Child)
+                ((TextBox)brd_BubbleFive.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleFive.Child)
+                ((TextBox)brd_BubbleFour.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleFour.Child)
+                ((TextBox)brd_BubbleThree.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleThree.Child)
+                ((TextBox)brd_BubbleTwo.Child).Focus();
+            else if (currentTextBox == (TextBox)brd_BubbleTwo.Child)
+                ((TextBox)brd_BubbleOne.Child).Focus();
         }
 
         private bool AllTextBoxesFilled()
         {
-            return ((TextBox)border1.Child).Text.Length > 0 &&
-                   ((TextBox)border2.Child).Text.Length > 0 &&
-                   ((TextBox)border3.Child).Text.Length > 0 &&
-                   ((TextBox)border4.Child).Text.Length > 0 &&
-                   ((TextBox)border5.Child).Text.Length > 0 &&
-                   ((TextBox)border6.Child).Text.Length > 0;
+            return ((TextBox)brd_BubbleOne.Child).Text.Length > 0 &&
+                   ((TextBox)brd_BubbleTwo.Child).Text.Length > 0 &&
+                   ((TextBox)brd_BubbleThree.Child).Text.Length > 0 &&
+                   ((TextBox)brd_BubbleFour.Child).Text.Length > 0 &&
+                   ((TextBox)brd_BubbleFive.Child).Text.Length > 0 &&
+                   ((TextBox)brd_BubbleSix.Child).Text.Length > 0;
         }
 
         private void ValidateCode()
@@ -135,41 +146,235 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        // Función que obtiene el código ingresado por el usuario
         private string GetEnteredCode()
         {
-            return $"{((TextBox)border1.Child).Text}{((TextBox)border2.Child).Text}" +
-                   $"{((TextBox)border3.Child).Text}{((TextBox)border4.Child).Text}" +
-                   $"{((TextBox)border5.Child).Text}{((TextBox)border6.Child).Text}";
+            return $"{((TextBox)brd_BubbleOne.Child).Text}{((TextBox)brd_BubbleTwo.Child).Text}" +
+                   $"{((TextBox)brd_BubbleThree.Child).Text}{((TextBox)brd_BubbleFour.Child).Text}" +
+                   $"{((TextBox)brd_BubbleFive.Child).Text}{((TextBox)brd_BubbleSix.Child).Text}";
         }
 
 
         private bool IsValidCode(string code)
         {
-            // Valida el código (puedes implementar la validación real)
-            return code == "123456"; // Código válido de ejemplo
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
+            bool isValid = false;  
+            try
+            {
+                UserVerificator verificationUser = new UserVerificator();
+                verificationUser.email = UserProfileSingleton.email;
+                verificationUser.code = code;
+                isValid = emailVerificationManager.VerifyCodeVerification(verificationUser);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+            return isValid;
         }
 
         private void ShowNewPasswordSection()
         {
-            PanelTwo.Visibility = Visibility.Visible;
-            PanelOne.Visibility = Visibility.Collapsed;
             lbl_ErrorMessage.Visibility= Visibility.Collapsed;
+            grd_VerificationPanel.Visibility = Visibility.Collapsed;
+            grd_EditionPanel.Visibility = Visibility.Visible;
         }
 
         private void BtnConfirmChanges_Click(object sender, RoutedEventArgs e)
         {
-
+            txt_Email.BorderBrush = Brushes.White;
+            brd_Password.BorderBrush = Brushes.Yellow;
+            brd_ConfirmPassword.BorderBrush = Brushes.Yellow;
+            if (ValidateFields())
+            {
+                if (ValidateSamePasswords())
+                {
+                    if (ValidateExistingCredential())
+                    {
+                        UpdateCredentials();
+                    }
+                }
+                else
+                {
+                    DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogMissmatchesPassword);
+                }
+            }
+            else
+            {
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogWrongData);
+            }
         }
 
+        private bool ValidateFields()
+        {
+            bool emailVerification = Validator.validateEmail(txt_Email.Text);
+            bool passwordVerificaton = Validator.validatePassword(pwb_Password.Password);
+            bool passwordConfirmVerification = Validator.validatePassword(pwb_ConfirmPassword.Password);
+            if (!emailVerification)
+            {
+                txt_Email.BorderBrush = Brushes.Red;
+            }
+            if (!passwordVerificaton)
+            {
+                brd_Password.BorderBrush = Brushes.Red;
+            }
+            if (!passwordConfirmVerification)
+            {
+                brd_ConfirmPassword.BorderBrush = Brushes.Red;
+            }
+            return emailVerification&&passwordVerificaton&&passwordConfirmVerification;
+        }
+
+        private bool ValidateSamePasswords()
+        {
+            bool samePasswords = false;
+            if (pwb_ConfirmPassword.Password == pwb_Password.Password)
+            {
+                samePasswords = true;
+            }
+            return samePasswords;
+        }
+
+        private bool ValidateExistingCredential()
+        {
+            bool resultVerification = false;
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            try
+            {
+                int resultVerificationCredentials = userManagerClient.VerifyCredentials(UserProfileSingleton.username, txt_Email.Text);
+                if (resultVerificationCredentials == Constants.DATA_MATCHES)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEmailAlreadyRegistered);
+                    resultVerification = false;
+                }else if(resultVerificationCredentials== Constants.NO_DATA_MATCHES)
+                {
+                    resultVerification = true;
+                }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                    resultVerification = false;
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+            return resultVerification;
+        }
+
+        private void UpdateCredentials()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            try
+            {
+                AccessAccount oldAccesAccount = new AccessAccount()
+                {
+                    idAccesAccount = UserProfileSingleton.idAccount,
+                    email = UserProfileSingleton.email,
+                    password = UserProfileSingleton.password
+                };
+                string passwordToEncrypt = pwb_Password.Password;
+                string passwordEncripted = Hasher.hashToSHA1(passwordToEncrypt);
+                AccessAccount newAccesAccount = new AccessAccount()
+                {
+                    idAccesAccount = UserProfileSingleton.idAccount,
+                    email = txt_Email.Text,
+                    password = passwordEncripted
+                };
+                int updateResult = userManagerClient.UpdateLoginCredentials(oldAccesAccount,newAccesAccount);
+                if(updateResult == Constants.SUCCES_OPERATION)
+                {
+                    DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
+                    ReturnToMainWindow();
+                }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
 
         private void BtnResendCode_Click(object sender, MouseButtonEventArgs e)
         {
-
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
+            try
+            {
+                int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
+                if(resultEmailSend == Constants.SUCCES_OPERATION)
+                {
+                    DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
+                }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntSendEmail);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
         
 
         private void BtnCancelChange_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            this.NavigationService.Navigate(mainMenu);
+        }
+
+        public void ReturnToMainWindow()
         {
             MainMenu mainMenu = new MainMenu();
             this.NavigationService.Navigate(mainMenu);

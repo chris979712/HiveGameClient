@@ -506,10 +506,16 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task<int> VerifyExistingAccesAccountAsync(string email, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/VerifyCredentials", ReplyAction="http://tempuri.org/IUserManager/VerifyCredentialsResponse")]
-        int VerifyCredentials(string email, string password);
+        int VerifyCredentials(string username, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/VerifyCredentials", ReplyAction="http://tempuri.org/IUserManager/VerifyCredentialsResponse")]
-        System.Threading.Tasks.Task<int> VerifyCredentialsAsync(string email, string password);
+        System.Threading.Tasks.Task<int> VerifyCredentialsAsync(string username, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/VerifyPasswordCredentials", ReplyAction="http://tempuri.org/IUserManager/VerifyPasswordCredentialsResponse")]
+        int VerifyPasswordCredentials(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/VerifyPasswordCredentials", ReplyAction="http://tempuri.org/IUserManager/VerifyPasswordCredentialsResponse")]
+        System.Threading.Tasks.Task<int> VerifyPasswordCredentialsAsync(string email, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -579,12 +585,20 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.VerifyExistingAccesAccountAsync(email, username);
         }
         
-        public int VerifyCredentials(string email, string password) {
-            return base.Channel.VerifyCredentials(email, password);
+        public int VerifyCredentials(string username, string email) {
+            return base.Channel.VerifyCredentials(username, email);
         }
         
-        public System.Threading.Tasks.Task<int> VerifyCredentialsAsync(string email, string password) {
-            return base.Channel.VerifyCredentialsAsync(email, password);
+        public System.Threading.Tasks.Task<int> VerifyCredentialsAsync(string username, string email) {
+            return base.Channel.VerifyCredentialsAsync(username, email);
+        }
+        
+        public int VerifyPasswordCredentials(string email, string password) {
+            return base.Channel.VerifyPasswordCredentials(email, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> VerifyPasswordCredentialsAsync(string email, string password) {
+            return base.Channel.VerifyPasswordCredentialsAsync(email, password);
         }
     }
     
