@@ -68,13 +68,13 @@ namespace HiveGameWPFApp.Views
         public int ValidateCredentials(Profile profile)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            int validationResult = -1;
+            int validationResult = 0;
             try
             {
                 string hashedPassword = Hasher.hashToSHA1(profile.password);
                 string username = profile.username;
                 IUserManager userManager = new HiveProxy.UserManagerClient();
-                validationResult = userManager.VerifyCredentials(username, hashedPassword);
+                validationResult = userManager.VerifyPasswordCredentials(username, hashedPassword);
             }
             catch(EndpointNotFoundException endPointException)
             {

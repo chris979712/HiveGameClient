@@ -177,6 +177,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Connected Services\HiveProxy\HiveGameService.wsdl" />
+    <None Include="Connected Services\HiveProxy\HiveGameWPFApp.HiveProxy.LeaderBoardPlayer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\HiveProxy\HiveGameWPFApp.HiveProxy.Profile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

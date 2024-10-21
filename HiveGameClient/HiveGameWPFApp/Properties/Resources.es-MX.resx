@@ -216,4 +216,52 @@
   <data name="dialogUpdatedData" xml:space="preserve">
     <value>La información ha sido modificada exitosamente.</value>
   </data>
+  <data name="lbl_EditCredentials" xml:space="preserve">
+    <value>Editar credenciales</value>
+  </data>
+  <data name="lbl_CodeSendMessage" xml:space="preserve">
+    <value>Hemos enviado un código a su correo, por favor verifiquelo e introduzcalo.</value>
+  </data>
+  <data name="lbl_UserEmail" xml:space="preserve">
+    <value>Correo:</value>
+  </data>
+  <data name="txt_Timer" xml:space="preserve">
+    <value>Podrás solicitar un código nuevo en </value>
+  </data>
+  <data name="lbl_NoReceivedCode" xml:space="preserve">
+    <value>¿No recibiste el código?</value>
+  </data>
+  <data name="lbl_ResendCode" xml:space="preserve">
+    <value>Reenviar código</value>
+  </data>
+  <data name="lbl_NewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="globalbtn_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="dialogCouldntSendEmail" xml:space="preserve">
+    <value>There has been an error while sending email message. Try it again.</value>
+  </data>
+  <data name="dialogEmailVerificationMessage" xml:space="preserve">
+    <value>Correo enviado. Por favor verifica tu cuenta de correo para poder ver el código de verificación.</value>
+  </data>
+  <data name="btn_Play" xml:space="preserve">
+    <value>Jugar</value>
+  </data>
+  <data name="btn_MyAccount" xml:space="preserve">
+    <value>Mi cuenta</value>
+  </data>
+  <data name="btn_EditProfile" xml:space="preserve">
+    <value>Editar Perfil</value>
+  </data>
+  <data name="btn_EditCredentials" xml:space="preserve">
+    <value>Editar Credenciales</value>
+  </data>
+  <data name="lbl_WrondVerificationCode" xml:space="preserve">
+    <value>Código de verificación incorrecto</value>
+  </data>
+  <data name="dialogEmailAlreadyRegistered" xml:space="preserve">
+    <value>El correo que desea guardar, ya ha sido registrado previamente en otra cuenta.</value>
+  </data>
 </root>
