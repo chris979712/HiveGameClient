@@ -91,6 +91,9 @@
     <Compile Include="Views\EditCredentialsView.xaml.cs">
       <DependentUpon>EditCredentialsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FriendsListView.xaml.cs">
+      <DependentUpon>FriendsListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LobbyView.xaml.cs">
       <DependentUpon>LobbyView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\EditCredentialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FriendsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
