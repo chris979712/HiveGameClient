@@ -26,7 +26,7 @@ namespace HiveGameWPFApp
 
         private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
         {
-            NavigationFrame.Navigate(new Views.EditCredentialsView());
+            NavigationFrame.Navigate(new Views.FriendsListView());
         }
 
         private void NavigationFrame_Navigating(object sender, NavigatingCancelEventArgs e)
