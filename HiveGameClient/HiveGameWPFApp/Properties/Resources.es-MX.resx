@@ -312,4 +312,13 @@
   <data name="dialogDeclinedFriendRequest" xml:space="preserve">
     <value>La solicitud de amistad ha sido rechazada.</value>
   </data>
+  <data name="btn_Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="dialogFriendDeleted" xml:space="preserve">
+    <value>Su amigo ha sido eliminado</value>
+  </data>
+  <data name="dialogConfirmFriendDelete" xml:space="preserve">
+    <value>¿Estás seguro de eliminar a este amigo?</value>
+  </data>
 </root>
