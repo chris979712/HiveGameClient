@@ -21,7 +21,7 @@ namespace HiveGameWPFApp.Logic
         public static string RandomChooserAvatarIcon()
         {
             string[] defaultAvatars = { "/Images/Avatars/Avatar1.png", "/Images/Avatars/Avatar2.png", "/Images/Avatars/Avatar3.png",
-                "/Images/Avatars/Avatar4.png", "/Images/Avatar/Avatar5.png", "/Images/Avatar/Avatar6.png" };
+                "/Images/Avatars/Avatar4.png", "/Images/Avatars/Avatar5.png", "/Images/Avatars/Avatar6.png" };
             Random random = new Random();
             int randomIndex = random.Next(defaultAvatars.Length);
             return defaultAvatars[randomIndex];

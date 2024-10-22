@@ -481,6 +481,12 @@ namespace HiveGameWPFApp.HiveProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/AddUser", ReplyAction="http://tempuri.org/IUserManager/AddUserResponse")]
         System.Threading.Tasks.Task<int> AddUserAsync(HiveGameWPFApp.HiveProxy.Profile profile);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/GetUserProfileByUsername", ReplyAction="http://tempuri.org/IUserManager/GetUserProfileByUsernameResponse")]
+        HiveGameWPFApp.HiveProxy.Profile GetUserProfileByUsername(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/GetUserProfileByUsername", ReplyAction="http://tempuri.org/IUserManager/GetUserProfileByUsernameResponse")]
+        System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileByUsernameAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/GetUserProfile", ReplyAction="http://tempuri.org/IUserManager/GetUserProfileResponse")]
         HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string username, string password);
         
@@ -551,6 +557,14 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task<int> AddUserAsync(HiveGameWPFApp.HiveProxy.Profile profile) {
             return base.Channel.AddUserAsync(profile);
+        }
+        
+        public HiveGameWPFApp.HiveProxy.Profile GetUserProfileByUsername(string username) {
+            return base.Channel.GetUserProfileByUsername(username);
+        }
+        
+        public System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileByUsernameAsync(string username) {
+            return base.Channel.GetUserProfileByUsernameAsync(username);
         }
         
         public HiveGameWPFApp.HiveProxy.Profile GetUserProfile(string username, string password) {

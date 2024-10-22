@@ -9,7 +9,6 @@
       d:DesignHeight="720" d:DesignWidth="1280">
 
     <DockPanel>
-        <!-- Fondo -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="1297">
             <Grid>
                 <Border>
@@ -18,160 +17,127 @@
                     </Border.Background>
                 </Border>
 
-                <!-- Contenedor Principal -->
                 <DockPanel>
-                    <!-- Panel de Botones a la Izquierda -->
                     <StackPanel DockPanel.Dock="Left" Width="200" Background="#1C1C1C" Margin="5">
-                        <Button x:Name="BtnAmigosJuego" Content="Amigos del Juego" Height="50" 
+                        <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_GameFriends}" Height="50" 
                                 Margin="5" FontSize="16" 
                                 Background="#FFC300" Foreground="Black"
-                                Click="BtnAmigosJuego_Click">
+                                Click="BtnFriends_Click">
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                             </Button.Effect>
                         </Button>
 
-                        <Button x:Name="BtnSolicitudes" Content="Solicitudes" Height="50" 
+                        <Button x:Name="btn_FriendRequests" Content="{x:Static p:Resources.btn_FriendRequest}" Height="50" 
                                 Margin="5" FontSize="16"
                                 Background="#FFC300" Foreground="Black"
-                                Click="BtnSolicitudes_Click">
+                                Click="BtnFriendRequests_Click">
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                             </Button.Effect>
                         </Button>
 
-                        <Button x:Name="BtnAñadir" Content="Añadir" Height="50"
+                        <Button x:Name="btn_Add" Content="{x:Static p:Resources.btn_Add}" Height="50"
                                 Margin="5" FontSize="16"
                                 Background="#FFC300" Foreground="Black"
-                                Click="BtnAñadir_Click">
+                                Click="BtnAdd_Click">
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button x:Name="btn_GoBack" Content="{x:Static p:Resources.btn_GoBack}" Height="50"
+                            FontSize="16"
+                            Background="red" Foreground="White"
+                            Click="ReturnMainMenu" Width="188">
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                             </Button.Effect>
                         </Button>
                     </StackPanel>
 
-                    <!-- Paneles para Cada Sección -->
                     <Grid>
-                        <!-- Panel de Amigos del Juego -->
-                        <StackPanel x:Name="PanelAmigosJuego" Visibility="Visible">
-                            <TextBox x:Name="TxtBuscarAmigo" Width="200" Margin="10"
+                        <StackPanel x:Name="stckp_GameFriends" Visibility="Collapsed">
+                            <TextBox x:Name="txtb_FriendsAdded" Width="200" Margin="10"
                                      Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" BorderThickness="2">
                                 <TextBox.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                                 </TextBox.Effect>
                             </TextBox>
 
-                            <Button Content="Buscar" Width="100" Height="30" Margin="10" 
+                            <Button Name="btn_Search" Content="{x:Static p:Resources.btn_Search}" Width="100" Height="30" Margin="10" 
                                     Background="#FFC300" Foreground="Black">
                                 <Button.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                                 </Button.Effect>
                             </Button>
 
-                            <ListView x:Name="ListaAmigos" Margin="10" Background="#1C1C1C">
-                                <!-- Estilo de cada ítem de la lista -->
+                            <ListView x:Name="lvw_FriendsList" Margin="10" Background="#1C1C1C">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Margin="5">
-                                            <Image Source="{Binding FotoPerfil}" Width="50" Height="50" Margin="5"/>
+                                            <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
                                             <StackPanel>
-                                                <TextBlock Text="{Binding Apodo}" FontSize="16" Foreground="White"/>
-                                                <TextBlock Text="{Binding Estado}" FontSize="14">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Estado}" Value="En linea">
-                                                                    <Setter Property="Foreground" Value="Gold"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Estado}" Value="Desconectado">
-                                                                    <Setter Property="Foreground" Value="Gray"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                <TextBlock Text="{Binding username}" FontSize="16" Foreground="White"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-
-                            <!-- Panel de Enviar Mensajes -->
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBox x:Name="TxtMensaje" Width="300" Height="50" Margin="5"
-                                         Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" BorderThickness="2">
-                                    <TextBox.Effect>
-                                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                    </TextBox.Effect>
-                                </TextBox>
-
-                                <Button Content="Enviar" Width="100" Height="50" Margin="5" 
-                                        Background="#FFC300" Foreground="Black">
-                                    <Button.Effect>
-                                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                    </Button.Effect>
-                                </Button>
-                            </StackPanel>
                         </StackPanel>
 
-                        <!-- Panel de Solicitudes -->
-                        <StackPanel x:Name="PanelSolicitudes" Visibility="Collapsed">
-                            <ListView x:Name="ListaSolicitudes" Margin="10" Background="#1C1C1C">
+                        <StackPanel x:Name="stckp_FriendRequests" Visibility="Collapsed">
+                            <ListView x:Name="lvw_FriendRequests" Margin="10" Background="#1C1C1C">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="5">
-                                            <Image Source="{Binding FotoPerfil}" Width="50" Height="50" Margin="5"/>
-                                            <TextBlock Text="{Binding Nombre}" FontSize="16" Foreground="White" Margin="5"/>
-                                            <Button Content="Aceptar" Width="100" Height="30" Margin="5"
-                                                    Background="#FFC300" Foreground="Black"/>
-                                            <Button Content="Rechazar" Width="100" Height="30" Margin="5"
-                                                    Background="#FFC300" Foreground="Black"/>
+                                        <StackPanel Name="stckp_ButtonAnswer" Orientation="Horizontal" Margin="5">
+                                            <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
+                                            <TextBlock Text="{Binding username}" FontSize="16" Foreground="White" Margin="5"/>
+                                            <Button Name="btn_Acept" Content="{x:Static p:Resources.btn_Acept}" Width="100" Height="30" Margin="5"
+                                                    Background="#1B263B" Foreground="White" Click="AcceptFriendRequest"/>
+                                            <Button Name="btn_Decline" Content="{x:Static p:Resources.btn_Decline}" Width="100" Height="30" Margin="5"
+                                                    Background="#D72638" Foreground="Black" Click="DeclineFriendRequest"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackPanel>
 
-                        <!-- Panel de Añadir Amigos -->
-                        <StackPanel x:Name="PanelAñadir" Visibility="Collapsed">
-                            <TextBox x:Name="TxtBuscarNuevoAmigo" Width="200" Margin="10"
-                                     Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" BorderThickness="2">
+                        <StackPanel x:Name="stck_AddNewFriend" Visibility="Visible">
+                            <TextBox x:Name="txtb_SearchFriend" Width="410" Margin="10"
+                                     Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" BorderThickness="2" Height="37">
                                 <TextBox.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                                 </TextBox.Effect>
                             </TextBox>
 
-                            <Button Content="Buscar" Width="100" Height="30" Margin="10" 
-                                    Background="#FFC300" Foreground="Black">
+                            <Button x:Name ="btn_SearchFriend" Content="{x:Static p:Resources.btn_Search}" Width="100" Height="30" Margin="10" 
+                                    Background="#FFC300" Foreground="Black" Click="SearchUser">
                                 <Button.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                                 </Button.Effect>
                             </Button>
 
-                            <ListView x:Name="ListaNuevosAmigos" Margin="10" Background="#1C1C1C">
+                            <ListView x:Name="lvw_FriendToAdd" Margin="10" Background="#1C1C1C">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Margin="5">
-                                            <Image Source="{Binding FotoPerfil}" Width="50" Height="50" Margin="5"/>
+                                            <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
                                             <StackPanel>
-                                                <TextBlock Text="{Binding Apodo}" FontSize="16" Foreground="White"/>
-                                                <TextBlock Text="{Binding Estado}" FontSize="14">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Estado}" Value="En linea">
-                                                                    <Setter Property="Foreground" Value="Gold"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Estado}" Value="Desconectado">
-                                                                    <Setter Property="Foreground" Value="Gray"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                <TextBlock Text="{Binding username}" FontSize="16" Foreground="White"/>
                                             </StackPanel>
-                                            <Button Content="Añadir" Width="100" Height="30" Margin="5"
-                                                    Background="#FFC300" Foreground="Black"/>
+                                            <Button Name="btn_AddFriend" Content="{x:Static p:Resources.btn_Add}" Width="100" Height="30" Margin="5"
+                                                    Background="#FFC300" Foreground="Black" Click="SendFriendRequest">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding areFriends}" Value="True">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
