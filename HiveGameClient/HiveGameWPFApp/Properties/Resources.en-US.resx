@@ -204,7 +204,7 @@
   <data name="globalbtn_Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="btn_SendMessage" xml:space="preserve">
+  <data name="btn_Send" xml:space="preserve">
     <value>Send</value>
   </data>
   <data name="dialogExitMainMenu" xml:space="preserve">
@@ -263,5 +263,53 @@
   </data>
   <data name="dialogEmailAlreadyRegistered" xml:space="preserve">
     <value>The email that you want to save, is already registered in another account.</value>
+  </data>
+  <data name="btn_GameFriends" xml:space="preserve">
+    <value>Friend games</value>
+  </data>
+  <data name="btn_FriendRequest" xml:space="preserve">
+    <value>Friend requests</value>
+  </data>
+  <data name="btn_Add" xml:space="preserve">
+    <value>Add friend</value>
+  </data>
+  <data name="btn_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="btn_Acept" xml:space="preserve">
+    <value>Acept</value>
+  </data>
+  <data name="btn_Decline" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="btn_GoBack" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="btn_Friend" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="dialogNoFriendsAdded" xml:space="preserve">
+    <value>There are no friends added, try to find new friends. :D</value>
+  </data>
+  <data name="dialogNoUsernameFound" xml:space="preserve">
+    <value>The username that you type does not exist. Try again.</value>
+  </data>
+  <data name="dialogCanNotAddYourself" xml:space="preserve">
+    <value>You can't add yourself as a friend.</value>
+  </data>
+  <data name="dialogNoFriendRequest" xml:space="preserve">
+    <value>There are no friend requests to show.</value>
+  </data>
+  <data name="dialogFriendRequestSended" xml:space="preserve">
+    <value>The friend request has been sended succesfully.</value>
+  </data>
+  <data name="dialogErrorAtObtainingUserData" xml:space="preserve">
+    <value>Error at obtaining profile user data.</value>
+  </data>
+  <data name="dialogAcceptFriendRequest" xml:space="preserve">
+    <value>The friend request has been accepted</value>
+  </data>
+  <data name="dialogDeclinedFriendRequest" xml:space="preserve">
+    <value>The friend request has been decline.</value>
   </data>
 </root>

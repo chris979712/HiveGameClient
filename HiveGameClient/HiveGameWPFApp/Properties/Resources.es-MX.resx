@@ -204,7 +204,7 @@
   <data name="globalbtn_Confirm" xml:space="preserve">
     <value>Confirmar</value>
   </data>
-  <data name="btn_SendMessage" xml:space="preserve">
+  <data name="btn_Send" xml:space="preserve">
     <value>Enviar</value>
   </data>
   <data name="dialogExitMainMenu" xml:space="preserve">
@@ -263,5 +263,53 @@
   </data>
   <data name="dialogEmailAlreadyRegistered" xml:space="preserve">
     <value>El correo que desea guardar, ya ha sido registrado previamente en otra cuenta.</value>
+  </data>
+  <data name="btn_GameFriends" xml:space="preserve">
+    <value>Amigos del juego</value>
+  </data>
+  <data name="btn_FriendRequest" xml:space="preserve">
+    <value>Solicitudes de amistad</value>
+  </data>
+  <data name="btn_Add" xml:space="preserve">
+    <value>Añadir amigo</value>
+  </data>
+  <data name="btn_Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="btn_Acept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="btn_Decline" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="btn_GoBack" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="btn_Friend" xml:space="preserve">
+    <value>Amistades</value>
+  </data>
+  <data name="dialogNoFriendsAdded" xml:space="preserve">
+    <value>No hay amigos agregados, trata de encontrar algunos. :D</value>
+  </data>
+  <data name="dialogNoUsernameFound" xml:space="preserve">
+    <value>El nombre de usuario que ingreso no existe. Intente de nuevo.</value>
+  </data>
+  <data name="dialogCanNotAddYourself" xml:space="preserve">
+    <value>No te puedes agregar a ti mismo como amigo</value>
+  </data>
+  <data name="dialogNoFriendRequest" xml:space="preserve">
+    <value>No hay solicitudes de amistad que seleccionar.</value>
+  </data>
+  <data name="dialogFriendRequestSended" xml:space="preserve">
+    <value>La solicitud de amistad se ha enviado de manera exitosa.</value>
+  </data>
+  <data name="dialogErrorAtObtainingUserData" xml:space="preserve">
+    <value>Error al obtener los datos del perfil.</value>
+  </data>
+  <data name="dialogAcceptFriendRequest" xml:space="preserve">
+    <value>La solicitud de amistad ha sido aceptada.</value>
+  </data>
+  <data name="dialogDeclinedFriendRequest" xml:space="preserve">
+    <value>La solicitud de amistad ha sido rechazada.</value>
   </data>
 </root>

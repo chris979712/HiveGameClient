@@ -66,6 +66,12 @@ namespace HiveGameWPFApp.Views
             btn_EditProfile.Visibility = Visibility.Visible;
         }
 
+        private void BtnFriends_Click(object sender, RoutedEventArgs e)
+        {
+            FriendsListView friendsListView = new FriendsListView();
+            this.NavigationService.Navigate(friendsListView);
+        }
+
         private void BtnEditCredentials_Click(object sender, RoutedEventArgs e)
         {
             LoggerManager logger = new LoggerManager(this.GetType());

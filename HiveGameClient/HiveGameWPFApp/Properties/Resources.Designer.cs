@@ -61,11 +61,38 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Acept.
+        /// </summary>
+        public static string btn_Acept {
+            get {
+                return ResourceManager.GetString("btn_Acept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Add friend.
+        /// </summary>
+        public static string btn_Add {
+            get {
+                return ResourceManager.GetString("btn_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Register.
         /// </summary>
         public static string btn_CreateAccount {
             get {
                 return ResourceManager.GetString("btn_CreateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Decline.
+        /// </summary>
+        public static string btn_Decline {
+            get {
+                return ResourceManager.GetString("btn_Decline", resourceCulture);
             }
         }
         
@@ -84,6 +111,42 @@ namespace HiveGameWPFApp.Properties {
         public static string btn_EditProfile {
             get {
                 return ResourceManager.GetString("btn_EditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Friends.
+        /// </summary>
+        public static string btn_Friend {
+            get {
+                return ResourceManager.GetString("btn_Friend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Friend requests.
+        /// </summary>
+        public static string btn_FriendRequest {
+            get {
+                return ResourceManager.GetString("btn_FriendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Friend games.
+        /// </summary>
+        public static string btn_GameFriends {
+            get {
+                return ResourceManager.GetString("btn_GameFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Go back.
+        /// </summary>
+        public static string btn_GoBack {
+            get {
+                return ResourceManager.GetString("btn_GoBack", resourceCulture);
             }
         }
         
@@ -124,11 +187,20 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Search.
+        /// </summary>
+        public static string btn_Search {
+            get {
+                return ResourceManager.GetString("btn_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Send.
         /// </summary>
-        public static string btn_SendMessage {
+        public static string btn_Send {
             get {
-                return ResourceManager.GetString("btn_SendMessage", resourceCulture);
+                return ResourceManager.GetString("btn_Send", resourceCulture);
             }
         }
         
@@ -142,11 +214,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The friend request has been accepted.
+        /// </summary>
+        public static string dialogAcceptFriendRequest {
+            get {
+                return ResourceManager.GetString("dialogAcceptFriendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Your account has been successfully created. Welcome! :D.
         /// </summary>
         public static string dialogAccountCreated {
             get {
                 return ResourceManager.GetString("dialogAccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You can&apos;t add yourself as a friend..
+        /// </summary>
+        public static string dialogCanNotAddYourself {
+            get {
+                return ResourceManager.GetString("dialogCanNotAddYourself", resourceCulture);
             }
         }
         
@@ -178,6 +268,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The friend request has been decline..
+        /// </summary>
+        public static string dialogDeclinedFriendRequest {
+            get {
+                return ResourceManager.GetString("dialogDeclinedFriendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The email that you want to save, is already registered in another account..
         /// </summary>
         public static string dialogEmailAlreadyRegistered {
@@ -205,6 +304,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error at obtaining profile user data..
+        /// </summary>
+        public static string dialogErrorAtObtainingUserData {
+            get {
+                return ResourceManager.GetString("dialogErrorAtObtainingUserData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The email or username to regist are already registered..
         /// </summary>
         public static string dialogExistinAccount {
@@ -219,6 +327,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogExitMainMenu {
             get {
                 return ResourceManager.GetString("dialogExitMainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The friend request has been sended succesfully..
+        /// </summary>
+        public static string dialogFriendRequestSended {
+            get {
+                return ResourceManager.GetString("dialogFriendRequestSended", resourceCulture);
             }
         }
         
@@ -246,6 +363,33 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogMissmatchesPassword {
             get {
                 return ResourceManager.GetString("dialogMissmatchesPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are no friend requests to show..
+        /// </summary>
+        public static string dialogNoFriendRequest {
+            get {
+                return ResourceManager.GetString("dialogNoFriendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are no friends added, try to find new friends. :D.
+        /// </summary>
+        public static string dialogNoFriendsAdded {
+            get {
+                return ResourceManager.GetString("dialogNoFriendsAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The username that you type does not exist. Try again..
+        /// </summary>
+        public static string dialogNoUsernameFound {
+            get {
+                return ResourceManager.GetString("dialogNoUsernameFound", resourceCulture);
             }
         }
         

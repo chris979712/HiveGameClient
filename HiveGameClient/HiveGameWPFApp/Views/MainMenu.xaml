@@ -115,6 +115,18 @@
                        Width="84" Height="85" 
                        MouseDown="Image_MouseDown" 
                        Cursor="Hand" Margin="10,10,1186,626" RenderTransformOrigin="0.5,0.506"/>
+                    <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_Friend}"
+                        Width="324" Height="41" FontSize="30"
+                        Foreground="Black"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        HorizontalContentAlignment="Right" 
+                        Padding="0,0,10,0"
+                        Margin="108,332,0,0" RenderTransformOrigin="0.5,0.393"
+                        Click="BtnFriends_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                        </Button.Background>
+                    </Button>
                 </Grid>
                 <Button x:Name="btn_EditProfile" Content="{x:Static p:Resources.btn_EditProfile}"
                     Width="324" Height="41" FontSize="30"
