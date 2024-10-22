@@ -55,7 +55,7 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Button Name="btn_Send" Content="{x:Static p:Resources.btn_Add}"
+                    <Button Name="btn_Send" Content="{x:Static p:Resources.btn_Send}"
                         Width="90" Height="40"
                         Background="#FFD700"
                         Foreground="Black"

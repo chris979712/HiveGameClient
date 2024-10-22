@@ -97,6 +97,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Delete.
+        /// </summary>
+        public static string btn_Delete {
+            get {
+                return ResourceManager.GetString("btn_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit Credentials.
         /// </summary>
         public static string btn_EditCredentials {
@@ -250,6 +259,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure to delete this friend?.
+        /// </summary>
+        public static string dialogConfirmFriendDelete {
+            get {
+                return ResourceManager.GetString("dialogConfirmFriendDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a There has been an error while sending email message. Try it again..
         /// </summary>
         public static string dialogCouldntSendEmail {
@@ -327,6 +345,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogExitMainMenu {
             get {
                 return ResourceManager.GetString("dialogExitMainMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Your friend has been deleted.
+        /// </summary>
+        public static string dialogFriendDeleted {
+            get {
+                return ResourceManager.GetString("dialogFriendDeleted", resourceCulture);
             }
         }
         

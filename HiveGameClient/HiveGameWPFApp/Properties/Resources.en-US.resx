@@ -312,4 +312,13 @@
   <data name="dialogDeclinedFriendRequest" xml:space="preserve">
     <value>The friend request has been decline.</value>
   </data>
+  <data name="btn_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="dialogFriendDeleted" xml:space="preserve">
+    <value>Your friend has been deleted</value>
+  </data>
+  <data name="dialogConfirmFriendDelete" xml:space="preserve">
+    <value>Are you sure to delete this friend?</value>
+  </data>
 </root>

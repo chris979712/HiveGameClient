@@ -74,29 +74,51 @@
                             <ListView x:Name="lvw_FriendsList" Margin="10" Background="#1C1C1C">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="5">
-                                            <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding username}" FontSize="16" Foreground="White"/>
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
+                                                <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding username}" FontSize="16" Foreground="White"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
+                                            <Button Name="btn_DeleteFriend" Content="{x:Static p:Resources.btn_Delete}" Width="75" Height="30" 
+                                                Margin="5" Grid.Column="1"
+                                                Background="#FF6347" Foreground="White" 
+                                                Click="DeleteFriendClick" HorizontalAlignment="Right"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
+
                         </StackPanel>
 
                         <StackPanel x:Name="stckp_FriendRequests" Visibility="Collapsed">
                             <ListView x:Name="lvw_FriendRequests" Margin="10" Background="#1C1C1C">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Name="stckp_ButtonAnswer" Orientation="Horizontal" Margin="5">
-                                            <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
-                                            <TextBlock Text="{Binding username}" FontSize="16" Foreground="White" Margin="5"/>
-                                            <Button Name="btn_Acept" Content="{x:Static p:Resources.btn_Acept}" Width="100" Height="30" Margin="5"
-                                                    Background="#1B263B" Foreground="White" Click="AcceptFriendRequest"/>
-                                            <Button Name="btn_Decline" Content="{x:Static p:Resources.btn_Decline}" Width="100" Height="30" Margin="5"
-                                                    Background="#D72638" Foreground="Black" Click="DeclineFriendRequest"/>
-                                        </StackPanel>
+                                        <Grid Margin="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
+                                                <Image Source="{Binding imageProfile}" Width="50" Height="50" Margin="5"/>
+                                                <TextBlock Text="{Binding username}" FontSize="16" Foreground="White" Margin="5"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5">
+                                                <Button Name="btn_Acept" Content="{x:Static p:Resources.btn_Acept}" Width="100" Height="30" 
+                                                    Margin="5" Background="#1B263B" Foreground="White" 
+                                                    Click="AcceptFriendRequest" HorizontalAlignment="Right"/>       
+                                                <Button Name="btn_Decline" Content="{x:Static p:Resources.btn_Decline}" Width="100" Height="30" 
+                                                    Margin="5" Background="#D72638" Foreground="Black" 
+                                                    Click="DeclineFriendRequest" HorizontalAlignment="Right"/>
+                                            </StackPanel>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -126,7 +148,7 @@
                                                 <TextBlock Text="{Binding username}" FontSize="16" Foreground="White"/>
                                             </StackPanel>
                                             <Button Name="btn_AddFriend" Content="{x:Static p:Resources.btn_Add}" Width="100" Height="30" Margin="5"
-                                                    Background="#FFC300" Foreground="Black" Click="SendFriendRequest">
+                                                    Background="#FFC300" Foreground="Black" Click="SendFriendRequest" HorizontalAlignment="Right">
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Setter Property="Visibility" Value="Visible"/>
