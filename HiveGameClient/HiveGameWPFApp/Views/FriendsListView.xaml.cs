@@ -74,7 +74,7 @@ namespace HiveGameWPFApp.Views
                 ProfileUser profileUser = new ProfileUser()
                 {
                     idProfile = usersObtained[indexUsersProfile].idProfile,
-                    idAccount = usersObtained[indexUsersProfile].idAccesAccount,
+                    idAccount = usersObtained[indexUsersProfile].idAccount,
                     username = usersObtained[indexUsersProfile].nickname,
                     imageProfile = usersObtained[indexUsersProfile].imagePath,
                 };
@@ -124,7 +124,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        public void LoadUsersInformation(Profile[] usersProfile)
+        private void LoadUsersInformation(Profile[] usersProfile)
         {
             for(int indexUsersProfile = 0;  indexUsersProfile < usersProfile.Length; indexUsersProfile++)
             {
@@ -424,7 +424,65 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void DeleteFriendClick(object sender, RoutedEventArgs e)
+        {
+            bool selection = DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogConfirmFriendDelete);
+            if (selection)
+            {
+                Button clickedButton = sender as Button;
+                ProfileUser profileUser = clickedButton.DataContext as ProfileUser;
+                if (profileUser != null)
+                {
+                    SendEliminationFriendShip(profileUser);
+                }
+                else
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorAtObtainingUserData);
+                }
+            }
+        }
 
+        private void SendEliminationFriendShip(ProfileUser profileUser)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.FriendshipManagerClient friendShipManagerClient = new FriendshipManagerClient();
+            Profile removingPlayer = new Profile() 
+            {
+                idAccesAccount = UserProfileSingleton.idAccount
+            };
+            Profile friendToRemove = new Profile()
+            {
+                idAccesAccount = profileUser.idAccount
+            };
+            try
+            {
+                int resultCreation = friendShipManagerClient.DeleteFriend(removingPlayer, friendToRemove);
+                if (resultCreation == Constants.SUCCES_OPERATION)
+                {
+                    DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogFriendDeleted);
+                    lvw_FriendToAdd.Items.Clear();
+                }
+                else if (resultCreation == Constants.ERROR_OPERATION)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
 
         public void LoadUserInformation(Profile profile, bool areFriends)
         {
