@@ -75,7 +75,7 @@ namespace HiveGameWPFApp.Views
                 {
                     idProfile = usersObtained[indexUsersProfile].idProfile,
                     idAccount = usersObtained[indexUsersProfile].idAccount,
-                    username = usersObtained[indexUsersProfile].nickname,
+                    username = usersObtained[indexUsersProfile].username,
                     imageProfile = usersObtained[indexUsersProfile].imagePath,
                 };
                 lvw_FriendsList.Items.Add(profileUser);
@@ -460,7 +460,7 @@ namespace HiveGameWPFApp.Views
                 if (resultCreation == Constants.SUCCES_OPERATION)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogFriendDeleted);
-                    lvw_FriendToAdd.Items.Clear();
+                    LoadFriendships();
                 }
                 else if (resultCreation == Constants.ERROR_OPERATION)
                 {
