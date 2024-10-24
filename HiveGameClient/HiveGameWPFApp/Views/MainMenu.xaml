@@ -14,18 +14,17 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
-                    <Image x:Name="BottonFrame"  
-                       Source="/Images/Background/BottonFrame.png"
-                       Width="400" Height="464"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Margin="74,169,0,0"
-                       RenderTransformOrigin="0.5,0.5"
-                       Panel.ZIndex="1"/>
-
                 </Border>
 
                 <Grid>
+                    <Border Name ="brd_ImageProfile" Width="92" Height="121" BorderBrush="#FFC300" BorderThickness="2"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1042,20,0,0">
+                        <Grid>
+                            <Viewbox>
+                                <Image x:Name="img_ProfilePic" Source="/Images/Avatars/Avatar1.png" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
                     <StackPanel Margin="520,169,-15,88">
                         <MediaElement x:Name="mediaElement"
                                       Source="pack://siteoforigin:,,,/Video/VideoMenu.mp4"
@@ -96,7 +95,7 @@
                        Width="296" Height="58"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="148,107,0,0"
+                       Margin="148,125,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
@@ -127,6 +126,17 @@
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                         </Button.Background>
                     </Button>
+                    <Label Name="lbl_Username" Content="{x:Static p:Resources.globalLbl_UserName}"
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Top"
+                           HorizontalContentAlignment="Right"
+                           Margin="341,47,0,0"
+                           Width="662" Height="60"
+                           FontSize="35"
+                           Foreground="WhiteSmoke"  
+                           FontFamily="Impact"
+                           />
+
                 </Grid>
                 <Button x:Name="btn_EditProfile" Content="{x:Static p:Resources.btn_EditProfile}"
                     Width="324" Height="41" FontSize="30"
