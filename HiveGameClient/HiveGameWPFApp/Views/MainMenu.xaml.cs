@@ -84,14 +84,22 @@ namespace HiveGameWPFApp.Views
 
         private void BtnPlay_Click(object sender, RoutedEventArgs e)
         {
-            LobbyView lobbyView = new LobbyView();
-            this.NavigationService.Navigate(lobbyView);
+            btn_JoinMatch.Visibility = Visibility.Visible;
+            btn_CreateMatch.Visibility = Visibility.Visible;
+            img_CreateMatch.Visibility = Visibility.Visible;
+            img_JoinMatch.Visibility = Visibility.Visible;
+            btn_EditCredentials.Visibility = Visibility.Collapsed;
+            btn_EditProfile.Visibility = Visibility.Collapsed;
         }
 
         private void BtnMyAccount_Click(object sender, RoutedEventArgs e)
         {
             btn_EditCredentials.Visibility = Visibility.Visible;
             btn_EditProfile.Visibility = Visibility.Visible;
+            btn_JoinMatch.Visibility = Visibility.Collapsed;
+            btn_CreateMatch.Visibility = Visibility.Collapsed;
+            img_CreateMatch.Visibility = Visibility.Collapsed;
+            img_JoinMatch.Visibility = Visibility.Collapsed;
         }
 
         private void BtnFriends_Click(object sender, RoutedEventArgs e)
@@ -143,6 +151,17 @@ namespace HiveGameWPFApp.Views
         }
 
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCreateMatch_Click(object sender, RoutedEventArgs e)
+        {
+            LobbyView lobbyView = new LobbyView();
+            this.NavigationService.Navigate(lobbyView);
+        }
+
+        private void BtnJoinMatch_Click(object sender, RoutedEventArgs e)
         {
 
         }

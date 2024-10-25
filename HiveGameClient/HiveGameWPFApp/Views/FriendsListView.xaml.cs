@@ -1,21 +1,22 @@
-﻿using HiveGameWPFApp.HiveProxy;
-using HiveGameWPFApp.Logic;
-using log4net.Repository.Hierarchy;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using System.ServiceModel;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
+using HiveGameWPFApp.Logic;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using HiveGameWPFApp.HiveProxy;
+using System.Windows.Documents;
+using System.Windows.Navigation;
+using System.Collections.Generic;
+using log4net.Repository.Hierarchy;
+using System.Windows.Media.Imaging;
+
 
 namespace HiveGameWPFApp.Views
 {
@@ -539,8 +540,8 @@ namespace HiveGameWPFApp.Views
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            LoginView loginView = new LoginView();
-            this.NavigationService.Navigate(loginView);
+            MainMenu mainMenu = new MainMenu();
+            this.NavigationService.Navigate(mainMenu);
         } 
 
         private void ReturnMainMenu(object sender, RoutedEventArgs e)

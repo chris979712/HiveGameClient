@@ -224,6 +224,13 @@
     <Resource Include="Images\Background\UpperFrame.jpg" />
     <Resource Include="Images\Icons\FriendsButtonIcon.png" />
     <Resource Include="Images\Icons\SettingsIcon.png" />
+    <Resource Include="Images\Icons\IconSearch.png" />
+    <Resource Include="Images\Icons\IconDoesNotExistFriends.png" />
+    <Resource Include="Images\Icons\FriensIcon.png" />
+    <Resource Include="Images\Icons\JoinGameIcon.png" />
+    <Resource Include="Images\Icons\MyAccountIcon.png" />
+    <Resource Include="Images\Icons\CreateMatch.png" />
+    <Resource Include="Images\Icons\JoinMatch.png" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

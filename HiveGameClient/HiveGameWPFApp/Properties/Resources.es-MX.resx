@@ -321,4 +321,13 @@
   <data name="dialogConfirmFriendDelete" xml:space="preserve">
     <value>¿Estás seguro de eliminar a este amigo?</value>
   </data>
+  <data name="lbl_NoFriends" xml:space="preserve">
+    <value>No hay amigos añadidos todavía</value>
+  </data>
+  <data name="btn_CreateMatch" xml:space="preserve">
+    <value>Crear partida</value>
+  </data>
+  <data name="btn_JoinMatch" xml:space="preserve">
+    <value>Unirse a una partida</value>
+  </data>
 </root>

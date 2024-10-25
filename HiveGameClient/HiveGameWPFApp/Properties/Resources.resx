@@ -321,4 +321,13 @@
   <data name="dialogConfirmFriendDelete" xml:space="preserve">
     <value>Are you sure to delete this friend?</value>
   </data>
+  <data name="lbl_NoFriends" xml:space="preserve">
+    <value>No friends added yet</value>
+  </data>
+  <data name="btn_CreateMatch" xml:space="preserve">
+    <value>Create match</value>
+  </data>
+  <data name="btn_JoinMatch" xml:space="preserve">
+    <value>Join match</value>
+  </data>
 </root>

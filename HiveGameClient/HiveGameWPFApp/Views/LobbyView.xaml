@@ -17,7 +17,7 @@
 
             <Grid>
 
-                <Image x:Name="imgPet"  
+                <Image x:Name="img_Lobby"  
                        Source="/Images/Icons/Lobby.png"
                        Width="242" Height="86"
                        HorizontalAlignment="Left"
@@ -38,7 +38,7 @@
 
                 <StackPanel VerticalAlignment="Bottom" Background="Black" Height="84" Margin="658,0,142,96" Orientation="Horizontal">
 
-                    <TextBox x:Name="txtMessageInput" Height="40"
+                    <TextBox x:Name="txtb_MessageInput" Height="40"
                          Background="#2F2F2F"
                          Foreground="White"
                          BorderBrush="White"
@@ -69,7 +69,7 @@
                         </Button.Effect>
                     </Button>
 
-                    <TextBlock x:Name="txtCharCount"
+                    <TextBlock x:Name="txtb_CharCount"
                                Text="0/100"
                                Foreground="White"
                                FontWeight="Bold"
