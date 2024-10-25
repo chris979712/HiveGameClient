@@ -14,7 +14,7 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
-                    <Image x:Name="BottonFrame"  
+                    <Image x:Name="img_BottonFrame"  
                        Source="/Images/Background/BottonFrame.png"
                        Width="400" Height="464"
                        HorizontalAlignment="Left"
@@ -27,16 +27,10 @@
 
                 <Grid>
                     <StackPanel Margin="520,169,-15,88">
-                        <MediaElement x:Name="mediaElement"
-                                      Source="pack://siteoforigin:,,,/Video/VideoMenu.mp4"
-                                      LoadedBehavior="Manual"
-                                      UnloadedBehavior="Stop"
-                                      Stretch="Uniform"
-                                      MediaEnded="MediaElement_MediaEnded"
-                                      Width="774" Height="458" />
+                        <Canvas x:Name="videoCanvas" Width="774" Height="458" />
                     </StackPanel>
                     <Button x:Name="btn_Play" Content="{x:Static p:Resources.btn_Play}"
-                        Width="324" Height="41" FontSize="30"
+                        Width="324" Height="41" FontSize="30" FontFamily="Impact"
                         Foreground="Black"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         HorizontalContentAlignment="Right" 
@@ -79,7 +73,7 @@
                            Panel.ZIndex="1"/>
 
                     <Button x:Name="btn_MyAccount" Content="{x:Static p:Resources.btn_MyAccount}"
-                         Width="324" Height="41" FontSize="30"
+                         Width="324" Height="41" FontSize="30" FontFamily="Impact"
                          Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          HorizontalContentAlignment="Right" 
@@ -116,7 +110,7 @@
                        MouseDown="Image_MouseDown" 
                        Cursor="Hand" Margin="10,10,1186,626" RenderTransformOrigin="0.5,0.506"/>
                     <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_Friend}"
-                        Width="324" Height="41" FontSize="30"
+                        Width="324" Height="41" FontSize="30" FontFamily="Impact"
                         Foreground="Black"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         HorizontalContentAlignment="Right" 
@@ -129,7 +123,7 @@
                     </Button>
                 </Grid>
                 <Button x:Name="btn_EditProfile" Content="{x:Static p:Resources.btn_EditProfile}"
-                    Width="324" Height="41" FontSize="30"
+                    Width="324" Height="41" FontSize="30" FontFamily="Impact"
                     Foreground="Black"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     HorizontalContentAlignment="Right" 
@@ -141,7 +135,7 @@
                     </Button.Background>
                 </Button>
                 <Button x:Name="btn_EditCredentials" Content="{x:Static p:Resources.btn_EditCredentials}"
-                    Width="324" Height="41" FontSize="30"
+                    Width="324" Height="41" FontSize="30" FontFamily="Impact"
                     Foreground="Black"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     HorizontalContentAlignment="Right" 

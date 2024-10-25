@@ -18,35 +18,61 @@ namespace HiveGameWPFApp.Views
 {
     public partial class MainMenu : Page
     {
-        private MediaPlayer mediaPlayer;
+        private MediaPlayer _mediaPlayer;
+        private VideoDrawing _videoDrawing;
+        private DrawingBrush _drawingBrush;
         public MainMenu()
         {
             InitializeComponent();
             Loaded += MainMenu_Loaded;
             Unloaded += MainMenu_Unloaded;
+
             btn_EditCredentials.Visibility = Visibility.Collapsed;
             btn_EditProfile.Visibility = Visibility.Collapsed;
         }
+
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            mediaElement.Play();
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
+
+            _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+            _videoDrawing = new VideoDrawing
+            {
+                Rect = new Rect(0, 0, videoCanvas.Width, videoCanvas.Height),
+                Player = _mediaPlayer
+            };
+
+            _drawingBrush = new DrawingBrush(_videoDrawing);
+            videoCanvas.Background = _drawingBrush;
+
+            _mediaPlayer.Play();
         }
 
         private void MainMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-            mediaElement.Pause();
+            if (_mediaPlayer != null)
+            {
+                _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+                _mediaPlayer.Stop();
+                _mediaPlayer.Close();
+                _mediaPlayer = null;
+            }
         }
 
-        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        private void MediaElement_MediaEnded(object sender, EventArgs e)
         {
-            mediaElement.Position = TimeSpan.Zero;
-            mediaElement.Play();
+            if (_mediaPlayer != null)
+            {
+                _mediaPlayer.Position = TimeSpan.Zero;
+                _mediaPlayer.Play();
+            }
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             bool resultConfirmation = DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogExitMainMenu);
-            if(resultConfirmation)
+            if (resultConfirmation)
             {
                 UserProfileSingleton.Instance.ResetSingleton();
                 LoginView login = new LoginView();
@@ -76,6 +102,7 @@ namespace HiveGameWPFApp.Views
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
+
             try
             {
                 int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
@@ -119,3 +146,4 @@ namespace HiveGameWPFApp.Views
         }
     }
 }
+

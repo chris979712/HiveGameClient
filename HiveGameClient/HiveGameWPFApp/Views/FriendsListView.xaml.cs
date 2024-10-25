@@ -536,7 +536,13 @@ namespace HiveGameWPFApp.Views
             stckp_FriendRequests.Visibility = Visibility.Collapsed;
             stck_AddNewFriend.Visibility = Visibility.Visible;
         }
-        
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            this.NavigationService.Navigate(loginView);
+        } 
+
         private void ReturnMainMenu(object sender, RoutedEventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
