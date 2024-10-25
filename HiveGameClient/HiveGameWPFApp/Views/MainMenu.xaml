@@ -14,6 +14,15 @@
                     <Border.Background>
                         <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
+                    <Image x:Name="img_BottonFrame"  
+                       Source="/Images/Background/BottonFrame.png"
+                       Width="405" Height="486"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="67,162,0,0"
+                       RenderTransformOrigin="0.5,0.5"
+                       Panel.ZIndex="1"/>
+
                 </Border>
 
                 <Grid>
@@ -26,16 +35,10 @@
                         </Grid>
                     </Border>
                     <StackPanel Margin="520,169,-15,88">
-                        <MediaElement x:Name="mediaElement"
-                                      Source="pack://siteoforigin:,,,/Video/VideoMenu.mp4"
-                                      LoadedBehavior="Manual"
-                                      UnloadedBehavior="Stop"
-                                      Stretch="Uniform"
-                                      MediaEnded="MediaElement_MediaEnded"
-                                      Width="774" Height="458" />
+                        <Canvas x:Name="videoCanvas" Width="774" Height="458" />
                     </StackPanel>
                     <Button x:Name="btn_Play" Content="{x:Static p:Resources.btn_Play}"
-                        Width="324" Height="41" FontSize="30"
+                        Width="324" Height="50" FontSize="30" FontFamily="Impact"
                         Foreground="Black"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         HorizontalContentAlignment="Right" 
@@ -76,14 +79,30 @@
                            Margin="123,215,0,0"
                            RenderTransformOrigin="0.5,0.5"
                            Panel.ZIndex="1"/>
+                    <Image x:Name="img_FriensIcon"  
+                       Source="/Images/Icons/FriensIcon.png"
+                       Width="58" Height="52"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="122,366,0,0"
+                       RenderTransformOrigin="0.5,0.5"
+                       Panel.ZIndex="1"/>
+                    <Image x:Name="img_MyAccountIcon"  
+                       Source="/Images/Icons/MyAccountIcon.png"
+                       Width="64" Height="54"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="122,288,0,0"
+                       RenderTransformOrigin="0.5,0.5"
+                       Panel.ZIndex="1"/>
 
                     <Button x:Name="btn_MyAccount" Content="{x:Static p:Resources.btn_MyAccount}"
-                         Width="324" Height="41" FontSize="30"
+                         Width="324" Height="50" FontSize="30" FontFamily="Impact"
                          Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          HorizontalContentAlignment="Right" 
                          Padding="0,0,10,0"
-                        Margin="108,275,0,0" RenderTransformOrigin="0.5,0.393"
+                        Margin="108,290,0,0" RenderTransformOrigin="0.5,0.393"
                          Click="BtnMyAccount_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
@@ -95,7 +114,7 @@
                        Width="296" Height="58"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="148,125,0,0"
+                       Margin="121,95,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
@@ -115,12 +134,12 @@
                        MouseDown="Image_MouseDown" 
                        Cursor="Hand" Margin="10,10,1186,626" RenderTransformOrigin="0.5,0.506"/>
                     <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_Friend}"
-                        Width="324" Height="41" FontSize="30"
+                        Width="324" Height="50" FontSize="30" FontFamily="Impact"
                         Foreground="Black"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         HorizontalContentAlignment="Right" 
                         Padding="0,0,10,0"
-                        Margin="108,332,0,0" RenderTransformOrigin="0.5,0.393"
+                        Margin="108,367,0,0" RenderTransformOrigin="0.5,0.393"
                         Click="BtnFriends_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
@@ -139,7 +158,7 @@
 
                 </Grid>
                 <Button x:Name="btn_EditProfile" Content="{x:Static p:Resources.btn_EditProfile}"
-                    Width="324" Height="41" FontSize="30"
+                    Width="324" Height="50" FontSize="30" FontFamily="Impact" Visibility="Collapsed"
                     Foreground="Black"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     HorizontalContentAlignment="Right" 
@@ -150,14 +169,59 @@
                         <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                     </Button.Background>
                 </Button>
+
                 <Button x:Name="btn_EditCredentials" Content="{x:Static p:Resources.btn_EditCredentials}"
-                    Width="324" Height="41" FontSize="30"
+                    Width="324" Height="50" FontSize="30" FontFamily="Impact" Visibility="Collapsed"
                     Foreground="Black"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     HorizontalContentAlignment="Right" 
                     Padding="0,0,10,0"
                     Margin="777,431,0,0" RenderTransformOrigin="0.5,0.393"
                     Click="BtnEditCredentials_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+
+                <Image x:Name="img_CreateMatch"  Visibility="Collapsed"
+                   Source="/Images/Icons/CreateMatch.png"
+                   Width="194" Height="196"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="982,242,0,0"
+                   RenderTransformOrigin="0.5,0.5"
+                   Panel.ZIndex="1"/>
+
+                <Button x:Name="btn_CreateMatch" Content="{x:Static p:Resources.btn_CreateMatch}"
+                    Width="254" Height="50" FontSize="30" FontFamily="Impact" Visibility="Collapsed"
+                    Foreground="Black"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right" 
+                    Padding="0,0,10,0"
+                    Margin="952,460,0,0" RenderTransformOrigin="0.5,0.393"
+                    Click="BtnCreateMatch_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+
+                <Image x:Name="img_JoinMatch"  Visibility="Collapsed"
+                   Source="/Images/Icons/JoinMatch.png"
+                   Width="194" Height="196"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="646,244,0,0"
+                   RenderTransformOrigin="0.5,0.5"
+                   Panel.ZIndex="1"/>
+
+                <Button x:Name="btn_JoinMatch" Content="{x:Static p:Resources.btn_JoinMatch}"
+                    Width="254" Height="50" FontSize="30" FontFamily="Impact" Visibility="Collapsed"
+                    Foreground="Black"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    HorizontalContentAlignment="Right" 
+                    Padding="0,0,10,0"
+                    Margin="616,460,0,0" RenderTransformOrigin="0.5,0.393"
+                    Click="BtnJoinMatch_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                     </Button.Background>

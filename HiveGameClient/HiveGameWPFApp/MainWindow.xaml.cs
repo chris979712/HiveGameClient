@@ -61,30 +61,28 @@ namespace HiveGameWPFApp
         }
         private void PlayBackgroundMusic(string musicFilePath)
         {
-            if (BackgroundMusicPlayer.Source != null)
+            if (me_BackgroundMusicPlayer.Source != null)
             {
-                BackgroundMusicPlayer.Stop();
+                me_BackgroundMusicPlayer.Stop();
             }
 
-            BackgroundMusicPlayer.Source = new Uri(musicFilePath, UriKind.Relative);
-
-
-            BackgroundMusicPlayer.Play();
+            me_BackgroundMusicPlayer.Source = new Uri(musicFilePath, UriKind.Relative);
+            me_BackgroundMusicPlayer.Play();
         }
 
         private void StopBackgroundMusic()
         {
-            if (BackgroundMusicPlayer.CanPause)
+            if (me_BackgroundMusicPlayer.CanPause)
             {
-                BackgroundMusicPlayer.Stop();
+                me_BackgroundMusicPlayer.Stop();
             }
         }
 
         private void BackgroundMusicPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
             
-            BackgroundMusicPlayer.Position = TimeSpan.Zero;
-            BackgroundMusicPlayer.Play();
+            me_BackgroundMusicPlayer.Position = TimeSpan.Zero;
+            me_BackgroundMusicPlayer.Play();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

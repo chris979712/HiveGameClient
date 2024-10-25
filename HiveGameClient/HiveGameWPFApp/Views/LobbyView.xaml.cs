@@ -141,7 +141,7 @@ namespace HiveGameWPFApp.Views
         private void BtnSendMessage_Click(object sender, RoutedEventArgs e)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            string message = txtMessageInput.Text;
+            string message = txtb_MessageInput.Text;
 
             if (!string.IsNullOrEmpty(message))
             {
@@ -153,7 +153,7 @@ namespace HiveGameWPFApp.Views
                 try
                 {
                     chatManager.SendMessages(messageToSend,"1234");
-                    txtMessageInput.Clear();
+                    txtb_MessageInput.Clear();
                 }
                 catch (EndpointNotFoundException endPointException)
                 {
@@ -170,25 +170,25 @@ namespace HiveGameWPFApp.Views
                     logger.LogError(communicationException);
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
                 }
-                txtMessageInput.Clear();
-                txtCharCount.Text = "0/100"; 
+                txtb_MessageInput.Clear();
+                txtb_CharCount.Text = "0/100"; 
             }
         }
 
 
         private void TxtMessageInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int currentLength = txtMessageInput.Text.Length;
-            txtCharCount.Text = $"{currentLength}/100";
+            int currentLength = txtb_MessageInput.Text.Length;
+            txtb_CharCount.Text = $"{currentLength}/100";
 
 
             if (currentLength == 100)
             {
-                txtMessageInput.IsReadOnly = true;
+                txtb_MessageInput.IsReadOnly = true;
             }
             else
             {
-                txtMessageInput.IsReadOnly = false;
+                txtb_MessageInput.IsReadOnly = false;
             }
         }
     }

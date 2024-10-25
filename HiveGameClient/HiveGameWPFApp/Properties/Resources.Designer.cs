@@ -88,6 +88,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Create match.
+        /// </summary>
+        public static string btn_CreateMatch {
+            get {
+                return ResourceManager.GetString("btn_CreateMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Decline.
         /// </summary>
         public static string btn_Decline {
@@ -165,6 +174,15 @@ namespace HiveGameWPFApp.Properties {
         public static string btn_Guest {
             get {
                 return ResourceManager.GetString("btn_Guest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Join match.
+        /// </summary>
+        public static string btn_JoinMatch {
+            get {
+                return ResourceManager.GetString("btn_JoinMatch", resourceCulture);
             }
         }
         
@@ -606,6 +624,15 @@ namespace HiveGameWPFApp.Properties {
         public static string lbl_Nickname {
             get {
                 return ResourceManager.GetString("lbl_Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No friends added yet.
+        /// </summary>
+        public static string lbl_NoFriends {
+            get {
+                return ResourceManager.GetString("lbl_NoFriends", resourceCulture);
             }
         }
         

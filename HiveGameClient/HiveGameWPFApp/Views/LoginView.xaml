@@ -5,60 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HiveGameWPFApp.Views"
         xmlns:p="clr-namespace:HiveGameWPFApp.Properties"
-
         mc:Ignorable="d"
         d:DesignHeight="720" d:DesignWidth="1280">
+
     <DockPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Grid>
-
                 <Border>
                     <Border.Background>
                         <ImageBrush ImageSource="/Images/Background/loginBackground.png" Stretch="UniformToFill" />
                     </Border.Background>
                 </Border>
-                <Grid>
-                    <Image x:Name="imgPet"  
-                           Source="/Images/Characters/pet.png"
-                           Width="195" Height="198"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Margin="667,252,0,0"
-                           RenderTransformOrigin="0.5,0.5"
-                           Panel.ZIndex="1"/>
 
-                    <Label x:Name="lblUsername" Content="{x:Static p:Resources.globalLbl_UserName}"
-                            Foreground="#FFC300"
-                            FontWeight="Bold"
-                            FontSize="25"
-                            HorizontalAlignment="Left" 
-                            Margin="948,238,0,0" 
-                            VerticalAlignment="Top"/>
+                <Grid>
                     
-                    <TextBox x:Name="txtbUsername"
-                         Width="347"
-                         Height="40"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Top"
-                         Margin="839,287,0,0"
-                         Background="#1C1C1C"
-                         Foreground="White"
-                         BorderBrush="#FFC300"
-                         BorderThickness="2"
-                         Padding="5"
-                         FontSize="16">
+                    <Image x:Name="img_Pet" Source="/Images/Characters/pet.png" Width="195" Height="198"
+                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Margin="667,252,0,0" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1"/>
+
+                    
+                    <Label x:Name="lbl_Username" Content="{x:Static p:Resources.globalLbl_UserName}"
+                       Foreground="#FFC300" FontWeight="Bold" FontSize="25"
+                       HorizontalAlignment="Left" Margin="948,238,0,0"
+                       VerticalAlignment="Top"/>
+
+                    
+                    <TextBox x:Name="txtb_Username" Width="347" Height="40"
+                         HorizontalAlignment="Left" VerticalAlignment="Top"
+                         Margin="839,287,0,0" Background="#1C1C1C" Foreground="White"
+                         BorderBrush="#FFC300" BorderThickness="2" Padding="5" FontSize="16">
                         <TextBox.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Label x:Name="lblPassword" Content="{x:Static p:Resources.globalLbl_Password}"
-                            Foreground="#FFC300"
-                            FontWeight="Bold"
-                            FontSize="25"
-                            HorizontalAlignment="Left" 
-                            Margin="952,0,0,0" 
-                            VerticalAlignment="Center"/>
+                    
+                    <Label x:Name="lbl_Password" Content="{x:Static p:Resources.globalLbl_Password}"
+                       Foreground="#FFC300" FontWeight="Bold" FontSize="25"
+                       HorizontalAlignment="Left" Margin="952,0,0,0"
+                       VerticalAlignment="Center"/>
+
                     
                     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="840,385,0,0" Width="385">
                         <Grid.ColumnDefinitions>
@@ -66,15 +52,11 @@
                             <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
 
-                        <Border x:Name="brPassword" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0"   >
-                            <PasswordBox x:Name="pwbPassword"
-                                         FontSize="16"
-                                         FontWeight="Medium"
-                                         FontFamily="Segoe UI Variable Display"
-                                         Background="#1C1C1C"
-                                         Foreground="White"
-                                         BorderThickness="0"
-                                         Padding="5">
+                        
+                        <Border x:Name="brd_Password" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0">
+                            <PasswordBox x:Name="pwb_Password" FontSize="16" FontWeight="Medium"
+                                     FontFamily="Segoe UI Variable Display" Background="#1C1C1C"
+                                     Foreground="White" BorderThickness="0" Padding="5">
                                 <PasswordBox.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                                 </PasswordBox.Effect>
@@ -82,32 +64,25 @@
                         </Border>
 
                         
-                        <ToggleButton x:Name="tgbtnPasswordVisibility" 
-                                      Background="Transparent" BorderBrush="Transparent"
-                                      Grid.Column="1" Cursor="Hand"
-                                        PreviewMouseLeftButtonDown="BtnPasswordVisibility_MouseDown"
-                                        PreviewMouseLeftButtonUp="BtnPasswordVisibility_MouseUp"
-                                      Visibility="Collapsed">
+                        <ToggleButton x:Name="tgbtn_PasswordVisibility" Background="Transparent" BorderBrush="Transparent"
+                                  Grid.Column="1" Cursor="Hand" 
+                                  PreviewMouseLeftButtonDown="BtnPasswordVisibility_MouseDown"
+                                  PreviewMouseLeftButtonUp="BtnPasswordVisibility_MouseUp" Visibility="Collapsed">
                             <ToggleButton.Template>
                                 <ControlTemplate>
-                                    <Image x:Name="imgPasswordIcon" Source="/Images/Icons/Visible.png" Width="30" Height="30"/>
+                                    <Image x:Name="img_PasswordIcon" Source="/Images/Icons/Visible.png" Width="30" Height="30"/>
                                 </ControlTemplate>
                             </ToggleButton.Template>
                         </ToggleButton>
                     </Grid>
 
-                   
-                    <Border x:Name="brPasswordDisplay" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
-                            HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="840,385,0,0" Width="346" Height="40" Visibility="Collapsed">
-                        <TextBox x:Name="txtPasswordDisplay"
-                                 FontSize="16"
-                                 FontWeight="Medium"
-                                 FontFamily="Montserrat"
-                                 Background="#1C1C1C"
-                                 Foreground="White"
-                                 BorderThickness="0"
-                                 Padding="5">
+                    
+                    <Border x:Name="brd_PasswordDisplay" CornerRadius="5" BorderBrush="#FFD700" BorderThickness="2"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="840,385,0,0"
+                        Width="346" Height="40" Visibility="Collapsed">
+                        <TextBox x:Name="txtb_PasswordDisplay" FontSize="16" FontWeight="Medium"
+                             FontFamily="Montserrat" Background="#1C1C1C" Foreground="White"
+                             BorderThickness="0" Padding="5">
                             <TextBox.Effect>
                                 <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                             </TextBox.Effect>
@@ -115,42 +90,41 @@
                     </Border>
 
                     
-                    <Button x:Name="btnLogin" Content="{x:Static p:Resources.btn_Login}"
-                            Width="347" Height="36" FontSize="22"
-                            Background="#FFC300" Foreground="Black"
-                            HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="839,470,0,0" RenderTransformOrigin="0.5,0.393" 
-                            Click="BtnLogin_Click"/>
+                    <Button x:Name="btn_Login" Content="{x:Static p:Resources.btn_Login}"
+                        Width="347" Height="36" FontSize="22"
+                        Background="#FFC300" Foreground="Black"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="839,470,0,0" RenderTransformOrigin="0.5,0.393" 
+                        Click="BtnLogin_Click"/>
 
-                    <Button x:Name="btnGuest" Width="167" Height="36" FontSize="20"
+                    
+                    <Button x:Name="btn_Guest" Width="167" Height="36" FontSize="20"
                         Background="Gray" Foreground="White"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
-                        Margin="840,520,0,0"
-                        Click="BtnGuest_Click">
+                        Margin="840,520,0,0" Click="BtnGuest_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Image Source="/Images/Icons/Register.png" Width="30" Height="30" Margin="0,0,10,0" />
                             <TextBlock Text="{x:Static p:Resources.btn_Guest}" FontSize="22" Foreground="White" />
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="btnRegister" 
-                            Width="164" Height="36" FontSize="20"
-                            Background="Gray" Foreground="White"
-                            HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="1022,520,0,0" 
-                            Click="BtnRegister_Click">
+                    
+                    <Button x:Name="btn_Register" Width="164" Height="36" FontSize="20"
+                        Background="Gray" Foreground="White"
+                        HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Margin="1022,520,0,0" Click="BtnRegister_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Image Source="/Images/Icons/GuestIcon.png" Width="30" Height="30" Margin="0,0,10,0" />
                             <TextBlock Text="{x:Static p:Resources.btn_CreateAccount}" FontSize="22" Foreground="White" />
                         </StackPanel>
                     </Button>
 
+                    
                     <TextBlock Text="{x:Static p:Resources.lbl_RecoverPassword}"
-                               FontSize="16" Foreground="#FFD700"
-                               HorizontalAlignment="Left" VerticalAlignment="Top"
-                               Margin="926,578,0,0" TextDecorations="Underline"
-                               Cursor="Hand"
-                               MouseLeftButtonDown="BtnRecoverPassword_Click">
+                           FontSize="16" Foreground="#FFD700"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Margin="926,578,0,0" TextDecorations="Underline"
+                           Cursor="Hand" MouseLeftButtonDown="BtnRecoverPassword_Click">
                         <TextBlock.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="2" Opacity="0.7" BlurRadius="5" />
                         </TextBlock.Effect>
