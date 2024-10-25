@@ -330,4 +330,7 @@
   <data name="btn_JoinMatch" xml:space="preserve">
     <value>Unirse a una partida</value>
   </data>
+  <data name="lbl_TitleRecoverPassword" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
 </root>

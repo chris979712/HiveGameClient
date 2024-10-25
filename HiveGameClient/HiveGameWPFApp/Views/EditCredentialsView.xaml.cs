@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,6 +38,12 @@ namespace HiveGameWPFApp.Views
         {
             lbl_Email.Content = UserProfileSingleton.email;
             txt_Email.Text = UserProfileSingleton.email;
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            this.NavigationService.Navigate(mainMenu);
         }
         private void StartTimer()
         {

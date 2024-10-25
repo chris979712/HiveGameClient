@@ -43,7 +43,12 @@ namespace HiveGameWPFApp.Views
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
         }
-        
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            this.NavigationService.Navigate(mainMenu);
+        }
 
         public void sendWelcomeNotificationMessage(string codeLobby)
         {
