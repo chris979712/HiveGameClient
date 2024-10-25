@@ -673,6 +673,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Recover Password.
+        /// </summary>
+        public static string lbl_TitleRecoverPassword {
+            get {
+                return ResourceManager.GetString("lbl_TitleRecoverPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Email:.
         /// </summary>
         public static string lbl_UserEmail {
