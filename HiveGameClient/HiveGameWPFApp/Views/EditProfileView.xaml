@@ -24,7 +24,7 @@
                            Cursor="Hand" Margin="43,19,1153,616"/>
                     
                     <Button x:Name="btn_Confirm" Content="CONFIRM"
-                         Width="347" Height="47" FontSize="26"
+                         Width="347" Height="47" FontSize="26" FontFamily="Impact"
                          Background="#FFC300" Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          Margin="485,625,0,0" RenderTransformOrigin="0.5,0.393" 
@@ -55,7 +55,8 @@
                          BorderBrush="#FFC300"
                          BorderThickness="2"
                          Padding="5"
-                         FontSize="16">
+                         FontSize="16"
+                              TabIndex="0">
                         <TextBox.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                         </TextBox.Effect>
@@ -80,7 +81,8 @@
                          BorderThickness="2"
                          Padding="5"
                          FontSize="16"
-                         TextWrapping="Wrap">
+                         TextWrapping="Wrap"
+                              TabIndex="1">
                         <TextBox.Effect>
                             <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                         </TextBox.Effect>
