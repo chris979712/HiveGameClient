@@ -97,6 +97,9 @@ namespace HiveGameWPFApp.Views
                 if(modificationResult == 1)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
+                    UserProfileSingleton.nickname = txtb_Nickname.Text;
+                    UserProfileSingleton.description = txtb_Description.Text;
+                    UserProfileSingleton.imageRoute = imageRouteProfile;
                     GoToMainMenuView();
                 }else if(modificationResult == -1)
                 {

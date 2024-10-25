@@ -29,6 +29,8 @@ namespace HiveGameWPFApp.Views
 
             btn_EditCredentials.Visibility = Visibility.Collapsed;
             btn_EditProfile.Visibility = Visibility.Collapsed;
+            lbl_Username.Content = UserProfileSingleton.username;
+            img_ProfilePic.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
         }
 
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
