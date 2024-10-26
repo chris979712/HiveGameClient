@@ -332,6 +332,7 @@
   </data>
   <data name="globalLbl_PasswordIndications" xml:space="preserve">
     <value>Recuerde que su contraseña debe incluir al menos 8 caracteres, incluyendo al menos 1 letra mayúscula, 1 letra minúscula, 1 número y 1 caracter especial.</value>
+  </data>
   <data name="lbl_TitleRecoverPassword" xml:space="preserve">
     <value>Recuperar contraseña</value>
   </data>

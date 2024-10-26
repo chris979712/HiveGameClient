@@ -330,8 +330,9 @@
   <data name="btn_JoinMatch" xml:space="preserve">
     <value>Join match</value>
   </data>
-  <data name="globalLbl_PasswordIndications" xml:space="preserve">
+	<data name="globalLbl_PasswordIndications" xml:space="preserve">
     <value>Remeber that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character.</value>
+    </data>
   <data name="lbl_TitleRecoverPassword" xml:space="preserve">
     <value>Recover Password</value>
   </data>
