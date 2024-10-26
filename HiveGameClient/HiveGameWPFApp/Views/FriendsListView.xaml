@@ -9,13 +9,13 @@
       d:DesignHeight="720" d:DesignWidth="1280">
 
     <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="1297">
-            <Grid>
-                <Border>
-                    <Border.Background>
-                        <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
-                    </Border.Background>
-                    <Image x:Name="img_BottonFrame"  
+
+        <Grid>
+            <Border>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/Background/MainMenuBackground.png" Stretch="UniformToFill" />
+                </Border.Background>
+                <Image x:Name="img_BottonFrame"  
                     Source="/Images/Background/BottonFrame.png"
                     Width="301" Height="344"
                     HorizontalAlignment="Left"
@@ -23,208 +23,207 @@
                     Margin="59,177,0,0"
                     RenderTransformOrigin="0.5,0.5"
                     Panel.ZIndex="1"/>
-                </Border>
+            </Border>
 
-                <Image Source="/Images/Icons/Back2.png"
+            <Image Source="/Images/Icons/Back2.png"
                 Width="84" Height="85"
                 MouseDown="Image_MouseDown"
                 Cursor="Hand" Margin="32,15,1181,620"
                 RenderTransformOrigin="0.5,0.506" />
 
-                <StackPanel DockPanel.Dock="Left" Background="#1C1C1C" Margin="74,192,961,220">
-                    <Button x:Name="btn_Add" Content="{x:Static p:Resources.btn_Add}" Height="50"
+            <StackPanel DockPanel.Dock="Left" Background="#1C1C1C" Margin="74,192,961,220">
+                <Button x:Name="btn_Add" Content="{x:Static p:Resources.btn_Add}" Height="50"
                     FontSize="22"
                     Foreground="Black" FontFamily="Impact"   
                     Margin="10,20,10,15" Click="BtnAdd_Click">
-                        <Button.Effect>
-                            <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                        </Button.Effect>
-                        <Button.Background>
-                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
-                        </Button.Background>
-                    </Button>
+                    <Button.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                    </Button.Effect>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
 
-                    <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_GameFriends}" Height="50" 
+                <Button x:Name="btn_Friends" Content="{x:Static p:Resources.btn_GameFriends}" Height="50" 
                     FontSize="22" 
                     Margin="10,20,10,15" Foreground="Black"
                     FontFamily="Impact" Click="BtnFriends_Click">
-                        <Button.Effect>
-                            <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                        </Button.Effect>
-                        <Button.Background>
-                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
-                        </Button.Background>
-                    </Button>
+                    <Button.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                    </Button.Effect>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
 
-                    <Button x:Name="btn_FriendRequests" Content="{x:Static p:Resources.btn_FriendRequest}" Height="50" 
+                <Button x:Name="btn_FriendRequests" Content="{x:Static p:Resources.btn_FriendRequest}" Height="50" 
                     FontSize="22" 
                     FontFamily="Impact" Margin="10,20,10,15"
                     Foreground="Black" Click="BtnFriendRequests_Click">
-                        <Button.Effect>
-                            <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                        </Button.Effect>
-                        <Button.Background>
-                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
-                        </Button.Background>
-                    </Button>
-                </StackPanel>
+                    <Button.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                    </Button.Effect>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
 
-                <Grid Margin="418,120,209,194">
-                    <StackPanel x:Name="stckp_GameFriends" Visibility="Collapsed">
-                        <DockPanel Width="393" Margin="10">
-                            <TextBox x:Name="txtb_FriendsAdded" Width="278" DockPanel.Dock="Left" 
+            <Grid Margin="418,120,209,194">
+                <StackPanel x:Name="stckp_GameFriends" Visibility="Collapsed">
+                    <DockPanel Width="393" Margin="10">
+                        <TextBox x:Name="txtb_FriendsAdded" Width="278" DockPanel.Dock="Left" 
                             Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" 
                             FontSize="18" BorderThickness="2" 
                             HorizontalAlignment="Left" Height="37">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </TextBox.Effect>
-                            </TextBox>
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </TextBox.Effect>
+                        </TextBox>
 
-                            <Button Name="btn_Search" DockPanel.Dock="Right" Width="100" Height="37" Background="#FFC300" Foreground="Black" 
+                        <Button Name="btn_Search" DockPanel.Dock="Right" Width="100" Height="37" Background="#FFC300" Foreground="Black" 
                             HorizontalAlignment="Right" FontSize="16" FontFamily="Impact">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{x:Static p:Resources.btn_Search}" VerticalAlignment="Center"/>
-                                    <Image Source="/Images/Icons/IconSearch.png" Width="39" Height="32" Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        <Image.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="-41.76"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </Image.RenderTransform>
-                                    </Image>
-                                </StackPanel>
-                                <Button.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </Button.Effect>
-                            </Button>
-                        </DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.btn_Search}" VerticalAlignment="Center"/>
+                                <Image Source="/Images/Icons/IconSearch.png" Width="39" Height="32" Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-41.76"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </StackPanel>
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </Button.Effect>
+                        </Button>
+                    </DockPanel>
 
-                        <ListView x:Name="lvw_FriendsList" Margin="10" Background="#1C1C1C">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
-                                            <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5"/>
-                                            <StackPanel VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding username}" FontSize="20" Foreground="White" Margin="5"/>
-                                            </StackPanel>
+                    <ListView x:Name="lvw_FriendsList" Margin="10" Background="#1C1C1C">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
+                                        <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5"/>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding username}" FontSize="20" Foreground="White" Margin="5"/>
                                         </StackPanel>
-                                        <Button Name="btn_DeleteFriend" Content="{x:Static p:Resources.btn_Delete}" Width="75" Height="30" 
+                                    </StackPanel>
+                                    <Button Name="btn_DeleteFriend" Content="{x:Static p:Resources.btn_Delete}" Width="75" Height="30" 
                                         Margin="5" Grid.Column="1" FontFamily="Impact" FontSize="18"
                                         Background="#FF6347" Foreground="White" 
                                         Click="DeleteFriendClick" HorizontalAlignment="Right"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
 
-                    <StackPanel x:Name="stckp_FriendRequests" Visibility="Collapsed">
-                        <ListView x:Name="lvw_FriendRequests" Margin="10" Background="#1C1C1C">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
-                                            <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5"/>
-                                            <TextBlock Text="{Binding username}" FontSize="20" Foreground="White" Margin="5" VerticalAlignment="Center" />
-                                        </StackPanel>
+                <StackPanel x:Name="stckp_FriendRequests" Visibility="Collapsed">
+                    <ListView x:Name="lvw_FriendRequests" Margin="10" Background="#1C1C1C">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="5">
+                                        <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5"/>
+                                        <TextBlock Text="{Binding username}" FontSize="20" Foreground="White" Margin="5" VerticalAlignment="Center" />
+                                    </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5">
-                                            <Button Name="btn_Acept" Content="{x:Static p:Resources.btn_Acept}" Width="100" Height="30" 
+                                    <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5">
+                                        <Button Name="btn_Acept" Content="{x:Static p:Resources.btn_Acept}" Width="100" Height="30" 
                                             Margin="5" Background="#1B263B" Foreground="White" FontFamily="Impact" FontSize="18"
                                             Click="AcceptFriendRequest" HorizontalAlignment="Right"/>
-                                            <Button Name="btn_Decline" Content="{x:Static p:Resources.btn_Decline}" Width="100" Height="30" 
+                                        <Button Name="btn_Decline" Content="{x:Static p:Resources.btn_Decline}" Width="100" Height="30" 
                                             Margin="5" Background="#D72638" Foreground="Black" FontFamily="Impact" FontSize="18"
                                             Click="DeclineFriendRequest" HorizontalAlignment="Right"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
 
-                    <StackPanel x:Name="stck_AddNewFriend" Visibility="Visible">
-                        <DockPanel Width="393" Margin="10">
-                            <TextBox x:Name="txtb_SearchFriend" Width="278" DockPanel.Dock="Left" 
+                <StackPanel x:Name="stck_AddNewFriend" Visibility="Visible">
+                    <DockPanel Width="393" Margin="10">
+                        <TextBox x:Name="txtb_SearchFriend" Width="278" DockPanel.Dock="Left" 
                             Background="#1C1C1C" FontSize="18" Foreground="White" BorderBrush="#FFC300" BorderThickness="2" Height="37">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </TextBox.Effect>
-                            </TextBox>
+                            <TextBox.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </TextBox.Effect>
+                        </TextBox>
 
-                            <Button x:Name="btn_SearchFriend" DockPanel.Dock="Right" Width="100" Height="37" Background="#FFC300" Foreground="Black" 
+                        <Button x:Name="btn_SearchFriend" DockPanel.Dock="Right" Width="100" Height="37" Background="#FFC300" Foreground="Black" 
                             HorizontalAlignment="Right" Click="SearchUser" FontSize="16" FontFamily="Impact">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{x:Static p:Resources.btn_Search}" VerticalAlignment="Center"/>
-                                    <Image Source="/Images/Icons/IconSearch.png" Width="38" Height="31" Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        <Image.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="-36.319"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </Image.RenderTransform>
-                                    </Image>
-                                </StackPanel>
-                                <Button.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </Button.Effect>
-                            </Button>
-                        </DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.btn_Search}" VerticalAlignment="Center"/>
+                                <Image Source="/Images/Icons/IconSearch.png" Width="38" Height="31" Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-36.319"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </StackPanel>
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                            </Button.Effect>
+                        </Button>
+                    </DockPanel>
 
-                        <ListView x:Name="lvw_FriendToAdd" Margin="10" Background="#1C1C1C">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="350"/>
-                                        </Grid.ColumnDefinitions>
+                    <ListView x:Name="lvw_FriendToAdd" Margin="10" Background="#1C1C1C">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="350"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5" Grid.Column="0"/>
+                                    <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5" Grid.Column="0"/>
 
-                                        <TextBlock Text="{Binding username}" 
+                                    <TextBlock Text="{Binding username}" 
                                         FontSize="20" Foreground="White" 
                                         VerticalAlignment="Center" 
                                         Grid.Column="1" Margin="10,0,0,0"/>
 
-                                        <Button Name="btn_AddFriend" Content="{x:Static p:Resources.btn_Add}" 
+                                    <Button Name="btn_AddFriend" Content="{x:Static p:Resources.btn_Add}" 
                                         Width="100" Height="30" 
                                         Background="#FFC300" Foreground="Black" 
                                         Click="SendFriendRequest" FontSize="20" 
                                         FontFamily="Impact" Grid.Column="2" HorizontalAlignment="Right">
-                                            <Button.Style>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding areFriends}" Value="True">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                </Grid>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding areFriends}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </Grid>
-        </ScrollViewer>
+        </Grid>
     </DockPanel>
 
 </Page>

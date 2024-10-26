@@ -109,6 +109,9 @@
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +238,10 @@
     <Resource Include="Images\Icons\MyAccountIcon.png" />
     <Resource Include="Images\Icons\CreateMatch.png" />
     <Resource Include="Images\Icons\JoinMatch.png" />
+    <Resource Include="Images\Background\StatisticsFrame2.png" />
+    <Resource Include="Images\Icons\StatisticsIcon.png" />
+    <Resource Include="Images\Icons\PersonalStatistics.png" />
+    <Resource Include="Images\Icons\WorldStatistics.png" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

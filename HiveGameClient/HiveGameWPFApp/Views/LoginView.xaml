@@ -9,7 +9,7 @@
         d:DesignHeight="720" d:DesignWidth="1280">
 
     <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        
             <Grid>
                 <Border>
                     <Border.Background>
@@ -131,6 +131,6 @@
                     </TextBlock>
                 </Grid>
             </Grid>
-        </ScrollViewer>
+        
     </DockPanel>
 </Page>

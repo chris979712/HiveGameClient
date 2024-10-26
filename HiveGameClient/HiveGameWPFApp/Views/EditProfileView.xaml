@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="1297">
+        
             <Grid>
                 <Border>
                     <Border.Background>
@@ -21,14 +21,18 @@
                     <Image Source="/Images/Icons/Back2.png" 
                            Width="84" Height="85" 
                            MouseDown="Image_MouseDown" 
-                           Cursor="Hand" Margin="43,19,1153,616"/>
-                    
+                           Cursor="Hand" Margin="28,19,1168,616"/>
+
                     <Button x:Name="btn_Confirm" Content="CONFIRM"
                          Width="347" Height="47" FontSize="26" FontFamily="Impact"
-                         Background="#FFC300" Foreground="Black"
+                          Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          Margin="485,625,0,0" RenderTransformOrigin="0.5,0.393" 
-                         Click="BtnConfirm_Click"/>
+                         Click="BtnConfirm_Click">
+                        <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                        </Button.Background>
+                    </Button>
 
                     <Label x:Name="lbl_editProfile" Content="{x:Static p:Resources.lbl_EditProfile}"
                         Foreground="#e6a500"
@@ -37,6 +41,7 @@
                         HorizontalAlignment="Center" 
                         Margin="0,62,0,0" 
                         VerticalAlignment="Top"/>
+                    
                     <Label x:Name="lbl_Nickname" Content="{x:Static p:Resources.lbl_Nickname}"
                         Foreground="#FFC300"
                         FontWeight="Bold"
@@ -152,6 +157,6 @@
                     </Popup>
                 </Grid>
             </Grid>
-        </ScrollViewer>
+
     </DockPanel>
 </Page>
