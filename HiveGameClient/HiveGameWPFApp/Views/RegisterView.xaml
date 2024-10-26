@@ -218,12 +218,24 @@
                         Width="348" Height="53" FontSize="30" FontFamily="Impact"
                          Foreground="Black"
                         HorizontalAlignment="Center" VerticalAlignment="Top"
-                        Margin="0,556,0,0" RenderTransformOrigin="0.5,0.393"
+                        Margin="0,631,0,0" RenderTransformOrigin="0.5,0.393"
                         Click="BtnCreateAccount_Click" Cursor="" TabIndex="4">
                         <Button.Background>
-                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                            <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                         </Button.Background>
                     </Button>
+
+                    <TextBlock x:Name="txb_PasswordIndications"
+                       Text="{x:Static p:Resources.globalTxtb_PasswordIndications}"
+                       Foreground="#B0B0B0"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="218,514,0,0"
+                       Width="600"
+                       TextWrapping="Wrap"
+                       TextAlignment="Justify"/>
                 </Grid>
             </Grid>
         

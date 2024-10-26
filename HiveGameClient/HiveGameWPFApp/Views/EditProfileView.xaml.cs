@@ -131,7 +131,7 @@ namespace HiveGameWPFApp.Views
 
         public bool ValidateFields()
         {
-            bool nicknameValidation = Validator.validateNickName(txtb_Nickname.Text);
+            bool nicknameValidation = Validator.ValidateNickName(txtb_Nickname.Text);
             bool descriptionValidation = Validator.ValidateDescription(txtb_Description.Text);
             if (!nicknameValidation)
             {
