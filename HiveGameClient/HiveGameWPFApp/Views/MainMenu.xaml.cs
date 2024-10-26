@@ -165,6 +165,12 @@ namespace HiveGameWPFApp.Views
         {
 
         }
+
+        private void BtnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsView statisticsView = new StatisticsView();
+            this.NavigationService.Navigate(statisticsView);
+        }
     }
 }
 

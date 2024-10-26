@@ -332,5 +332,7 @@
   </data>
   <data name="globalTxtb_PasswordIndications" xml:space="preserve">
     <value>Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character.</value>
+  <data name="lbl_TitleRecoverPassword" xml:space="preserve">
+    <value>Recover Password</value>
   </data>
 </root>

@@ -23,7 +23,7 @@ namespace HiveGameWPFApp.Views
     public partial class EditCredentialsView : Page
     {
         private DispatcherTimer timer;
-        private int timeLeft = 60; 
+        private int timeLeft = 60;
 
         public EditCredentialsView()
         {
@@ -59,7 +59,7 @@ namespace HiveGameWPFApp.Views
         }
         private void FocusFirstTextBox()
         {
-            TextBox firstTextBox = (TextBox)brd_BubbleOne.Child; 
+            TextBox firstTextBox = (TextBox)brd_BubbleOne.Child;
             firstTextBox.Focus();
         }
 
@@ -80,7 +80,7 @@ namespace HiveGameWPFApp.Views
                 ValidateCode();
             }
         }
-       
+
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -158,7 +158,7 @@ namespace HiveGameWPFApp.Views
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
-            bool isValid = false;  
+            bool isValid = false;
             try
             {
                 UserVerificator verificationUser = new UserVerificator();
@@ -186,7 +186,7 @@ namespace HiveGameWPFApp.Views
 
         private void ShowNewPasswordSection()
         {
-            lbl_ErrorMessage.Visibility= Visibility.Collapsed;
+            lbl_ErrorMessage.Visibility = Visibility.Collapsed;
             grd_VerificationPanel.Visibility = Visibility.Collapsed;
             grd_EditionPanel.Visibility = Visibility.Visible;
         }
@@ -233,7 +233,7 @@ namespace HiveGameWPFApp.Views
             {
                 brd_ConfirmPassword.BorderBrush = Brushes.Red;
             }
-            return emailVerification&&passwordVerificaton&&passwordConfirmVerification;
+            return emailVerification && passwordVerificaton && passwordConfirmVerification;
         }
 
         private bool ValidateSamePasswords()
@@ -258,7 +258,8 @@ namespace HiveGameWPFApp.Views
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEmailAlreadyRegistered);
                     resultVerification = false;
-                }else if(resultVerificationCredentials== Constants.NO_DATA_MATCHES)
+                }
+                else if (resultVerificationCredentials == Constants.NO_DATA_MATCHES)
                 {
                     resultVerification = true;
                 }
@@ -306,8 +307,8 @@ namespace HiveGameWPFApp.Views
                     email = txt_Email.Text,
                     password = passwordEncripted
                 };
-                int updateResult = userManagerClient.UpdateLoginCredentials(oldAccesAccount,newAccesAccount);
-                if(updateResult == Constants.SUCCES_OPERATION)
+                int updateResult = userManagerClient.UpdateLoginCredentials(oldAccesAccount, newAccesAccount);
+                if (updateResult == Constants.SUCCES_OPERATION)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
                     ReturnToMainWindow();
@@ -341,7 +342,7 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
-                if(resultEmailSend == Constants.SUCCES_OPERATION)
+                if (resultEmailSend == Constants.SUCCES_OPERATION)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
                 }
@@ -366,7 +367,7 @@ namespace HiveGameWPFApp.Views
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
         }
-        
+
 
         private void BtnCancelChange_Click(object sender, RoutedEventArgs e)
         {
@@ -375,6 +376,17 @@ namespace HiveGameWPFApp.Views
         }
 
         public void ReturnToMainWindow()
+        {
+            MainMenu mainMenu = new MainMenu();
+            this.NavigationService.Navigate(mainMenu);
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GoToLoginView();
+        }
+
+        private void GoToLoginView()
         {
             MainMenu mainMenu = new MainMenu();
             this.NavigationService.Navigate(mainMenu);

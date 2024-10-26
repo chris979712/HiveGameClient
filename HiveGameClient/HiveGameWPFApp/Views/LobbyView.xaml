@@ -15,6 +15,12 @@
                 </Border.Background>
             </Border>
 
+            <Image Source="/Images/Icons/Back2.png"
+               Width="84" Height="85"
+               MouseDown="Image_MouseDown"
+               Cursor="Hand" Margin="43,19,1153,616"
+               RenderTransformOrigin="0.5,0.506" />
+
             <Grid>
 
                 <Image x:Name="img_Lobby"  
