@@ -218,9 +218,9 @@ namespace HiveGameWPFApp.Views
 
         private bool ValidateFields()
         {
-            bool emailVerification = Validator.validateEmail(txt_Email.Text);
-            bool passwordVerificaton = Validator.validatePassword(pwb_Password.Password);
-            bool passwordConfirmVerification = Validator.validatePassword(pwb_ConfirmPassword.Password);
+            bool emailVerification = Validator.ValidateEmail(txt_Email.Text);
+            bool passwordVerificaton = Validator.ValidatePassword(pwb_Password.Password);
+            bool passwordConfirmVerification = Validator.ValidatePassword(pwb_ConfirmPassword.Password);
             if (!emailVerification)
             {
                 txt_Email.BorderBrush = Brushes.Red;

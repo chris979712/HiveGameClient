@@ -54,8 +54,8 @@ namespace HiveGameWPFApp.Views
 
         public bool verifyFields()
         {
-            bool passwordValidation = Validator.validatePassword(pwb_Password.Password);
-            bool usernameValidation = Validator.validateUsername(txtb_Username.Text);
+            bool passwordValidation = Validator.ValidatePassword(pwb_Password.Password);
+            bool usernameValidation = Validator.ValidateUsername(txtb_Username.Text);
 
             if (!passwordValidation)
             {
@@ -72,7 +72,7 @@ namespace HiveGameWPFApp.Views
         public int ValidateCredentials(Profile profile)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            int validationResult = 0;
+            int validationResult = -2;
 
             try
             {

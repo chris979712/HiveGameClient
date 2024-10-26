@@ -71,37 +71,6 @@
 
                 <Grid Margin="418,120,209,194">
                     <StackPanel x:Name="stckp_GameFriends" Visibility="Collapsed">
-                        <DockPanel Width="393" Margin="10">
-                            <TextBox x:Name="txtb_FriendsAdded" Width="278" DockPanel.Dock="Left" 
-                            Background="#1C1C1C" Foreground="White" BorderBrush="#FFC300" 
-                            FontSize="18" BorderThickness="2" 
-                            HorizontalAlignment="Left" Height="37">
-                                <TextBox.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </TextBox.Effect>
-                            </TextBox>
-
-                            <Button Name="btn_Search" DockPanel.Dock="Right" Width="100" Height="37" Background="#FFC300" Foreground="Black" 
-                            HorizontalAlignment="Right" FontSize="16" FontFamily="Impact">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{x:Static p:Resources.btn_Search}" VerticalAlignment="Center"/>
-                                    <Image Source="/Images/Icons/IconSearch.png" Width="39" Height="32" Margin="5,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        <Image.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="-41.76"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </Image.RenderTransform>
-                                    </Image>
-                                </StackPanel>
-                                <Button.Effect>
-                                    <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
-                                </Button.Effect>
-                            </Button>
-                        </DockPanel>
-
                         <ListView x:Name="lvw_FriendsList" Margin="10" Background="#1C1C1C">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

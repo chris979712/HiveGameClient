@@ -330,4 +330,7 @@
   <data name="btn_JoinMatch" xml:space="preserve">
     <value>Unirse a una partida</value>
   </data>
+  <data name="globalLbl_PasswordIndications" xml:space="preserve">
+    <value>Recuerde que su contraseña debe incluir al menos 8 caracteres, incluyendo al menos 1 letra mayúscula, 1 letra minúscula, 1 número y 1 caracter especial.</value>
+  </data>
 </root>

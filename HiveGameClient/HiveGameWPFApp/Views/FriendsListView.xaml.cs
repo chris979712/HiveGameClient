@@ -162,7 +162,7 @@ namespace HiveGameWPFApp.Views
         public bool VerifyField()
         {
             lvw_FriendToAdd.Items.Clear();
-            bool usernameField = Validator.validateUsername(txtb_SearchFriend.Text);
+            bool usernameField = Validator.ValidateUsername(txtb_SearchFriend.Text);
             if (!usernameField)
             {
                 txtb_SearchFriend.BorderBrush = Brushes.Red;
