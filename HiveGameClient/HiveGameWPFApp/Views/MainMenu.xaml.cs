@@ -195,8 +195,9 @@ namespace HiveGameWPFApp.Views
         }
 
         private void BtnJoinMatch_Click(object sender, RoutedEventArgs e)
-        {
-
+        { 
+            GameCodeView gameCodeView = new GameCodeView();
+            this.NavigationService.Navigate(gameCodeView);
         }
 
         private void BtnStatistics_Click(object sender, RoutedEventArgs e)

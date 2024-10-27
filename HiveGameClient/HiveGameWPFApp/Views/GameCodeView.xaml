@@ -1,0 +1,64 @@
+﻿<Page x:Class="HiveGameWPFApp.Views.GameCodeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HiveGameWPFApp.Views"
+      xmlns:p="clr-namespace:HiveGameWPFApp.Properties"
+      mc:Ignorable="d"
+      d:DesignHeight="720" d:DesignWidth="1280">
+    <DockPanel>
+        <Grid>
+            <Border>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/Background/LobbyBackground.png" Stretch="UniformToFill" />
+                </Border.Background>
+            </Border>
+            <Grid>
+                <Image Source="/Images/Icons/Back2.png"
+                   Width="84" Height="85"
+                   MouseDown="Image_MouseDown"
+                   Cursor="Hand" Margin="43,19,1153,616"
+                   RenderTransformOrigin="0.5,0.506" />
+                <Label x:Name="lbl_GameCode" Content="GAME CODE"
+                     Foreground="#e6a500"
+                     Background="Black"
+                     FontFamily="Impact"
+                     FontSize="60"
+                     HorizontalAlignment="Center" 
+                     Margin="0,62,0,0" 
+                     VerticalAlignment="Top"/>
+
+                <TextBox x:Name="txtb_Username"
+                     Width="348" Height="81"
+                     HorizontalAlignment="Center" VerticalAlignment="Top"
+                     FontFamily="Impact" Margin="0,238,0,0"
+                     Background="#1C1C1C" Foreground="White"
+                     BorderBrush="#FFC300" BorderThickness="5"
+                     Padding="5" FontSize="40"
+                     TextAlignment="Center" VerticalContentAlignment="Center"
+                     MaxLength="29" 
+                    PreviewTextInput="Txtb_Username_PreviewTextInput"
+                    TextChanged="Txtb_Username_TextChanged">
+                    <TextBox.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
+                    </TextBox.Effect>
+                </TextBox>
+
+
+
+                <Button x:Name="btn_Join" Content="Join the Game"
+                     Width="226" Height="47" FontSize="26" FontFamily="Impact"
+                      Foreground="Black"
+                     HorizontalAlignment="Center" VerticalAlignment="Top"
+                     Margin="0,461,0,0" RenderTransformOrigin="0.5,0.393" 
+                     Click="BtnJoin_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Page>
+

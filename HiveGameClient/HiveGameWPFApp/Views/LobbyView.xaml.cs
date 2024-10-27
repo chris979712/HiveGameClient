@@ -180,8 +180,12 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void BtnAddFriend_Click(object sender, RoutedEventArgs e)
+        {
+        }
 
-        private void TxtMessageInput_TextChanged(object sender, TextChangedEventArgs e)
+
+            private void TxtMessageInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             int currentLength = txtb_MessageInput.Text.Length;
             txtb_CharCount.Text = $"{currentLength}/100";
@@ -195,6 +199,11 @@ namespace HiveGameWPFApp.Views
             {
                 txtb_MessageInput.IsReadOnly = false;
             }
+        }
+
+        private void BtnMyAccount_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
