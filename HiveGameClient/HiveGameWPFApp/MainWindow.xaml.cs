@@ -1,6 +1,9 @@
-﻿using System;
+﻿using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +16,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using System.Windows;
+using HiveGameWPFApp.HiveProxy;
 
 namespace HiveGameWPFApp
 {
@@ -22,7 +28,7 @@ namespace HiveGameWPFApp
         public MainWindow()
         {
             InitializeComponent();
-
+            this.Closing += MainWindowClosing;
         }
 
         private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
@@ -83,6 +89,33 @@ namespace HiveGameWPFApp
             
             me_BackgroundMusicPlayer.Position = TimeSpan.Zero;
             me_BackgroundMusicPlayer.Play();
+        }
+
+        private void MainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                UserSessionManagerClient sessionManager = new UserSessionManagerClient();
+                sessionManager.Disconnect(UserProfileSingleton.username);
+
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

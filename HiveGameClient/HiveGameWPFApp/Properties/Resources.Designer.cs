@@ -286,6 +286,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Couldn&apos;t find user session .
+        /// </summary>
+        public static string dialogCouldntFindUserSession {
+            get {
+                return ResourceManager.GetString("dialogCouldntFindUserSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a There has been an error while sending email message. Try it again..
         /// </summary>
         public static string dialogCouldntSendEmail {
@@ -349,11 +358,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Couldn&apos;t close users session, please try again..
+        /// </summary>
+        public static string dialogErrorInDisconnection {
+            get {
+                return ResourceManager.GetString("dialogErrorInDisconnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The email or username to regist are already registered..
         /// </summary>
         public static string dialogExistinAccount {
             get {
                 return ResourceManager.GetString("dialogExistinAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You can&apos;t join the game, the same account is playing on another device..
+        /// </summary>
+        public static string dialogExistingSession {
+            get {
+                return ResourceManager.GetString("dialogExistingSession", resourceCulture);
             }
         }
         
@@ -426,6 +453,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogNoFriendsAdded {
             get {
                 return ResourceManager.GetString("dialogNoFriendsAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Couldn&apos;t find the specific personal leaderboard..
+        /// </summary>
+        public static string dialogNoPersonalLeaderboard {
+            get {
+                return ResourceManager.GetString("dialogNoPersonalLeaderboard", resourceCulture);
             }
         }
         
@@ -547,11 +583,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a .
+        /// </summary>
+        public static string globalLbl_PasswordIndications {
+            get {
+                return ResourceManager.GetString("globalLbl_PasswordIndications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a User name.
         /// </summary>
         public static string globalLbl_UserName {
             get {
                 return ResourceManager.GetString("globalLbl_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character..
+        /// </summary>
+        public static string globalTxtb_PasswordIndications {
+            get {
+                return ResourceManager.GetString("globalTxtb_PasswordIndications", resourceCulture);
             }
         }
         

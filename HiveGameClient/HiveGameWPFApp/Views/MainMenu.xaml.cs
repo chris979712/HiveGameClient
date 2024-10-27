@@ -1,4 +1,5 @@
 ﻿using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace HiveGameWPFApp.Views
 {
     public partial class MainMenu : Page
     {
-        private MediaPlayer _mediaPlayer;
-        private VideoDrawing _videoDrawing;
-        private DrawingBrush _drawingBrush;
+        private MediaPlayer mediaPlayer;
+        private VideoDrawing videoDrawing;
+        private DrawingBrush drawingBrush;
         public MainMenu()
         {
             InitializeComponent();
@@ -35,50 +36,82 @@ namespace HiveGameWPFApp.Views
 
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            _mediaPlayer = new MediaPlayer();
-            _mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
 
-            _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-            _videoDrawing = new VideoDrawing
+            mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+            videoDrawing = new VideoDrawing
             {
                 Rect = new Rect(0, 0, videoCanvas.Width, videoCanvas.Height),
-                Player = _mediaPlayer
+                Player = mediaPlayer
             };
 
-            _drawingBrush = new DrawingBrush(_videoDrawing);
-            videoCanvas.Background = _drawingBrush;
+            drawingBrush = new DrawingBrush(videoDrawing);
+            videoCanvas.Background = drawingBrush;
 
-            _mediaPlayer.Play();
+            mediaPlayer.Play();
         }
 
         private void MainMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (_mediaPlayer != null)
+            if (mediaPlayer != null)
             {
-                _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-                _mediaPlayer.Stop();
-                _mediaPlayer.Close();
-                _mediaPlayer = null;
+                mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+                mediaPlayer.Stop();
+                mediaPlayer.Close();
+                mediaPlayer = null;
             }
         }
 
         private void MediaElement_MediaEnded(object sender, EventArgs e)
         {
-            if (_mediaPlayer != null)
+            if (mediaPlayer != null)
             {
-                _mediaPlayer.Position = TimeSpan.Zero;
-                _mediaPlayer.Play();
+                mediaPlayer.Position = TimeSpan.Zero;
+                mediaPlayer.Play();
             }
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             bool resultConfirmation = DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogExitMainMenu);
+            LoggerManager logger = new LoggerManager(this.GetType());
             if (resultConfirmation)
             {
-                UserProfileSingleton.Instance.ResetSingleton();
-                LoginView login = new LoginView();
-                this.NavigationService.Navigate(login);
+                try
+                {
+                    HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
+                    int disconnectionResult = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                    if(disconnectionResult == Constants.SUCCES_OPERATION)
+                    {
+                        UserProfileSingleton.Instance.ResetSingleton();
+                        LoginView login = new LoginView();
+                        this.NavigationService.Navigate(login);
+                    }
+                    else if(disconnectionResult == Constants.NO_DATA_MATCHES)
+                    {
+                        DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogCouldntFindUserSession);
+                    }
+                    else
+                    {
+                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorInDisconnection);
+                    }
+                }
+                catch (EndpointNotFoundException endPointException)
+                {
+                    logger.LogError(endPointException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                }
+                catch (TimeoutException timeOutException)
+                {
+                    logger.LogError(timeOutException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                }
+                catch (CommunicationException communicationException)
+                {
+                    logger.LogError(communicationException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                }
             }
         }
 
