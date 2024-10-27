@@ -180,6 +180,8 @@ namespace HiveGameWPFApp.Views
 
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
+            GameCodeView gameCodeView = new GameCodeView();
+            this.NavigationService.Navigate(gameCodeView);
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
