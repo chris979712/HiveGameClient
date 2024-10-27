@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Web.SessionState;
 using HiveGameWPFApp.HiveProxy;
 using System.Windows.Media.Imaging;
+using log4net.Repository.Hierarchy;
 
 namespace HiveGameWPFApp.Views
 {
@@ -39,7 +40,7 @@ namespace HiveGameWPFApp.Views
 
                 if (validateCredentials == 1)
                 {
-                    DisplayMainMenuView();
+                    ValidateExistingUserSession();
                 }
                 else if (validateCredentials == 0)
                 {
@@ -69,6 +70,41 @@ namespace HiveGameWPFApp.Views
             return passwordValidation && usernameValidation;
         }
 
+        public void ValidateExistingUserSession()
+        {
+            bool existingSessionValidation = false;
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserSessionManagerClient userSessionManagerClient = new UserSessionManagerClient();
+            try
+            {
+                existingSessionValidation = userSessionManagerClient.VerifyConnectivity(UserProfileSingleton.username);
+                if (existingSessionValidation)
+                {
+                    DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogExistingSession);
+                }
+                else
+                {
+                    userSessionManagerClient.ConnectToGame(UserProfileSingleton.username);
+                    DisplayMainMenuView();
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
         public int ValidateCredentials(Profile profile)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
@@ -79,7 +115,6 @@ namespace HiveGameWPFApp.Views
                 string hashedPassword = Hasher.hashToSHA1(profile.password);
                 string username = profile.username;
                 IUserManager userManager = new HiveProxy.UserManagerClient();
-
                 validationResult = userManager.VerifyPasswordCredentials(username, hashedPassword);
             }
             catch (EndpointNotFoundException endPointException)

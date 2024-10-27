@@ -72,6 +72,42 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IEmailInvitationManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IUserSessionManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IMatchCreatorManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" />
@@ -327,6 +363,20 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="DisconectPlayerFromChat">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q25:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DisconectPlayerFromChatResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DisconectPlayerFromChatResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="GetConnectedUsers">
         <xs:complexType>
           <xs:sequence />
@@ -335,14 +385,14 @@
       <xs:element name="GetConnectedUsersResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetConnectedUsersResult" nillable="true" type="q25:ArrayOfProfile" />
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetConnectedUsersResult" nillable="true" type="q26:ArrayOfProfile" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="ReceiveMessage">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="messages" nillable="true" type="q26:ArrayOfMessage" />
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="messages" nillable="true" type="q27:ArrayOfMessage" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -354,7 +404,7 @@
       <xs:element name="UserConnected">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="users" nillable="true" type="q27:ArrayOfProfile" />
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="users" nillable="true" type="q28:ArrayOfProfile" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -415,7 +465,7 @@
       <xs:element name="GetPersonalLeaderBoardResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetPersonalLeaderBoardResult" nillable="true" type="q28:LeaderBoardPlayer" />
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetPersonalLeaderBoardResult" nillable="true" type="q29:LeaderBoardPlayer" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -427,7 +477,7 @@
       <xs:element name="GetAllPlayersLeaderboardsResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllPlayersLeaderboardsResult" nillable="true" type="q29:ArrayOfLeaderBoardPlayer" />
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllPlayersLeaderboardsResult" nillable="true" type="q30:ArrayOfLeaderBoardPlayer" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -448,7 +498,7 @@
       <xs:element name="VerifyCodeVerification">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userVerificator" nillable="true" type="q30:UserVerificator" />
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userVerificator" nillable="true" type="q31:UserVerificator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -456,6 +506,146 @@
         <xs:complexType>
           <xs:sequence>
             <xs:element minOccurs="0" name="VerifyCodeVerificationResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GenerateVerificatonCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GenerateVerificatonCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GenerateVerificatonCodeResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendEmailInvitation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="verificator" nillable="true" type="q32:UserVerificator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendEmailInvitationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SendEmailInvitationResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyExistingCodeResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GenerateLobbyCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GenerateLobbyCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GenerateLobbyCodeResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ConnectToGame">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ConnectToGameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ConnectToGameResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Disconnect">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DisconnectResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DisconnectResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyConnectivity">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyConnectivityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyConnectivityResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateMatch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q33:MatchCreator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateMatchResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CreateMatchResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateMatchState">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q34:MatchCreator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateMatchStateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UpdateMatchStateResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingActiveMatch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q35:MatchCreator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="VerifyExistingActiveMatchResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="VerifyExistingActiveMatchResult" type="xs:int" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -549,6 +739,7 @@
       <xs:complexType name="LeaderBoardPlayer">
         <xs:sequence>
           <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          <xs:element minOccurs="0" name="imageProfile" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="totalDrawMatches" type="xs:int" />
           <xs:element minOccurs="0" name="totalLostMatches" type="xs:int" />
           <xs:element minOccurs="0" name="totalMatches" type="xs:int" />
@@ -570,6 +761,15 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="UserVerificator" nillable="true" type="tns:UserVerificator" />
+      <xs:complexType name="MatchCreator">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateMatch" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="idCreatorAccount" type="xs:int" />
+          <xs:element minOccurs="0" name="stateMatch" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="MatchCreator" nillable="true" type="tns:MatchCreator" />
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="IUserManager_AddUser_InputMessage">
@@ -674,6 +874,12 @@
   <wsdl:message name="IChatManager_SendMessages_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessages" />
   </wsdl:message>
+  <wsdl:message name="IChatManager_DisconectPlayerFromChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconectPlayerFromChat" />
+  </wsdl:message>
+  <wsdl:message name="IChatManager_DisconectPlayerFromChat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconectPlayerFromChatResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatManager_GetConnectedUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
   </wsdl:message>
@@ -733,6 +939,66 @@
   </wsdl:message>
   <wsdl:message name="IEmailVerificationManager_VerifyCodeVerification_OutputMessage">
     <wsdl:part name="parameters" element="tns:VerifyCodeVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_GenerateVerificatonCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateVerificatonCode" />
+  </wsdl:message>
+  <wsdl:message name="IEmailVerificationManager_GenerateVerificatonCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateVerificatonCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_SendEmailInvitation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailInvitation" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_SendEmailInvitation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailInvitationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_VerifyExistingCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingCode" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_VerifyExistingCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_GenerateLobbyCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateLobbyCode" />
+  </wsdl:message>
+  <wsdl:message name="IEmailInvitationManager_GenerateLobbyCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateLobbyCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_ConnectToGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToGame" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_ConnectToGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_VerifyConnectivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyConnectivity" />
+  </wsdl:message>
+  <wsdl:message name="IUserSessionManager_VerifyConnectivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyConnectivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_CreateMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_CreateMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_UpdateMatchState_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMatchState" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_UpdateMatchState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMatchStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_VerifyExistingActiveMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingActiveMatch" />
+  </wsdl:message>
+  <wsdl:message name="IMatchCreatorManager_VerifyExistingActiveMatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyExistingActiveMatchResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
@@ -811,6 +1077,10 @@
     <wsdl:operation name="SendMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/SendMessages" message="tns:IChatManager_SendMessages_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DisconectPlayerFromChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat" message="tns:IChatManager_DisconectPlayerFromChat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse" message="tns:IChatManager_DisconectPlayerFromChat_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetConnectedUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsers" message="tns:IChatManager_GetConnectedUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsersResponse" message="tns:IChatManager_GetConnectedUsers_OutputMessage" />
@@ -854,6 +1124,52 @@
     <wsdl:operation name="VerifyCodeVerification">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmailVerificationManager/VerifyCodeVerification" message="tns:IEmailVerificationManager_VerifyCodeVerification_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmailVerificationManager/VerifyCodeVerificationResponse" message="tns:IEmailVerificationManager_VerifyCodeVerification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateVerificatonCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailVerificationManager/GenerateVerificatonCode" message="tns:IEmailVerificationManager_GenerateVerificatonCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailVerificationManager/GenerateVerificatonCodeResponse" message="tns:IEmailVerificationManager_GenerateVerificatonCode_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEmailInvitationManager">
+    <wsdl:operation name="SendEmailInvitation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailInvitationManager/SendEmailInvitation" message="tns:IEmailInvitationManager_SendEmailInvitation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailInvitationManager/SendEmailInvitationResponse" message="tns:IEmailInvitationManager_SendEmailInvitation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailInvitationManager/VerifyExistingCode" message="tns:IEmailInvitationManager_VerifyExistingCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailInvitationManager/VerifyExistingCodeResponse" message="tns:IEmailInvitationManager_VerifyExistingCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLobbyCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCode" message="tns:IEmailInvitationManager_GenerateLobbyCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCodeResponse" message="tns:IEmailInvitationManager_GenerateLobbyCode_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUserSessionManager">
+    <wsdl:operation name="ConnectToGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserSessionManager/ConnectToGame" message="tns:IUserSessionManager_ConnectToGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserSessionManager/ConnectToGameResponse" message="tns:IUserSessionManager_ConnectToGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserSessionManager/Disconnect" message="tns:IUserSessionManager_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserSessionManager/DisconnectResponse" message="tns:IUserSessionManager_Disconnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyConnectivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserSessionManager/VerifyConnectivity" message="tns:IUserSessionManager_VerifyConnectivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserSessionManager/VerifyConnectivityResponse" message="tns:IUserSessionManager_VerifyConnectivity_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMatchCreatorManager">
+    <wsdl:operation name="CreateMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchCreatorManager/CreateMatch" message="tns:IMatchCreatorManager_CreateMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchCreatorManager/CreateMatchResponse" message="tns:IMatchCreatorManager_CreateMatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMatchState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchCreatorManager/UpdateMatchState" message="tns:IMatchCreatorManager_UpdateMatchState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchCreatorManager/UpdateMatchStateResponse" message="tns:IMatchCreatorManager_UpdateMatchState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingActiveMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatch" message="tns:IMatchCreatorManager_VerifyExistingActiveMatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatchResponse" message="tns:IMatchCreatorManager_VerifyExistingActiveMatch_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -1027,6 +1343,15 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="DisconectPlayerFromChat">
+      <soap12:operation soapAction="http://tempuri.org/IChatManager/DisconectPlayerFromChat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetConnectedUsers">
       <soap12:operation soapAction="http://tempuri.org/IChatManager/GetConnectedUsers" style="document" />
       <wsdl:input>
@@ -1125,6 +1450,108 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GenerateVerificatonCode">
+      <soap12:operation soapAction="http://tempuri.org/IEmailVerificationManager/GenerateVerificatonCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IEmailInvitationManager" type="tns:IEmailInvitationManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IEmailInvitationManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SendEmailInvitation">
+      <soap12:operation soapAction="http://tempuri.org/IEmailInvitationManager/SendEmailInvitation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingCode">
+      <soap12:operation soapAction="http://tempuri.org/IEmailInvitationManager/VerifyExistingCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateLobbyCode">
+      <soap12:operation soapAction="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IUserSessionManager" type="tns:IUserSessionManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUserSessionManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ConnectToGame">
+      <soap12:operation soapAction="http://tempuri.org/IUserSessionManager/ConnectToGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IUserSessionManager/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyConnectivity">
+      <soap12:operation soapAction="http://tempuri.org/IUserSessionManager/VerifyConnectivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IMatchCreatorManager" type="tns:IMatchCreatorManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMatchCreatorManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchCreatorManager/CreateMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMatchState">
+      <soap12:operation soapAction="http://tempuri.org/IMatchCreatorManager/UpdateMatchState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyExistingActiveMatch">
+      <soap12:operation soapAction="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="HiveGameService">
     <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
@@ -1161,6 +1588,24 @@
       <soap12:address location="net.tcp://localhost:1441/EmailVerificationService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:1441/EmailVerificationService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IEmailInvitationManager" binding="tns:NetTcpBinding_IEmailInvitationManager">
+      <soap12:address location="net.tcp://localhost:1441/EmailInvitationService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/EmailInvitationService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IUserSessionManager" binding="tns:NetTcpBinding_IUserSessionManager">
+      <soap12:address location="net.tcp://localhost:1441/UserSessionService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/UserSessionService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IMatchCreatorManager" binding="tns:NetTcpBinding_IMatchCreatorManager">
+      <soap12:address location="net.tcp://localhost:1441/MatchCreatorService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/MatchCreatorService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
