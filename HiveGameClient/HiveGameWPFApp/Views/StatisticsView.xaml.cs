@@ -1,8 +1,11 @@
-﻿using HiveGameWPFApp.Logic;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +22,7 @@ namespace HiveGameWPFApp.Views
 {
     public partial class StatisticsView : Page
     {
-        // Colecciones de datos de ejemplo
+
         public ObservableCollection<PlayerStatistic> WorldStatisticsData { get; set; }
         public ObservableCollection<PlayerStatistic> PersonalStatisticsData { get; set; }
 
@@ -28,46 +31,119 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             LoadSampleData();
 
-            // Establece el contexto de datos
-            dg_WorldStatistics.ItemsSource = WorldStatisticsData;
-            dg_PersonalStatistics.ItemsSource = PersonalStatisticsData;
         }
 
-        // Método para cargar datos de ejemplo
         private void LoadSampleData()
         {
             
-            var players = new List<PlayerStatistic>
-    {
-                new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar1.png", Name = "Alice", Wins = 20, Losses = 5, TotalGames = 25 },
-                new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar2.png", Name = "Bob", Wins = 15, Losses = 10, TotalGames = 25 },
-                new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar3.png", Name = "Charlie", Wins = 18, Losses = 7, TotalGames = 25 },
-                new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar4.png", Name = "Diana", Wins = 25, Losses = 0, TotalGames = 25 },
-                new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar5.png", Name = "Eve", Wins = 10, Losses = 15, TotalGames = 25 }
-            };
 
             
-            var rankedPlayers = GetPlayersWithRank(players.OrderByDescending(p => p.Wins).ToList());
-
-            
-            WorldStatisticsData = new ObservableCollection<PlayerStatistic>(rankedPlayers);
-            PersonalStatisticsData = new ObservableCollection<PlayerStatistic>
-                {
-                    new PlayerStatistic { ProfileImage = "/Images/Avatars/Avatar5.png", Name = "Alice", Wins = 20, Losses = 5, TotalGames = 25 }
-                };
         }
 
         private void BtnPersonalStatistics_Click(object sender, RoutedEventArgs e)
         {
             stckp_PersonalStatistics.Visibility = Visibility.Visible;
             stckp_WorldStatistics.Visibility = Visibility.Collapsed;
+            GetPersonalLeaderBoard();
+
+        }
+
+        private void GetPersonalLeaderBoard()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.LeaderBoardManagerClient leaderBoardManagerClient = new HiveProxy.LeaderBoardManagerClient();
+            try
+            {
+                LeaderBoardPlayer leaderBoardPlayer = leaderBoardManagerClient.GetPersonalLeaderBoard(UserProfileSingleton.idAccount);
+                if(leaderBoardPlayer.idAccount == Constants.NO_DATA_MATCHES)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogNoPersonalLeaderboard);
+                }
+                else if(leaderBoardPlayer.idAccount == Constants.ERROR_OPERATION)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+                else
+                {
+                    PersonalStatisticsData = new ObservableCollection<PlayerStatistic>
+                    {
+                        new PlayerStatistic
+                        {
+                            ProfileImage = UserProfileSingleton.imageRoute,
+                            Name = leaderBoardPlayer.username,
+                            Wins = leaderBoardPlayer.totalWonMatches,
+                            Losses = leaderBoardPlayer.totalLostMatches,
+                            TotalGames = leaderBoardPlayer.totalMatches
+                        }
+                    };
+                    dg_PersonalStatistics.ItemsSource = PersonalStatisticsData;
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
 
         private void BtnWorldStatistics_Click(object sender, RoutedEventArgs e)
         {
             stckp_PersonalStatistics.Visibility = Visibility.Collapsed;
             stckp_WorldStatistics.Visibility = Visibility.Visible;
+            GetGlobalLeaderboards();
         }
+
+        private void GetGlobalLeaderboards()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.LeaderBoardManagerClient leaderBoardManagerClient = new HiveProxy.LeaderBoardManagerClient();
+            try
+            {
+                LeaderBoardPlayer[] leaderBoards = leaderBoardManagerClient.GetAllPlayersLeaderboards();
+                List<LeaderBoardPlayer> leaderBoardsSorted = leaderBoards.OrderByDescending(leaderboard => leaderboard.totalWonMatches).ToList();
+                List<PlayerStatistic> playerStatisticList = new List<PlayerStatistic>();
+                for (int indexLeaderBoardsSorted = 0; indexLeaderBoardsSorted < leaderBoardsSorted.Count; indexLeaderBoardsSorted++)
+                {
+                    PlayerStatistic playerStatistic = new PlayerStatistic()
+                    {
+                        Name = leaderBoardsSorted[indexLeaderBoardsSorted].username,
+                        ProfileImage = leaderBoardsSorted[indexLeaderBoardsSorted].imageProfile,
+                        TotalGames = leaderBoardsSorted[indexLeaderBoardsSorted].totalMatches,
+                        Losses = leaderBoardsSorted[indexLeaderBoardsSorted].totalLostMatches,
+                        Wins = leaderBoardsSorted[indexLeaderBoardsSorted].totalWonMatches,
+                        Rank = indexLeaderBoardsSorted + 1
+                    };
+                    playerStatisticList.Add(playerStatistic);
+                }
+                dg_WorldStatistics.ItemsSource = playerStatisticList;
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GoToMainMenuView();
@@ -83,18 +159,7 @@ namespace HiveGameWPFApp.Views
            
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
-        public List<PlayerStatistic> GetPlayersWithRank(List<PlayerStatistic> players)
-        {
-            
-            for (int i = 0; i < players.Count; i++)
-            {
-                players[i].Rank = i + 1;
-            }
-            return players;
-        }
 
-     
-        
     }
 
     public class PlayerStatistic
