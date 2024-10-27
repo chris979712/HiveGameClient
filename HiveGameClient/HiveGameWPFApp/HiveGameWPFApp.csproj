@@ -103,6 +103,9 @@
     <Compile Include="Views\FriendsListView.xaml.cs">
       <DependentUpon>FriendsListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GameCodeView.xaml.cs">
+      <DependentUpon>GameCodeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LobbyView.xaml.cs">
       <DependentUpon>LobbyView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FriendsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameCodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,6 +261,8 @@
     <Resource Include="Images\Icons\StatisticsIcon.png" />
     <Resource Include="Images\Icons\PersonalStatistics.png" />
     <Resource Include="Images\Icons\WorldStatistics.png" />
+    <Resource Include="Images\Icons\RefreshIcon2.png" />
+    <Resource Include="Images\Icons\SearchIcon2.jpg" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
