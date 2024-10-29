@@ -26,5 +26,13 @@ namespace HiveGameWPFApp.Logic
             int randomIndex = random.Next(defaultAvatars.Length);
             return defaultAvatars[randomIndex];
         }
+
+        public static string RandomChooserUsername()
+        {
+            Random random = new Random();
+            int randomIndexNumber = random.Next(1,1000000);
+            string defaultUsername = "Guest"+randomIndexNumber;
+            return defaultUsername;
+        }
     }
 }

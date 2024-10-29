@@ -16,15 +16,27 @@ using System.Windows.Navigation;
 using System.Collections.Generic;
 using log4net.Repository.Hierarchy;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 
 
 namespace HiveGameWPFApp.Views
 {
     public partial class FriendsListView : Page
     {
+        private static Profile[] friendsObtained;
         public FriendsListView()
         {
             InitializeComponent();
+            setAsConnectedFriend();
+        }
+        private void setAsConnectedFriend()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            Profile userProfile = new Profile()
+            {
+                idAccesAccount = UserProfileSingleton.idAccount,
+                username = UserProfileSingleton.username
+            };
         }
 
         private void LoadFriendships()
@@ -38,17 +50,17 @@ namespace HiveGameWPFApp.Views
                 {
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
-                Profile[] friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
+                friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
                 if (friendsObtained.Length == 0)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
                 }
-                else if(friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
+                else if (friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
-                }else if (friendsObtained.Length >= Constants.DATA_MATCHES)
+                } else if (friendsObtained.Length >= Constants.DATA_MATCHES)
                 {
-                    LoadFriendsInformation(friendsObtained);
+                    LoadFriendsInformation();
                 }
             }
             catch (EndpointNotFoundException endPointException)
@@ -68,19 +80,42 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void LoadFriendsInformation(Profile[] usersObtained)
+        private void LoadFriendsInformation()
         {
-            for (int indexUsersProfile = 0; indexUsersProfile < usersObtained.Length; indexUsersProfile++)
+            LoggerManager logger = new LoggerManager(this.GetType());   
+            HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
+            try
             {
-                ProfileUser profileUser = new ProfileUser()
+                for (int indexUsersProfile = 0; indexUsersProfile < friendsObtained.Length; indexUsersProfile++)
                 {
-                    idProfile = usersObtained[indexUsersProfile].idProfile,
-                    idAccount = usersObtained[indexUsersProfile].idAccount,
-                    username = usersObtained[indexUsersProfile].username,
-                    imageProfile = usersObtained[indexUsersProfile].imagePath,
-                };
-                lvw_FriendsList.Items.Add(profileUser);
+                    bool stateFriend = userSessionManagerClient.VerifyConnectivity(friendsObtained[indexUsersProfile].username);
+                    ProfileUser profileUser = new ProfileUser()
+                    {
+                        idProfile = friendsObtained[indexUsersProfile].idProfile,
+                        idAccount = friendsObtained[indexUsersProfile].idAccount,
+                        username = friendsObtained[indexUsersProfile].username,
+                        imageProfile = friendsObtained[indexUsersProfile].imagePath,
+                        state = stateFriend
+                    };
+                    lvw_FriendsList.Items.Add(profileUser);
+                }
             }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+
         }
 
         private void LoadFriendRequests()
@@ -505,6 +540,7 @@ namespace HiveGameWPFApp.Views
             public string username { get; set; }
             public string nickname { get; set; }
             public string imageProfile { get; set; }
+            public bool state { get; set; }
             public bool areFriends { get; set; }
         }
 
@@ -548,6 +584,22 @@ namespace HiveGameWPFApp.Views
         {
             MainMenu mainMenu = new MainMenu();
             this.NavigationService.Navigate(mainMenu);
+        }
+
+        public void ObtainConnectedFriends(string[] connectedFriends)
+        {
+            ObservableCollection<ProfileUser> usersRefreshed = new ObservableCollection<ProfileUser>();
+            for (int indexListView = 0; indexListView < lvw_FriendsList.Items.Count; indexListView++) 
+            {
+                ProfileUser profile = lvw_FriendsList.Items[indexListView] as ProfileUser;
+                if(profile != null)
+                {
+                    profile.state = connectedFriends.Contains(profile.username);
+                }
+                usersRefreshed.Add(profile);
+            }
+            lvw_FriendsList.Items.Clear();
+            lvw_FriendsList.ItemsSource = usersRefreshed;
         }
     }
 }

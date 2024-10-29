@@ -16,6 +16,8 @@ namespace HiveGameWPFApp.Logic
 
         public const int DATA_MATCHES = 1;
 
+        public const int DEFAULT_GUEST_ID = 0;
+
         public const string DEFAULT_IMAGE_PLAYER = " ";
 
         public const string DEFAULT_IMAGE_GUEST = " ";

@@ -1411,4 +1411,87 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.VerifyExistingActiveMatchAsync(matchCreator);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HiveProxy.IFriendsManager", CallbackContract=typeof(HiveGameWPFApp.HiveProxy.IFriendsManagerCallback))]
+    public interface IFriendsManager {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/GetFriendsList")]
+        void GetFriendsList(HiveGameWPFApp.HiveProxy.Profile player);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/GetFriendsList")]
+        System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.Profile player);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend")]
+        void JoinAsConnectedFriend(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend")]
+        System.Threading.Tasks.Task JoinAsConnectedFriendAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
+        int DeleteUserAsConnectedFriend(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
+        System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(string username);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IFriendsManagerCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/ObtainConnectedFriends", ReplyAction="http://tempuri.org/IFriendsManager/ObtainConnectedFriendsResponse")]
+        void ObtainConnectedFriends(string[] connectedFriends);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IFriendsManagerChannel : HiveGameWPFApp.HiveProxy.IFriendsManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FriendsManagerClient : System.ServiceModel.DuplexClientBase<HiveGameWPFApp.HiveProxy.IFriendsManager>, HiveGameWPFApp.HiveProxy.IFriendsManager {
+        
+        public FriendsManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public FriendsManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public FriendsManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FriendsManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FriendsManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void GetFriendsList(HiveGameWPFApp.HiveProxy.Profile player) {
+            base.Channel.GetFriendsList(player);
+        }
+        
+        public System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.Profile player) {
+            return base.Channel.GetFriendsListAsync(player);
+        }
+        
+        public void JoinAsConnectedFriend(string username) {
+            base.Channel.JoinAsConnectedFriend(username);
+        }
+        
+        public System.Threading.Tasks.Task JoinAsConnectedFriendAsync(string username) {
+            return base.Channel.JoinAsConnectedFriendAsync(username);
+        }
+        
+        public int DeleteUserAsConnectedFriend(string username) {
+            return base.Channel.DeleteUserAsConnectedFriend(username);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(string username) {
+            return base.Channel.DeleteUserAsConnectedFriendAsync(username);
+        }
+    }
 }

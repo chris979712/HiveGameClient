@@ -351,4 +351,19 @@
   <data name="dialogErrorInDisconnection" xml:space="preserve">
     <value>Couldn't close users session, please try again.</value>
   </data>
+  <data name="txtbl_Disconnected" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="txtbl_Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="globalDialog_PartialDisconnection" xml:space="preserve">
+    <value>Partial discconnection, couldn´t disconnect the player at all.</value>
+  </data>
+  <data name="dialogCouldntLobbyDisconnection" xml:space="preserve">
+    <value>Couldn't discconect the player from the lobby, try it again.</value>
+  </data>
+  <data name="dialogConfirmLeaveLobby" xml:space="preserve">
+    <value>Are you sure to leave the lobby?</value>
+  </data>
 </root>
