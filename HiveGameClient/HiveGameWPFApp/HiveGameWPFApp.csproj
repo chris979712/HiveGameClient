@@ -263,6 +263,7 @@
     <Resource Include="Images\Icons\WorldStatistics.png" />
     <Resource Include="Images\Icons\RefreshIcon2.png" />
     <Resource Include="Images\Icons\SearchIcon2.jpg" />
+    <Resource Include="Images\Icons\AddIcon.png" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

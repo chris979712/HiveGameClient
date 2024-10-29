@@ -182,29 +182,37 @@
                         </Button>
                     </StackPanel>
                     <ListView x:Name="lstv_ActiveFriendsList" Grid.Row="2"
-                          Background="#1C1C1C" BorderThickness="0" 
-                          Foreground="White" MaxWidth="400" MinHeight="100" 
-                          MaxHeight="300" VerticalAlignment="Stretch" 
-                          HorizontalAlignment="Stretch">
+                      Background="#1C1C1C" BorderThickness="0" 
+                      Foreground="White" MaxWidth="400" MinHeight="100" 
+                      MaxHeight="300" VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="#2A2A2A" CornerRadius="5" Margin="0,5,0,5">
-                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                       <Image Source="{Binding imagePath}" 
-                                       Width="40" Height="40" Margin="5"/>
-                                       <TextBlock Text="{Binding username}" FontSize="18"
-                                       VerticalAlignment="Center" Margin="10,0,0,0" 
-                                       MaxWidth="200" TextWrapping="Wrap"/>
-                                        <Button Width="30" Height="30" Margin="Auto,0,0,0"
-                                        Background="Transparent" BorderThickness="0"
-                                        Click="BtnAddFriend_Click"> 
-                                            <Image Source="/Assets/add_icon.png" Stretch="UniformToFill"/>
+                                    <Grid Margin="10" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding imagePath, FallbackValue='/Images/Avatars/Avatar2.png'}" 
+                                            Width="45" Height="45" Margin="5" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding username}" FontSize="18"
+                                           VerticalAlignment="Center" Margin="10,0,0,0"
+                                           TextWrapping="Wrap" Grid.Column="1" HorizontalAlignment="Stretch"/>          
+                                        <Button Width="30" Height="30" Background="White"
+                                            BorderThickness="0" Click="BtnAddFriend_Click" Grid.Column="2" 
+                                            HorizontalAlignment="Right" Margin="0,0,10,0">          
+                                            <Image Source="/Images/Icons/AddIcon.png" Stretch="UniformToFill"/>
                                         </Button>
-                                    </StackPanel>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
 
                 </Grid>
             </Border>
