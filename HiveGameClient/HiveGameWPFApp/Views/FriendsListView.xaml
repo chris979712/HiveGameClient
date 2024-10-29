@@ -83,6 +83,18 @@
                                             <Image Source="{Binding imageProfile}" Width="60" Height="60" Margin="5"/>
                                             <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding username}" FontSize="20" Foreground="White" Margin="5"/>
+                                                <TextBlock FontSize="16" FontWeight="Bold" Margin="5" Foreground="White">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Text" Value="{x:Static p:Resources.txtbl_Disconnected}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding state}" Value="True">
+                                                                    <Setter Property="Text" Value="{x:Static p:Resources.txtbl_Online}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
                                             </StackPanel>
                                         </StackPanel>
                                         <Button Name="btn_DeleteFriend" Content="{x:Static p:Resources.btn_Delete}" Width="75" Height="30" 

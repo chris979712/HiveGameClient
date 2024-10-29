@@ -178,8 +178,50 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void GenerateGuestProfile()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
+                string randomUsername = ProfileGenerator.RandomChooserUsername();
+                while (userSessionManagerClient.VerifyConnectivity(randomUsername))
+                {
+                    randomUsername = ProfileGenerator.RandomChooserUsername();
+                }
+                Profile profileGuest = new Profile()
+                {
+                    idAccesAccount = Constants.DEFAULT_GUEST_ID,
+                    idProfile = Constants.DEFAULT_GUEST_ID,
+                    username = randomUsername,
+                    nickname = randomUsername,
+                    description = ProfileGenerator.RandomDescriptionGenerator(),
+                    imagePath = ProfileGenerator.RandomChooserAvatarIcon(),
+                    createdDate = DateTime.Now,
+                };
+                UserProfileSingleton.Instance.CreateInstance(profileGuest);
+                userSessionManagerClient.ConnectToGame(profileGuest.username);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
+            GenerateGuestProfile();
             GameCodeView gameCodeView = new GameCodeView();
             this.NavigationService.Navigate(gameCodeView);
         }
