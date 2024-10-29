@@ -286,11 +286,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure to leave the lobby?.
+        /// </summary>
+        public static string dialogConfirmLeaveLobby {
+            get {
+                return ResourceManager.GetString("dialogConfirmLeaveLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Couldn&apos;t find user session .
         /// </summary>
         public static string dialogCouldntFindUserSession {
             get {
                 return ResourceManager.GetString("dialogCouldntFindUserSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Couldn&apos;t discconect the player from the lobby, try it again..
+        /// </summary>
+        public static string dialogCouldntLobbyDisconnection {
+            get {
+                return ResourceManager.GetString("dialogCouldntLobbyDisconnection", resourceCulture);
             }
         }
         
@@ -565,6 +583,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Partial discconnection, couldn´t disconnect the player at all..
+        /// </summary>
+        public static string globalDialog_PartialDisconnection {
+            get {
+                return ResourceManager.GetString("globalDialog_PartialDisconnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Email.
         /// </summary>
         public static string globalLbl_Email {
@@ -583,7 +610,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a Remeber that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character..
         /// </summary>
         public static string globalLbl_PasswordIndications {
             get {
@@ -759,6 +786,24 @@ namespace HiveGameWPFApp.Properties {
         public static string txt_Timer {
             get {
                 return ResourceManager.GetString("txt_Timer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Offline.
+        /// </summary>
+        public static string txtbl_Disconnected {
+            get {
+                return ResourceManager.GetString("txtbl_Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Online.
+        /// </summary>
+        public static string txtbl_Online {
+            get {
+                return ResourceManager.GetString("txtbl_Online", resourceCulture);
             }
         }
     }

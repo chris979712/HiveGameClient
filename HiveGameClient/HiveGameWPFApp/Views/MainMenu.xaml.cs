@@ -1,4 +1,5 @@
-﻿using HiveGameWPFApp.Logic;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
 using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
@@ -205,6 +206,7 @@ namespace HiveGameWPFApp.Views
             StatisticsView statisticsView = new StatisticsView();
             this.NavigationService.Navigate(statisticsView);
         }
+
     }
 }
 

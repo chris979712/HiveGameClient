@@ -351,4 +351,19 @@
   <data name="dialogErrorInDisconnection" xml:space="preserve">
     <value>No se ha podido cerrar la sesión de usuario, inténtelo de nuevo.</value>
   </data>
+  <data name="txtbl_Disconnected" xml:space="preserve">
+    <value>Desconectado</value>
+  </data>
+  <data name="txtbl_Online" xml:space="preserve">
+    <value>Conectado</value>
+  </data>
+  <data name="globalDialog_PartialDisconnection" xml:space="preserve">
+    <value>Desconexión parcial, no se pudo desconectar al jugador del todo.</value>
+  </data>
+  <data name="dialogCouldntLobbyDisconnection" xml:space="preserve">
+    <value>No se ha podido desconectar al jugador del juego, inténtalo de nuevo.</value>
+  </data>
+  <data name="dialogConfirmLeaveLobby" xml:space="preserve">
+    <value>¿Está seguro de abandonar la sala de espera?</value>
+  </data>
 </root>

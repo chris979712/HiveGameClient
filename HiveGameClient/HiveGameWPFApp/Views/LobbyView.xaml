@@ -177,30 +177,35 @@
                             <Image Source="/Images/Icons/SearchIcon2.jpg" Stretch="Uniform"/>
                         </Button>
                         <Button x:Name="btn_RefreshList" Width="30" Height="30" Margin="5,0,0,0"
-                                    Background="Transparent" BorderThickness="0">
+                                    Background="Transparent" BorderThickness="0" Click="RefreshActiveFriendsList_Click">
                             <Image Source="/Images/Icons/RefreshIcon2.png" Stretch="Uniform"/>
                         </Button>
                     </StackPanel>
-                    <ListBox x:Name="FriendsList" Grid.Row="2" Background="#1C1C1C" 
-                                 BorderThickness="0" Foreground="White">
-                        <ListBox.ItemTemplate>
+                    <ListView x:Name="lstv_ActiveFriendsList" Grid.Row="2"
+                          Background="#1C1C1C" BorderThickness="0" 
+                          Foreground="White" MaxWidth="400" MinHeight="100" 
+                          MaxHeight="300" VerticalAlignment="Stretch" 
+                          HorizontalAlignment="Stretch">
+                        <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="#2A2A2A" CornerRadius="5" Margin="0,5,0,5">
                                     <StackPanel Orientation="Horizontal" Margin="10">
-                                        <Image Source="/Assets/friend_profile.png" 
-                                                   Width="40" Height="40" Margin="5"/>
-                                        <TextBlock Text="{Binding FriendName}" FontSize="18"
-                                                       VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                       <Image Source="{Binding imagePath}" 
+                                       Width="40" Height="40" Margin="5"/>
+                                       <TextBlock Text="{Binding username}" FontSize="18"
+                                       VerticalAlignment="Center" Margin="10,0,0,0" 
+                                       MaxWidth="200" TextWrapping="Wrap"/>
                                         <Button Width="30" Height="30" Margin="Auto,0,0,0"
-                                                    Background="Transparent" BorderThickness="0"
-                                                    Click="BtnAddFriend_Click">
-                                            <Image Source="/Assets/add_icon.png" Stretch="Uniform"/>
+                                        Background="Transparent" BorderThickness="0"
+                                        Click="BtnAddFriend_Click"> 
+                                            <Image Source="/Assets/add_icon.png" Stretch="UniformToFill"/>
                                         </Button>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
                 </Grid>
             </Border>
         </Grid>

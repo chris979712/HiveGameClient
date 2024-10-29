@@ -108,9 +108,22 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IFriendsManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xs:element name="AddUser">
         <xs:complexType>
           <xs:sequence>
@@ -649,6 +662,46 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="GetFriendsList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="player" nillable="true" type="q36:Profile" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="JoinAsConnectedFriend">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteUserAsConnectedFriend">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteUserAsConnectedFriendResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="DeleteUserAsConnectedFriendResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ObtainConnectedFriends">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="connectedFriends" nillable="true" type="q37:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ObtainConnectedFriendsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -770,6 +823,14 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="MatchCreator" nillable="true" type="tns:MatchCreator" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="IUserManager_AddUser_InputMessage">
@@ -1000,6 +1061,24 @@
   <wsdl:message name="IMatchCreatorManager_VerifyExistingActiveMatch_OutputMessage">
     <wsdl:part name="parameters" element="tns:VerifyExistingActiveMatchResponse" />
   </wsdl:message>
+  <wsdl:message name="IFriendsManager_GetFriendsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsList" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_JoinAsConnectedFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinAsConnectedFriend" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_DeleteUserAsConnectedFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserAsConnectedFriend" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_DeleteUserAsConnectedFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserAsConnectedFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_ObtainConnectedFriends_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ObtainConnectedFriends" />
+  </wsdl:message>
+  <wsdl:message name="IFriendsManager_ObtainConnectedFriends_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ObtainConnectedFriendsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/AddUser" message="tns:IUserManager_AddUser_InputMessage" />
@@ -1170,6 +1249,22 @@
     <wsdl:operation name="VerifyExistingActiveMatch">
       <wsdl:input wsaw:Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatch" message="tns:IMatchCreatorManager_VerifyExistingActiveMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatchResponse" message="tns:IMatchCreatorManager_VerifyExistingActiveMatch_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFriendsManager">
+    <wsdl:operation name="GetFriendsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/GetFriendsList" message="tns:IFriendsManager_GetFriendsList_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinAsConnectedFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend" message="tns:IFriendsManager_JoinAsConnectedFriend_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAsConnectedFriend">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend" message="tns:IFriendsManager_DeleteUserAsConnectedFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse" message="tns:IFriendsManager_DeleteUserAsConnectedFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtainConnectedFriends">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendsManager/ObtainConnectedFriends" message="tns:IFriendsManager_ObtainConnectedFriends_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendsManager/ObtainConnectedFriendsResponse" message="tns:IFriendsManager_ObtainConnectedFriends_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -1553,6 +1648,40 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IFriendsManager" type="tns:IFriendsManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IFriendsManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetFriendsList">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/GetFriendsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="JoinAsConnectedFriend">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserAsConnectedFriend">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtainConnectedFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendsManager/ObtainConnectedFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HiveGameService">
     <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
       <soap12:address location="net.tcp://localhost:1441/UserService" />
@@ -1606,6 +1735,12 @@
       <soap12:address location="net.tcp://localhost:1441/MatchCreatorService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:1441/MatchCreatorService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IFriendsManager" binding="tns:NetTcpBinding_IFriendsManager">
+      <soap12:address location="net.tcp://localhost:1441/FriendsService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/FriendsService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -36,8 +39,54 @@ namespace HiveGameWPFApp.Views
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
-            this.NavigationService.Navigate(mainMenu);
+            if(UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
+            {
+                LeaveGuestGameLobbyJoin();
+            }
+            else
+            {
+                MainMenu mainMenu = new MainMenu();
+                this.NavigationService.Navigate(mainMenu);
+            }
+        }
+
+        private void LeaveGuestGameLobbyJoin()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
+                Profile guestToDisconnect = new Profile()
+                {
+                    username = UserProfileSingleton.username
+                };
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                if (profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
+                {
+                    UserProfileSingleton.Instance.ResetSingleton();
+                    LoginView loginView = new LoginView();
+                    this.NavigationService.Navigate(loginView);
+                }
+                else
+                {
+                    DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogCouldntLobbyDisconnection);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
 
 
