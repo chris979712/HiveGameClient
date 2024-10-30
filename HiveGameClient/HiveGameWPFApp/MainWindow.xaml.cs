@@ -97,7 +97,12 @@ namespace HiveGameWPFApp
             try
             {
                 UserSessionManagerClient sessionManager = new UserSessionManagerClient();
-                sessionManager.Disconnect(UserProfileSingleton.username);
+                UserSession session = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount
+                };
+                sessionManager.Disconnect(session);
 
             }
             catch (EndpointNotFoundException endPointException)

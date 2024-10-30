@@ -77,14 +77,19 @@ namespace HiveGameWPFApp.Views
             HiveProxy.UserSessionManagerClient userSessionManagerClient = new UserSessionManagerClient();
             try
             {
-                existingSessionValidation = userSessionManagerClient.VerifyConnectivity(UserProfileSingleton.username);
+                UserSession session = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount
+                };
+                existingSessionValidation = userSessionManagerClient.VerifyConnectivity(session);
                 if (existingSessionValidation)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogExistingSession);
                 }
                 else
                 {
-                    userSessionManagerClient.ConnectToGame(UserProfileSingleton.username);
+                    userSessionManagerClient.ConnectToGame(session);
                     DisplayMainMenuView();
                 }
             }
@@ -185,9 +190,14 @@ namespace HiveGameWPFApp.Views
             {
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
                 string randomUsername = ProfileGenerator.RandomChooserUsername();
-                while (userSessionManagerClient.VerifyConnectivity(randomUsername))
+                UserSession guestSession = new UserSession()
                 {
-                    randomUsername = ProfileGenerator.RandomChooserUsername();
+                    username = randomUsername,
+                    idAccount = Constants.DEFAULT_GUEST_ID
+                };
+                while (userSessionManagerClient.VerifyConnectivity(guestSession))
+                {
+                    guestSession.username = ProfileGenerator.RandomChooserUsername();
                 }
                 Profile profileGuest = new Profile()
                 {
@@ -200,7 +210,7 @@ namespace HiveGameWPFApp.Views
                     createdDate = DateTime.Now,
                 };
                 UserProfileSingleton.Instance.CreateInstance(profileGuest);
-                userSessionManagerClient.ConnectToGame(profileGuest.username);
+                userSessionManagerClient.ConnectToGame(guestSession);
             }
             catch (EndpointNotFoundException endPointException)
             {

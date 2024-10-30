@@ -56,11 +56,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
-                Profile guestToDisconnect = new Profile()
+                UserSession userSession = new UserSession()
                 {
+                    idAccount = Constants.DEFAULT_GUEST_ID,
                     username = UserProfileSingleton.username
                 };
-                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
                 if (profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();

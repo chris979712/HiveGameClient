@@ -27,11 +27,15 @@ namespace HiveGameWPFApp.Views
             userProfile.username = UserProfileSingleton.username;
             userProfile.idAccesAccount = UserProfileSingleton.idAccount;
             lbl_GameCode.Content = "12345";
-            ExampleLoadListBox();
             try
             {
-                friendsManagerClient.JoinAsConnectedFriend(UserProfileSingleton.username);
-                friendsManagerClient.GetFriendsList(userProfile);
+                UserSession session = new UserSession()
+                {
+                    idAccount = userProfile.idAccesAccount,
+                    username = userProfile.username,
+                };
+                friendsManagerClient.JoinAsConnectedFriend(session);
+                friendsManagerClient.GetFriendsList(session);
                 chatManager.ConnectToChatLobby(userProfile, "1234");
             }
             catch (EndpointNotFoundException endPointException)
@@ -114,8 +118,13 @@ namespace HiveGameWPFApp.Views
                 {
                     username = UserProfileSingleton.username
                 };
+                UserSession userSession = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount,
+                };
                 int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect);
-                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
                 if(profileDisconnectionFromChat == Constants.SUCCES_OPERATION && profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();
@@ -303,9 +312,10 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
-                Profile userProfile = new Profile()
+                UserSession userProfile = new UserSession()
                 {
-                    idAccesAccount = UserProfileSingleton.idAccount
+                    idAccount = UserProfileSingleton.idAccount,
+                    username = UserProfileSingleton.username
                 };
                 friendsManagerClient.GetFriendsList(userProfile);
             }
@@ -326,7 +336,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        public void ObtainConnectedFriends(string[] connectedFriends)
+        public void ObtainConnectedFriends(UserSession[] connectedFriends)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             lstv_ActiveFriendsList.Items.Clear();
@@ -339,9 +349,15 @@ namespace HiveGameWPFApp.Views
                 };
                 Profile[] friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
                 List<Friend> friends = new List<Friend>();
-                for(int friendsIndex = 0; friendsObtained.Length > friendsIndex; friendsIndex++)
+                UserSessionComparer comparer = new UserSessionComparer();
+                for (int friendsIndex = 0; friendsObtained.Length > friendsIndex; friendsIndex++)
                 {
-                    if (connectedFriends.Contains(friendsObtained[friendsIndex].username))
+                    UserSession friendSession = new UserSession()
+                    {
+                        username = friendsObtained[friendsIndex].username,
+                        idAccount = friendsObtained[friendsIndex].idAccount
+                    };
+                    if (connectedFriends.Contains(friendSession,comparer))
                     {
                         Friend ActiveFriend = new Friend()
                         {
@@ -380,17 +396,6 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void ExampleLoadListBox()
-        {
-            Friend newFriend = new Friend()
-            {
-                username = "Chris985",
-                imagePath = "/Images/Avatars/Avatar1.png"
-            };
-            lstv_ActiveFriendsList.Items.Add (newFriend);
-
-        }
-
         private class Friend
         {
             public int idAccount {  get; set; }
@@ -401,6 +406,21 @@ namespace HiveGameWPFApp.Views
 
             public string imagePath { get; set; }
 
+        }
+    }
+    public class UserSessionComparer : IEqualityComparer<UserSession>
+    {
+        public bool Equals(UserSession userSessionOne, UserSession userSessionTwo)
+        {
+            return string.Equals(userSessionOne.username, userSessionTwo.username, StringComparison.Ordinal) &&
+                   userSessionOne.idAccount == userSessionTwo.idAccount;
+        }
+
+        public int GetHashCode(UserSession userSession)
+        {
+            int hashUsername = userSession.username?.GetHashCode() ?? 0;
+            int hashIdAccount = userSession.idAccount.GetHashCode();
+            return hashUsername ^ hashIdAccount;
         }
     }
 
