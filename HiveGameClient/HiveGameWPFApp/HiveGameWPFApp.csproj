@@ -83,6 +83,7 @@
     <Compile Include="Logic\DialogManager.cs" />
     <Compile Include="Logic\Hasher.cs" />
     <Compile Include="Logic\LoggerManager.cs" />
+    <Compile Include="Logic\MatchSingleton.cs" />
     <Compile Include="Logic\ProfileGenerator.cs" />
     <Compile Include="Logic\UserProfileSingleton.cs" />
     <Compile Include="Logic\Validator.cs" />
@@ -264,6 +265,7 @@
     <Resource Include="Images\Icons\RefreshIcon2.png" />
     <Resource Include="Images\Icons\SearchIcon2.jpg" />
     <Resource Include="Images\Icons\AddIcon.png" />
+    <Resource Include="Images\Icons\DefaultImagePlayerLobby.png" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

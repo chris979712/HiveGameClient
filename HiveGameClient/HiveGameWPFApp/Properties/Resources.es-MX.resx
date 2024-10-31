@@ -366,4 +366,28 @@
   <data name="dialogConfirmLeaveLobby" xml:space="preserve">
     <value>¿Está seguro de abandonar la sala de espera?</value>
   </data>
+  <data name="dialogConfirmationMatchCreation" xml:space="preserve">
+    <value>¿Desea crear una nueva partida?</value>
+  </data>
+  <data name="txtb_Host" xml:space="preserve">
+    <value>Anfitrión</value>
+  </data>
+  <data name="txtb_HostName" xml:space="preserve">
+    <value>Nombre del anfitrión</value>
+  </data>
+  <data name="txtb_Guest" xml:space="preserve">
+    <value>Invitado</value>
+  </data>
+  <data name="txtb_GuestName" xml:space="preserve">
+    <value>Nombre del invitado</value>
+  </data>
+  <data name="dialogNotExistingCode" xml:space="preserve">
+    <value>El código para la partida que ingreso, no existe, verifiquelo e inténtelo de nuevo.</value>
+  </data>
+  <data name="dialogFullLobby" xml:space="preserve">
+    <value>Lo sentimos, la sala a la que te deseas unir, actualmente se encuentra llena.</value>
+  </data>
+  <data name="dialogHostHasLeft" xml:space="preserve">
+    <value>El anfitrión del lobby ha salido. Será redirigido al menú principal.</value>
+  </data>
 </root>
