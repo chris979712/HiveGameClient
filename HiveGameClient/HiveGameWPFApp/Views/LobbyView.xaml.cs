@@ -9,24 +9,88 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace HiveGameWPFApp.Views
 {
-    public partial class LobbyView : Page,IChatManagerCallback,IFriendsManagerCallback
+    public partial class LobbyView : Page,IChatManagerCallback,IFriendsManagerCallback,ILobbyManagerCallback
     {
         private ChatManagerClient chatManager;
         private FriendsManagerClient friendsManagerClient;
-        private string matchLobbyCode = "1234";
+        private LobbyManagerClient lobbyManagerClient;
+        private string matchLobbyCode;
         private Profile userProfile = new Profile() { };
         public LobbyView()
         {
-            LoggerManager logger = new LoggerManager(this.GetType());
-            InitializeComponent();
-            chatManager = new ChatManagerClient(new InstanceContext(this));
             friendsManagerClient = new FriendsManagerClient(new InstanceContext(this));
+            chatManager = new ChatManagerClient(new InstanceContext(this));
+            lobbyManagerClient = new LobbyManagerClient(new InstanceContext(this));
+            matchLobbyCode = MatchSingleton.codeMatch;
+            InitializeComponent();
+            ConnectToChat();
+            ConnectAsFriendJoined();
+            ConnectToTheLobby();
+            lbl_GameCode.Content = matchLobbyCode;
+        }
+
+        private void ConnectToChat()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
             userProfile.username = UserProfileSingleton.username;
             userProfile.idAccesAccount = UserProfileSingleton.idAccount;
-            lbl_GameCode.Content = "12345";
+            try
+            {
+                chatManager.ConnectToChatLobby(userProfile, matchLobbyCode);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void ConnectToTheLobby()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                UserSession userSession = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount
+                };
+                lobbyManagerClient.ConnectToLobby(userSession,matchLobbyCode);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void ConnectAsFriendJoined()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
                 UserSession session = new UserSession()
@@ -36,7 +100,6 @@ namespace HiveGameWPFApp.Views
                 };
                 friendsManagerClient.JoinAsConnectedFriend(session);
                 friendsManagerClient.GetFriendsList(session);
-                chatManager.ConnectToChatLobby(userProfile, "1234");
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -59,14 +122,67 @@ namespace HiveGameWPFApp.Views
         {
             if (DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogConfirmLeaveLobby))
             {
-                if (UserProfileSingleton.idAccount != Constants.DEFAULT_GUEST_ID)
+                LoggerManager logger = new LoggerManager(this.GetType());
+                UserSession userSession = new UserSession()
                 {
-                    LeaveUserGameLobby();
-                }
-                else
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount
+                };
+                try
                 {
-                    LeaveGuestGameLobby();
+                    if (UserProfileSingleton.idAccount != Constants.DEFAULT_GUEST_ID)
+                    {
+                        MatchSingleton.Instance.ResetSingleton();
+                        KickPlayerFromLobby(userSession);
+                        LeaveUserGameLobby();
+                    }
+                    else
+                    {
+                        MatchSingleton.Instance.ResetSingleton();
+                        KickPlayerFromLobby(userSession);
+                        LeaveGuestGameLobby();
+                    }
+                    matchLobbyCode = "0";
                 }
+                catch (EndpointNotFoundException endPointException)
+                {
+                    logger.LogError(endPointException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                }
+                catch (TimeoutException timeOutException)
+                {
+                    logger.LogError(timeOutException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                }
+                catch (CommunicationException communicationException)
+                {
+                    logger.LogError(communicationException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                }
+            }
+        }
+
+        private void KickPlayerFromLobby(UserSession session)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                lobbyManagerClient.LeavePlayerFromLobby(session, matchLobbyCode);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
         }
 
@@ -135,39 +251,6 @@ namespace HiveGameWPFApp.Views
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.globalDialog_PartialDisconnection);
                 }
-            }
-            catch (EndpointNotFoundException endPointException)
-            {
-                logger.LogError(endPointException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
-            }
-            catch (TimeoutException timeOutException)
-            {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
-            }
-            catch (CommunicationException communicationException)
-            {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
-            }
-        }
-
-        public void sendWelcomeNotificationMessage(string codeLobby)
-        {
-            LoggerManager logger = new LoggerManager(this.GetType());
-            chatManager = new ChatManagerClient(new InstanceContext(this));
-            Profile serverProfile = new Profile();
-            serverProfile.username = "Server notification";
-            string message = UserProfileSingleton.username +" "+ Properties.Resources.dialogMessageJoinChat;
-            Message messageServer = new Message()
-            {
-                text = message,
-                username = serverProfile.username,
-            };
-            try
-            {
-                chatManager.SendMessages(messageServer,codeLobby);
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -260,7 +343,7 @@ namespace HiveGameWPFApp.Views
                 };
                 try
                 {
-                    chatManager.SendMessages(messageToSend,"1234");
+                    chatManager.SendMessages(messageToSend,matchLobbyCode);
                     txtb_MessageInput.Clear();
                 }
                 catch (EndpointNotFoundException endPointException)
@@ -396,6 +479,124 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        public void ReceivePlayersToLobby(UserSession[] users)
+        {
+            if (users[0].idAccount == -2)
+            {
+                DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogHostHasLeft);
+                RedirectRespectivePlayers();
+            }
+            else if (users.Length == 1)
+            {
+                ChargeOnePlayerProfile(users[0]);
+            }else if(users.Length == 2)
+            {
+                ChargeTwoPlayersProfile(users);
+            }
+        }
+
+        private void RedirectRespectivePlayers()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            UserSession userSession = new UserSession()
+            {
+                username = UserProfileSingleton.username,
+                idAccount = UserProfileSingleton.idAccount
+            };
+            try
+            {
+                if (UserProfileSingleton.idAccount != Constants.DEFAULT_GUEST_ID)
+                {
+                    MatchSingleton.Instance.ResetSingleton();
+                    KickPlayerFromLobby(userSession);
+                    LeaveUserGameLobby();
+                }
+                else
+                {
+                    MatchSingleton.Instance.ResetSingleton();
+                    KickPlayerFromLobby(userSession);
+                    LeaveGuestGameLobby();
+                }
+                matchLobbyCode = "0";
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void ChargeOnePlayerProfile(UserSession user)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            try
+            {
+                Profile profileUser = userManagerClient.GetUserProfileByUsername(user.username);
+                txtb_HostName.Text = profileUser.nickname;
+                img_AvatarHost.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                txtb_Guest.Text = Properties.Resources.txtb_Guest;
+                txtb_GuestName.Text = Properties.Resources.txtb_GuestName;
+                img_AvatarGuest.Source = new BitmapImage(new Uri("/Images/Icons/DefaultImagePlayerLobby.png", UriKind.Relative));
+                lstv_ActiveFriendsList.Visibility = Visibility.Visible;
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void ChargeTwoPlayersProfile(UserSession[] users)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            try
+            {
+                Profile profileUserHost = userManagerClient.GetUserProfileByUsername(users[0].username);
+                Profile profileUserGuest = userManagerClient.GetUserProfileByUsername(users[1].username);
+                txtb_HostName.Text = profileUserHost.nickname;
+                img_AvatarHost.Source = new BitmapImage(new Uri(profileUserHost.imagePath, UriKind.Relative));
+                txtb_GuestName.Text = profileUserGuest.nickname;
+                img_AvatarGuest.Source = new BitmapImage(new Uri(profileUserGuest.imagePath, UriKind.Relative));
+                lstv_ActiveFriendsList.Visibility = Visibility.Hidden;
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
         private class Friend
         {
             public int idAccount {  get; set; }
