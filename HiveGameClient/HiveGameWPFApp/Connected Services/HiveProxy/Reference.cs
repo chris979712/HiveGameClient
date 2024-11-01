@@ -497,6 +497,9 @@ namespace HiveGameWPFApp.HiveProxy {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string codeMatchField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idAccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -509,6 +512,19 @@ namespace HiveGameWPFApp.HiveProxy {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string codeMatch {
+            get {
+                return this.codeMatchField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.codeMatchField, value) != true)) {
+                    this.codeMatchField = value;
+                    this.RaisePropertyChanged("codeMatch");
+                }
             }
         }
         
@@ -1042,16 +1058,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task SendMessagesAsync(HiveGameWPFApp.HiveProxy.Message message, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat", ReplyAction="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse")]
-        int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user);
+        int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat", ReplyAction="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse")]
-        System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/GetConnectedUsers", ReplyAction="http://tempuri.org/IChatManager/GetConnectedUsersResponse")]
-        HiveGameWPFApp.HiveProxy.Profile[] GetConnectedUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/GetConnectedUsers", ReplyAction="http://tempuri.org/IChatManager/GetConnectedUsersResponse")]
-        System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile[]> GetConnectedUsersAsync();
+        System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user, string code);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1059,9 +1069,6 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/ReceiveMessage", ReplyAction="http://tempuri.org/IChatManager/ReceiveMessageResponse")]
         void ReceiveMessage(HiveGameWPFApp.HiveProxy.Message[] messages);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/UserConnected", ReplyAction="http://tempuri.org/IChatManager/UserConnectedResponse")]
-        void UserConnected(HiveGameWPFApp.HiveProxy.Profile[] users);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1108,20 +1115,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.SendMessagesAsync(message, code);
         }
         
-        public int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user) {
-            return base.Channel.DisconectPlayerFromChat(user);
+        public int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user, string code) {
+            return base.Channel.DisconectPlayerFromChat(user, code);
         }
         
-        public System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user) {
-            return base.Channel.DisconectPlayerFromChatAsync(user);
-        }
-        
-        public HiveGameWPFApp.HiveProxy.Profile[] GetConnectedUsers() {
-            return base.Channel.GetConnectedUsers();
-        }
-        
-        public System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile[]> GetConnectedUsersAsync() {
-            return base.Channel.GetConnectedUsersAsync();
+        public System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user, string code) {
+            return base.Channel.DisconectPlayerFromChatAsync(user, code);
         }
     }
     

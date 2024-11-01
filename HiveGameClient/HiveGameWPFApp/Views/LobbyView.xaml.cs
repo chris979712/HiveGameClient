@@ -194,9 +194,10 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
                 Profile guestToDisconnect = new Profile()
                 {
-                    username = UserProfileSingleton.username
+                    username = UserProfileSingleton.username,
+                    idAccesAccount = UserProfileSingleton.idAccount
                 };
-                int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect);
+                int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect, matchLobbyCode);
                 if (profileDisconnectionFromChat == Constants.SUCCES_OPERATION)
                 {
                     MainMenu mainMenu = new MainMenu();
@@ -232,14 +233,15 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
                 Profile guestToDisconnect = new Profile()
                 {
-                    username = UserProfileSingleton.username
+                    username = UserProfileSingleton.username,
+                    idAccesAccount = UserProfileSingleton.idAccount
                 };
                 UserSession userSession = new UserSession()
                 {
                     username = UserProfileSingleton.username,
                     idAccount = UserProfileSingleton.idAccount,
                 };
-                int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect);
+                int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect, matchLobbyCode);
                 int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
                 if(profileDisconnectionFromChat == Constants.SUCCES_OPERATION && profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
