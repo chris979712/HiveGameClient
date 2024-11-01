@@ -97,11 +97,7 @@ namespace HiveGameWPFApp
             try
             {
                 UserSessionManagerClient sessionManager = new UserSessionManagerClient();
-                UserSession session = new UserSession()
-                {
-                    username = UserProfileSingleton.username,
-                    idAccount = UserProfileSingleton.idAccount
-                };
+                UserSession session = VerifyExistingUserSession();
                 sessionManager.Disconnect(session);
 
             }
@@ -121,6 +117,37 @@ namespace HiveGameWPFApp
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
 
+        }
+
+        private UserSession VerifyExistingUserSession()
+        {
+            int idAccount;
+            string username;
+            string codematch;
+            UserSession sessionPlayer = new UserSession();
+            if(UserProfileSingleton.idAccount == 0)
+            {
+                idAccount = 0;
+                username = "Not online player";
+                codematch = "000000";
+            }
+            else
+            {
+                idAccount = UserProfileSingleton.idAccount;
+                username = UserProfileSingleton.username; 
+                if(MatchSingleton.codeMatch == null)
+                {
+                    codematch = "000000";
+                }
+                else
+                {
+                    codematch = MatchSingleton.codeMatch;
+                }
+            }
+            sessionPlayer.codeMatch = codematch;
+            sessionPlayer.username = username;
+            sessionPlayer.idAccount = idAccount;
+            return sessionPlayer;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

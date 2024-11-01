@@ -391,6 +391,7 @@
         <xs:complexType>
           <xs:sequence>
             <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q25:Profile" />
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -401,38 +402,14 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="GetConnectedUsers">
-        <xs:complexType>
-          <xs:sequence />
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="GetConnectedUsersResponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetConnectedUsersResult" nillable="true" type="q26:ArrayOfProfile" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
       <xs:element name="ReceiveMessage">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="messages" nillable="true" type="q27:ArrayOfMessage" />
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="messages" nillable="true" type="q26:ArrayOfMessage" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="ReceiveMessageResponse">
-        <xs:complexType>
-          <xs:sequence />
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="UserConnected">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="users" nillable="true" type="q28:ArrayOfProfile" />
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="UserConnectedResponse">
         <xs:complexType>
           <xs:sequence />
         </xs:complexType>
@@ -489,7 +466,7 @@
       <xs:element name="GetPersonalLeaderBoardResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetPersonalLeaderBoardResult" nillable="true" type="q29:LeaderBoardPlayer" />
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetPersonalLeaderBoardResult" nillable="true" type="q27:LeaderBoardPlayer" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -501,7 +478,7 @@
       <xs:element name="GetAllPlayersLeaderboardsResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllPlayersLeaderboardsResult" nillable="true" type="q30:ArrayOfLeaderBoardPlayer" />
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="GetAllPlayersLeaderboardsResult" nillable="true" type="q28:ArrayOfLeaderBoardPlayer" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -522,7 +499,7 @@
       <xs:element name="VerifyCodeVerification">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userVerificator" nillable="true" type="q31:UserVerificator" />
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userVerificator" nillable="true" type="q29:UserVerificator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -550,7 +527,7 @@
       <xs:element name="SendEmailInvitation">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="verificator" nillable="true" type="q32:UserVerificator" />
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="verificator" nillable="true" type="q30:UserVerificator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -564,7 +541,7 @@
       <xs:element name="ConnectToGame">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q33:UserSession" />
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q31:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -578,7 +555,7 @@
       <xs:element name="Disconnect">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q34:UserSession" />
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q32:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -592,7 +569,7 @@
       <xs:element name="VerifyConnectivity">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q35:UserSession" />
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q33:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -606,7 +583,7 @@
       <xs:element name="CreateMatch">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q36:MatchCreator" />
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q34:MatchCreator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -620,7 +597,7 @@
       <xs:element name="UpdateMatchState">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q37:MatchCreator" />
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q35:MatchCreator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -634,7 +611,7 @@
       <xs:element name="VerifyExistingActiveMatch">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q38:MatchCreator" />
+            <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="matchCreator" nillable="true" type="q36:MatchCreator" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -690,21 +667,21 @@
       <xs:element name="GetFriendsList">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q39:UserSession" />
+            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q37:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="JoinAsConnectedFriend">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q40:UserSession" />
+            <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q38:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="DeleteUserAsConnectedFriend">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="username" nillable="true" type="q41:UserSession" />
+            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="username" nillable="true" type="q39:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -718,7 +695,7 @@
       <xs:element name="ObtainConnectedFriends">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="connectedFriends" nillable="true" type="q42:ArrayOfUserSession" />
+            <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="connectedFriends" nillable="true" type="q40:ArrayOfUserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -730,7 +707,7 @@
       <xs:element name="ConnectToLobby">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="lobbyPlayer" nillable="true" type="q43:UserSession" />
+            <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="lobbyPlayer" nillable="true" type="q41:UserSession" />
             <xs:element minOccurs="0" name="codeLobby" nillable="true" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
@@ -738,7 +715,7 @@
       <xs:element name="LeavePlayerFromLobby">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="lobbyPlayer" nillable="true" type="q44:UserSession" />
+            <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="lobbyPlayer" nillable="true" type="q42:UserSession" />
             <xs:element minOccurs="0" name="codeLobby" nillable="true" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
@@ -746,7 +723,7 @@
       <xs:element name="VerifyCreatorOfTheMatch">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="match" nillable="true" type="q45:GameMatch" />
+            <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="match" nillable="true" type="q43:GameMatch" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -760,7 +737,7 @@
       <xs:element name="ReceivePlayersToLobby">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q46:ArrayOfUserSession" />
+            <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q44:ArrayOfUserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -883,6 +860,7 @@
       <xs:element name="UserVerificator" nillable="true" type="tns:UserVerificator" />
       <xs:complexType name="UserSession">
         <xs:sequence>
+          <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="idAccount" type="xs:int" />
           <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -1020,23 +998,11 @@
   <wsdl:message name="IChatManager_DisconectPlayerFromChat_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconectPlayerFromChatResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatManager_GetConnectedUsers_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
-  </wsdl:message>
-  <wsdl:message name="IChatManager_GetConnectedUsers_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConnectedUsersResponse" />
-  </wsdl:message>
   <wsdl:message name="IChatManager_ReceiveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessage" />
   </wsdl:message>
   <wsdl:message name="IChatManager_ReceiveMessage_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IChatManager_UserConnected_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserConnected" />
-  </wsdl:message>
-  <wsdl:message name="IChatManager_UserConnected_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserConnectedResponse" />
   </wsdl:message>
   <wsdl:message name="ILeaderBoardManager_UpdateWinnerResultToPlayerLeaderBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateWinnerResultToPlayerLeaderBoard" />
@@ -1263,17 +1229,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat" message="tns:IChatManager_DisconectPlayerFromChat_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse" message="tns:IChatManager_DisconectPlayerFromChat_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetConnectedUsers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsers" message="tns:IChatManager_GetConnectedUsers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/GetConnectedUsersResponse" message="tns:IChatManager_GetConnectedUsers_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ReceiveMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/ReceiveMessage" message="tns:IChatManager_ReceiveMessage_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/ReceiveMessageResponse" message="tns:IChatManager_ReceiveMessage_InputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UserConnected">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatManager/UserConnected" message="tns:IChatManager_UserConnected_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatManager/UserConnectedResponse" message="tns:IChatManager_UserConnected_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ILeaderBoardManager">
@@ -1570,26 +1528,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetConnectedUsers">
-      <soap12:operation soapAction="http://tempuri.org/IChatManager/GetConnectedUsers" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ReceiveMessage">
       <soap12:operation soapAction="http://tempuri.org/IChatManager/ReceiveMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UserConnected">
-      <soap12:operation soapAction="http://tempuri.org/IChatManager/UserConnected" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

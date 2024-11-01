@@ -199,13 +199,13 @@ namespace HiveGameWPFApp.Views
                     stateMatch = "Lobby"
                 };
                 int resultInsertion = matchCreator.CreateMatch(matchCreatorUser);
-                if(resultInsertion == Constants.SUCCES_OPERATION)
+                if (resultInsertion == Constants.SUCCES_OPERATION)
                 {
                     MatchSingleton.Instance.CreateInstance(code);
                     LobbyView lobbyView = new LobbyView();
                     this.NavigationService.Navigate(lobbyView);
                 }
-                else if(resultInsertion == Constants.ERROR_OPERATION)
+                else if (resultInsertion == Constants.ERROR_OPERATION)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
