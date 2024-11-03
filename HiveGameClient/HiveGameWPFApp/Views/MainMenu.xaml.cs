@@ -1,6 +1,7 @@
 ﻿using HiveGameWPFApp.HiveProxy;
 using HiveGameWPFApp.Logic;
 using log4net.Repository.Hierarchy;
+using log4net.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,12 @@ namespace HiveGameWPFApp.Views
                 try
                 {
                     HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
-                    int disconnectionResult = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                    UserSession userSession = new UserSession()
+                    {
+                        username = UserProfileSingleton.username,
+                        idAccount = UserProfileSingleton.idAccount
+                    };
+                    int disconnectionResult = userSessionManagerClient.Disconnect(userSession);
                     if(disconnectionResult == Constants.SUCCES_OPERATION)
                     {
                         UserProfileSingleton.Instance.ResetSingleton();
@@ -178,6 +184,49 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void CreateMatchLobby()
+        {
+            HiveProxy.MatchCreatorManagerClient matchCreator = new HiveProxy.MatchCreatorManagerClient();
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                string code = matchCreator.GenerateLobbyCode(UserProfileSingleton.email);
+                MatchCreator matchCreatorUser = new MatchCreator()
+                {
+                    codeMatch = code,
+                    idCreatorAccount = UserProfileSingleton.idAccount,
+                    dateMatch = DateTime.Now,
+                    stateMatch = "Lobby"
+                };
+                int resultInsertion = matchCreator.CreateMatch(matchCreatorUser);
+                if (resultInsertion == Constants.SUCCES_OPERATION)
+                {
+                    MatchSingleton.Instance.CreateInstance(code);
+                    LobbyView lobbyView = new LobbyView();
+                    this.NavigationService.Navigate(lobbyView);
+                }
+                else if (resultInsertion == Constants.ERROR_OPERATION)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
         private void BtnEditProfile_Click(object sender, RoutedEventArgs e)
         {
             EditProfileView editProfileView = new EditProfileView();
@@ -191,8 +240,10 @@ namespace HiveGameWPFApp.Views
 
         private void BtnCreateMatch_Click(object sender, RoutedEventArgs e)
         {
-            LobbyView lobbyView = new LobbyView();
-            this.NavigationService.Navigate(lobbyView);
+            if (DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogConfirmationMatchCreation))
+            {
+                CreateMatchLobby();
+            }
         }
 
         private void BtnJoinMatch_Click(object sender, RoutedEventArgs e)
