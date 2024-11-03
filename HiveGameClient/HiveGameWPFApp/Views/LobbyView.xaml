@@ -125,11 +125,11 @@
                         BorderBrush="#FFC300" BorderThickness="3"
                         Width="177" HorizontalAlignment="Left">
                 <StackPanel Margin="10">
-                    <TextBlock Text="Host" FontFamily="Impact" FontSize="25" 
+                    <TextBlock x:Name="txtb_Host" Text="Host" FontFamily="Impact" FontSize="25" 
                                    Foreground="#FFC300" HorizontalAlignment="Center"/>
-                    <Image Source="/Images/Avatars/Avatar1.png" Width="80" Height="80" 
+                    <Image x:Name="img_AvatarHost" Source="/Images/Avatars/Avatar1.png" Width="80" Height="80" 
                                Margin="10" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Host Name" FontSize="20" Foreground="White" 
+                    <TextBlock x:Name="txtb_HostName" Text="Host Name" FontSize="20" Foreground="White" 
                                    HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
@@ -138,16 +138,16 @@
                         BorderBrush="#FFC300" BorderThickness="3"
                         Width="177" HorizontalAlignment="Right">
                 <StackPanel Margin="10">
-                    <TextBlock Text="Guest" FontFamily="Impact" FontSize="25" 
+                    <TextBlock x:Name="txtb_Guest" Text="Guest" FontFamily="Impact" FontSize="25" 
                                    Foreground="#FFC300" HorizontalAlignment="Center"/>
-                    <Image Source="/Images/Avatars/Avatar2.png" Width="80" Height="80" 
+                    <Image x:Name="img_AvatarGuest" Source="/Images/Avatars/Avatar2.png" Width="80" Height="80" 
                                Margin="10" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Guest Name" FontSize="20" Foreground="White" 
+                    <TextBlock x:Name="txtb_GuestName" Text="Guest Name" FontSize="20" Foreground="White" 
                                    HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 
-            <Border Background="#333333" CornerRadius="10" Margin="23,257,932,54" 
+            <Border x:Name="brd_Friends" Background="#333333" CornerRadius="10" Margin="23,257,932,54" 
                         BorderBrush="#FFC300" BorderThickness="3">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
@@ -160,7 +160,7 @@
                         <StackPanel.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                         </StackPanel.Background>
-                        <TextBlock Text="Friends" FontFamily="Impact" FontSize="30" Foreground="Black" Width="167" TextAlignment="Right"/>
+                        <TextBlock x:Name="txtb_Friends" Text="Friends" FontFamily="Impact" FontSize="30" Foreground="Black" Width="167" TextAlignment="Right"/>
                         <Button Width="35" Height="35" Margin="10,0,0,0"
                                     Background="Transparent" BorderThickness="0">
                             <Image Source="/Images/Icons/FriensIcon.png" Stretch="Uniform" Width="30" Height="31"/>
@@ -197,15 +197,15 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding imagePath, FallbackValue='/Images/Avatars/Avatar2.png'}" 
+                                        <Image x:Name="img_AvatarFriends" Source="{Binding imagePath, FallbackValue='/Images/Avatars/Avatar2.png'}" 
                                             Width="45" Height="45" Margin="5" Grid.Column="0"/>
-                                        <TextBlock Text="{Binding username}" FontSize="18"
+                                        <TextBlock x:Name="txtb_UserNameFriends" Text="{Binding username}" FontSize="18"
                                            VerticalAlignment="Center" Margin="10,0,0,0"
                                            TextWrapping="Wrap" Grid.Column="1" HorizontalAlignment="Stretch"/>          
-                                        <Button Width="30" Height="30" Background="White"
+                                        <Button x:Name="btn_AddFriend" Width="30" Height="30" Background="White"
                                             BorderThickness="0" Click="BtnAddFriend_Click" Grid.Column="2" 
                                             HorizontalAlignment="Right" Margin="0,0,10,0">          
-                                            <Image Source="/Images/Icons/AddIcon.png" Stretch="UniformToFill"/>
+                                            <Image x:Name="img_AddFriends" Source="/Images/Icons/AddIcon.png" Stretch="UniformToFill"/>
                                         </Button>
                                     </Grid>
                                 </Border>
