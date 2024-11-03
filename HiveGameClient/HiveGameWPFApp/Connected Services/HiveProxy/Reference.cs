@@ -489,6 +489,83 @@ namespace HiveGameWPFApp.HiveProxy {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserSession", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class UserSession : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string codeMatchField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idAccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string usernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string codeMatch {
+            get {
+                return this.codeMatchField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.codeMatchField, value) != true)) {
+                    this.codeMatchField = value;
+                    this.RaisePropertyChanged("codeMatch");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idAccount {
+            get {
+                return this.idAccountField;
+            }
+            set {
+                if ((this.idAccountField.Equals(value) != true)) {
+                    this.idAccountField = value;
+                    this.RaisePropertyChanged("idAccount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
+                    this.usernameField = value;
+                    this.RaisePropertyChanged("username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MatchCreator", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
     [System.SerializableAttribute()]
     public partial class MatchCreator : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -566,6 +643,67 @@ namespace HiveGameWPFApp.HiveProxy {
                 if ((object.ReferenceEquals(this.stateMatchField, value) != true)) {
                     this.stateMatchField = value;
                     this.RaisePropertyChanged("stateMatch");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameMatch", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class GameMatch : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string codeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idAccountField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string code {
+            get {
+                return this.codeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.codeField, value) != true)) {
+                    this.codeField = value;
+                    this.RaisePropertyChanged("code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idAccount {
+            get {
+                return this.idAccountField;
+            }
+            set {
+                if ((this.idAccountField.Equals(value) != true)) {
+                    this.idAccountField = value;
+                    this.RaisePropertyChanged("idAccount");
                 }
             }
         }
@@ -920,16 +1058,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task SendMessagesAsync(HiveGameWPFApp.HiveProxy.Message message, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat", ReplyAction="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse")]
-        int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user);
+        int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user, string code);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/DisconectPlayerFromChat", ReplyAction="http://tempuri.org/IChatManager/DisconectPlayerFromChatResponse")]
-        System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/GetConnectedUsers", ReplyAction="http://tempuri.org/IChatManager/GetConnectedUsersResponse")]
-        HiveGameWPFApp.HiveProxy.Profile[] GetConnectedUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/GetConnectedUsers", ReplyAction="http://tempuri.org/IChatManager/GetConnectedUsersResponse")]
-        System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile[]> GetConnectedUsersAsync();
+        System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user, string code);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -937,9 +1069,6 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/ReceiveMessage", ReplyAction="http://tempuri.org/IChatManager/ReceiveMessageResponse")]
         void ReceiveMessage(HiveGameWPFApp.HiveProxy.Message[] messages);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatManager/UserConnected", ReplyAction="http://tempuri.org/IChatManager/UserConnectedResponse")]
-        void UserConnected(HiveGameWPFApp.HiveProxy.Profile[] users);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -986,20 +1115,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.SendMessagesAsync(message, code);
         }
         
-        public int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user) {
-            return base.Channel.DisconectPlayerFromChat(user);
+        public int DisconectPlayerFromChat(HiveGameWPFApp.HiveProxy.Profile user, string code) {
+            return base.Channel.DisconectPlayerFromChat(user, code);
         }
         
-        public System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user) {
-            return base.Channel.DisconectPlayerFromChatAsync(user);
-        }
-        
-        public HiveGameWPFApp.HiveProxy.Profile[] GetConnectedUsers() {
-            return base.Channel.GetConnectedUsers();
-        }
-        
-        public System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile[]> GetConnectedUsersAsync() {
-            return base.Channel.GetConnectedUsersAsync();
+        public System.Threading.Tasks.Task<int> DisconectPlayerFromChatAsync(HiveGameWPFApp.HiveProxy.Profile user, string code) {
+            return base.Channel.DisconectPlayerFromChatAsync(user, code);
         }
     }
     
@@ -1196,18 +1317,6 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmailInvitationManager/SendEmailInvitation", ReplyAction="http://tempuri.org/IEmailInvitationManager/SendEmailInvitationResponse")]
         System.Threading.Tasks.Task<int> SendEmailInvitationAsync(HiveGameWPFApp.HiveProxy.UserVerificator verificator);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmailInvitationManager/VerifyExistingCode", ReplyAction="http://tempuri.org/IEmailInvitationManager/VerifyExistingCodeResponse")]
-        bool VerifyExistingCode(string code);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmailInvitationManager/VerifyExistingCode", ReplyAction="http://tempuri.org/IEmailInvitationManager/VerifyExistingCodeResponse")]
-        System.Threading.Tasks.Task<bool> VerifyExistingCodeAsync(string code);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCode", ReplyAction="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCodeResponse")]
-        string GenerateLobbyCode(string email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCode", ReplyAction="http://tempuri.org/IEmailInvitationManager/GenerateLobbyCodeResponse")]
-        System.Threading.Tasks.Task<string> GenerateLobbyCodeAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1244,22 +1353,6 @@ namespace HiveGameWPFApp.HiveProxy {
         public System.Threading.Tasks.Task<int> SendEmailInvitationAsync(HiveGameWPFApp.HiveProxy.UserVerificator verificator) {
             return base.Channel.SendEmailInvitationAsync(verificator);
         }
-        
-        public bool VerifyExistingCode(string code) {
-            return base.Channel.VerifyExistingCode(code);
-        }
-        
-        public System.Threading.Tasks.Task<bool> VerifyExistingCodeAsync(string code) {
-            return base.Channel.VerifyExistingCodeAsync(code);
-        }
-        
-        public string GenerateLobbyCode(string email) {
-            return base.Channel.GenerateLobbyCode(email);
-        }
-        
-        public System.Threading.Tasks.Task<string> GenerateLobbyCodeAsync(string email) {
-            return base.Channel.GenerateLobbyCodeAsync(email);
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1267,22 +1360,22 @@ namespace HiveGameWPFApp.HiveProxy {
     public interface IUserSessionManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/ConnectToGame", ReplyAction="http://tempuri.org/IUserSessionManager/ConnectToGameResponse")]
-        int ConnectToGame(string username);
+        int ConnectToGame(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/ConnectToGame", ReplyAction="http://tempuri.org/IUserSessionManager/ConnectToGameResponse")]
-        System.Threading.Tasks.Task<int> ConnectToGameAsync(string username);
+        System.Threading.Tasks.Task<int> ConnectToGameAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/Disconnect", ReplyAction="http://tempuri.org/IUserSessionManager/DisconnectResponse")]
-        int Disconnect(string username);
+        int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/Disconnect", ReplyAction="http://tempuri.org/IUserSessionManager/DisconnectResponse")]
-        System.Threading.Tasks.Task<int> DisconnectAsync(string username);
+        System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/VerifyConnectivity", ReplyAction="http://tempuri.org/IUserSessionManager/VerifyConnectivityResponse")]
-        bool VerifyConnectivity(string username);
+        bool VerifyConnectivity(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/VerifyConnectivity", ReplyAction="http://tempuri.org/IUserSessionManager/VerifyConnectivityResponse")]
-        System.Threading.Tasks.Task<bool> VerifyConnectivityAsync(string username);
+        System.Threading.Tasks.Task<bool> VerifyConnectivityAsync(HiveGameWPFApp.HiveProxy.UserSession user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1312,28 +1405,28 @@ namespace HiveGameWPFApp.HiveProxy {
                 base(binding, remoteAddress) {
         }
         
-        public int ConnectToGame(string username) {
-            return base.Channel.ConnectToGame(username);
+        public int ConnectToGame(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.ConnectToGame(user);
         }
         
-        public System.Threading.Tasks.Task<int> ConnectToGameAsync(string username) {
-            return base.Channel.ConnectToGameAsync(username);
+        public System.Threading.Tasks.Task<int> ConnectToGameAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.ConnectToGameAsync(user);
         }
         
-        public int Disconnect(string username) {
-            return base.Channel.Disconnect(username);
+        public int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.Disconnect(user);
         }
         
-        public System.Threading.Tasks.Task<int> DisconnectAsync(string username) {
-            return base.Channel.DisconnectAsync(username);
+        public System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.DisconnectAsync(user);
         }
         
-        public bool VerifyConnectivity(string username) {
-            return base.Channel.VerifyConnectivity(username);
+        public bool VerifyConnectivity(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.VerifyConnectivity(user);
         }
         
-        public System.Threading.Tasks.Task<bool> VerifyConnectivityAsync(string username) {
-            return base.Channel.VerifyConnectivityAsync(username);
+        public System.Threading.Tasks.Task<bool> VerifyConnectivityAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.VerifyConnectivityAsync(user);
         }
     }
     
@@ -1358,6 +1451,24 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatch", ReplyAction="http://tempuri.org/IMatchCreatorManager/VerifyExistingActiveMatchResponse")]
         System.Threading.Tasks.Task<int> VerifyExistingActiveMatchAsync(HiveGameWPFApp.HiveProxy.MatchCreator matchCreator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/VerifyIfLobbyIsFull", ReplyAction="http://tempuri.org/IMatchCreatorManager/VerifyIfLobbyIsFullResponse")]
+        bool VerifyIfLobbyIsFull(string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/VerifyIfLobbyIsFull", ReplyAction="http://tempuri.org/IMatchCreatorManager/VerifyIfLobbyIsFullResponse")]
+        System.Threading.Tasks.Task<bool> VerifyIfLobbyIsFullAsync(string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingCode", ReplyAction="http://tempuri.org/IMatchCreatorManager/VerifyExistingCodeResponse")]
+        bool VerifyExistingCode(string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/VerifyExistingCode", ReplyAction="http://tempuri.org/IMatchCreatorManager/VerifyExistingCodeResponse")]
+        System.Threading.Tasks.Task<bool> VerifyExistingCodeAsync(string code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/GenerateLobbyCode", ReplyAction="http://tempuri.org/IMatchCreatorManager/GenerateLobbyCodeResponse")]
+        string GenerateLobbyCode(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMatchCreatorManager/GenerateLobbyCode", ReplyAction="http://tempuri.org/IMatchCreatorManager/GenerateLobbyCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateLobbyCodeAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1410,6 +1521,30 @@ namespace HiveGameWPFApp.HiveProxy {
         public System.Threading.Tasks.Task<int> VerifyExistingActiveMatchAsync(HiveGameWPFApp.HiveProxy.MatchCreator matchCreator) {
             return base.Channel.VerifyExistingActiveMatchAsync(matchCreator);
         }
+        
+        public bool VerifyIfLobbyIsFull(string codeLobby) {
+            return base.Channel.VerifyIfLobbyIsFull(codeLobby);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerifyIfLobbyIsFullAsync(string codeLobby) {
+            return base.Channel.VerifyIfLobbyIsFullAsync(codeLobby);
+        }
+        
+        public bool VerifyExistingCode(string code) {
+            return base.Channel.VerifyExistingCode(code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerifyExistingCodeAsync(string code) {
+            return base.Channel.VerifyExistingCodeAsync(code);
+        }
+        
+        public string GenerateLobbyCode(string email) {
+            return base.Channel.GenerateLobbyCode(email);
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateLobbyCodeAsync(string email) {
+            return base.Channel.GenerateLobbyCodeAsync(email);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1417,29 +1552,29 @@ namespace HiveGameWPFApp.HiveProxy {
     public interface IFriendsManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/GetFriendsList")]
-        void GetFriendsList(HiveGameWPFApp.HiveProxy.Profile player);
+        void GetFriendsList(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/GetFriendsList")]
-        System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.Profile player);
+        System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend")]
-        void JoinAsConnectedFriend(string username);
+        void JoinAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendsManager/JoinAsConnectedFriend")]
-        System.Threading.Tasks.Task JoinAsConnectedFriendAsync(string username);
+        System.Threading.Tasks.Task JoinAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
-        int DeleteUserAsConnectedFriend(string username);
+        int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
-        System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(string username);
+        System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IFriendsManagerCallback {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/ObtainConnectedFriends", ReplyAction="http://tempuri.org/IFriendsManager/ObtainConnectedFriendsResponse")]
-        void ObtainConnectedFriends(string[] connectedFriends);
+        void ObtainConnectedFriends(HiveGameWPFApp.HiveProxy.UserSession[] connectedFriends);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1470,28 +1605,111 @@ namespace HiveGameWPFApp.HiveProxy {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void GetFriendsList(HiveGameWPFApp.HiveProxy.Profile player) {
-            base.Channel.GetFriendsList(player);
+        public void GetFriendsList(HiveGameWPFApp.HiveProxy.UserSession user) {
+            base.Channel.GetFriendsList(user);
         }
         
-        public System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.Profile player) {
-            return base.Channel.GetFriendsListAsync(player);
+        public System.Threading.Tasks.Task GetFriendsListAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.GetFriendsListAsync(user);
         }
         
-        public void JoinAsConnectedFriend(string username) {
-            base.Channel.JoinAsConnectedFriend(username);
+        public void JoinAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession user) {
+            base.Channel.JoinAsConnectedFriend(user);
         }
         
-        public System.Threading.Tasks.Task JoinAsConnectedFriendAsync(string username) {
-            return base.Channel.JoinAsConnectedFriendAsync(username);
+        public System.Threading.Tasks.Task JoinAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.JoinAsConnectedFriendAsync(user);
         }
         
-        public int DeleteUserAsConnectedFriend(string username) {
+        public int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession username) {
             return base.Channel.DeleteUserAsConnectedFriend(username);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(string username) {
+        public System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession username) {
             return base.Channel.DeleteUserAsConnectedFriendAsync(username);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HiveProxy.ILobbyManager", CallbackContract=typeof(HiveGameWPFApp.HiveProxy.ILobbyManagerCallback))]
+    public interface ILobbyManager {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/ConnectToLobby")]
+        void ConnectToLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/ConnectToLobby")]
+        System.Threading.Tasks.Task ConnectToLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/LeavePlayerFromLobby")]
+        void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/LeavePlayerFromLobby")]
+        System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatch", ReplyAction="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatchResponse")]
+        int VerifyCreatorOfTheMatch(HiveGameWPFApp.HiveProxy.GameMatch match);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatch", ReplyAction="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatchResponse")]
+        System.Threading.Tasks.Task<int> VerifyCreatorOfTheMatchAsync(HiveGameWPFApp.HiveProxy.GameMatch match);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ILobbyManagerCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/ReceivePlayersToLobby", ReplyAction="http://tempuri.org/ILobbyManager/ReceivePlayersToLobbyResponse")]
+        void ReceivePlayersToLobby(HiveGameWPFApp.HiveProxy.UserSession[] user);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ILobbyManagerChannel : HiveGameWPFApp.HiveProxy.ILobbyManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class LobbyManagerClient : System.ServiceModel.DuplexClientBase<HiveGameWPFApp.HiveProxy.ILobbyManager>, HiveGameWPFApp.HiveProxy.ILobbyManager {
+        
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LobbyManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void ConnectToLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
+            base.Channel.ConnectToLobby(lobbyPlayer, codeLobby);
+        }
+        
+        public System.Threading.Tasks.Task ConnectToLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
+            return base.Channel.ConnectToLobbyAsync(lobbyPlayer, codeLobby);
+        }
+        
+        public void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
+            base.Channel.LeavePlayerFromLobby(lobbyPlayer, codeLobby);
+        }
+        
+        public System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
+            return base.Channel.LeavePlayerFromLobbyAsync(lobbyPlayer, codeLobby);
+        }
+        
+        public int VerifyCreatorOfTheMatch(HiveGameWPFApp.HiveProxy.GameMatch match) {
+            return base.Channel.VerifyCreatorOfTheMatch(match);
+        }
+        
+        public System.Threading.Tasks.Task<int> VerifyCreatorOfTheMatchAsync(HiveGameWPFApp.HiveProxy.GameMatch match) {
+            return base.Channel.VerifyCreatorOfTheMatchAsync(match);
         }
     }
 }

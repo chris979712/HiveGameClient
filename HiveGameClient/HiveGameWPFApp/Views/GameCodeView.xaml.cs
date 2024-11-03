@@ -22,6 +22,8 @@ namespace HiveGameWPFApp.Views
 
     public partial class GameCodeView : Page
     {
+
+        private string codeLobby;
         public GameCodeView()
         {
             InitializeComponent();
@@ -56,11 +58,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
-                Profile guestToDisconnect = new Profile()
+                UserSession userSession = new UserSession()
                 {
+                    idAccount = Constants.DEFAULT_GUEST_ID,
                     username = UserProfileSingleton.username
                 };
-                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(UserProfileSingleton.username);
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
                 if (profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();
@@ -92,8 +95,104 @@ namespace HiveGameWPFApp.Views
 
         private void BtnJoin_Click(object sender, RoutedEventArgs e)
         {
-            LobbyView lobbyView = new LobbyView();
-            this.NavigationService.Navigate(lobbyView);
+            txtb_Code.BorderBrush = Brushes.Yellow;
+            if (ValidateField())
+            {
+                codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "");
+                int validationResultLobby = ValidateExistingLobby(codeLobby);
+                if (validationResultLobby == Constants.DATA_MATCHES)
+                {
+                    ValidateCapacityOfLobby(codeLobby);
+                }
+                else if(validationResultLobby == Constants.NO_DATA_MATCHES)
+                {
+                    DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNotExistingCode);
+                }
+            }
+            else
+            {
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogWrongData);
+            }
+        }
+
+        private void ValidateCapacityOfLobby(string codeLobby)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
+                bool verificationResult = matchCreatorManagerClient.VerifyIfLobbyIsFull(codeLobby);
+                if (verificationResult)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogFullLobby);
+                }
+                else
+                {
+                    MatchSingleton.Instance.CreateInstance(codeLobby);
+                    LobbyView lobbyView = new LobbyView();
+                    this.NavigationService.Navigate(lobbyView);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private int ValidateExistingLobby(string codeLobby)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            int validationResult = Constants.ERROR_OPERATION;
+            try
+            {
+                HiveProxy.MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
+                bool validationExistingResult = matchCreatorManagerClient.VerifyExistingCode(codeLobby);
+                if (validationExistingResult)
+                {
+                    validationResult = Constants.DATA_MATCHES;
+                }
+                else
+                {
+                    validationResult = Constants.NO_DATA_MATCHES;
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+            return validationResult;
+        }
+
+        private bool ValidateField()
+        {
+            bool validationResult = Validator.ValidateCode(txtb_Code.Text);
+            if (!validationResult)
+            {
+                txtb_Code.BorderBrush = Brushes.Red;
+            }
+            return validationResult;
         }
 
         private void Txtb_Username_PreviewTextInput(object sender, TextCompositionEventArgs e)

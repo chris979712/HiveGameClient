@@ -277,6 +277,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Do you want to create a new match?.
+        /// </summary>
+        public static string dialogConfirmationMatchCreation {
+            get {
+                return ResourceManager.GetString("dialogConfirmationMatchCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Are you sure to delete this friend?.
         /// </summary>
         public static string dialogConfirmFriendDelete {
@@ -430,6 +439,24 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Sorry, the lobby that you want to join is already full..
+        /// </summary>
+        public static string dialogFullLobby {
+            get {
+                return ResourceManager.GetString("dialogFullLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The host of the lobby has left, you will be redirected to the main menu..
+        /// </summary>
+        public static string dialogHostHasLeft {
+            get {
+                return ResourceManager.GetString("dialogHostHasLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a has joined to the lobby. Give it a welcome! .
         /// </summary>
         public static string dialogMessageJoinChat {
@@ -480,6 +507,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogNoPersonalLeaderboard {
             get {
                 return ResourceManager.GetString("dialogNoPersonalLeaderboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The code for the match that you type, does not exist, verify and try it again..
+        /// </summary>
+        public static string dialogNotExistingCode {
+            get {
+                return ResourceManager.GetString("dialogNotExistingCode", resourceCulture);
             }
         }
         
@@ -786,6 +822,42 @@ namespace HiveGameWPFApp.Properties {
         public static string txt_Timer {
             get {
                 return ResourceManager.GetString("txt_Timer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guest.
+        /// </summary>
+        public static string txtb_Guest {
+            get {
+                return ResourceManager.GetString("txtb_Guest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guest name.
+        /// </summary>
+        public static string txtb_GuestName {
+            get {
+                return ResourceManager.GetString("txtb_GuestName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Host.
+        /// </summary>
+        public static string txtb_Host {
+            get {
+                return ResourceManager.GetString("txtb_Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Host name.
+        /// </summary>
+        public static string txtb_HostName {
+            get {
+                return ResourceManager.GetString("txtb_HostName", resourceCulture);
             }
         }
         

@@ -122,28 +122,28 @@
             </Button>
 
             <Border x:Name="brd_Host" Background="#2A2A2A" CornerRadius="10" Margin="475,151,0,369"
-                        BorderBrush="#FFC300" BorderThickness="3"
-                        Width="177" HorizontalAlignment="Left">
+                 BorderBrush="#FFC300" BorderThickness="3"
+                 Width="177" HorizontalAlignment="Left">
                 <StackPanel Margin="10">
-                    <TextBlock x:Name="txtb_Host" Text="Host" FontFamily="Impact" FontSize="25" 
-                                   Foreground="#FFC300" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtb_Host" Text="{x:Static p:Resources.txtb_Host}" FontFamily="Impact" FontSize="25" 
+                        Foreground="#FFC300" HorizontalAlignment="Center"/>
                     <Image x:Name="img_AvatarHost" Source="/Images/Avatars/Avatar1.png" Width="80" Height="80" 
-                               Margin="10" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="txtb_HostName" Text="Host Name" FontSize="20" Foreground="White" 
-                                   HorizontalAlignment="Center"/>
+                    Margin="10" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtb_HostName" Text="{x:Static p:Resources.txtb_HostName}" FontSize="20" Foreground="White" 
+                        HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 
             <Border x:Name="brd_Guest" Background="#2A2A2A" CornerRadius="10" Margin="0,400,628,120"
-                        BorderBrush="#FFC300" BorderThickness="3"
-                        Width="177" HorizontalAlignment="Right">
+                 BorderBrush="#FFC300" BorderThickness="3"
+                 Width="177" HorizontalAlignment="Right">
                 <StackPanel Margin="10">
-                    <TextBlock x:Name="txtb_Guest" Text="Guest" FontFamily="Impact" FontSize="25" 
-                                   Foreground="#FFC300" HorizontalAlignment="Center"/>
-                    <Image x:Name="img_AvatarGuest" Source="/Images/Avatars/Avatar2.png" Width="80" Height="80" 
-                               Margin="10" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="txtb_GuestName" Text="Guest Name" FontSize="20" Foreground="White" 
-                                   HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtb_Guest" Text="{x:Static p:Resources.txtb_Guest}" FontFamily="Impact" FontSize="25" 
+                        Foreground="#FFC300" HorizontalAlignment="Center"/>
+                    <Image x:Name="img_AvatarGuest" Source="/Images/Icons/DefaultImagePlayerLobby.png" Width="80" Height="80" 
+                    Margin="10" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtb_GuestName" Text="{x:Static p:Resources.txtb_GuestName}" FontSize="20" Foreground="White" 
+                        HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 

@@ -88,7 +88,12 @@ namespace HiveGameWPFApp.Views
             {
                 for (int indexUsersProfile = 0; indexUsersProfile < friendsObtained.Length; indexUsersProfile++)
                 {
-                    bool stateFriend = userSessionManagerClient.VerifyConnectivity(friendsObtained[indexUsersProfile].username);
+                    UserSession userSession = new UserSession()
+                    {
+                        username = friendsObtained[indexUsersProfile].username,
+                        idAccount = friendsObtained[indexUsersProfile].idAccount
+                    };
+                    bool stateFriend = userSessionManagerClient.VerifyConnectivity(userSession);
                     ProfileUser profileUser = new ProfileUser()
                     {
                         idProfile = friendsObtained[indexUsersProfile].idProfile,
