@@ -1641,10 +1641,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task ConnectToLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/LeavePlayerFromLobby")]
-        void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby, bool isKicked);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ILobbyManager/LeavePlayerFromLobby")]
-        System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby);
+        System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby, bool isKicked);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatch", ReplyAction="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatchResponse")]
         int VerifyCreatorOfTheMatch(HiveGameWPFApp.HiveProxy.GameMatch match);
@@ -1658,6 +1658,9 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/ReceivePlayersToLobby", ReplyAction="http://tempuri.org/ILobbyManager/ReceivePlayersToLobbyResponse")]
         void ReceivePlayersToLobby(HiveGameWPFApp.HiveProxy.UserSession[] user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILobbyManager/ReceiveKickedNotification", ReplyAction="http://tempuri.org/ILobbyManager/ReceiveKickedNotificationResponse")]
+        void ReceiveKickedNotification();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1696,12 +1699,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.ConnectToLobbyAsync(lobbyPlayer, codeLobby);
         }
         
-        public void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
-            base.Channel.LeavePlayerFromLobby(lobbyPlayer, codeLobby);
+        public void LeavePlayerFromLobby(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby, bool isKicked) {
+            base.Channel.LeavePlayerFromLobby(lobbyPlayer, codeLobby, isKicked);
         }
         
-        public System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby) {
-            return base.Channel.LeavePlayerFromLobbyAsync(lobbyPlayer, codeLobby);
+        public System.Threading.Tasks.Task LeavePlayerFromLobbyAsync(HiveGameWPFApp.HiveProxy.UserSession lobbyPlayer, string codeLobby, bool isKicked) {
+            return base.Channel.LeavePlayerFromLobbyAsync(lobbyPlayer, codeLobby, isKicked);
         }
         
         public int VerifyCreatorOfTheMatch(HiveGameWPFApp.HiveProxy.GameMatch match) {

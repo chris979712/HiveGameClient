@@ -390,4 +390,16 @@
   <data name="dialogHostHasLeft" xml:space="preserve">
     <value>El anfitrión del lobby ha salido. Será redirigido al menú principal.</value>
   </data>
+  <data name="dialogEmailInvitationSend" xml:space="preserve">
+    <value>La invitación de partida ha sido enviada al usuario seleccionado.</value>
+  </data>
+  <data name="dialogMangerCouldntFindFriend" xml:space="preserve">
+    <value>La persona que desea buscar, no está en linea.</value>
+  </data>
+  <data name="dialogConfirmationKickPlayer" xml:space="preserve">
+    <value>¿Está seguro de expulsar a este jugador?</value>
+  </data>
+  <data name="dialogYouveBeenKick" xml:space="preserve">
+    <value>Has sido expulsado de la sala.</value>
+  </data>
 </root>

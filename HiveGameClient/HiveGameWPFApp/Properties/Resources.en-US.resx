@@ -390,4 +390,16 @@
   <data name="dialogHostHasLeft" xml:space="preserve">
     <value>The host of the lobby has left, you will be redirected to the main menu.</value>
   </data>
+  <data name="dialogEmailInvitationSend" xml:space="preserve">
+    <value>The invitation has been send to the user selected.</value>
+  </data>
+  <data name="dialogMangerCouldntFindFriend" xml:space="preserve">
+    <value>The person that you want to search is not online.</value>
+  </data>
+  <data name="dialogConfirmationKickPlayer" xml:space="preserve">
+    <value>Are you sure to kick this player?</value>
+  </data>
+  <data name="dialogYouveBeenKick" xml:space="preserve">
+    <value>You have been kick from the lobby.</value>
+  </data>
 </root>
