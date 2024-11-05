@@ -754,7 +754,11 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private bool ValidateField()
+        private void BtnStarGame_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+            private bool ValidateField()
         {
             bool validationUserName = Validator.ValidateUsername(txt_SearchFriend.Text);
             if (!validationUserName)
