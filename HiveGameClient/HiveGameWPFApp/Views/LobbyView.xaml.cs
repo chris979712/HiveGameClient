@@ -43,6 +43,7 @@ namespace HiveGameWPFApp.Views
         private void HideFullLobbyActions()
         {
             btn_SendOffPlayer.Visibility = Visibility.Collapsed;
+            btn_Start.Visibility = Visibility.Collapsed;
             stckp_Friends.Visibility = Visibility.Collapsed;
             stckp_SearchFriends.Visibility = Visibility.Collapsed;
             lstv_ActiveFriendsList.Visibility = Visibility.Collapsed;
@@ -54,6 +55,7 @@ namespace HiveGameWPFApp.Views
             stckp_SearchFriends.Visibility = Visibility.Visible;
             lstv_ActiveFriendsList.Visibility = Visibility.Visible;
             btn_SendOffPlayer.Visibility = Visibility.Collapsed;
+            btn_Start.Visibility = Visibility.Collapsed;
         }
 
         private void ConnectToChat()
@@ -719,6 +721,7 @@ namespace HiveGameWPFApp.Views
             {
                 HideFullLobbyActions();
                 btn_SendOffPlayer.Visibility= Visibility.Visible;
+                btn_Start.Visibility = Visibility.Visible;
             }
         }
 
@@ -755,6 +758,8 @@ namespace HiveGameWPFApp.Views
 
         private void BtnStarGame_Click(object sender, RoutedEventArgs e)
         {
+            GameBoardView gameBoardView = new GameBoardView();
+            this.NavigationService.Navigate(gameBoardView);
         }
 
             private bool ValidateField()
