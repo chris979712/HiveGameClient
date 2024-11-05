@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -390,6 +390,47 @@
   <data name="dialogHostHasLeft" xml:space="preserve">
     <value>El anfitrión del lobby ha salido. Será redirigido al menú principal.</value>
   </data>
+  <data name="lbl_GameCode" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="btn_JoinTheGame" xml:space="preserve">
+    <value>Unirse al juego</value>
+  </data>
+  <data name="lbl_Friends" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="btn_Statistics" xml:space="preserve">
+    <value>Estadística</value>
+  </data>
+  <data name="lbl_Statistics" xml:space="preserve">
+    <value>Estadísticas</value>
+  </data>
+  <data name="lbl_Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="lbl_World" xml:space="preserve">
+    <value>Mundial</value>
+  </data>
+  <data name="lbl_Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lbl_Wins" xml:space="preserve">
+    <value>Victorias</value>
+  </data>
+  <data name="lbl_Losses" xml:space="preserve">
+    <value>Derrotas</value>
+  </data>
+  <data name="lbl_TotalGames" xml:space="preserve">
+    <value>Partidas Totales</value>
+  </data>
+  <data name="lbl_RecoverYourPassword" xml:space="preserve">
+    <value>Recupera tu contraseña</value>
+  </data>
+  <data name="lbl_Music" xml:space="preserve">
+    <value>Música</value>
+  </data>
+  <data name="lbl_Lenguage" xml:space="preserve">
+    <value>Idioma</value>
   <data name="dialogEmailInvitationSend" xml:space="preserve">
     <value>La invitación de partida ha sido enviada al usuario seleccionado.</value>
   </data>

@@ -36,6 +36,8 @@ namespace HiveGameWPFApp.Views
             ConnectAsFriendJoined();
             ConnectToTheLobby();
             lbl_GameCode.Content = matchLobbyCode;
+
+            App.PlayMusic("Audio/lobby.mp3");
         }
 
         private void HideFullLobbyActions()
