@@ -115,7 +115,7 @@
                  HorizontalContentAlignment="Right" 
                  Padding="0,0,10,0"
                 Margin="495,613,0,0" RenderTransformOrigin="0.5,0.393"
-                 Click="BtnMyAccount_Click">
+                 Click="BtnSendOff_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                 </Button.Background>
@@ -156,7 +156,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <StackPanel Name="stckp_Friends" Orientation="Horizontal" VerticalAlignment="Center" >
                         <StackPanel.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                         </StackPanel.Background>
@@ -167,13 +167,13 @@
                         </Button>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
+                    <StackPanel Name="stckp_SearchFriends" Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
                         <TextBox x:Name="txt_SearchFriend" Width="200" Height="30"
                                      Background="#1C1C1C" Foreground="White" 
                                      BorderBrush="#FFC300" BorderThickness="2"
                                      FontSize="16" VerticalContentAlignment="Center" />
                         <Button x:Name="btn_SearchFriens" Width="30" Height="30" Margin="5,0,0,0"
-                                    Background="Transparent" BorderThickness="0">
+                                    Background="Transparent" BorderThickness="0" Click="SearchFriend_Click">
                             <Image Source="/Images/Icons/SearchIcon2.jpg" Stretch="Uniform"/>
                         </Button>
                         <Button x:Name="btn_RefreshList" Width="30" Height="30" Margin="5,0,0,0"
@@ -201,19 +201,17 @@
                                             Width="45" Height="45" Margin="5" Grid.Column="0"/>
                                         <TextBlock x:Name="txtb_UserNameFriends" Text="{Binding username}" FontSize="18"
                                            VerticalAlignment="Center" Margin="10,0,0,0"
-                                           TextWrapping="Wrap" Grid.Column="1" HorizontalAlignment="Stretch"/>          
-                                        <Button x:Name="btn_AddFriend" Width="30" Height="30" Background="White"
-                                            BorderThickness="0" Click="BtnAddFriend_Click" Grid.Column="2" 
-                                            HorizontalAlignment="Right" Margin="0,0,10,0">          
-                                            <Image x:Name="img_AddFriends" Source="/Images/Icons/AddIcon.png" Stretch="UniformToFill"/>
+                                           TextWrapping="Wrap" Grid.Column="1" HorizontalAlignment="Stretch"/>
+                                        <Button Width="30" Height="30" Background="White"
+                                            BorderThickness="0" Click="BtnInviteFriend_Click" Grid.Column="2" 
+                                            HorizontalAlignment="Right" Margin="0,0,10,0">
+                                            <Image Source="/Images/Icons/AddIcon.png" Stretch="UniformToFill"/>
                                         </Button>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-
-
                 </Grid>
             </Border>
         </Grid>

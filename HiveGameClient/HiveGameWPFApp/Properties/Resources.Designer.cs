@@ -295,6 +295,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure to kick this player?.
+        /// </summary>
+        public static string dialogConfirmationKickPlayer {
+            get {
+                return ResourceManager.GetString("dialogConfirmationKickPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Do you want to create a new match?.
         /// </summary>
         public static string dialogConfirmationMatchCreation {
@@ -372,6 +381,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogEmailAlreadyRegistered {
             get {
                 return ResourceManager.GetString("dialogEmailAlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The invitation has been send to the user selected..
+        /// </summary>
+        public static string dialogEmailInvitationSend {
+            get {
+                return ResourceManager.GetString("dialogEmailInvitationSend", resourceCulture);
             }
         }
         
@@ -471,6 +489,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogHostHasLeft {
             get {
                 return ResourceManager.GetString("dialogHostHasLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The person that you want to search is not online..
+        /// </summary>
+        public static string dialogMangerCouldntFindFriend {
+            get {
+                return ResourceManager.GetString("dialogMangerCouldntFindFriend", resourceCulture);
             }
         }
         
@@ -615,6 +642,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogWrongData {
             get {
                 return ResourceManager.GetString("dialogWrongData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You have been kick from the lobby..
+        /// </summary>
+        public static string dialogYouveBeenKick {
+            get {
+                return ResourceManager.GetString("dialogYouveBeenKick", resourceCulture);
             }
         }
         

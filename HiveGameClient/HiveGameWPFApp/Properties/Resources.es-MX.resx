@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -431,5 +431,16 @@
   </data>
   <data name="lbl_Lenguage" xml:space="preserve">
     <value>Idioma</value>
+  <data name="dialogEmailInvitationSend" xml:space="preserve">
+    <value>La invitación de partida ha sido enviada al usuario seleccionado.</value>
+  </data>
+  <data name="dialogMangerCouldntFindFriend" xml:space="preserve">
+    <value>La persona que desea buscar, no está en linea.</value>
+  </data>
+  <data name="dialogConfirmationKickPlayer" xml:space="preserve">
+    <value>¿Está seguro de expulsar a este jugador?</value>
+  </data>
+  <data name="dialogYouveBeenKick" xml:space="preserve">
+    <value>Has sido expulsado de la sala.</value>
   </data>
 </root>
