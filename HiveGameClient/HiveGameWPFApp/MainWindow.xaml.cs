@@ -49,48 +49,8 @@ namespace HiveGameWPFApp
             var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2.5));
             NavigationFrame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
             string pageName = e.Content.GetType().Name;
-            switch (pageName)
-            {
-                case "LoginView":
-                    PlayBackgroundMusic("Audio/login.mp3");
-                    break;
-                case "LobbyView":
-                    PlayBackgroundMusic("Audio/lobby.mp3");
-                    break;
-                case "MainMenu":
-                    PlayBackgroundMusic("Audio/MainMenu.mp3");
-                    break;
-                default:
-                    StopBackgroundMusic();
-                    break;
-            }
         }
-        private void PlayBackgroundMusic(string musicFilePath)
-        {
-            if (me_BackgroundMusicPlayer.Source != null)
-            {
-                me_BackgroundMusicPlayer.Stop();
-            }
-
-            me_BackgroundMusicPlayer.Source = new Uri(musicFilePath, UriKind.Relative);
-            me_BackgroundMusicPlayer.Play();
-        }
-
-        private void StopBackgroundMusic()
-        {
-            if (me_BackgroundMusicPlayer.CanPause)
-            {
-                me_BackgroundMusicPlayer.Stop();
-            }
-        }
-
-        private void BackgroundMusicPlayer_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            
-            me_BackgroundMusicPlayer.Position = TimeSpan.Zero;
-            me_BackgroundMusicPlayer.Play();
-        }
-
+        
         private void MainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             LoggerManager logger = new LoggerManager(this.GetType());

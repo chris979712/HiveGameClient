@@ -22,7 +22,7 @@
                RenderTransformOrigin="0.5,0.506" />
 
             <Grid>
-                <Label x:Name="lbl_Code" Content="GAME CODE"
+                <Label x:Name="lbl_Code" Content="{x:Static p:Resources.lbl_GameCode}"
                      Foreground="#e6a500"
                      Background="Black"
                      FontFamily="Impact"
@@ -160,7 +160,7 @@
                         <StackPanel.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                         </StackPanel.Background>
-                        <TextBlock x:Name="txtb_Friends" Text="Friends" FontFamily="Impact" FontSize="30" Foreground="Black" Width="167" TextAlignment="Right"/>
+                        <TextBlock x:Name="txtb_Friends" Text="{x:Static p:Resources.lbl_Friends}" FontFamily="Impact" FontSize="30" Foreground="Black" Width="167" TextAlignment="Right"/>
                         <Button Width="35" Height="35" Margin="10,0,0,0"
                                     Background="Transparent" BorderThickness="0">
                             <Image Source="/Images/Icons/FriensIcon.png" Stretch="Uniform" Width="30" Height="31"/>

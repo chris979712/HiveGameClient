@@ -390,4 +390,46 @@
   <data name="dialogHostHasLeft" xml:space="preserve">
     <value>The host of the lobby has left, you will be redirected to the main menu.</value>
   </data>
+  <data name="lbl_GameCode" xml:space="preserve">
+    <value>Game Code</value>
+  </data>
+  <data name="btn_JoinTheGame" xml:space="preserve">
+    <value>Join the Game</value>
+  </data>
+  <data name="lbl_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="btn_Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="lbl_Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="lbl_Personal" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="lbl_World" xml:space="preserve">
+    <value>World</value>
+  </data>
+  <data name="lbl_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="lbl_Wins" xml:space="preserve">
+    <value>Wins</value>
+  </data>
+  <data name="lbl_Losses" xml:space="preserve">
+    <value>Losses</value>
+  </data>
+  <data name="lbl_TotalGames" xml:space="preserve">
+    <value>Total Games</value>
+  </data>
+  <data name="lbl_RecoverYourPassword" xml:space="preserve">
+    <value>Recover your password</value>
+  </data>
+  <data name="lbl_Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="lbl_Lenguage" xml:space="preserve">
+    <value>Lenguage</value>
+  </data>
 </root>

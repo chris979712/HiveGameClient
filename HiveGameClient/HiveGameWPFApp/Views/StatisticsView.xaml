@@ -46,7 +46,7 @@
                        MouseDown="Image_MouseDown" 
                        Cursor="Hand" Margin="43,19,1153,616"/>
 
-                    <Label x:Name="lbl_Statistics" Content="Statistics"
+                    <Label x:Name="lbl_Statistics" Content="{x:Static p:Resources.lbl_Statistics}"
                         Foreground="#e6a500"
                         FontFamily="Impact"
                         FontSize="60"
@@ -62,10 +62,9 @@
                         Margin="374,173,0,0" RenderTransformOrigin="0.5,0.393"
                         Click="BtnPersonalStatistics_Click">
                         <Button.Content>
-                            <TextBlock TextAlignment="Center">
-                                <Run Text="Personal" /><LineBreak/>
-                                <Run Text="Statistics"/>
-                            </TextBlock>
+                            <TextBlock TextAlignment="Center" Height="48" Width="109">
+                                <Run Text="{x:Static p:Resources.lbl_Personal}" />
+                        </TextBlock>
                         </Button.Content>
                         <Button.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
@@ -80,10 +79,9 @@
                             Margin="762,173,0,0" RenderTransformOrigin="0.5,0.393"
                             Click="BtnWorldStatistics_Click">
                         <Button.Content>
-                            <TextBlock TextAlignment="Center">
-                            <Run Text="World" /><LineBreak/>
-                            <Run Text="Statistics"/>
-                            </TextBlock>
+                            <TextBlock TextAlignment="Center" Height="49" Width="107">
+                            <Run Text="{x:Static p:Resources.lbl_World}" />
+                        </TextBlock>
                         </Button.Content>
                         <Button.Background>
                             <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
@@ -123,17 +121,17 @@
                                 </DataGrid.CellStyle>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="TOP" Width="50" Binding="{Binding Rank}" IsReadOnly="True"/>
-                                    <DataGridTemplateColumn Header="Profile Picture" Width="150">
+                                    <DataGridTemplateColumn Header="{x:Static p:Resources.lbl_ProfilePicture}" Width="150">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Image Source="{Binding ProfileImage}" Width="50" Height="50"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="230"/>
-                                    <DataGridTextColumn Header="Wins" Binding="{Binding Wins}" Width="140"/>
-                                    <DataGridTextColumn Header="Losses" Binding="{Binding Losses}" Width="140"/>
-                                    <DataGridTextColumn Header="Total Games" Binding="{Binding TotalGames}" Width="135"/>
+                                    <DataGridTextColumn Header="{x:Static p:Resources.lbl_Name}" Binding="{Binding Name}" Width="230"/>
+                                    <DataGridTextColumn Header="{x:Static p:Resources.lbl_Wins}" Binding="{Binding Wins}" Width="140"/>
+                                    <DataGridTextColumn Header="{x:Static p:Resources.lbl_Losses}" Binding="{Binding Losses}" Width="140"/>
+                                    <DataGridTextColumn Header="{x:Static p:Resources.lbl_TotalGames}" Binding="{Binding TotalGames}" Width="135"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>
@@ -171,17 +169,17 @@
                                     </Style>
                                 </DataGrid.CellStyle>
                                 <DataGrid.Columns>
-                                    <DataGridTemplateColumn Header="Profile Picture" Width="150">
+                                <DataGridTemplateColumn Header="{x:Static p:Resources.lbl_ProfilePicture}" Width="150">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Image Source="{Binding ProfileImage}" Width="50" Height="50"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="250"/>
-                                    <DataGridTextColumn Header="Wins" Binding="{Binding Wins}" Width="150"/>
-                                    <DataGridTextColumn Header="Losses" Binding="{Binding Losses}" Width="150"/>
-                                    <DataGridTextColumn Header="Total Games" Binding="{Binding TotalGames}" Width="150"/>
+                                <DataGridTextColumn Header="{x:Static p:Resources.lbl_Name}" Binding="{Binding Name}" Width="250"/>
+                                <DataGridTextColumn Header="{x:Static p:Resources.lbl_Wins}" Binding="{Binding Wins}" Width="150"/>
+                                <DataGridTextColumn Header="{x:Static p:Resources.lbl_Losses}" Binding="{Binding Losses}" Width="150"/>
+                                <DataGridTextColumn Header="{x:Static p:Resources.lbl_TotalGames}" Binding="{Binding TotalGames}" Width="150"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>

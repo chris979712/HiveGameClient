@@ -26,11 +26,6 @@
             <Frame x:Name="NavigationFrame" NavigationUIVisibility="Hidden"
                    Opacity="1" Navigating="NavigationFrame_Navigating"
                    Navigated="NavigationFrame_Navigated" />
-
-            <MediaElement x:Name="me_BackgroundMusicPlayer" LoadedBehavior="Manual"
-                          UnloadedBehavior="Stop" Volume="0.09"
-                          IsHitTestVisible="False"
-                          MediaEnded="BackgroundMusicPlayer_MediaEnded"/>
         </Grid>
     </Viewbox>
 </Window>

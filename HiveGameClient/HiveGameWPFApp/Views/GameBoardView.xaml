@@ -1,0 +1,62 @@
+﻿<Page x:Class="HiveGameWPFApp.Views.GameBoardView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HiveGameWPFApp.Views"
+        xmlns:p="clr-namespace:HiveGameWPFApp.Properties"
+        mc:Ignorable="d"
+        d:DesignHeight="720" d:DesignWidth="1280">
+    <DockPanel>
+
+        <Grid Cursor="">
+            <Border>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/Background/GameBoard2Background.png" Stretch="UniformToFill" />
+                </Border.Background>
+            </Border>
+
+            <Grid>
+                <Image Name="img_GoOut" Source="/Images/Icons/Go out Game.png" 
+                   MouseDown="Image_MouseDown" 
+                   Cursor="Hand" Margin="-9,10,1161,596" RenderTransformOrigin="0.5,0.506"/>
+            </Grid>
+
+            <DockPanel>
+                <!-- Zona del jugador 2 (superior) -->
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border Name ="brd_ImageProfile2" Width="92" Height="121"  BorderThickness="2"
+                         HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid>
+                            <Viewbox>
+                                <Image x:Name="img_ProfilePic2" Source="/Images/Avatars/Avatar1.png" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <TextBlock Text="Jugador 2" FontSize="30" FontFamily="Impact"  Margin="40"/>
+                    <StackPanel x:Name="Player2Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
+                </StackPanel>
+
+                <!-- Zona del jugador 1 (inferior) -->
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border Name ="brd_ImageProfile1" Width="92" Height="121"  BorderThickness="2"
+                        HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid>
+                            <Viewbox>
+                                <Image x:Name="img_ProfilePic1" Source="/Images/Avatars/Avatar3.png" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <TextBlock Text="Jugador 1" FontSize="30" FontFamily="Impact"  Margin="40"/>
+                    <StackPanel x:Name="Player1Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
+                </StackPanel>
+
+                <Canvas x:Name="GameBoardGrid" Width="500" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                
+
+            </DockPanel>
+
+
+        </Grid>
+    </DockPanel>
+</Page>

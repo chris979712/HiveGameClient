@@ -155,7 +155,7 @@
                     </Button.Background>
                 </Button>
 
-                <Button x:Name="btn_Statistics" Content="Statistics"
+                <Button x:Name="btn_Statistics" Content="{x:Static p:Resources.btn_Statistics}"
                             Width="324" Height="50" FontSize="30" FontFamily="Impact"
                             Foreground="Black"
                             HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -248,6 +248,36 @@
                     <ImageBrush ImageSource="/Images/Icons/ButtonsIcon.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
+
+            <Grid x:Name="grd_Configuration" Margin="572,214,48,134" Visibility="Collapsed">
+                <Image x:Name="img_SoundOn" Source="/Images/Characters/SoundOn.png" Margin="444,144,83,78"
+                       MouseDown="ActivateMusic_Click" 
+                       Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+                <Image x:Name="img_SoundOf" Source="/Images/Characters/SoundOf.png" Margin="444,144,83,78" Visibility="Collapsed"
+                       MouseDown="DeactivateMusic_Click" 
+                       Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+                <Label x:Name="lbl_Music" Content="{x:Static p:Resources.lbl_Music}"
+                        Foreground="#e6a500"
+                        FontFamily="Impact"
+                        FontSize="40"
+                        HorizontalAlignment="Left"
+                        Margin="456,60,0,0"
+                        VerticalAlignment="Top" />
+
+                <Label x:Name="lbl_Lenguage" Content="{x:Static p:Resources.lbl_Lenguage}"
+                        Foreground="#e6a500"
+                        FontFamily="Impact"
+                        FontSize="40"
+                        HorizontalAlignment="Left"
+                        Margin="94,60,0,0"
+                        VerticalAlignment="Top" />
+                <Image x:Name="img_Mexico" Source="/Images/Characters/Mexico.png" Margin="37,144,516,78" Visibility="Visible"
+                           
+                           Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+                <Image x:Name="img_EU" Source="/Images/Characters/EU.png" Margin="222,144,330,78" Visibility="Visible"
+           
+                        Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+            </Grid>
 
 
         </Grid>
