@@ -241,6 +241,24 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Send off player.
+        /// </summary>
+        public static string btn_SendOffPlayer {
+            get {
+                return ResourceManager.GetString("btn_SendOffPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Start.
+        /// </summary>
+        public static string btn_Start {
+            get {
+                return ResourceManager.GetString("btn_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Statistics.
         /// </summary>
         public static string btn_Statistics {

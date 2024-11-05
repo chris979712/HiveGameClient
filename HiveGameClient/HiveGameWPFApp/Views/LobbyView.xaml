@@ -28,13 +28,13 @@
                      FontFamily="Impact"
                      FontSize="25"
                      HorizontalAlignment="Left" 
-                     Margin="14,158,0,0" 
+                     Margin="14,126,0,0" 
                      VerticalAlignment="Top"/>
 
                 <Label x:Name="lbl_GameCode"
                        Width="201" Height="54"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
-                       FontFamily="Impact" Margin="145,151,0,0"
+                       FontFamily="Impact" Margin="145,121,0,0"
                        Background="#1C1C1C" Foreground="White"
                        BorderBrush="#FFC300" BorderThickness="3"
                        Padding="5" FontSize="33"
@@ -49,21 +49,21 @@
                        Width="242" Height="86"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       Margin="0,32,0,0"
+                       Margin="0,12,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto" 
                               Background="#66FFFFFF" 
-                              Margin="762,151,38,141">
+                              Margin="762,120,38,259">
                     <StackPanel x:Name="ChatMessagesPanel">
 
                     </StackPanel>
                 </ScrollViewer>
 
 
-                <StackPanel VerticalAlignment="Bottom" Background="Black" Height="86" Margin="762,0,38,55" Orientation="Horizontal">
+                <StackPanel VerticalAlignment="Bottom" Background="Black" Height="64" Margin="762,0,38,190" Orientation="Horizontal">
 
                     <TextBox x:Name="txtb_MessageInput" Height="40"
                          Background="#2F2F2F"
@@ -108,7 +108,7 @@
                 </StackPanel>
             </Grid>
 
-            <Button x:Name="btn_SendOffPlayer" Content="Send off player"
+            <Button x:Name="btn_SendOffPlayer" Content="{x:Static p:Resources.btn_SendOffPlayer}"
                  Width="141" Height="37" FontSize="20" FontFamily="Impact"
                  Foreground="Black"
                  HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -121,7 +121,21 @@
                 </Button.Background>
             </Button>
 
-            <Border x:Name="brd_Host" Background="#2A2A2A" CornerRadius="10" Margin="475,151,0,369"
+            <Button x:Name="btn_Start" Content="{x:Static p:Resources.btn_Start}"
+                 Width="190" Height="147" FontSize="37" FontFamily="Impact"
+                 Foreground="White"
+                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                 HorizontalContentAlignment="Center" 
+                 BorderThickness="0" 
+                 Cursor="Hand"
+                 Margin="1044,550,0,0" 
+                 Click="BtnStarGame_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/Background/BottonPlay.png" />
+                </Button.Background>
+            </Button>
+
+            <Border x:Name="brd_Host" Background="#2A2A2A" CornerRadius="10" Margin="475,120,0,400"
                  BorderBrush="#FFC300" BorderThickness="3"
                  Width="177" HorizontalAlignment="Left">
                 <StackPanel Margin="10">
@@ -134,7 +148,7 @@
                 </StackPanel>
             </Border>
 
-            <Border x:Name="brd_Guest" Background="#2A2A2A" CornerRadius="10" Margin="0,400,628,120"
+            <Border x:Name="brd_Guest" Background="#2A2A2A" CornerRadius="10" Margin="0,387,628,133"
                  BorderBrush="#FFC300" BorderThickness="3"
                  Width="177" HorizontalAlignment="Right">
                 <StackPanel Margin="10">
@@ -147,7 +161,7 @@
                 </StackPanel>
             </Border>
 
-            <Border x:Name="brd_Friends" Background="#333333" CornerRadius="10" Margin="23,257,932,54" 
+            <Border x:Name="brd_Friends" Background="#333333" CornerRadius="10" Margin="23,215,932,96" 
                         BorderBrush="#FFC300" BorderThickness="3">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
