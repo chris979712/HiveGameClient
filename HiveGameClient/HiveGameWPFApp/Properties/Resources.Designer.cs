@@ -331,6 +331,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a We couldn´t find you user account, try to text the correct username or email..
+        /// </summary>
+        public static string dialogCouldntFindUserAccount {
+            get {
+                return ResourceManager.GetString("dialogCouldntFindUserAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Couldn&apos;t find user session .
         /// </summary>
         public static string dialogCouldntFindUserSession {

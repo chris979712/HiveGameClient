@@ -429,9 +429,9 @@
   <data name="lbl_Music" xml:space="preserve">
     <value>Music</value>
   </data>
- <data name="lbl_Lenguage" xml:space="preserve">
+  <data name="lbl_Lenguage" xml:space="preserve">
     <value>Lenguage</value>
- </data>
+  </data>
   <data name="dialogEmailInvitationSend" xml:space="preserve">
     <value>The invitation has been send to the user selected.</value>
   </data>
@@ -443,5 +443,8 @@
   </data>
   <data name="dialogYouveBeenKick" xml:space="preserve">
     <value>You have been kick from the lobby.</value>
+  </data>
+  <data name="dialogCouldntFindUserAccount" xml:space="preserve">
+    <value>We couldn´t find you user account, try to text the correct username or email.</value>
   </data>
 </root>

@@ -311,12 +311,44 @@ namespace HiveGameWPFApp.Views
                 if (updateResult == Constants.SUCCES_OPERATION)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
-                    ReturnToMainWindow();
+                    UserProfileSingleton.Instance.ResetSingleton();
+                    DisconnectPlayer();
+                    ReturnToLoginView();
                 }
                 else
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void DisconnectPlayer()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            HiveProxy.UserSessionManagerClient userSessionManagerClient = new UserSessionManagerClient();
+            try
+            {
+                UserSession userSession = new UserSession() 
+                { 
+                    idAccount = UserProfileSingleton.idAccount,
+                    username = UserProfileSingleton.username,
+                };
+                userSessionManagerClient.Disconnect(userSession);
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -375,22 +407,18 @@ namespace HiveGameWPFApp.Views
             this.NavigationService.Navigate(mainMenu);
         }
 
-        public void ReturnToMainWindow()
+        public void ReturnToLoginView()
         {
-            MainMenu mainMenu = new MainMenu();
-            this.NavigationService.Navigate(mainMenu);
+            DisconnectPlayer();
+            LoginView loginView = new LoginView();
+            this.NavigationService.Navigate(loginView);
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GoToLoginView();
+            ReturnToLoginView();
         }
 
-        private void GoToLoginView()
-        {
-            MainMenu mainMenu = new MainMenu();
-            this.NavigationService.Navigate(mainMenu);
-        }
         private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true; 

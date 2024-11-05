@@ -429,7 +429,7 @@
   <data name="lbl_Music" xml:space="preserve">
     <value>Música</value>
   </data>
-	<data name="lbl_Lenguage" xml:space="preserve">
+  <data name="lbl_Lenguage" xml:space="preserve">
     <value>Idioma</value>
   </data>
   <data name="dialogEmailInvitationSend" xml:space="preserve">
@@ -443,5 +443,8 @@
   </data>
   <data name="dialogYouveBeenKick" xml:space="preserve">
     <value>Has sido expulsado de la sala.</value>
+  </data>
+  <data name="dialogCouldntFindUserAccount" xml:space="preserve">
+    <value>No hemos podido encontrar su cuenta, intente ingresar el nombre de usuario o correo correcto.</value>
   </data>
 </root>
