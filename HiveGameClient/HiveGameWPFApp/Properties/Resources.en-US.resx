@@ -429,8 +429,9 @@
   <data name="lbl_Music" xml:space="preserve">
     <value>Music</value>
   </data>
-  <data name="lbl_Lenguage" xml:space="preserve">
+	<data name="lbl_Lenguage" xml:space="preserve">
     <value>Lenguage</value>
+  </data>
   <data name="dialogEmailInvitationSend" xml:space="preserve">
     <value>The invitation has been send to the user selected.</value>
   </data>

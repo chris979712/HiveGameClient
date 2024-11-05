@@ -34,7 +34,7 @@ namespace HiveGameWPFApp
         private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
         {
 
-            NavigationFrame.Navigate(new Views.LoginView());
+            NavigationFrame.Navigate(new Views.GameBoardView());
 
         }
 
