@@ -27,17 +27,8 @@ namespace HiveGameWPFApp.Views
         public GameCodeView()
         {
             InitializeComponent();
-            DisplayCodeInLabel("12345");
+            
         }
-        private void DisplayCodeInLabel(string code)
-        {
-            string cleanCode = Regex.Replace(code, @"\s+", "").Substring(0, Math.Min(code.Length, 6));
-
-            string formattedCode = string.Join("    ", cleanCode.ToCharArray());
-
-            lbl_GameCode.Content = formattedCode;
-        }
-
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
