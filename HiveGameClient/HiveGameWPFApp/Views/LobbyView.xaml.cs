@@ -651,9 +651,7 @@ namespace HiveGameWPFApp.Views
                 Profile profileUser = userManagerClient.GetUserProfileByUsername(user.username);
                 txtb_HostName.Text = profileUser.nickname;
                 img_AvatarHost.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                txtb_Guest.Text = Properties.Resources.txtb_Guest;
-                txtb_GuestName.Text = Properties.Resources.txtb_GuestName;
-                img_AvatarGuest.Source = new BitmapImage(new Uri("/Images/Icons/DefaultImagePlayerLobby.png", UriKind.Relative));
+                brd_Guest.Visibility = Visibility.Collapsed;
                 ShowCreatorActions();
             }
             catch (EndpointNotFoundException endPointException)
@@ -683,6 +681,7 @@ namespace HiveGameWPFApp.Views
                 Profile profileUserGuest = userManagerClient.GetUserProfileByUsername(users[1].username);
                 txtb_HostName.Text = profileUserHost.nickname;
                 img_AvatarHost.Source = new BitmapImage(new Uri(profileUserHost.imagePath, UriKind.Relative));
+                brd_Guest.Visibility = Visibility.Visible;
                 txtb_GuestName.Text = profileUserGuest.nickname;
                 img_AvatarGuest.Source = new BitmapImage(new Uri(profileUserGuest.imagePath, UriKind.Relative));
                 GameMatch gamer = new GameMatch()
