@@ -79,8 +79,8 @@ namespace HiveGameWPFApp.Views
                         Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
                         Width = 50,
                         Height = 50,
-                        Margin = new Thickness(0, -i * 25, 0, 0), // Apilar las imágenes
-                        Tag = piece.Name // Puedes guardar el tipo de pieza en Tag
+                        Margin = new Thickness(0, -i * 25, 0, 0),
+                        Tag = piece.Name
                     };
                     image.MouseDown += Piece_MouseDown;
                     playerPiecesPanel.Children.Add(image);
@@ -104,13 +104,13 @@ namespace HiveGameWPFApp.Views
 
         private void InitializeBoard()
         {
-            int rows = 11; // Número de filas de hexágonos
-            int columns = 11; // Número de columnas de hexágonos
-            double hexagonSize = 23;  // Tamaño del lado del hexágono
-            double xOffset = hexagonSize * Math.Sqrt(3);  // Distancia horizontal entre hexágonos
-            double yOffset = hexagonSize * 1.5;  // Distancia vertical entre hexágonos
+            int rows = 11;
+            int columns = 11; 
+            double hexagonSize = 23; 
+            double xOffset = hexagonSize * Math.Sqrt(3); 
+            double yOffset = hexagonSize * 1.5;
 
-            GameBoardGrid.Children.Clear(); // Limpiar el tablero antes de dibujar
+            GameBoardGrid.Children.Clear(); 
 
             for (int row = 0; row < rows; row++)
             {
@@ -125,17 +125,17 @@ namespace HiveGameWPFApp.Views
                     };
                     hexagon.MouseDown += Cell_MouseDown;
 
-                    // Calcular la posición en el Canvas
+                   
                     double x = col * xOffset;
                     double y = row * yOffset;
 
-                    // Desplazar columnas impares hacia la derecha para crear el patrón de colmena
+                   
                     if (row % 2 == 1)
                     {
                         x += xOffset / 2;
                     }
 
-                    // Añadir el hexágono al Canvas en la posición calculada
+                    
                     Canvas.SetLeft(hexagon, x);
                     Canvas.SetTop(hexagon, y);
                     GameBoardGrid.Children.Add(hexagon);
@@ -150,7 +150,6 @@ namespace HiveGameWPFApp.Views
             var points = new PointCollection();
             for (int i = 0; i < 6; i++)
             {
-                // Usamos un ángulo de 30 grados para que la orientación sea con la punta hacia arriba
                 double angle = (i * 60 + 30) * Math.PI / 180;
                 points.Add(new Point(size * Math.Cos(angle), size * Math.Sin(angle)));
             }
@@ -164,7 +163,7 @@ namespace HiveGameWPFApp.Views
             {
                 if (element is Polygon cell)
                 {
-                    if ((Point)cell.Tag == new Point(5, 5)) // Ejemplo para el centro
+                    if ((Point)cell.Tag == new Point(5, 5))
                     {
                         cell.Fill = Brushes.Yellow;
                         lastPlacedCell = cell;
@@ -177,28 +176,27 @@ namespace HiveGameWPFApp.Views
         {
             if (lastPlacedCell == null) return;
 
-            // Obtener las coordenadas de la celda donde se colocó la pieza
+           
             var position = (Point)lastPlacedCell.Tag;
 
-            // Definir las coordenadas de las celdas adyacentes en el grid
+          
             var adjacentOffsets = new List<Point>
             {
-                new Point(position.X - 1, position.Y),     // Izquierda
-                new Point(position.X + 1, position.Y),     // Derecha
-                new Point(position.X, position.Y - 1),     // Arriba
-                new Point(position.X, position.Y + 1),     // Abajo
-                new Point(position.X - 1, position.Y + 1), // Arriba izquierda
-                new Point(position.X + 1, position.Y - 1)  // Abajo derecha
+                new Point(position.X - 1, position.Y),
+                new Point(position.X + 1, position.Y),
+                new Point(position.X, position.Y - 1),  
+                new Point(position.X, position.Y + 1),  
+                new Point(position.X - 1, position.Y + 1), 
+                new Point(position.X + 1, position.Y - 1)  
             };
 
-            // Resaltar las celdas adyacentes
             foreach (var offset in adjacentOffsets)
             {
                 foreach (UIElement element in GameBoardGrid.Children)
                 {
                     if (element is Polygon cell && (Point)cell.Tag == offset)
                     {
-                        cell.Fill = Brushes.LightGreen; // Resaltar las celdas disponibles
+                        cell.Fill = Brushes.LightGreen; 
                     }
                 }
             }
@@ -208,11 +206,10 @@ namespace HiveGameWPFApp.Views
         {
             if (selectedPieceImage != null && sender is Polygon cell)
             {
-                // Verificar que la celda no contenga ya una pieza
                 if (cell.Fill is ImageBrush)
                     return;
 
-                // Crear una nueva imagen para la pieza y establecer su tamaño
+
                 var pieceImage = new Image
                 {
                     Source = selectedPieceImage.Source,
@@ -220,32 +217,29 @@ namespace HiveGameWPFApp.Views
                     Height = 45,
                 };
 
-                // Obtener las coordenadas exactas del hexágono en el Canvas
+                
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
 
-                // Calcular el centro del hexágono basado en sus límites
                 double hexCenterX = hexX + cell.ActualWidth / 2;
                 double hexCenterY = hexY + cell.ActualHeight / 2;
 
-                // Ajustar la posición de la imagen para que esté centrada
+
                 double pieceX = hexCenterX - pieceImage.Width / 2;
                 double pieceY = hexCenterY - pieceImage.Height / 2;
 
-                // Establecer la posición de la pieza en el Canvas
+
                 Canvas.SetLeft(pieceImage, pieceX);
                 Canvas.SetTop(pieceImage, pieceY);
 
-                // Añadir la pieza al Canvas
+
                 GameBoardGrid.Children.Add(pieceImage);
 
-                // Eliminar la pieza del jugador
                 RemovePieceFromPlayer(selectedPieceImage);
                 isFirstPiecePlaced = true;
-                lastPlacedCell = cell; // Guarda la celda donde se colocó la pieza
+                lastPlacedCell = cell;
                 selectedPieceImage = null;
 
-                // Restablecer y resaltar movimientos disponibles
                 ResetHighlights();
                 HighlightAvailableMoves(lastPlacedCell);
             }

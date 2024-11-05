@@ -9,7 +9,7 @@
         d:DesignHeight="720" d:DesignWidth="1280">
     <DockPanel>
 
-        <Grid Cursor="">
+        <Grid >
             <Border>
                 <Border.Background>
                     <ImageBrush ImageSource="/Images/Background/GameBoard2Background.png" Stretch="UniformToFill" />
