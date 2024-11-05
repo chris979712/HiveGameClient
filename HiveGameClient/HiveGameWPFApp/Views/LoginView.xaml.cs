@@ -21,6 +21,7 @@ namespace HiveGameWPFApp.Views
         {
             InitializeComponent();
             pwb_Password.PasswordChanged += PwbPassword_PasswordChanged;
+            App.PlayMusic("Audio/login.mp3");
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -244,6 +245,8 @@ namespace HiveGameWPFApp.Views
 
         private void BtnRecoverPassword_Click(object sender, MouseButtonEventArgs e)
         {
+            VerifyEmailAndUsername verifyEmailAndUsername = new VerifyEmailAndUsername();
+            this.NavigationService.Navigate(verifyEmailAndUsername);
         }
 
         private void BtnPasswordVisibility_MouseDown(object sender, MouseButtonEventArgs e)

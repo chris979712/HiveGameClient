@@ -20,7 +20,7 @@
                    MouseDown="Image_MouseDown"
                    Cursor="Hand" Margin="43,19,1153,616"
                    RenderTransformOrigin="0.5,0.506" />
-                <Label x:Name="lbl_GameCode" Content="GAME CODE"
+                <Label x:Name="lbl_GameCode" Content="{x:Static p:Resources.lbl_GameCode}"
                      Foreground="#e6a500"
                      Background="Black"
                      FontFamily="Impact"
@@ -47,7 +47,7 @@
 
 
 
-                <Button x:Name="btn_Join" Content="Join the Game"
+                <Button x:Name="btn_Join" Content="{x:Static p:Resources.btn_JoinTheGame}"
                      Width="226" Height="47" FontSize="26" FontFamily="Impact"
                       Foreground="Black"
                      HorizontalAlignment="Center" VerticalAlignment="Top"

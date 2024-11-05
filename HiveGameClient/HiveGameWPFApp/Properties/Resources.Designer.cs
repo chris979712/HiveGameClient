@@ -187,6 +187,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Join the Game.
+        /// </summary>
+        public static string btn_JoinTheGame {
+            get {
+                return ResourceManager.GetString("btn_JoinTheGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Log in.
         /// </summary>
         public static string btn_Login {
@@ -228,6 +237,15 @@ namespace HiveGameWPFApp.Properties {
         public static string btn_Send {
             get {
                 return ResourceManager.GetString("btn_Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Statistics.
+        /// </summary>
+        public static string btn_Statistics {
+            get {
+                return ResourceManager.GetString("btn_Statistics", resourceCulture);
             }
         }
         
@@ -763,6 +781,60 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Friends.
+        /// </summary>
+        public static string lbl_Friends {
+            get {
+                return ResourceManager.GetString("lbl_Friends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Game Code.
+        /// </summary>
+        public static string lbl_GameCode {
+            get {
+                return ResourceManager.GetString("lbl_GameCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lenguage.
+        /// </summary>
+        public static string lbl_Lenguage {
+            get {
+                return ResourceManager.GetString("lbl_Lenguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Losses.
+        /// </summary>
+        public static string lbl_Losses {
+            get {
+                return ResourceManager.GetString("lbl_Losses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Music.
+        /// </summary>
+        public static string lbl_Music {
+            get {
+                return ResourceManager.GetString("lbl_Music", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Name.
+        /// </summary>
+        public static string lbl_Name {
+            get {
+                return ResourceManager.GetString("lbl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a New password.
         /// </summary>
         public static string lbl_NewPassword {
@@ -799,6 +871,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Personal.
+        /// </summary>
+        public static string lbl_Personal {
+            get {
+                return ResourceManager.GetString("lbl_Personal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Profile Picture.
         /// </summary>
         public static string lbl_ProfilePicture {
@@ -817,11 +898,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Recover your password.
+        /// </summary>
+        public static string lbl_RecoverYourPassword {
+            get {
+                return ResourceManager.GetString("lbl_RecoverYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Resend code.
         /// </summary>
         public static string lbl_ResendCode {
             get {
                 return ResourceManager.GetString("lbl_ResendCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Statistics.
+        /// </summary>
+        public static string lbl_Statistics {
+            get {
+                return ResourceManager.GetString("lbl_Statistics", resourceCulture);
             }
         }
         
@@ -835,11 +934,38 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Total Games.
+        /// </summary>
+        public static string lbl_TotalGames {
+            get {
+                return ResourceManager.GetString("lbl_TotalGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Email:.
         /// </summary>
         public static string lbl_UserEmail {
             get {
                 return ResourceManager.GetString("lbl_UserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Wins.
+        /// </summary>
+        public static string lbl_Wins {
+            get {
+                return ResourceManager.GetString("lbl_Wins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a World.
+        /// </summary>
+        public static string lbl_World {
+            get {
+                return ResourceManager.GetString("lbl_World", resourceCulture);
             }
         }
         

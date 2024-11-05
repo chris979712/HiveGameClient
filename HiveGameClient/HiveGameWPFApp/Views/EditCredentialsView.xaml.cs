@@ -391,5 +391,9 @@ namespace HiveGameWPFApp.Views
             MainMenu mainMenu = new MainMenu();
             this.NavigationService.Navigate(mainMenu);
         }
+        private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true; 
+        }
     }
 }

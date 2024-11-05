@@ -200,7 +200,7 @@
                         </TextBox.Effect>
                     </TextBox>
 
-                    <Label x:Name="lbl_CreateAccount" Content="Create account"
+                    <Label x:Name="lbl_CreateAccount" Content="{x:Static p:Resources.lbl_CreateAccount}"
                        Foreground="#e6a500"
                        FontFamily="Impact"
                        FontSize="60"
