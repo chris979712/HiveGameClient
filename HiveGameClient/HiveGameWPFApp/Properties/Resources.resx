@@ -431,6 +431,7 @@
   </data>
   <data name="lbl_Lenguage" xml:space="preserve">
     <value>Lenguage</value>
+  </data>
   <data name="dialogEmailInvitationSend" xml:space="preserve">
     <value>The invitation has been send to the user selected.</value>
   </data>
@@ -442,5 +443,11 @@
   </data>
   <data name="dialogYouveBeenKick" xml:space="preserve">
     <value>You have been kick from the lobby.</value>
+  </data>
+  <data name="btn_SendOffPlayer" xml:space="preserve">
+    <value>Send off player</value>
+  </data>
+  <data name="btn_Start" xml:space="preserve">
+    <value>Start</value>
   </data>
 </root>

@@ -108,7 +108,7 @@
                 </StackPanel>
             </Grid>
 
-            <Button x:Name="btn_SendOffPlayer" Content="Send off player"
+            <Button x:Name="btn_SendOffPlayer" Content="{x:Static p:Resources.btn_SendOffPlayer}"
                  Width="141" Height="37" FontSize="20" FontFamily="Impact"
                  Foreground="Black"
                  HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -121,7 +121,7 @@
                 </Button.Background>
             </Button>
 
-            <Button x:Name="btn_Start" Content="Start"
+            <Button x:Name="btn_Start" Content="{x:Static p:Resources.btn_Start}"
                  Width="190" Height="147" FontSize="37" FontFamily="Impact"
                  Foreground="White"
                  HorizontalAlignment="Left" VerticalAlignment="Top"
