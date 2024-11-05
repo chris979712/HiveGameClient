@@ -444,6 +444,9 @@
   <data name="dialogYouveBeenKick" xml:space="preserve">
     <value>You have been kick from the lobby.</value>
   </data>
+  <data name="dialogCouldntFindUserAccount" xml:space="preserve">
+    <value>We couldn´t find you user account, try to text the correct username or email.</value>
+  </data>
   <data name="btn_SendOffPlayer" xml:space="preserve">
     <value>Send off player</value>
   </data>
