@@ -197,7 +197,7 @@ namespace HiveGameWPFApp.Views
 
         private void PlacePieceOnCell(Polygon cell)
         {
-            if (cell == null) return;  // Validar que la celda no sea nula
+            if (cell == null) return;
 
             var pieceImage = new Image
                 {
@@ -209,8 +209,8 @@ namespace HiveGameWPFApp.Views
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
 
-                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 2;
-                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 2;
+                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
+                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
 
                 Canvas.SetLeft(pieceImage, pieceX);
                 Canvas.SetTop(pieceImage, pieceY);
