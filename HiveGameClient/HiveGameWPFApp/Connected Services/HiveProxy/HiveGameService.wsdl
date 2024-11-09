@@ -721,6 +721,13 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="StartMatch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="VerifyCreatorOfTheMatch">
         <xs:complexType>
           <xs:sequence>
@@ -753,6 +760,16 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="ReceiveKickedNotificationResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveStartMatchNotification">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveStartMatchNotificationResponse">
         <xs:complexType>
           <xs:sequence />
         </xs:complexType>
@@ -1147,6 +1164,9 @@
   <wsdl:message name="ILobbyManager_LeavePlayerFromLobby_InputMessage">
     <wsdl:part name="parameters" element="tns:LeavePlayerFromLobby" />
   </wsdl:message>
+  <wsdl:message name="ILobbyManager_StartMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartMatch" />
+  </wsdl:message>
   <wsdl:message name="ILobbyManager_VerifyCreatorOfTheMatch_InputMessage">
     <wsdl:part name="parameters" element="tns:VerifyCreatorOfTheMatch" />
   </wsdl:message>
@@ -1164,6 +1184,12 @@
   </wsdl:message>
   <wsdl:message name="ILobbyManager_ReceiveKickedNotification_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveKickedNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyManager_ReceiveStartMatchNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveStartMatchNotification" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyManager_ReceiveStartMatchNotification_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveStartMatchNotificationResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
@@ -1356,6 +1382,9 @@
     <wsdl:operation name="LeavePlayerFromLobby">
       <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/LeavePlayerFromLobby" message="tns:ILobbyManager_LeavePlayerFromLobby_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="StartMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/StartMatch" message="tns:ILobbyManager_StartMatch_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="VerifyCreatorOfTheMatch">
       <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatch" message="tns:ILobbyManager_VerifyCreatorOfTheMatch_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatchResponse" message="tns:ILobbyManager_VerifyCreatorOfTheMatch_OutputMessage" />
@@ -1367,6 +1396,10 @@
     <wsdl:operation name="ReceiveKickedNotification">
       <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveKickedNotification" message="tns:ILobbyManager_ReceiveKickedNotification_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveKickedNotificationResponse" message="tns:ILobbyManager_ReceiveKickedNotification_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStartMatchNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveStartMatchNotification" message="tns:ILobbyManager_ReceiveStartMatchNotification_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveStartMatchNotificationResponse" message="tns:ILobbyManager_ReceiveStartMatchNotification_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -1790,6 +1823,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="StartMatch">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/StartMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="VerifyCreatorOfTheMatch">
       <soap12:operation soapAction="http://tempuri.org/ILobbyManager/VerifyCreatorOfTheMatch" style="document" />
       <wsdl:input>
@@ -1810,6 +1849,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReceiveKickedNotification">
       <soap12:operation soapAction="http://tempuri.org/ILobbyManager/ReceiveKickedNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveStartMatchNotification">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyManager/ReceiveStartMatchNotification" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
