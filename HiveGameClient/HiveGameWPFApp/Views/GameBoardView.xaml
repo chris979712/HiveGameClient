@@ -23,7 +23,6 @@
             </Grid>
 
             <DockPanel>
-                <!-- Zona del jugador 2 (superior) -->
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Border Name ="brd_ImageProfile2" Width="92" Height="121"  BorderThickness="2"
                          HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -37,7 +36,6 @@
                     <StackPanel x:Name="Player2Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
                 </StackPanel>
 
-                <!-- Zona del jugador 1 (inferior) -->
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Border Name ="brd_ImageProfile1" Width="92" Height="121"  BorderThickness="2"
                         HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -51,12 +49,10 @@
                     <StackPanel x:Name="Player1Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
                 </StackPanel>
 
-                <Canvas x:Name="GameBoardGrid" Width="500" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                
+                <Canvas x:Name="GameBoardGrid" Width="450" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
 
             </DockPanel>
-
-
         </Grid>
     </DockPanel>
 </Page>
