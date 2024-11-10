@@ -1067,5 +1067,23 @@ namespace HiveGameWPFApp.Properties {
                 return ResourceManager.GetString("txtbl_Online", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Player One.
+        /// </summary>
+        public static string txtbl_Player1 {
+            get {
+                return ResourceManager.GetString("txtbl_Player1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Player Two.
+        /// </summary>
+        public static string txtbl_Player2 {
+            get {
+                return ResourceManager.GetString("txtbl_Player2", resourceCulture);
+            }
+        }
     }
 }

@@ -446,11 +446,17 @@
   </data>
   <data name="dialogCouldntFindUserAccount" xml:space="preserve">
     <value>We couldn´t find you user account, try to text the correct username or email.</value>
-    </data>
+  </data>
   <data name="btn_SendOffPlayer" xml:space="preserve">
     <value>Send off player</value>
   </data>
   <data name="btn_Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="txtbl_Player1" xml:space="preserve">
+    <value>Player One</value>
+  </data>
+  <data name="txtbl_Player2" xml:space="preserve">
+    <value>Player Two</value>
   </data>
 </root>

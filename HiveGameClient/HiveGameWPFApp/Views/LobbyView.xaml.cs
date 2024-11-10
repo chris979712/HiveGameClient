@@ -243,12 +243,12 @@ namespace HiveGameWPFApp.Views
             catch (TimeoutException timeOutException)
             {
                 logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
                 logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
             }
         }
 
@@ -758,11 +758,49 @@ namespace HiveGameWPFApp.Views
 
         private void BtnStarGame_Click(object sender, RoutedEventArgs e)
         {
-            GameBoardView gameBoardView = new GameBoardView();
-            this.NavigationService.Navigate(gameBoardView);
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                lobbyManagerClient.StartMatch(matchLobbyCode);
+                MatchCreator matchCreator = new MatchCreator()
+                {
+                    idCreatorAccount = UserProfileSingleton.idAccount,
+                    codeMatch = matchLobbyCode,
+                    stateMatch = "Started"
+                };
+                Profile profile = new Profile()
+                {
+                    username = UserProfileSingleton.username
+                };
+                UserSession session = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    codeMatch = matchLobbyCode,
+                    idAccount = UserProfileSingleton.idAccount,
+                };
+                MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
+                matchCreatorManagerClient.UpdateMatchState(matchCreator);
+                GameBoardView gameBoardView = new GameBoardView();
+                this.NavigationService.Navigate(gameBoardView);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
 
-            private bool ValidateField()
+        private bool ValidateField()
         {
             bool validationUserName = Validator.ValidateUsername(txt_SearchFriend.Text);
             if (!validationUserName)
@@ -785,6 +823,12 @@ namespace HiveGameWPFApp.Views
                 MainMenu mainMenu = new MainMenu();
                 this.NavigationService.Navigate(mainMenu);
             }
+        }
+
+        public void ReceiveStartMatchNotification()
+        {
+            GameBoardView gameBoardView = new GameBoardView();
+            this.NavigationService.Navigate(gameBoardView);
         }
 
         private class Friend
