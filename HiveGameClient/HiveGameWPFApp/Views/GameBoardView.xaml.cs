@@ -1,8 +1,10 @@
-﻿using HiveGameWPFApp.Logic;
+﻿using HiveGameWPFApp.HiveProxy;
+using HiveGameWPFApp.Logic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,14 +20,16 @@ using System.Windows.Shapes;
 
 namespace HiveGameWPFApp.Views
 {
-    public partial class GameBoardView : Page
+    public partial class GameBoardView : Page, IGameManagerCallback
     {
 
         private bool isFirstPiecePlaced = false;
+        private GameManagerClient gameManagerClient;
         private GamePiece selectedPiece; 
         private Polygon lastPlacedCell;
         private Dictionary<Point, Polygon> cellDictionary = new Dictionary<Point, Polygon>();
-        private Dictionary<Point, Piece> board = new Dictionary<Point, Piece>();
+        private Dictionary<Point, Logic.Piece> board = new Dictionary<Point, Logic.Piece>();
+        private List<UserSession> usersInGame = new List<UserSession>();
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
             {
@@ -47,20 +51,53 @@ namespace HiveGameWPFApp.Views
 
         public GameBoardView()
         {
+            gameManagerClient = new GameManagerClient(new InstanceContext(this));
             InitializeComponent();
             LoadPieces();
             InitializeBoard();
+            ConnectToGameBoard();
         }
 
-       private void LoadPieces()
+        private void ConnectToGameBoard()
         {
-            LoadPlayerPieces(Player1Pieces, player1Pieces);
-            LoadPlayerPieces(Player2Pieces, player2Pieces);
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                UserSession userSession = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    idAccount = UserProfileSingleton.idAccount,
+                    codeMatch = MatchSingleton.codeMatch
+                };
+                gameManagerClient.ConnectToGameBoard(userSession, userSession.codeMatch);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
+        }
+
+        private void LoadPieces()
+        {
+            LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
+            LoadPlayerPieces(stckp_Player2pieces, player2Pieces);
         }
 
 
         private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
         {
+            playerPiecesPanel.Children.Clear();
             foreach (var piece in pieces)
             {
                 for (int i = 0; i < piece.Piece.Count; i++)
@@ -235,22 +272,22 @@ namespace HiveGameWPFApp.Views
         {
             if (player1Pieces.Contains(piece))
             {
-                foreach (var child in Player1Pieces.Children.OfType<Image>())
+                foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
                 {
                     if (child.Tag?.ToString() == piece.Piece.Name)
                     {
-                        Player1Pieces.Children.Remove(child);
+                        stckp_Player1Pieces.Children.Remove(child);
                         break;
                     }
                 }
             }
             else if (player2Pieces.Contains(piece))
             {
-                foreach (var child in Player2Pieces.Children.OfType<Image>())
+                foreach (var child in stckp_Player2pieces.Children.OfType<Image>())
                 {
                     if (child.Tag?.ToString() == piece.Piece.Name)
                     {
-                        Player2Pieces.Children.Remove(child);
+                        stckp_Player1Pieces.Children.Remove(child);
                         break;
                     }
                 }
@@ -281,5 +318,71 @@ namespace HiveGameWPFApp.Views
             this.NavigationService.Navigate(mainMenu);
         }
 
+        public void ChargePlayerGameBoard(PlayerSide side)
+        {
+            if (side.playerOne)
+            {
+                DockPanel.SetDock(stckp_Player1,Dock.Bottom);
+                DockPanel.SetDock(stckp_Player1Pieces, Dock.Bottom);
+                img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
+                txtbl_PlayerName1.Text = UserProfileSingleton.username;
+                DockPanel.SetDock(stckp_Player2, Dock.Top);
+                DockPanel.SetDock(stckp_Player2pieces, Dock.Top);
+            }
+            else if (side.playerTwo)
+            {
+                DockPanel.SetDock(stckp_Player2,Dock.Bottom);
+                DockPanel.SetDock(stckp_Player2pieces, Dock.Bottom);
+                DockPanel.SetDock(stckp_Player1,Dock.Top);
+                DockPanel.SetDock(stckp_Player1Pieces, Dock.Top);
+                img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
+                txtbl_PlayerName2.Text = UserProfileSingleton.username;
+            }
+            LoadPieces();
+            DockPanel dockPanel = (DockPanel)this.Content;
+            dockPanel.UpdateLayout();
+        }
+
+        public void ReceivePieceMoved(GamePice piece)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceiveTurns(bool isTurn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReceivePlayers(UserSession[] usersInMatch)
+        {
+            usersInGame = usersInMatch.ToList(); 
+            for(int indexUsersInMatch = 0;indexUsersInMatch< usersInGame.Count; indexUsersInMatch++)
+            {
+                UserSession user = usersInMatch[indexUsersInMatch];
+                HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+                Profile profileUser = userManagerClient.GetUserProfileByUsername(user.username);
+                if (profileUser.idAccesAccount == Constants.ERROR_OPERATION)
+                {
+                    profileUser.imagePath = "/Images/Avatars/Avatar1.png";
+                }
+                if (txtbl_PlayerName1.Text == Properties.Resources.txtbl_Player1 && txtbl_PlayerName2.Text == UserProfileSingleton.username)
+                {
+                    if(!user.username.Equals(txtbl_PlayerName2.Text))
+                    {
+                        txtbl_PlayerName1.Text = user.username;
+                        img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    }
+                }
+                else if(txtbl_PlayerName2.Text == Properties.Resources.txtbl_Player2 && txtbl_PlayerName1.Text == UserProfileSingleton.username) 
+                {
+                    if (!user.username.Equals(txtbl_PlayerName1.Text))
+                    {
+                        txtbl_PlayerName2.Text = user.username;
+                        img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    }
+                }
+            }
+            LoadPieces();
+        }
     }
 }

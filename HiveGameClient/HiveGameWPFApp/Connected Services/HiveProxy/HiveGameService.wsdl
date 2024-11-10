@@ -132,6 +132,18 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IGameManager_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" />
@@ -774,6 +786,87 @@
           <xs:sequence />
         </xs:complexType>
       </xs:element>
+      <xs:element name="ConnectToGameBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="session" nillable="true" type="q45:UserSession" />
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MovePiece">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="piece" nillable="true" type="q46:GamePice" />
+            <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="session" nillable="true" type="q47:UserSession" />
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetTurns">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="session" nillable="true" type="q48:UserSession" />
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LeaveTheGame">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="session" nillable="true" type="q49:UserSession" />
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChargePlayerGameBoard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="side" nillable="true" type="q50:PlayerSide" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChargePlayerGameBoardResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceivePieceMoved">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="piece" nillable="true" type="q51:GamePice" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceivePieceMovedResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveTurns">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="isTurn" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveTurnsResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceivePlayers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="usersInLobby" nillable="true" type="q52:ArrayOfUserSession" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceivePlayersResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="anyType" nillable="true" type="xs:anyType" />
@@ -817,6 +910,7 @@
       <xs:attribute name="Ref" type="xs:IDREF" />
     </xs:schema>
     <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
       <xs:complexType name="Profile">
         <xs:complexContent mixed="false">
           <xs:extension base="tns:AccessAccount">
@@ -916,6 +1010,45 @@
         </xs:sequence>
       </xs:complexType>
       <xs:element name="GameMatch" nillable="true" type="tns:GameMatch" />
+      <xs:complexType name="GamePice">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="piece" nillable="true" type="tns:Piece" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="position" type="q1:Point" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GamePice" nillable="true" type="tns:GamePice" />
+      <xs:complexType name="Piece">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="count" type="xs:int" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="position" type="q2:Point" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Piece" nillable="true" type="tns:Piece" />
+      <xs:complexType name="PlayerSide">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="playerOne" type="xs:boolean" />
+          <xs:element minOccurs="0" name="playerTwo" type="xs:boolean" />
+          <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PlayerSide" nillable="true" type="tns:PlayerSide" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Windows" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Windows" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:complexType name="Point">
+        <xs:annotation>
+          <xs:appinfo>
+            <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="_x" type="xs:double" />
+          <xs:element name="_y" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Point" nillable="true" type="tns:Point" />
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="IUserManager_AddUser_InputMessage">
@@ -1191,6 +1324,42 @@
   <wsdl:message name="ILobbyManager_ReceiveStartMatchNotification_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveStartMatchNotificationResponse" />
   </wsdl:message>
+  <wsdl:message name="IGameManager_ConnectToGameBoard_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToGameBoard" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_MovePiece_InputMessage">
+    <wsdl:part name="parameters" element="tns:MovePiece" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_SetTurns_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTurns" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_LeaveTheGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveTheGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ChargePlayerGameBoard_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChargePlayerGameBoard" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ChargePlayerGameBoard_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChargePlayerGameBoardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceivePieceMoved_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePieceMoved" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceivePieceMoved_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePieceMovedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceiveTurns_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveTurns" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceiveTurns_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveTurnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceivePlayers_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePlayers" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceivePlayers_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePlayersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserManager/AddUser" message="tns:IUserManager_AddUser_InputMessage" />
@@ -1400,6 +1569,36 @@
     <wsdl:operation name="ReceiveStartMatchNotification">
       <wsdl:output wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveStartMatchNotification" message="tns:ILobbyManager_ReceiveStartMatchNotification_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/ILobbyManager/ReceiveStartMatchNotificationResponse" message="tns:ILobbyManager_ReceiveStartMatchNotification_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IGameManager">
+    <wsdl:operation name="ConnectToGameBoard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ConnectToGameBoard" message="tns:IGameManager_ConnectToGameBoard_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MovePiece">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/MovePiece" message="tns:IGameManager_MovePiece_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTurns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/SetTurns" message="tns:IGameManager_SetTurns_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeaveTheGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/LeaveTheGame" message="tns:IGameManager_LeaveTheGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChargePlayerGameBoard">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ChargePlayerGameBoard" message="tns:IGameManager_ChargePlayerGameBoard_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ChargePlayerGameBoardResponse" message="tns:IGameManager_ChargePlayerGameBoard_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePieceMoved">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceivePieceMoved" message="tns:IGameManager_ReceivePieceMoved_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceivePieceMovedResponse" message="tns:IGameManager_ReceivePieceMoved_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveTurns">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceiveTurns" message="tns:IGameManager_ReceiveTurns_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceiveTurnsResponse" message="tns:IGameManager_ReceiveTurns_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePlayers">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayers" message="tns:IGameManager_ReceivePlayers_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayersResponse" message="tns:IGameManager_ReceivePlayers_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -1866,6 +2065,70 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IGameManager" type="tns:IGameManager">
+    <wsp:PolicyReference URI="#NetTcpBinding_IGameManager_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ConnectToGameBoard">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ConnectToGameBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="MovePiece">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/MovePiece" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SetTurns">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/SetTurns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LeaveTheGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/LeaveTheGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ChargePlayerGameBoard">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ChargePlayerGameBoard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePieceMoved">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceivePieceMoved" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveTurns">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceiveTurns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivePlayers">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceivePlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HiveGameService">
     <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
       <soap12:address location="net.tcp://localhost:1441/UserService" />
@@ -1931,6 +2194,12 @@
       <soap12:address location="net.tcp://localhost:1441/LobbyService" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:1441/LobbyService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IGameManager" binding="tns:NetTcpBinding_IGameManager">
+      <soap12:address location="net.tcp://localhost:1441/GameService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1441/GameService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

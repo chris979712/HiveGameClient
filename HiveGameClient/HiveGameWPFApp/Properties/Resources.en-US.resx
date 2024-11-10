@@ -453,4 +453,10 @@
   <data name="btn_Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="txtbl_Player1" xml:space="preserve">
+    <value>Player One</value>
+  </data>
+  <data name="txtbl_Player2" xml:space="preserve">
+    <value>Player Two</value>
+  </data>
 </root>
