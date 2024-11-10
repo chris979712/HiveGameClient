@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace HiveGameWPFApp.Logic
 {
-    internal class GamePiece
+    public partial class GamePiece
     {
         public Piece Piece { get; set; }
         public string ImagePath { get; set; }

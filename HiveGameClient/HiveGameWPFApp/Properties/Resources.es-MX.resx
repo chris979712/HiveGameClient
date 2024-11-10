@@ -446,11 +446,17 @@
   </data>
   <data name="dialogCouldntFindUserAccount" xml:space="preserve">
     <value>No hemos podido encontrar su cuenta, intente ingresar el nombre de usuario o correo correcto.</value>
-    </data>
+  </data>
   <data name="btn_SendOffPlayer" xml:space="preserve">
     <value>Expulsar a un jugador</value>
   </data>
   <data name="btn_Start" xml:space="preserve">
     <value>Iniciar</value>
+  </data>
+  <data name="txtbl_Player1" xml:space="preserve">
+    <value>Jugador uno</value>
+  </data>
+  <data name="txtbl_Player2" xml:space="preserve">
+    <value>Jugador Dos</value>
   </data>
 </root>

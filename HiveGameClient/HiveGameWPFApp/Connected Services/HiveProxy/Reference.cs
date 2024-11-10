@@ -718,6 +718,237 @@ namespace HiveGameWPFApp.HiveProxy {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GamePice", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class GamePice : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string imagePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HiveGameWPFApp.HiveProxy.Piece pieceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Windows.Point positionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string imagePath {
+            get {
+                return this.imagePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.imagePathField, value) != true)) {
+                    this.imagePathField = value;
+                    this.RaisePropertyChanged("imagePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HiveGameWPFApp.HiveProxy.Piece piece {
+            get {
+                return this.pieceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pieceField, value) != true)) {
+                    this.pieceField = value;
+                    this.RaisePropertyChanged("piece");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Windows.Point position {
+            get {
+                return this.positionField;
+            }
+            set {
+                if ((this.positionField.Equals(value) != true)) {
+                    this.positionField = value;
+                    this.RaisePropertyChanged("position");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Piece", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class Piece : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int countField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Windows.Point positionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int count {
+            get {
+                return this.countField;
+            }
+            set {
+                if ((this.countField.Equals(value) != true)) {
+                    this.countField = value;
+                    this.RaisePropertyChanged("count");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nameField, value) != true)) {
+                    this.nameField = value;
+                    this.RaisePropertyChanged("name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Windows.Point position {
+            get {
+                return this.positionField;
+            }
+            set {
+                if ((this.positionField.Equals(value) != true)) {
+                    this.positionField = value;
+                    this.RaisePropertyChanged("position");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerSide", Namespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class PlayerSide : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool playerOneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool playerTwoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string usernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool playerOne {
+            get {
+                return this.playerOneField;
+            }
+            set {
+                if ((this.playerOneField.Equals(value) != true)) {
+                    this.playerOneField = value;
+                    this.RaisePropertyChanged("playerOne");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool playerTwo {
+            get {
+                return this.playerTwoField;
+            }
+            set {
+                if ((this.playerTwoField.Equals(value) != true)) {
+                    this.playerTwoField = value;
+                    this.RaisePropertyChanged("playerTwo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.usernameField, value) != true)) {
+                    this.usernameField = value;
+                    this.RaisePropertyChanged("username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HiveProxy.IUserManager")]
     public interface IUserManager {
@@ -1730,6 +1961,112 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task<int> VerifyCreatorOfTheMatchAsync(HiveGameWPFApp.HiveProxy.GameMatch match) {
             return base.Channel.VerifyCreatorOfTheMatchAsync(match);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HiveProxy.IGameManager", CallbackContract=typeof(HiveGameWPFApp.HiveProxy.IGameManagerCallback))]
+    public interface IGameManager {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/ConnectToGameBoard")]
+        void ConnectToGameBoard(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/ConnectToGameBoard")]
+        System.Threading.Tasks.Task ConnectToGameBoardAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/MovePiece")]
+        void MovePiece(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/MovePiece")]
+        System.Threading.Tasks.Task MovePieceAsync(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/SetTurns")]
+        void SetTurns(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/SetTurns")]
+        System.Threading.Tasks.Task SetTurnsAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/LeaveTheGame")]
+        void LeaveTheGame(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/LeaveTheGame")]
+        System.Threading.Tasks.Task LeaveTheGameAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagerCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ChargePlayerGameBoard", ReplyAction="http://tempuri.org/IGameManager/ChargePlayerGameBoardResponse")]
+        void ChargePlayerGameBoard(HiveGameWPFApp.HiveProxy.PlayerSide side);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePieceMoved", ReplyAction="http://tempuri.org/IGameManager/ReceivePieceMovedResponse")]
+        void ReceivePieceMoved(HiveGameWPFApp.HiveProxy.GamePice piece);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceiveTurns", ReplyAction="http://tempuri.org/IGameManager/ReceiveTurnsResponse")]
+        void ReceiveTurns(bool isTurn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayers", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayersResponse")]
+        void ReceivePlayers(HiveGameWPFApp.HiveProxy.UserSession[] usersInLobby);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagerChannel : HiveGameWPFApp.HiveProxy.IGameManager, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GameManagerClient : System.ServiceModel.DuplexClientBase<HiveGameWPFApp.HiveProxy.IGameManager>, HiveGameWPFApp.HiveProxy.IGameManager {
+        
+        public GameManagerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public GameManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public GameManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void ConnectToGameBoard(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            base.Channel.ConnectToGameBoard(session, codeMatch);
+        }
+        
+        public System.Threading.Tasks.Task ConnectToGameBoardAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            return base.Channel.ConnectToGameBoardAsync(session, codeMatch);
+        }
+        
+        public void MovePiece(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            base.Channel.MovePiece(piece, session, codeMatch);
+        }
+        
+        public System.Threading.Tasks.Task MovePieceAsync(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            return base.Channel.MovePieceAsync(piece, session, codeMatch);
+        }
+        
+        public void SetTurns(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            base.Channel.SetTurns(session, codeMatch);
+        }
+        
+        public System.Threading.Tasks.Task SetTurnsAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            return base.Channel.SetTurnsAsync(session, codeMatch);
+        }
+        
+        public void LeaveTheGame(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            base.Channel.LeaveTheGame(session, codeMatch);
+        }
+        
+        public System.Threading.Tasks.Task LeaveTheGameAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
+            return base.Channel.LeaveTheGameAsync(session, codeMatch);
         }
     }
 }

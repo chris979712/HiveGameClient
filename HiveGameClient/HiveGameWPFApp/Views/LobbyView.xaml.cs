@@ -768,6 +768,16 @@ namespace HiveGameWPFApp.Views
                     codeMatch = matchLobbyCode,
                     stateMatch = "Started"
                 };
+                Profile profile = new Profile()
+                {
+                    username = UserProfileSingleton.username
+                };
+                UserSession session = new UserSession()
+                {
+                    username = UserProfileSingleton.username,
+                    codeMatch = matchLobbyCode,
+                    idAccount = UserProfileSingleton.idAccount,
+                };
                 MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
                 matchCreatorManagerClient.UpdateMatchState(matchCreator);
                 GameBoardView gameBoardView = new GameBoardView();
@@ -790,7 +800,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-            private bool ValidateField()
+        private bool ValidateField()
         {
             bool validationUserName = Validator.ValidateUsername(txt_SearchFriend.Text);
             if (!validationUserName)
