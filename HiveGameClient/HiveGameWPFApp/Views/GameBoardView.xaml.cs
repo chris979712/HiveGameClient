@@ -29,7 +29,8 @@ namespace HiveGameWPFApp.Views
         private Polygon lastPlacedCell;
         private Dictionary<Point, Polygon> cellDictionary = new Dictionary<Point, Polygon>();
         private Dictionary<Point, Logic.Piece> board = new Dictionary<Point, Logic.Piece>();
-        private List<UserSession> usersInGame = new List<UserSession>();
+        private List<UserSession> usersInGame;
+        private int numberOfPlayer = 0;
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
             {
@@ -53,7 +54,7 @@ namespace HiveGameWPFApp.Views
         {
             gameManagerClient = new GameManagerClient(new InstanceContext(this));
             InitializeComponent();
-            LoadPieces();
+           
             InitializeBoard();
             ConnectToGameBoard();
         }
@@ -88,13 +89,8 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void LoadPieces()
-        {
-            LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
-            LoadPlayerPieces(stckp_Player2pieces, player2Pieces);
-        }
-
-
+        
+            
         private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
         {
             playerPiecesPanel.Children.Clear();
@@ -323,22 +319,24 @@ namespace HiveGameWPFApp.Views
             if (side.playerOne)
             {
                 DockPanel.SetDock(stckp_Player1,Dock.Bottom);
-                DockPanel.SetDock(stckp_Player1Pieces, Dock.Bottom);
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName1.Text = UserProfileSingleton.username;
                 DockPanel.SetDock(stckp_Player2, Dock.Top);
-                DockPanel.SetDock(stckp_Player2pieces, Dock.Top);
+                stckp_Player2.IsEnabled = false;
+                numberOfPlayer = 1;
             }
             else if (side.playerTwo)
             {
+                LoadPlayerPieces(stckp_Player2pieces, player2Pieces);
+                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
                 DockPanel.SetDock(stckp_Player2,Dock.Bottom);
-                DockPanel.SetDock(stckp_Player2pieces, Dock.Bottom);
                 DockPanel.SetDock(stckp_Player1,Dock.Top);
-                DockPanel.SetDock(stckp_Player1Pieces, Dock.Top);
+                stckp_Player1.IsEnabled = false;
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName2.Text = UserProfileSingleton.username;
+                numberOfPlayer = 2;
             }
-            LoadPieces();
+            
             DockPanel dockPanel = (DockPanel)this.Content;
             dockPanel.UpdateLayout();
         }
@@ -350,10 +348,39 @@ namespace HiveGameWPFApp.Views
 
         public void ReceiveTurns(bool isTurn)
         {
-            throw new NotImplementedException();
+            if (isTurn)
+            {
+                txtbl_PlayerName.Text = UserProfileSingleton.username;
+                if(numberOfPlayer == 1)
+                {
+                    stckp_Player1.IsEnabled = true;
+                }
+                else
+                {
+                    stckp_Player2.IsEnabled = true;
+                }
+            }
+            else
+            {
+                for (int indexUsersInMatch = 0; indexUsersInMatch < usersInGame.Count; indexUsersInMatch++)
+                {
+                    if (usersInGame[indexUsersInMatch].username != UserProfileSingleton.username)
+                    {
+                        txtbl_PlayerName.Text = usersInGame[indexUsersInMatch].username;
+                    }
+                }
+                if (numberOfPlayer == 1)
+                {
+                    stckp_Player1.IsEnabled = false;
+                }
+                else
+                {
+                    stckp_Player2.IsEnabled = false;
+                }
+            }
         }
 
-        public void ReceivePlayers(UserSession[] usersInMatch)
+        public void ReceivePlayersToMatch(UserSession[] usersInMatch)
         {
             usersInGame = usersInMatch.ToList(); 
             for(int indexUsersInMatch = 0;indexUsersInMatch< usersInGame.Count; indexUsersInMatch++)
@@ -382,7 +409,7 @@ namespace HiveGameWPFApp.Views
                     }
                 }
             }
-            LoadPieces();
+            
         }
     }
 }

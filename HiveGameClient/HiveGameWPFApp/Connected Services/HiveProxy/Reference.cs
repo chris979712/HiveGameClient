@@ -2005,8 +2005,8 @@ namespace HiveGameWPFApp.HiveProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceiveTurns", ReplyAction="http://tempuri.org/IGameManager/ReceiveTurnsResponse")]
         void ReceiveTurns(bool isTurn);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayers", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayersResponse")]
-        void ReceivePlayers(HiveGameWPFApp.HiveProxy.UserSession[] usersInLobby);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayersToMatch", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayersToMatchResponse")]
+        void ReceivePlayersToMatch(HiveGameWPFApp.HiveProxy.UserSession[] userSession);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
