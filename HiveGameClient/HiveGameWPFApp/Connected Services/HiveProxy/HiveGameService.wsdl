@@ -855,14 +855,14 @@
           <xs:sequence />
         </xs:complexType>
       </xs:element>
-      <xs:element name="ReceivePlayers">
+      <xs:element name="ReceivePlayersToMatch">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="usersInLobby" nillable="true" type="q52:ArrayOfUserSession" />
+            <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userSession" nillable="true" type="q52:ArrayOfUserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="ReceivePlayersResponse">
+      <xs:element name="ReceivePlayersToMatchResponse">
         <xs:complexType>
           <xs:sequence />
         </xs:complexType>
@@ -1354,11 +1354,11 @@
   <wsdl:message name="IGameManager_ReceiveTurns_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveTurnsResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameManager_ReceivePlayers_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceivePlayers" />
+  <wsdl:message name="IGameManager_ReceivePlayersToMatch_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePlayersToMatch" />
   </wsdl:message>
-  <wsdl:message name="IGameManager_ReceivePlayers_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ReceivePlayersResponse" />
+  <wsdl:message name="IGameManager_ReceivePlayersToMatch_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceivePlayersToMatchResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
@@ -1596,9 +1596,9 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceiveTurns" message="tns:IGameManager_ReceiveTurns_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceiveTurnsResponse" message="tns:IGameManager_ReceiveTurns_InputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ReceivePlayers">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayers" message="tns:IGameManager_ReceivePlayers_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayersResponse" message="tns:IGameManager_ReceivePlayers_InputCallbackMessage" />
+    <wsdl:operation name="ReceivePlayersToMatch">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayersToMatch" message="tns:IGameManager_ReceivePlayersToMatch_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayersToMatchResponse" message="tns:IGameManager_ReceivePlayersToMatch_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -2119,8 +2119,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReceivePlayers">
-      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceivePlayers" style="document" />
+    <wsdl:operation name="ReceivePlayersToMatch">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceivePlayersToMatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

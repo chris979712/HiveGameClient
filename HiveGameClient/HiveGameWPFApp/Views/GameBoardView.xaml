@@ -16,15 +16,18 @@
                 </Border.Background>
             </Border>
 
+
             <Grid>
                 <Image Name="img_GoOut" Source="/Images/Icons/Go out Game.png" 
                    MouseDown="Image_MouseDown" 
                    Cursor="Hand" Margin="-9,10,1161,596" RenderTransformOrigin="0.5,0.506"/>
             </Grid>
+            <TextBlock x:Name="txtbl_TurnOf" Foreground="Black" TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_TurnOf}" FontSize="40" FontFamily="Impact"  Margin="992,336,152,340" />
+            <TextBlock x:Name="txtbl_PlayerName" TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_Player1}" FontSize="30" FontFamily="Impact"  Margin="992,390,124,290"/>
 
             <DockPanel>
                 <StackPanel x:Name="stckp_Player2" DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Border Name ="brd_ImageProfile2" Width="92" Height="121"  BorderThickness="2"
+                    <Border x:Name ="brd_ImageProfile2" Width="92" Height="121"  BorderThickness="2"
                          HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Grid>
                             <Viewbox>
@@ -48,10 +51,7 @@
                     <TextBlock x:Name="txtbl_PlayerName1" Text="{x:Static p:Resources.txtbl_Player1}" FontSize="30" FontFamily="Impact"  Margin="40"/>
                     <StackPanel x:Name="stckp_Player1Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
                 </StackPanel>
-
                 <Canvas x:Name="GameBoardGrid" Width="450" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
             </DockPanel>
         </Grid>
     </DockPanel>
