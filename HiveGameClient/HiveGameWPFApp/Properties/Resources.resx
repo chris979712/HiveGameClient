@@ -459,4 +459,7 @@
   <data name="txtbl_Player2" xml:space="preserve">
     <value>Player Two</value>
   </data>
+  <data name="txtbl_TurnOf" xml:space="preserve">
+    <value>Turn of:</value>
+  </data>
 </root>

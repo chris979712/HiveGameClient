@@ -1085,5 +1085,14 @@ namespace HiveGameWPFApp.Properties {
                 return ResourceManager.GetString("txtbl_Player2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Turn of:.
+        /// </summary>
+        public static string txtbl_TurnOf {
+            get {
+                return ResourceManager.GetString("txtbl_TurnOf", resourceCulture);
+            }
+        }
     }
 }
