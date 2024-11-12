@@ -301,6 +301,7 @@ namespace HiveGameWPFApp.Views
             this.NavigationService.Navigate(statisticsView);
         }
 
+
     }
 }
 
