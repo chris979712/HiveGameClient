@@ -269,7 +269,7 @@ namespace HiveGameWPFApp.Views
                     idAccount = UserProfileSingleton.idAccount,
                 };
                 int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect, matchLobbyCode);
-                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession, false);
                 if(profileDisconnectionFromChat == Constants.SUCCES_OPERATION && profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();
@@ -469,7 +469,7 @@ namespace HiveGameWPFApp.Views
                     {
                         MatchSingleton.Instance.ResetSingleton();
                         KickPlayerFromLobby(userToKick, isKicked);
-                        UserSessionManagerClient.Disconnect(userToKick);
+                        UserSessionManagerClient.Disconnect(userToKick, false);
                     }
                 }
                 catch (EndpointNotFoundException endPointException)
@@ -680,12 +680,20 @@ namespace HiveGameWPFApp.Views
             try
             {
                 Profile profileUserHost = userManagerClient.GetUserProfileByUsername(users[0].username);
-                Profile profileUserGuest = userManagerClient.GetUserProfileByUsername(users[1].username);
                 txtb_HostName.Text = profileUserHost.nickname;
                 img_AvatarHost.Source = new BitmapImage(new Uri(profileUserHost.imagePath, UriKind.Relative));
+                if (users[1].idAccount == Constants.DEFAULT_GUEST_ID)
+                {
+                    txtb_GuestName.Text = users[1].username;
+                    img_AvatarGuest.Source = new BitmapImage(new Uri("/Images/Avatars/Avatar1.png", UriKind.Relative));
+                }
+                else
+                {
+                    Profile profileUserGuest = userManagerClient.GetUserProfileByUsername(users[1].username);
+                    txtb_GuestName.Text = profileUserGuest.nickname;
+                    img_AvatarGuest.Source = new BitmapImage(new Uri(profileUserGuest.imagePath, UriKind.Relative));
+                }
                 brd_Guest.Visibility = Visibility.Visible;
-                txtb_GuestName.Text = profileUserGuest.nickname;
-                img_AvatarGuest.Source = new BitmapImage(new Uri(profileUserGuest.imagePath, UriKind.Relative));
                 GameMatch gamer = new GameMatch()
                 {
                     idAccount = UserProfileSingleton.idAccount,

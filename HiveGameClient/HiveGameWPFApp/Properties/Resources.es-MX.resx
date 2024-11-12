@@ -462,4 +462,10 @@
   <data name="txtbl_TurnOf" xml:space="preserve">
     <value>Turno de:</value>
   </data>
+  <data name="dialogUserHasLeftTheMatch" xml:space="preserve">
+    <value>Un usuario ha abandonado la partida, será redirijido al menú principal.</value>
+  </data>
+  <data name="dialogManagerConfirmationLeaveMatch" xml:space="preserve">
+    <value>¿Está seguro de abandonar la partida?, su reputación se verá afectada.</value>
+  </data>
 </root>

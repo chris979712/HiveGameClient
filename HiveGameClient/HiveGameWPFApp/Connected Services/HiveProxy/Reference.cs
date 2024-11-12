@@ -977,6 +977,18 @@ namespace HiveGameWPFApp.HiveProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateLoginCredentials", ReplyAction="http://tempuri.org/IUserManager/UpdateLoginCredentialsResponse")]
         System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdatePlusUserReputation", ReplyAction="http://tempuri.org/IUserManager/UpdatePlusUserReputationResponse")]
+        int UpdatePlusUserReputation(string username, int reputation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdatePlusUserReputation", ReplyAction="http://tempuri.org/IUserManager/UpdatePlusUserReputationResponse")]
+        System.Threading.Tasks.Task<int> UpdatePlusUserReputationAsync(string username, int reputation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateMinusUserReputation", ReplyAction="http://tempuri.org/IUserManager/UpdateMinusUserReputationResponse")]
+        int UpdateMinusUserReputation(string username, int reputation);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateMinusUserReputation", ReplyAction="http://tempuri.org/IUserManager/UpdateMinusUserReputationResponse")]
+        System.Threading.Tasks.Task<int> UpdateMinusUserReputationAsync(string username, int reputation);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateProfile", ReplyAction="http://tempuri.org/IUserManager/UpdateProfileResponse")]
         int UpdateProfile(HiveGameWPFApp.HiveProxy.Profile profile, string email);
         
@@ -1059,6 +1071,22 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile) {
             return base.Channel.UpdateLoginCredentialsAsync(profile, updatedProfile);
+        }
+        
+        public int UpdatePlusUserReputation(string username, int reputation) {
+            return base.Channel.UpdatePlusUserReputation(username, reputation);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdatePlusUserReputationAsync(string username, int reputation) {
+            return base.Channel.UpdatePlusUserReputationAsync(username, reputation);
+        }
+        
+        public int UpdateMinusUserReputation(string username, int reputation) {
+            return base.Channel.UpdateMinusUserReputation(username, reputation);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateMinusUserReputationAsync(string username, int reputation) {
+            return base.Channel.UpdateMinusUserReputationAsync(username, reputation);
         }
         
         public int UpdateProfile(HiveGameWPFApp.HiveProxy.Profile profile, string email) {
@@ -1597,10 +1625,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task<int> ConnectToGameAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/Disconnect", ReplyAction="http://tempuri.org/IUserSessionManager/DisconnectResponse")]
-        int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user);
+        int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user, bool isInMatch);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/Disconnect", ReplyAction="http://tempuri.org/IUserSessionManager/DisconnectResponse")]
-        System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user);
+        System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user, bool isInMatch);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserSessionManager/VerifyConnectivity", ReplyAction="http://tempuri.org/IUserSessionManager/VerifyConnectivityResponse")]
         bool VerifyConnectivity(HiveGameWPFApp.HiveProxy.UserSession user);
@@ -1644,12 +1672,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.ConnectToGameAsync(user);
         }
         
-        public int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user) {
-            return base.Channel.Disconnect(user);
+        public int Disconnect(HiveGameWPFApp.HiveProxy.UserSession user, bool isInMatch) {
+            return base.Channel.Disconnect(user, isInMatch);
         }
         
-        public System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
-            return base.Channel.DisconnectAsync(user);
+        public System.Threading.Tasks.Task<int> DisconnectAsync(HiveGameWPFApp.HiveProxy.UserSession user, bool isInMatch) {
+            return base.Channel.DisconnectAsync(user, isInMatch);
         }
         
         public bool VerifyConnectivity(HiveGameWPFApp.HiveProxy.UserSession user) {
@@ -2007,6 +2035,9 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayersToMatch", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayersToMatchResponse")]
         void ReceivePlayersToMatch(HiveGameWPFApp.HiveProxy.UserSession[] userSession);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotification", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotificationResponse")]
+        void ReceivePlayerHasLeftNotification(bool doPlayerLeftTheGame);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

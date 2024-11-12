@@ -1,5 +1,6 @@
 ﻿using HiveGameWPFApp.HiveProxy;
 using HiveGameWPFApp.Logic;
+using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,9 +55,9 @@ namespace HiveGameWPFApp.Views
         {
             gameManagerClient = new GameManagerClient(new InstanceContext(this));
             InitializeComponent();
-           
             InitializeBoard();
             ConnectToGameBoard();
+            Constants.isInMatch = true;
         }
 
         private void ConnectToGameBoard()
@@ -290,9 +291,6 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-
-
-
         private void ResetHighlights()
         {
             foreach (UIElement element in GameBoardGrid.Children)
@@ -303,13 +301,107 @@ namespace HiveGameWPFApp.Views
                 }
             }
         }
+
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GoToMainView();
+            LoggerManager logger = new LoggerManager(this.GetType());
+            if (DialogManager.ShowConfirmationMessageAlert(Properties.Resources.dialogManagerConfirmationLeaveMatch))
+            {
+                if(UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
+                {
+                    DisconnectGuestPlayer();
+                }
+                else
+                {
+                    DisconnectNormalPlayer();
+                }
+                
+            }
+        }
+
+        private void DisconnectGuestPlayer()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.UserSessionManagerClient userSessionManagerClient = new UserSessionManagerClient();
+                UserSession session = new UserSession()
+                {
+                    idAccount = UserProfileSingleton.idAccount,
+                    username = UserProfileSingleton.username,
+                    codeMatch = MatchSingleton.codeMatch,
+                };
+                gameManagerClient.LeaveTheGame(session, session.codeMatch);
+                userSessionManagerClient.Disconnect(session, false);
+                ReturnToLoginView();
+
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                ReturnToLoginView();
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                ReturnToLoginView();
+            }
+        }
+
+        private void DisconnectNormalPlayer()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.UserManagerClient userManagerClient = new UserManagerClient();
+                HiveProxy.LeaderBoardManagerClient leaderBoardManagerClient = new LeaderBoardManagerClient();
+                int resultModification = userManagerClient.UpdateMinusUserReputation(UserProfileSingleton.username, 100);
+                if (resultModification == Constants.SUCCES_OPERATION)
+                {
+                    leaderBoardManagerClient.UpdateLoserResultToPlayerLeaderBoard(UserProfileSingleton.idAccount);
+                    UserSession session = new UserSession()
+                    {
+                        idAccount = UserProfileSingleton.idAccount,
+                        username = UserProfileSingleton.username,
+                        codeMatch = MatchSingleton.codeMatch,
+                    };
+                    gameManagerClient.LeaveTheGame(session, session.codeMatch);
+                    GoToMainView();
+                }
+                else if (resultModification == Constants.ERROR_OPERATION)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
+                }
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                ReturnToLoginView();
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                ReturnToLoginView();
+            }
         }
 
         private void GoToMainView()
         {
+            MatchSingleton.Instance.ResetSingleton();
             MainMenu mainMenu = new MainMenu();
             this.NavigationService.Navigate(mainMenu);
         }
@@ -382,34 +474,119 @@ namespace HiveGameWPFApp.Views
 
         public void ReceivePlayersToMatch(UserSession[] usersInMatch)
         {
-            usersInGame = usersInMatch.ToList(); 
-            for(int indexUsersInMatch = 0;indexUsersInMatch< usersInGame.Count; indexUsersInMatch++)
+            usersInGame = usersInMatch.ToList();
+
+            for(int indexUsersInMatch = 0;indexUsersInMatch < usersInGame.Count;indexUsersInMatch++)
             {
-                UserSession user = usersInMatch[indexUsersInMatch];
-                HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
-                Profile profileUser = userManagerClient.GetUserProfileByUsername(user.username);
-                if (profileUser.idAccesAccount == Constants.ERROR_OPERATION)
+                UserSession user = usersInGame[indexUsersInMatch];  
+                Profile profileUser = GetUserProfile(user);
+                UpdatePlayerDisplay(user, profileUser);
+            }
+        }
+        private Profile GetUserProfile(UserSession user)
+        {
+            HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            Profile profileUser = userManagerClient.GetUserProfileByUsername(user.username);
+
+            if (profileUser.idAccesAccount == Constants.ERROR_OPERATION || user.idAccount == Constants.DEFAULT_GUEST_ID)
+            {
+                profileUser.imagePath = "/Images/Avatars/Avatar1.png";
+            }
+
+            return profileUser;
+        }
+
+        private void UpdatePlayerDisplay(UserSession user, Profile profileUser)
+        {
+            if (IsPlayer1SlotAvailable(user))
+            {
+                txtbl_PlayerName1.Text = user.username;
+                img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+            }
+            else if (IsPlayer2SlotAvailable(user))
+            {
+                txtbl_PlayerName2.Text = user.username;
+                img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+            }
+        }
+
+        private bool IsPlayer1SlotAvailable(UserSession user)
+        {
+            return txtbl_PlayerName1.Text == Properties.Resources.txtbl_Player1 &&
+                   txtbl_PlayerName2.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtbl_PlayerName2.Text);
+        }
+
+        private bool IsPlayer2SlotAvailable(UserSession user)
+        {
+            return txtbl_PlayerName2.Text == Properties.Resources.txtbl_Player2 &&
+                   txtbl_PlayerName1.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtbl_PlayerName1.Text);
+        }
+
+        public void ReceivePlayerHasLeftNotification(bool doPlayerLeftTheGame)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            bool exceptionAppear = false;
+            if (doPlayerLeftTheGame)
+            {
+                DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogUserHasLeftTheMatch);
+                try
                 {
-                    profileUser.imagePath = "/Images/Avatars/Avatar1.png";
-                }
-                if (txtbl_PlayerName1.Text == Properties.Resources.txtbl_Player1 && txtbl_PlayerName2.Text == UserProfileSingleton.username)
-                {
-                    if(!user.username.Equals(txtbl_PlayerName2.Text))
+                    UserSession userSession = new UserSession()
                     {
-                        txtbl_PlayerName1.Text = user.username;
-                        img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                        username = UserProfileSingleton.username,
+                        idAccount = UserProfileSingleton.idAccount,
+                        codeMatch = MatchSingleton.codeMatch
+                    };
+                    if (UserProfileSingleton.idAccount!=Constants.DEFAULT_GUEST_ID)
+                    {
+                        HiveProxy.UserManagerClient userManagerClient = new UserManagerClient();
+                        userManagerClient.UpdatePlusUserReputation(userSession.username, 25);
                     }
+                    gameManagerClient.LeaveTheGame(userSession, userSession.codeMatch);
                 }
-                else if(txtbl_PlayerName2.Text == Properties.Resources.txtbl_Player2 && txtbl_PlayerName1.Text == UserProfileSingleton.username) 
+                catch (EndpointNotFoundException endPointException)
                 {
-                    if (!user.username.Equals(txtbl_PlayerName1.Text))
+                    logger.LogError(endPointException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                    exceptionAppear = true;
+                }
+                catch (TimeoutException timeOutException)
+                {
+                    logger.LogError(timeOutException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                }
+                catch (CommunicationException communicationException)
+                {
+                    logger.LogError(communicationException);
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                    exceptionAppear = true;
+                }
+                if (exceptionAppear)
+                {
+                    ReturnToLoginView();
+                }
+                else
+                {
+                    if (UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
                     {
-                        txtbl_PlayerName2.Text = user.username;
-                        img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                        ReturnToLoginView();
+                    }
+                    else 
+                    {
+                        GoToMainView();
                     }
                 }
             }
-            
+        }
+
+        public void ReturnToLoginView()
+        {
+            MatchSingleton.Instance.ResetSingleton();
+            UserProfileSingleton.Instance.ResetSingleton();
+            LoginView loginView = new LoginView();
+            this.NavigationService.Navigate(loginView);
         }
     }
 }

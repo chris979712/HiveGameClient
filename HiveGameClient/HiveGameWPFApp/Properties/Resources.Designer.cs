@@ -520,6 +520,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure to leave the game?, your reputation will be affected..
+        /// </summary>
+        public static string dialogManagerConfirmationLeaveMatch {
+            get {
+                return ResourceManager.GetString("dialogManagerConfirmationLeaveMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The person that you want to search is not online..
         /// </summary>
         public static string dialogMangerCouldntFindFriend {
@@ -660,6 +669,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogUpdatedData {
             get {
                 return ResourceManager.GetString("dialogUpdatedData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a An user has left the match, you will be redirected to the main menu..
+        /// </summary>
+        public static string dialogUserHasLeftTheMatch {
+            get {
+                return ResourceManager.GetString("dialogUserHasLeftTheMatch", resourceCulture);
             }
         }
         
