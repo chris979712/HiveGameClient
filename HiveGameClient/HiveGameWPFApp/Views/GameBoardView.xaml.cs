@@ -90,8 +90,6 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        
-
 
         private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
         {
@@ -417,6 +415,8 @@ namespace HiveGameWPFApp.Views
                 stckp_Player2.IsEnabled = false;
                 
                 numberOfPlayer = 1;
+                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
+                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
             }
             else if (side.playerTwo)
             {
@@ -428,6 +428,8 @@ namespace HiveGameWPFApp.Views
                 txtbl_PlayerName2.Text = UserProfileSingleton.username;
 
                 numberOfPlayer = 2;
+                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
+                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
             }
             
             DockPanel dockPanel = (DockPanel)this.Content;

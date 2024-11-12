@@ -7,6 +7,7 @@
         xmlns:p="clr-namespace:HiveGameWPFApp.Properties"
         mc:Ignorable="d"
         d:DesignHeight="720" d:DesignWidth="1280">
+    
     <DockPanel>
 
         <Grid >
@@ -26,7 +27,7 @@
             <TextBlock x:Name="txtbl_PlayerName" TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_Player1}" FontSize="30" FontFamily="Impact"  Margin="992,390,124,290"/>
 
             <DockPanel>
-                <StackPanel x:Name="stckp_Player2" DockPanel.Dock="Top" Orientation="Horizontal" Width="305">
+                <StackPanel x:Name="stckp_Player2" DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Border x:Name ="brd_ImageProfile2" Width="92" Height="121"  BorderThickness="2"
                          HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Grid>
