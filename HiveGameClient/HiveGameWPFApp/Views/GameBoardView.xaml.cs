@@ -57,7 +57,6 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             InitializeBoard();
             ConnectToGameBoard();
-            InitializePiece();
             Constants.isInMatch = true;
         }
 
@@ -91,10 +90,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void InitializePiece()
-        {
-            LoadPlayerPieces(stckp_Player1Pieces,player1Pieces);
-        }
+        
 
 
         private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
@@ -420,7 +416,7 @@ namespace HiveGameWPFApp.Views
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName1.Text = UserProfileSingleton.username;
                 stckp_Player2.IsEnabled = false;
-                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
+                
                 numberOfPlayer = 1;
             }
             else if (side.playerTwo)
@@ -431,6 +427,7 @@ namespace HiveGameWPFApp.Views
 
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName2.Text = UserProfileSingleton.username;
+
                 numberOfPlayer = 2;
             }
             
@@ -503,39 +500,15 @@ namespace HiveGameWPFApp.Views
 
         private void UpdatePlayerDisplay(UserSession user, Profile profileUser)
         {
-
-            
-            if (user.username == UserProfileSingleton.username)
+            if (IsPlayer1SlotAvailable(user))
             {
-                if (numberOfPlayer == 1)
-                {
-                    txtbl_PlayerName1.Text = user.username;
-                    img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces); 
-                }
-                else if (numberOfPlayer == 2)
-                {
-                    txtbl_PlayerName2.Text = user.username;
-                    img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                    LoadPlayerPieces(stckp_Player2Pieces, player1Pieces);
-                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
-                }
+                txtbl_PlayerName1.Text = user.username;
+                img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
             }
-            else 
+            else if (IsPlayer2SlotAvailable(user))
             {
-                if (numberOfPlayer == 1)
-                {
-                    txtbl_PlayerName2.Text = user.username;
-                    img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                    LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
-                }
-                else if (numberOfPlayer == 2)
-                {
-                    txtbl_PlayerName1.Text = user.username;
-                    img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                    LoadPlayerPieces(stckp_Player2Pieces, player1Pieces);
-                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
-                }
+                txtbl_PlayerName2.Text = user.username;
+                img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
             }
         }
 
