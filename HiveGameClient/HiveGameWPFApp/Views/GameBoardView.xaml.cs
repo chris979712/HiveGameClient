@@ -316,7 +316,6 @@ namespace HiveGameWPFApp.Views
                 {
                     DisconnectNormalPlayer();
                 }
-                
             }
         }
 
