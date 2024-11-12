@@ -57,6 +57,7 @@ namespace HiveGameWPFApp.Views
             InitializeComponent();
             InitializeBoard();
             ConnectToGameBoard();
+            InitializePiece();
             Constants.isInMatch = true;
         }
 
@@ -90,8 +91,12 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        
-            
+        private void InitializePiece()
+        {
+            LoadPlayerPieces(stckp_Player1Pieces,player1Pieces);
+        }
+
+
         private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
         {
             playerPiecesPanel.Children.Clear();
@@ -280,7 +285,7 @@ namespace HiveGameWPFApp.Views
             }
             else if (player2Pieces.Contains(piece))
             {
-                foreach (var child in stckp_Player2pieces.Children.OfType<Image>())
+                foreach (var child in stckp_Player2Pieces.Children.OfType<Image>())
                 {
                     if (child.Tag?.ToString() == piece.Piece.Name)
                     {
@@ -411,19 +416,19 @@ namespace HiveGameWPFApp.Views
             if (side.playerOne)
             {
                 DockPanel.SetDock(stckp_Player1,Dock.Bottom);
+                DockPanel.SetDock(stckp_Player2, Dock.Top);
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName1.Text = UserProfileSingleton.username;
-                DockPanel.SetDock(stckp_Player2, Dock.Top);
                 stckp_Player2.IsEnabled = false;
+                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
                 numberOfPlayer = 1;
             }
             else if (side.playerTwo)
             {
-                LoadPlayerPieces(stckp_Player2pieces, player2Pieces);
-                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
                 DockPanel.SetDock(stckp_Player2,Dock.Bottom);
                 DockPanel.SetDock(stckp_Player1,Dock.Top);
                 stckp_Player1.IsEnabled = false;
+
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName2.Text = UserProfileSingleton.username;
                 numberOfPlayer = 2;
@@ -498,17 +503,42 @@ namespace HiveGameWPFApp.Views
 
         private void UpdatePlayerDisplay(UserSession user, Profile profileUser)
         {
-            if (IsPlayer1SlotAvailable(user))
+
+            
+            if (user.username == UserProfileSingleton.username)
             {
-                txtbl_PlayerName1.Text = user.username;
-                img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                if (numberOfPlayer == 1)
+                {
+                    txtbl_PlayerName1.Text = user.username;
+                    img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces); 
+                }
+                else if (numberOfPlayer == 2)
+                {
+                    txtbl_PlayerName2.Text = user.username;
+                    img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    LoadPlayerPieces(stckp_Player2Pieces, player1Pieces);
+                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
+                }
             }
-            else if (IsPlayer2SlotAvailable(user))
+            else 
             {
-                txtbl_PlayerName2.Text = user.username;
-                img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                if (numberOfPlayer == 1)
+                {
+                    txtbl_PlayerName2.Text = user.username;
+                    img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
+                }
+                else if (numberOfPlayer == 2)
+                {
+                    txtbl_PlayerName1.Text = user.username;
+                    img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                    LoadPlayerPieces(stckp_Player2Pieces, player1Pieces);
+                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
+                }
             }
         }
+
 
         private bool IsPlayer1SlotAvailable(UserSession user)
         {
