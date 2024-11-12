@@ -462,4 +462,10 @@
   <data name="txtbl_TurnOf" xml:space="preserve">
     <value>Turn of:</value>
   </data>
+  <data name="dialogUserHasLeftTheMatch" xml:space="preserve">
+    <value>An user has left the match, you will be redirected to the main menu.</value>
+  </data>
+  <data name="dialogManagerConfirmationLeaveMatch" xml:space="preserve">
+    <value>Are you sure to leave the game?, your reputation will be affected.</value>
+  </data>
 </root>

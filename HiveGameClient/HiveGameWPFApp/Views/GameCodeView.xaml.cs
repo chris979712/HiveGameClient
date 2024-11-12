@@ -54,7 +54,7 @@ namespace HiveGameWPFApp.Views
                     idAccount = Constants.DEFAULT_GUEST_ID,
                     username = UserProfileSingleton.username
                 };
-                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession);
+                int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession, false);
                 if (profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();

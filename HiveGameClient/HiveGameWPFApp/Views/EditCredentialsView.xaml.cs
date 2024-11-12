@@ -348,7 +348,7 @@ namespace HiveGameWPFApp.Views
                     idAccount = UserProfileSingleton.idAccount,
                     username = UserProfileSingleton.username,
                 };
-                userSessionManagerClient.Disconnect(userSession);
+                userSessionManagerClient.Disconnect(userSession,false);
             }
             catch (EndpointNotFoundException endPointException)
             {
