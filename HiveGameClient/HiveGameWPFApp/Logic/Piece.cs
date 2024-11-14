@@ -14,6 +14,15 @@ namespace HiveGameWPFApp.Logic
         public Point Position { get; set; }
 
         public abstract bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board);
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Piece other)
+            {
+                return this.Name == other.Name && this.Count == other.Count && this.Position.Equals(other.Position);
+            }
+            return false;
+        }
     }
 
     public class Queen : Piece
