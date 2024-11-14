@@ -527,7 +527,7 @@ namespace HiveGameWPFApp.Views
             {
                 foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
                 {
-                    if (child.Tag == piece)
+                    if (child.Tag is GamePiece tagPiece && tagPiece.Equals(piece)) 
                     {
                         stckp_Player1Pieces.Children.Remove(child);
                         break;
@@ -536,11 +536,11 @@ namespace HiveGameWPFApp.Views
             }
             else if (player2Pieces.Contains(piece))
             {
-                foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
+                foreach (var child in stckp_Player2Pieces.Children.OfType<Image>())
                 {
-                    if (child.Tag == piece)
+                    if (child.Tag is GamePiece tagPiece && tagPiece.Equals(piece))
                     {
-                        stckp_Player1Pieces.Children.Remove(child);
+                        stckp_Player2Pieces.Children.Remove(child);
                         break;
                     }
                 }
