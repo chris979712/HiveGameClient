@@ -734,6 +734,9 @@ namespace HiveGameWPFApp.HiveProxy {
         private HiveGameWPFApp.HiveProxy.Piece pieceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string playerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Windows.Point positionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -768,6 +771,19 @@ namespace HiveGameWPFApp.HiveProxy {
                 if ((object.ReferenceEquals(this.pieceField, value) != true)) {
                     this.pieceField = value;
                     this.RaisePropertyChanged("piece");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string playerName {
+            get {
+                return this.playerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playerNameField, value) != true)) {
+                    this.playerNameField = value;
+                    this.RaisePropertyChanged("playerName");
                 }
             }
         }
