@@ -32,23 +32,25 @@ namespace HiveGameWPFApp.Views
         private Dictionary<Point, Logic.Piece> board = new Dictionary<Point, Logic.Piece>();
         private List<UserSession> usersInGame;
         private int numberOfPlayer = 0;
+        private string usernamePlayer1 = "";
+        private string usernamePlayer2 = "";
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
             {
-                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1)),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1)),
-                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1)),
-                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1)),
-                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1))
+                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1")
             };
 
         private List<GamePiece> player2Pieces = new List<GamePiece>
             {
-                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player2.png", new Point(-1, -1)),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1)),
-                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1)),
-                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1)),
-                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1))
+                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2"),
+                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2"),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2")
             };
 
         public GameBoardView()
@@ -91,20 +93,25 @@ namespace HiveGameWPFApp.Views
         }
 
 
-        private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces)
+        private void LoadPlayerPieces(StackPanel playerPiecesPanel, List<GamePiece> pieces, string username)
         {
+            for(int indexPieces = 0; indexPieces < pieces.Count; indexPieces++)
+            {
+                pieces[indexPieces].playerName = username;
+            }
             playerPiecesPanel.Children.Clear();
             foreach (var piece in pieces)
             {
                 for (int i = 0; i < piece.Piece.Count; i++)
                 {
+                    piece.playerName = username;
                     var image = new Image
                     {
                         Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
                         Width = 50,
                         Height = 50,
                         Margin = new Thickness(0, -i * 25, 0, 0),
-                        Tag = piece.Piece.Name,
+                        Tag = piece,
                         DataContext = piece
                     };
                     image.MouseDown += Piece_MouseDown;
@@ -131,7 +138,6 @@ namespace HiveGameWPFApp.Views
                     var hexagon = new Polygon
                     {
                         Points = CreateHexagonPoints(hexagonSize),
-                        
                         Tag = new Point(row, col)
                     };
                     hexagon.MouseDown += Cell_MouseDown;
@@ -150,7 +156,7 @@ namespace HiveGameWPFApp.Views
 
         private void Piece_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece)
+            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
             {
                 selectedPiece = piece;
                 if (!isFirstPiecePlaced)
@@ -230,37 +236,76 @@ namespace HiveGameWPFApp.Views
 
         private void PlacePieceOnCell(Polygon cell)
         {
-            if (cell == null) return;
-
-            var pieceImage = new Image
+            if (cell != null)
+            {
+                var pieceImage = new Image
                 {
                     Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
                     Width = 48,
                     Height = 48,
                 };
-
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
-
                 double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
                 double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
-
                 Canvas.SetLeft(pieceImage, pieceX);
                 Canvas.SetTop(pieceImage, pieceY);
-
                 GameBoardGrid.Children.Add(pieceImage);
-
                 selectedPiece.Position = (Point)cell.Tag;
                 board[selectedPiece.Position] = selectedPiece.Piece;
-
                 RemovePieceFromPlayer(selectedPiece);
-
+                SendPiecePositionToServer(selectedPiece);
                 lastPlacedCell = cell;
                 isFirstPiecePlaced = true;
                 selectedPiece = null;
-
                 ResetHighlights();
-            
+            }
+        }
+
+        private void SendPiecePositionToServer(Logic.GamePiece gamePiece)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                HiveProxy.Piece pieceMoved = new HiveProxy.Piece()
+                {
+                    name = gamePiece.Piece.Name,
+                    count = gamePiece.Piece.Count,
+                    position = gamePiece.Piece.Position
+                };
+                HiveProxy.GamePice gamePieceMoved = new HiveProxy.GamePice()
+                {
+                    playerName = gamePiece.playerName,
+                    piece = pieceMoved,
+                    imagePath = gamePiece.ImagePath,
+                    position = gamePiece.Position,
+                };
+                UserSession userSession = new UserSession()
+                {
+                    idAccount = UserProfileSingleton.idAccount,
+                    username = UserProfileSingleton.username,
+                    codeMatch = MatchSingleton.codeMatch
+                };
+                gameManagerClient.MovePiece(gamePieceMoved, userSession, userSession.codeMatch);
+                gameManagerClient.SetTurns(userSession, userSession.codeMatch);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+                ReturnToLoginView();
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                ReturnToLoginView();
+            }
         }
 
 
@@ -270,7 +315,7 @@ namespace HiveGameWPFApp.Views
             {
                 foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
                 {
-                    if (child.Tag?.ToString() == piece.Piece.Name)
+                    if (child.Tag == piece)
                     {
                         stckp_Player1Pieces.Children.Remove(child);
                         break;
@@ -281,9 +326,9 @@ namespace HiveGameWPFApp.Views
             {
                 foreach (var child in stckp_Player2Pieces.Children.OfType<Image>())
                 {
-                    if (child.Tag?.ToString() == piece.Piece.Name)
+                    if (child.Tag == piece)
                     {
-                        stckp_Player1Pieces.Children.Remove(child);
+                        stckp_Player2Pieces.Children.Remove(child);
                         break;
                     }
                 }
@@ -412,34 +457,127 @@ namespace HiveGameWPFApp.Views
                 DockPanel.SetDock(stckp_Player2, Dock.Top);
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName1.Text = UserProfileSingleton.username;
-                stckp_Player2.IsEnabled = false;
-                
+                stckp_Player2.IsEnabled = false;      
                 numberOfPlayer = 1;
-                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
-                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
             }
             else if (side.playerTwo)
             {
                 DockPanel.SetDock(stckp_Player2,Dock.Bottom);
                 DockPanel.SetDock(stckp_Player1,Dock.Top);
                 stckp_Player1.IsEnabled = false;
-
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
                 txtbl_PlayerName2.Text = UserProfileSingleton.username;
-
                 numberOfPlayer = 2;
-                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces);
-                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces);
             }
-            
             DockPanel dockPanel = (DockPanel)this.Content;
             dockPanel.UpdateLayout();
         }
 
-        public void ReceivePieceMoved(GamePice piece)
+        public void ReceivePieceMoved(HiveProxy.GamePice piece)
         {
-            throw new NotImplementedException();
+            Logic.Piece pieceReceived = CreateConcretePieceType(piece);
+            Logic.GamePiece gamePieceReceived = new Logic.GamePiece()
+            {
+                Piece = pieceReceived,
+                playerName = piece.playerName,
+                Position = piece.position,
+                ImagePath = piece.imagePath,
+            };
+            if (piece != null && gamePieceReceived.Position != null)
+            {
+                if (board.TryGetValue(gamePieceReceived.Position, out var existingPiece))
+                {
+                    board.Remove(existingPiece.Position);
+                }
+                board[gamePieceReceived.Position] = gamePieceReceived.Piece;
+                UpdatePiecePositionOnBoard(gamePieceReceived);
+                RemovePieceReceiveFromPlayerStackPanel(gamePieceReceived);
+            }
         }
+
+        private Logic.Piece CreateConcretePieceType(HiveProxy.GamePice piece)
+        {
+            Logic.Piece pieceObtained = null;
+            string typeOfPiece = piece.piece.name;
+            switch (typeOfPiece)
+            {
+                case "Queen":
+                    pieceObtained = new Queen();
+                    break;
+                case "Spider":
+                    pieceObtained = new Spider();
+                    break;
+                case "Beetle":
+                    pieceObtained = new Beetle();
+                    break;
+                case "Ant":
+                    pieceObtained = new Ant();
+                    break;
+                case "Grasshopper":
+                    pieceObtained = new Grasshopper();
+                    break;
+            }
+            return pieceObtained;
+        }
+
+        private void RemovePieceReceiveFromPlayerStackPanel(GamePiece piece)
+        {
+            piece.Position = new Point(-1, -1);
+            if (player1Pieces.Contains(piece))
+            {
+                foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
+                {
+                    if (child.Tag == piece)
+                    {
+                        stckp_Player1Pieces.Children.Remove(child);
+                        break;
+                    }
+                }
+            }
+            else if (player2Pieces.Contains(piece))
+            {
+                foreach (var child in stckp_Player1Pieces.Children.OfType<Image>())
+                {
+                    if (child.Tag == piece)
+                    {
+                        stckp_Player1Pieces.Children.Remove(child);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void UpdatePiecePositionOnBoard(GamePiece piece)
+        {
+            if (cellDictionary.TryGetValue(piece.Position, out var cell))
+            {
+                PlacePieceReceivedOnCell(cell, piece);
+            }
+        }
+        private void PlacePieceReceivedOnCell(Polygon cell, GamePiece piece)
+        {
+            if (cell != null && piece != null)
+            {
+                var pieceImage = new Image
+                {
+                    Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
+                    Width = 48,
+                    Height = 48,
+                };
+                double hexX = Canvas.GetLeft(cell);
+                double hexY = Canvas.GetTop(cell);
+                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
+                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
+                Canvas.SetLeft(pieceImage, pieceX);
+                Canvas.SetTop(pieceImage, pieceY);
+                GameBoardGrid.Children.Add(pieceImage);
+                piece.Position = (Point)cell.Tag;
+                board[piece.Position] = piece.Piece;
+                lastPlacedCell = cell;
+                ResetHighlights();
+            }
+        }
+
 
         public void ReceiveTurns(bool isTurn)
         {
@@ -501,15 +639,21 @@ namespace HiveGameWPFApp.Views
 
         private void UpdatePlayerDisplay(UserSession user, Profile profileUser)
         {
+            usernamePlayer1 = usersInGame[0].username;
+            usernamePlayer2 = usersInGame[1].username;
             if (IsPlayer1SlotAvailable(user))
             {
                 txtbl_PlayerName1.Text = user.username;
                 img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces, usernamePlayer1);
+                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces, usernamePlayer2);
             }
             else if (IsPlayer2SlotAvailable(user))
             {
                 txtbl_PlayerName2.Text = user.username;
                 img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
+                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces, usernamePlayer1);
+                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces, usernamePlayer2);
             }
         }
 
@@ -592,5 +736,6 @@ namespace HiveGameWPFApp.Views
             LoginView loginView = new LoginView();
             this.NavigationService.Navigate(loginView);
         }
+
     }
 }
