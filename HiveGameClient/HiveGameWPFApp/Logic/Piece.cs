@@ -10,15 +10,18 @@ namespace HiveGameWPFApp.Logic
     public abstract class Piece
     {
         public string Name { get; set; }
-        public int Count { get; set; }
+
         public Point Position { get; set; }
+
+        public string playerName { get; set; }
+
         public abstract bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board);
 
         public override bool Equals(object obj)
         {
             if (obj is Piece other)
             {
-                return this.Name == other.Name && this.Count == other.Count && this.Position.Equals(other.Position);
+                return this.Name == other.Name && this.Position.Equals(other.Position);
             }
             return false;
         }
@@ -29,7 +32,7 @@ namespace HiveGameWPFApp.Logic
         public Queen()
         {
             Name = "Queen";
-            Count = 1;
+            playerName = " ";
         }
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
@@ -50,7 +53,7 @@ namespace HiveGameWPFApp.Logic
         public Spider()
         {
             Name = "Spider";
-            Count = 2;
+            playerName = " ";
         }
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
@@ -66,7 +69,7 @@ namespace HiveGameWPFApp.Logic
         public Beetle()
         {
             Name = "Beetle";
-            Count = 2;
+            playerName = " ";
         }
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
@@ -79,7 +82,7 @@ namespace HiveGameWPFApp.Logic
         public Ant()
         {
             Name = "Ant";
-            Count = 3;
+            playerName = " ";
         }
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
@@ -98,7 +101,7 @@ namespace HiveGameWPFApp.Logic
         public Grasshopper()
         {
             Name = "Grasshopper";
-            Count = 3;
+            playerName = " ";
         }
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
