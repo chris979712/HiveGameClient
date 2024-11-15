@@ -12,7 +12,6 @@ namespace HiveGameWPFApp.Logic
         public string Name { get; set; }
         public int Count { get; set; }
         public Point Position { get; set; }
-
         public abstract bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board);
 
         public override bool Equals(object obj)
