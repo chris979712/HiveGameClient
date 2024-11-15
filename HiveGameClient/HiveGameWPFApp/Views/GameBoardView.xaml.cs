@@ -39,8 +39,14 @@ namespace HiveGameWPFApp.Views
             {
                 new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1),"player1"),
                 new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1"),
                 new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1"),
                 new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1"),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1"),
                 new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1")
             };
 
@@ -48,8 +54,14 @@ namespace HiveGameWPFApp.Views
             {
                 new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player2.png", new Point(-1, -1), "player2"),
                 new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2"),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2"),
+                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2"),
                 new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2"),
                 new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2"),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2"),
                 new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2")
             };
 
@@ -98,25 +110,25 @@ namespace HiveGameWPFApp.Views
             for (int indexPieces = 0; indexPieces < pieces.Count; indexPieces++)
             {
                 pieces[indexPieces].playerName = username;
+                pieces[indexPieces].Piece.playerName = username;
             }
             playerPiecesPanel.Children.Clear();
-            foreach (var piece in pieces)
+            for (int i = 0; i < pieces.Count; i++)
             {
-                for (int i = 0; i < piece.Piece.Count; i++)
+                var piece = pieces[i];
+                piece.playerName = username;
+                piece.Piece.playerName = username;
+                var image = new Image
                 {
-                    piece.playerName = username;
-                    var image = new Image
-                    {
-                        Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
-                        Width = 50,
-                        Height = 50,
-                        Margin = new Thickness(0, -i * 25, 0, 0),
-                        Tag = piece,
-                        DataContext = piece
-                    };
-                    image.MouseDown += Piece_MouseDown;
-                    playerPiecesPanel.Children.Add(image);
-                }
+                    Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
+                    Width = 50,
+                    Height = 50,
+                    Margin = new Thickness(0, 0 * 25, 0, 0),
+                    Tag = piece,
+                    DataContext = piece
+                };
+                image.MouseDown += Piece_MouseDown;
+                playerPiecesPanel.Children.Add(image);
             }
         }
 
@@ -140,6 +152,7 @@ namespace HiveGameWPFApp.Views
                         Points = CreateHexagonPoints(hexagonSize),
                         Tag = new Point(row, col)
                     };
+                    hexagon.IsEnabled = false;
                     hexagon.MouseDown += Cell_MouseDown;
 
                     double x = col * xOffset;
@@ -164,13 +177,13 @@ namespace HiveGameWPFApp.Views
                 {
                     if (cellDictionary.TryGetValue(new Point(6, 6), out Polygon centerCell) && !board.ContainsKey(new Point(6, 6)))
                     {
-                        HighlightCell(new Point(6, 6));
+                        HighlightStartingFirstTurnStaterCell(new Point(6, 6));
                         PlacePieceOnCell(lastPlacedCell);
                     }
                     else
                     {
 
-                        HighlightAvailableStartingCells();
+                        HigligthStartingFirstTurnOponentCell(new Point(6,6));
                     }
                 }
                 else
@@ -234,49 +247,101 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void HighlightStartingFirstTurnStaterCell(Point position)
+        {
+            if (cellDictionary.TryGetValue(position, out Polygon cell))
+            {
+                cell.Fill = Brushes.Yellow;
+                lastPlacedCell = cell;
+            }
+        }
 
+        private void HigligthStartingFirstTurnOponentCell(Point position)
+        {
+            ResetHighlights();
+            var checkedPositions = new HashSet<Point>();
+            foreach (var piecePosition in board.Keys)
+            {
+                if(board.TryGetValue(piecePosition, out var currentStarterPice) && currentStarterPice != null)
+                {
+                    var adjacentOffsets = new List<Point>
+                    {
+                        new Point(piecePosition.X - 1, piecePosition.Y),
+                        new Point(piecePosition.X + 1, piecePosition.Y),
+                        new Point(piecePosition.X, piecePosition.Y - 1),
+                        new Point(piecePosition.X, piecePosition.Y + 1),
+                        new Point(piecePosition.X + 1, piecePosition.Y - 1),
+                        new Point(piecePosition.X - 1, piecePosition.Y - 1)
+                    };
+                    foreach (var offset in adjacentOffsets)
+                    {
+                        if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
+                        {
+                            bool isConnectedToColony = new List<Point>
+                                {
+                                    new Point(offset.X + 1, offset.Y),
+                                    new Point(offset.X - 1, offset.Y),
+                                    new Point(offset.X, offset.Y + 1),
+                                    new Point(offset.X, offset.Y - 1),
+                                    new Point(offset.X - 1, offset.Y + 1),
+                                    new Point(offset.X + 1, offset.Y + 1)
+                                }.Any(adj => board.ContainsKey(adj));
+                            if (isConnectedToColony)
+                            {
+                                cell.Fill = Brushes.LightGreen;
+                                cell.IsEnabled = true;
+                                cell.MouseDown += Cell_MouseDown;
+                                checkedPositions.Add(offset);
+                            }
+                        }
+                    }
+                }
+            }   
+        }
 
 
         private void HighlightAvailableStartingCells()
         {
-                ResetHighlights();
-                var checkedPositions = new HashSet<Point>();
+            ResetHighlights();
+            var checkedPositions = new HashSet<Point>();
             foreach (var piecePosition in board.Keys)
             {
-                var adjacentOffsets = new List<Point>
+                
+                if(board.TryGetValue(piecePosition, out var currentPlayerPiece) && currentPlayerPiece != null && currentPlayerPiece.playerName == UserProfileSingleton.username)
                 {
-                    new Point(piecePosition.X - 1, piecePosition.Y),
-                    new Point(piecePosition.X + 1, piecePosition.Y),
-                    new Point(piecePosition.X, piecePosition.Y - 1),
-                    new Point(piecePosition.X, piecePosition.Y + 1),
-                    new Point(piecePosition.X - 1, piecePosition.Y + 1),
-                    new Point(piecePosition.X + 1, piecePosition.Y - 1)
-                };
-
-                foreach (var offset in adjacentOffsets)
-                {
-                    if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
+                    var adjacentOffsets = new List<Point>
                     {
-                        bool isConnectedToColony = new List<Point>
+                        new Point(piecePosition.X - 1, piecePosition.Y),
+                        new Point(piecePosition.X + 1, piecePosition.Y),
+                        new Point(piecePosition.X, piecePosition.Y - 1),
+                        new Point(piecePosition.X, piecePosition.Y + 1),
+                        new Point(piecePosition.X + 1, piecePosition.Y - 1),
+                        new Point(piecePosition.X - 1, piecePosition.Y - 1)
+                    };
+                    foreach (var offset in adjacentOffsets)
+                    {
+                        if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
                         {
-                            new Point(offset.X - 1, offset.Y),
-                            new Point(offset.X + 1, offset.Y),
-                            new Point(offset.X, offset.Y - 1),
-                            new Point(offset.X, offset.Y + 1),
-                            new Point(offset.X - 1, offset.Y + 1),
-                            new Point(offset.X + 1, offset.Y - 1)
-                        }.Any(adj => board.ContainsKey(adj));
-                        if (isConnectedToColony)
-                        {
-                            cell.Fill = Brushes.LightGreen;
-                            cell.IsEnabled = true;
-                            cell.MouseDown += Cell_MouseDown;
-                            checkedPositions.Add(offset);
+                            bool isConnectedToColony = new List<Point>
+                            {
+                                new Point(offset.X + 1, offset.Y),
+                                new Point(offset.X - 1, offset.Y),
+                                new Point(offset.X, offset.Y + 1),
+                                new Point(offset.X, offset.Y - 1),
+                                new Point(offset.X - 1, offset.Y + 1),
+                                new Point(offset.X + 1, offset.Y + 1)
+                            }.Any(adj => board.ContainsKey(adj) && board[adj].playerName == UserProfileSingleton.username);
+                            if (isConnectedToColony)
+                            {
+                                cell.Fill = Brushes.LightGreen;
+                                cell.IsEnabled = true;
+                                cell.MouseDown += Cell_MouseDown;
+                                checkedPositions.Add(offset);
+                            }
                         }
                     }
-                }
+                } 
             }
-
         }
 
 
@@ -290,15 +355,6 @@ namespace HiveGameWPFApp.Views
                 points.Add(new Point(size * Math.Cos(angle), size * Math.Sin(angle)));
             }
             return points;
-        }
-
-        private void HighlightCell(Point position)
-        {
-            if (cellDictionary.TryGetValue(position, out Polygon cell))
-            {
-                cell.Fill = Brushes.Yellow;
-                lastPlacedCell = cell;
-            }
         }
 
         private void HighlightAvailableMoves(Polygon lastPlacedCell)
@@ -394,7 +450,6 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.Piece pieceMoved = new HiveProxy.Piece()
                 {
                     name = gamePiece.Piece.Name,
-                    count = gamePiece.Piece.Count,
                     position = gamePiece.Piece.Position
                 };
                 HiveProxy.GamePice gamePieceMoved = new HiveProxy.GamePice()
