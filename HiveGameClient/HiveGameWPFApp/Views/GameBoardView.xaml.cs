@@ -175,13 +175,19 @@ namespace HiveGameWPFApp.Views
                 }
                 else
                 {
-
-                    HighlightAvailableMoves(lastPlacedCell);
+                    Point staterMove = new Point(-1, -1);
+                    if(selectedPiece.Position == staterMove)
+                    {
+                        HighlightAvailableStartingCells();
+                    }
+                    else
+                    {
+                        HighlightAvailableMoves(lastPlacedCell);
+                    }
                 }
             }
         }
-
-        private void PieceOnBoard_MouseDown(object sender, MouseButtonEventArgs e)
+          private void PieceOnBoard_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Si no hay una pieza seleccionada, no hacemos nada.
             if (selectedPiece == null)
@@ -229,31 +235,48 @@ namespace HiveGameWPFApp.Views
         }
 
 
+
+
         private void HighlightAvailableStartingCells()
         {
-            ResetHighlights();
-
-            Point startPosition = lastPlacedCell?.Tag is Point pos ? pos : new Point(6, 6);
-
-            var adjacentOffsets = new List<Point>
+                ResetHighlights();
+                var checkedPositions = new HashSet<Point>();
+            foreach (var piecePosition in board.Keys)
             {
-                new Point(startPosition.X - 1, startPosition.Y),
-                new Point(startPosition.X + 1, startPosition.Y),
-                new Point(startPosition.X, startPosition.Y - 1),
-                new Point(startPosition.X, startPosition.Y + 1),
-                new Point(startPosition.X - 1, startPosition.Y + 1),
-                new Point(startPosition.X + 1, startPosition.Y - 1)
-            };
-
-            foreach (var offset in adjacentOffsets)
-            {
-                if (cellDictionary.TryGetValue(offset, out Polygon cell) && !board.ContainsKey(offset))
+                var adjacentOffsets = new List<Point>
                 {
-                    cell.Fill = Brushes.LightGreen;
-                    cell.IsEnabled = true;
-                    cell.MouseDown += Cell_MouseDown;
+                    new Point(piecePosition.X - 1, piecePosition.Y),
+                    new Point(piecePosition.X + 1, piecePosition.Y),
+                    new Point(piecePosition.X, piecePosition.Y - 1),
+                    new Point(piecePosition.X, piecePosition.Y + 1),
+                    new Point(piecePosition.X - 1, piecePosition.Y + 1),
+                    new Point(piecePosition.X + 1, piecePosition.Y - 1)
+                };
+
+                foreach (var offset in adjacentOffsets)
+                {
+                    if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
+                    {
+                        bool isConnectedToColony = new List<Point>
+                        {
+                            new Point(offset.X - 1, offset.Y),
+                            new Point(offset.X + 1, offset.Y),
+                            new Point(offset.X, offset.Y - 1),
+                            new Point(offset.X, offset.Y + 1),
+                            new Point(offset.X - 1, offset.Y + 1),
+                            new Point(offset.X + 1, offset.Y - 1)
+                        }.Any(adj => board.ContainsKey(adj));
+                        if (isConnectedToColony)
+                        {
+                            cell.Fill = Brushes.LightGreen;
+                            cell.IsEnabled = true;
+                            cell.MouseDown += Cell_MouseDown;
+                            checkedPositions.Add(offset);
+                        }
+                    }
                 }
             }
+
         }
 
 
@@ -280,31 +303,26 @@ namespace HiveGameWPFApp.Views
 
         private void HighlightAvailableMoves(Polygon lastPlacedCell)
         {
-            if (lastPlacedCell == null || selectedPiece == null)
+            ResetHighlights();
+            if (lastPlacedCell != null && selectedPiece != null)
             {
-                return;
-            }
-
-            var position = (Point)lastPlacedCell.Tag;
-
-            var adjacentOffsets = new List<Point>
-            {
+                var position = (Point)lastPlacedCell.Tag;
+                var adjacentOffsets = new List<Point>
+                {
                 new Point(position.X - 1, position.Y),
                 new Point(position.X + 1, position.Y),
                 new Point(position.X, position.Y - 1),
                 new Point(position.X, position.Y + 1),
                 new Point(position.X - 1, position.Y + 1),
                 new Point(position.X + 1, position.Y - 1)
-            };
-
-            foreach (var offset in adjacentOffsets)
-            {
-                if (cellDictionary.TryGetValue(offset, out Polygon cell))
+                };
+                foreach (var offset in adjacentOffsets)
                 {
-
-                    if (selectedPiece.Piece.IsValidMove(selectedPiece.Position, offset, board))
+                    if (cellDictionary.TryGetValue(offset, out Polygon cell) && selectedPiece.Piece.IsValidMove(selectedPiece.Position, offset, board))
                     {
                         cell.Fill = Brushes.LightGreen;
+                        cell.IsEnabled = true;
+                        cell.MouseDown += Cell_MouseDown;
                     }
                 }
             }
@@ -320,7 +338,7 @@ namespace HiveGameWPFApp.Views
                 {
                     PlacePieceOnCell(cell);
                 }
-                if (isFirstPiecePlaced || selectedPiece.Piece.IsValidMove(selectedPiece.Position, targetPosition, board))
+                else if (isFirstPiecePlaced || selectedPiece.Piece.IsValidMove(selectedPiece.Position, targetPosition, board))
                 {
                     PlacePieceOnCell(cell);
                 }
@@ -749,8 +767,6 @@ namespace HiveGameWPFApp.Views
             {
                 txtbl_PlayerName1.Text = user.username;
                 img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                LoadPlayerPieces(stckp_Player1Pieces, player1Pieces, usernamePlayer1);
-                LoadPlayerPieces(stckp_Player2Pieces, player2Pieces, usernamePlayer2);
             }
             if (usersInGame.Count == 2)
             {
@@ -759,10 +775,10 @@ namespace HiveGameWPFApp.Views
                 {
                     txtbl_PlayerName2.Text = user.username;
                     img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
-                    LoadPlayerPieces(stckp_Player1Pieces, player1Pieces, usernamePlayer1);
-                    LoadPlayerPieces(stckp_Player2Pieces, player2Pieces, usernamePlayer2);
                 }
             }
+            LoadPlayerPieces(stckp_Player1Pieces, player1Pieces, usernamePlayer1);
+            LoadPlayerPieces(stckp_Player2Pieces, player2Pieces, usernamePlayer2);
         }
 
 
