@@ -331,7 +331,17 @@ namespace HiveGameWPFApp.Views
                                 new Point(offset.X - 1, offset.Y + 1),
                                 new Point(offset.X + 1, offset.Y + 1)
                             }.Any(adj => board.ContainsKey(adj) && board[adj].playerName == UserProfileSingleton.username);
-                            if (isConnectedToColony)
+                            bool isNearEnemy = new List<Point>
+                            {
+                                new Point(offset.X + 1, offset.Y),
+                                new Point(offset.X - 1, offset.Y),
+                                new Point(offset.X, offset.Y + 1),
+                                new Point(offset.X, offset.Y - 1),
+                                new Point(offset.X - 1, offset.Y + 1),
+                                new Point(offset.X + 1, offset.Y - 1)
+                            }
+                            .Any(adj => board.ContainsKey(adj) && board[adj].playerName != UserProfileSingleton.username);
+                            if (isConnectedToColony && !isNearEnemy)
                             {
                                 cell.Fill = Brushes.LightGreen;
                                 cell.IsEnabled = true;
