@@ -29,9 +29,10 @@ namespace HiveGameWPFApp.Views
         private GamePiece selectedPiece;
         private Polygon lastPlacedCell;
         private Dictionary<Point, Polygon> cellDictionary = new Dictionary<Point, Polygon>();
-        private Dictionary<Point, Logic.Piece> board = new Dictionary<Point, Logic.Piece>();
+        private Dictionary<Point, Logic.GamePiece> board = new Dictionary<Point, Logic.GamePiece>();
         private List<UserSession> usersInGame;
         private int numberOfPlayer = 0;
+        private int numberOfTurn = 0;
         private string usernamePlayer1 = "";
         private string usernamePlayer2 = "";
 
@@ -72,6 +73,7 @@ namespace HiveGameWPFApp.Views
             InitializeBoard();
             ConnectToGameBoard();
             Constants.isInMatch = true;
+            numberOfTurn = 0;
         }
 
         private void ConnectToGameBoard()
@@ -163,101 +165,92 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void Cell_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (selectedPiece != null && sender is Polygon cell && cell != null)
+            {
+                PlacePieceOnCell(cell);
+            }
+        }
+
+        private void PieceSelected_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (ValidateQueenPieceIsInGame())
+            {
+                if (sender is Image imagePiece)
+                {
+                    GamePiece piece = (GamePiece)imagePiece.Tag;
+                    PieceOnBoard_MouseDown(piece);
+                }
+            }
+            else
+            {
+                DialogManager.ShowErrorMessageAlert("Para mover una pieza del tablero primero debes poner la reyna");
+            }
+            
+        }
+
         private void Piece_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
+            if(numberOfTurn == 4 && !ValidateQueenPieceIsInGame())
             {
-                selectedPiece = piece;
-
-                if (!isFirstPiecePlaced)
+                DialogManager.ShowErrorMessageAlert("Debes poner la reyna antes de seguir");
+            }
+            else
+            {
+                if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
                 {
-                    if (cellDictionary.TryGetValue(new Point(6, 6), out Polygon centerCell) && !board.ContainsKey(new Point(6, 6)))
+                    selectedPiece = piece;
+
+                    if (!isFirstPiecePlaced)
                     {
-                        HighlightStartingFirstTurnStaterCell(new Point(6, 6));
-                        PlacePieceOnCell(lastPlacedCell);
+                        if (cellDictionary.TryGetValue(new Point(6, 6), out Polygon centerCell) && !board.ContainsKey(new Point(6, 6)))
+                        {
+                            HighlightStartingFirstTurnStaterCell(new Point(6, 6));
+                            PlacePieceOnCell(lastPlacedCell);
+                        }
+                        else
+                        {
+
+                            HigligthStartingFirstTurnOponentCell(new Point(6, 6));
+                        }
                     }
                     else
                     {
+                        Point staterMove = new Point(-1, -1);
+                        if (selectedPiece.Position == staterMove)
+                        {
+                            HighlightAvailableStartingCells();
+                        }
 
-                        HigligthStartingFirstTurnOponentCell(new Point(6, 6));
                     }
-                }
-                else
-                {
-                    Point staterMove = new Point(-1, -1);
-                    if (selectedPiece.Position == staterMove)
-                    {
-                        HighlightAvailableStartingCells();
-                    }
-                    
                 }
             }
         }
-        private void PieceOnBoard_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private bool ValidateQueenPieceIsInGame()
         {
-            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
-            {
-                switch (selectedPiece.Piece)
+            return board.Values.Any(piece => piece != null && piece.Piece.Name.Equals("Queen") && piece.Piece.playerName == UserProfileSingleton.username);
+        }
+
+        private void PieceOnBoard_MouseDown(GamePiece piece)
+        {
+                switch (piece.Piece)
                 {
                     case Queen _:
+                        break;
                     case Spider _:
+                        break;
                     case Beetle _:
+                        break;
                     case Ant _:
+                        break;
                     case Grasshopper _:
-                        MovePieceAnywhere(selectedPiece);
                         break;
 
                     default:
-                        MessageBox.Show("Pieza no reconocida o no implementada");
                         break;
                 }
-            }
-        }
-
-        private void MovePieceAnywhere(Logic.GamePiece piece)
-        {
-            // Aquí podrías habilitar todas las celdas del tablero como válidas para mover
-            foreach (var cell in cellDictionary.Values)
-            {
-                cell.IsEnabled = true; // Habilita la celda para ser seleccionada
-                cell.Fill = Brushes.LightGreen; // Opcional: destacar la celda para indicar que es válida
-
-                // Asocia un evento para manejar el clic en la celda y mover la pieza
-                cell.MouseDown += (s, args) =>
-                {
-                    if (s is Polygon selectedCell)
-                    {
-                        // Mueve la pieza a la celda seleccionada
-                        PlacePieceOnCell(selectedCell, piece);
-                        ResetHighlights(); // Limpia las celdas destacadas
-                    }
-                };
-            }
-        }
-
-        private void PlacePieceOnCell(Polygon cell, Logic.GamePiece piece)
-        {
-            
-            if (cell != null && piece != null)
-            {
-                var pieceImage = new Image
-                {
-                    Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
-                    Width = 48,
-                    Height = 48,
-                };
-                double hexX = Canvas.GetLeft(cell);
-                double hexY = Canvas.GetTop(cell);
-                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 2;
-                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 2;
-                Canvas.SetLeft(pieceImage, pieceX);
-                Canvas.SetTop(pieceImage, pieceY);
-                GameBoardGrid.Children.Add(pieceImage);
-
-               
-                piece.Position = (Point)cell.Tag;
-                board[piece.Position] = piece.Piece;
-            }
         }
 
         private void MoveQueen(Point currentPosition)
@@ -418,35 +411,6 @@ namespace HiveGameWPFApp.Views
             return points;
         }
 
-        private void Cell_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var hexagon = sender as Polygon;
-            if (hexagon != null)
-            {
-                Point clickedCell = (Point)hexagon.Tag;
-
-                if (board.ContainsKey(clickedCell))
-                {
-                    var piece = board[clickedCell]; // Obtén la pieza en la celda
-                    if (selectedPiece != null)
-                    {
-                        // Si ya hay una pieza seleccionada, mueve la pieza seleccionada a la nueva celda
-                        MovePieceToCell(selectedPiece, clickedCell);
-                    }
-                    else
-                    {
-                        // Si no hay ninguna pieza seleccionada, selecciona la pieza en la celda
-                        SelectPiece(clickedCell);
-                    }
-                }else
-                {
-                        PlacePieceOnCell(hexagon);
-                    
-                }
-            }
-            
-
-        }
         private void PlacePieceOnCell(Polygon cell)
         {
             if (cell != null)
@@ -458,11 +422,10 @@ namespace HiveGameWPFApp.Views
                     Height = 48,
                     Tag = selectedPiece,
                 };
-
                 foreach (var polygon in GameBoardGrid.Children.OfType<Polygon>())
                 {
                     polygon.IsEnabled = false;
-                    polygon.MouseDown -= Cell_MouseDown;
+                    polygon.MouseDown += Cell_MouseDown;
                 }
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
@@ -472,14 +435,53 @@ namespace HiveGameWPFApp.Views
                 Canvas.SetTop(pieceImage, pieceY);
                 GameBoardGrid.Children.Add(pieceImage);
                 selectedPiece.Position = (Point)cell.Tag;
-                board[selectedPiece.Position] = selectedPiece.Piece;
+                board[selectedPiece.Position] = selectedPiece;
                 RemovePieceFromPlayer(selectedPiece);
                 SendPiecePositionToServer(selectedPiece);
                 lastPlacedCell = cell;
                 isFirstPiecePlaced = true;
                 selectedPiece = null;
                 ResetHighlights();
+            }
+        }
 
+        private void UnlockPlacesWhereThereIsPiece()
+        {
+            foreach(var pieceInBoard in board)
+            {
+                Point placeToUnlock = pieceInBoard.Key;
+                if (cellDictionary.ContainsKey(placeToUnlock) && pieceInBoard.Value.playerName == UserProfileSingleton.username)
+                {
+                    cellDictionary[placeToUnlock].IsEnabled = true;
+                }
+            }
+            List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
+            foreach(Image imageOnBoard in imagesOnBoard)
+            {
+                GamePiece piece = (GamePiece)imageOnBoard.Tag;
+                if(piece.playerName == UserProfileSingleton.username)
+                {
+                    imageOnBoard.IsEnabled = true;
+                    imageOnBoard.MouseDown += PieceSelected_MouseDown;
+                }
+            }
+        }
+
+        private void LockPlacesFromTheGameBoard()
+        {
+            foreach (var pieceInBoard in board)
+            {
+                Point placeToUnlock = pieceInBoard.Key;
+                if (cellDictionary.ContainsKey(placeToUnlock))
+                {
+                    cellDictionary[placeToUnlock].IsEnabled = false;
+                }
+            }
+            List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
+            foreach (Image imageOnBoard in imagesOnBoard)
+            {
+                imageOnBoard.IsEnabled = false;
+                imageOnBoard.MouseDown -= PieceSelected_MouseDown;
             }
         }
 
@@ -708,7 +710,7 @@ namespace HiveGameWPFApp.Views
                 {
                     board.Remove(existingPiece.Position);
                 }
-                board[gamePieceReceived.Position] = gamePieceReceived.Piece;
+                board[gamePieceReceived.Position] = gamePieceReceived;
                 UpdatePiecePositionOnBoard(gamePieceReceived);
                 RemovePieceReceiveFromPlayerStackPanel(gamePieceReceived);
             }
@@ -783,6 +785,7 @@ namespace HiveGameWPFApp.Views
                     Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
                     Width = 48,
                     Height = 48,
+                    Tag = piece
                 };
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
@@ -792,7 +795,7 @@ namespace HiveGameWPFApp.Views
                 Canvas.SetTop(pieceImage, pieceY);
                 GameBoardGrid.Children.Add(pieceImage);
                 piece.Position = (Point)cell.Tag;
-                board[piece.Position] = piece.Piece;
+                board[piece.Position] = piece;
                 lastPlacedCell = cell;
                 ResetHighlights();
             }
@@ -808,12 +811,15 @@ namespace HiveGameWPFApp.Views
                 {
                     stckp_Player1.IsEnabled = true;
                     EnablePiecesOnBoard();
+                    UnlockPlacesWhereThereIsPiece();
                 }
                 else
                 {
                     stckp_Player2.IsEnabled = true;
+                    UnlockPlacesWhereThereIsPiece();
                     EnablePiecesOnBoard();
                 }
+                numberOfTurn++;
             }
             else
             {
