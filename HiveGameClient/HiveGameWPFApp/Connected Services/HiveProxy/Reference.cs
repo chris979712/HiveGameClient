@@ -821,10 +821,10 @@ namespace HiveGameWPFApp.HiveProxy {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int countField;
+        private string nameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nameField;
+        private string playerNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Windows.Point positionField;
@@ -840,19 +840,6 @@ namespace HiveGameWPFApp.HiveProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int count {
-            get {
-                return this.countField;
-            }
-            set {
-                if ((this.countField.Equals(value) != true)) {
-                    this.countField = value;
-                    this.RaisePropertyChanged("count");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string name {
             get {
                 return this.nameField;
@@ -861,6 +848,19 @@ namespace HiveGameWPFApp.HiveProxy {
                 if ((object.ReferenceEquals(this.nameField, value) != true)) {
                     this.nameField = value;
                     this.RaisePropertyChanged("name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string playerName {
+            get {
+                return this.playerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playerNameField, value) != true)) {
+                    this.playerNameField = value;
+                    this.RaisePropertyChanged("playerName");
                 }
             }
         }
