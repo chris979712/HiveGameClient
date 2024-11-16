@@ -117,12 +117,12 @@
                     </Button.Background>
                 </Button>
 
-                <Image x:Name="img_Pet"  
-                       Source="/Images/Icons/Code Swarm.png"
-                       Width="296" Height="58"
+                <Image x:Name="img_Iccon"  
+                       Source="/Images/Icons/Hive.png"
+                       Width="154" Height="58"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Margin="121,95,0,0"
+                       Margin="197,83,0,0"
                        RenderTransformOrigin="0.5,0.5"
                        Panel.ZIndex="1"/>
 
