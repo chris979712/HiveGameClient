@@ -247,6 +247,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        //Se inicia la partida
         private void HighlightStartingFirstTurnStaterCell(Point position)
         {
             if (cellDictionary.TryGetValue(position, out Polygon cell))
@@ -256,6 +257,7 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        //El rival tira la pieza
         private void HigligthStartingFirstTurnOponentCell(Point position)
         {
             ResetHighlights();
@@ -299,7 +301,7 @@ namespace HiveGameWPFApp.Views
             }   
         }
 
-
+        //Cuando vas a lanzar la pieza
         private void HighlightAvailableStartingCells()
         {
             ResetHighlights();
