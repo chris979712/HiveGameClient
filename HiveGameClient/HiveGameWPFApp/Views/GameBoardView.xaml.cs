@@ -189,59 +189,109 @@ namespace HiveGameWPFApp.Views
                     {
                         HighlightAvailableStartingCells();
                     }
-                    else
-                    {
-                        HighlightAvailableMoves(lastPlacedCell);
-                    }
+                    
                 }
             }
         }
         private void PieceOnBoard_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Si no hay una pieza seleccionada, no hacemos nada.
-            if (selectedPiece == null)
+            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
             {
-                return;
-            }
-
-            // Caso cuando se selecciona una pieza en el tablero
-            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece)
-            {
-                // Verificamos si la pieza seleccionada está en el tablero y pertenece al jugador actual
-                // Aseguramos que la pieza está ya colocada en el tablero (es decir, no está en las piezas disponibles)
-                if (piece.Position != null && piece.playerName == UserProfileSingleton.username)
+                switch (selectedPiece.Piece)
                 {
-                    selectedPiece = piece;
+                    case Queen _:
+                    case Spider _:
+                    case Beetle _:
+                    case Ant _:
+                    case Grasshopper _:
+                        MovePieceAnywhere(selectedPiece);
+                        break;
 
-                    // Resaltamos las celdas disponibles para mover la pieza
-                    if (cellDictionary.TryGetValue(piece.Position, out Polygon cell))
-                    {
-                        HighlightAvailableMoves(cell);
-                    }
-                }
-                // Si la pieza está fuera del tablero (es una pieza del inventario del jugador), no hacemos nada
-                else
-                {
-                    return;  // No hacer nada si la pieza no está en el tablero
-                }
-            }
-            // Caso cuando se selecciona una celda del tablero para colocar una pieza
-            else if (sender is Polygon cell)
-            {
-                // Si ya hay una pieza seleccionada y la celda es válida para colocarla
-                if (selectedPiece != null && cell != null)
-                {
-                    // Obtenemos la posición de la celda donde el jugador quiere colocar la pieza
-                    Point targetPosition = (Point)cell.Tag;
-
-                    // Verificamos si el movimiento es válido antes de colocar la pieza
-                    if (selectedPiece.Piece.IsValidMove(selectedPiece.Position, targetPosition, board))
-                    {
-                        PlacePieceOnCell(cell);  // Coloca la pieza en la celda
-                    }
+                    default:
+                        MessageBox.Show("Pieza no reconocida o no implementada");
+                        break;
                 }
             }
         }
+
+        private void MovePieceAnywhere(Logic.GamePiece piece)
+        {
+            // Aquí podrías habilitar todas las celdas del tablero como válidas para mover
+            foreach (var cell in cellDictionary.Values)
+            {
+                cell.IsEnabled = true; // Habilita la celda para ser seleccionada
+                cell.Fill = Brushes.LightGreen; // Opcional: destacar la celda para indicar que es válida
+
+                // Asocia un evento para manejar el clic en la celda y mover la pieza
+                cell.MouseDown += (s, args) =>
+                {
+                    if (s is Polygon selectedCell)
+                    {
+                        // Mueve la pieza a la celda seleccionada
+                        PlacePieceOnCell(selectedCell, piece);
+                        ResetHighlights(); // Limpia las celdas destacadas
+                    }
+                };
+            }
+        }
+
+        private void PlacePieceOnCell(Polygon cell, Logic.GamePiece piece)
+        {
+            
+            if (cell != null && piece != null)
+            {
+                var pieceImage = new Image
+                {
+                    Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
+                    Width = 48,
+                    Height = 48,
+                };
+                double hexX = Canvas.GetLeft(cell);
+                double hexY = Canvas.GetTop(cell);
+                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 2;
+                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 2;
+                Canvas.SetLeft(pieceImage, pieceX);
+                Canvas.SetTop(pieceImage, pieceY);
+                GameBoardGrid.Children.Add(pieceImage);
+
+               
+                piece.Position = (Point)cell.Tag;
+                board[piece.Position] = piece.Piece;
+            }
+        }
+
+        private void MoveQueen(Point currentPosition)
+        {
+            // Implementa las reglas de movimiento específicas de la Reina
+            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+        private void MoveSpider(Point currentPosition)
+        {
+            // Implementa las reglas de movimiento específicas de la Reina
+            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+        private void MoveBeetle(Point currentPosition)
+        {
+            // Implementa las reglas de movimiento específicas de la Reina
+            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+        private void MoveAnt(Point currentPosition)
+        {
+            // Implementa las reglas de movimiento específicas de la Reina
+            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+        private void MoveGrasshopper(Point currentPosition)
+        {
+            // Implementa las reglas de movimiento específicas de la Reina
+            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+
+
         private void HighlightStartingFirstTurnStaterCell(Point position)
         {
             if (cellDictionary.TryGetValue(position, out Polygon cell))
@@ -357,8 +407,6 @@ namespace HiveGameWPFApp.Views
             return adjacentPoints;
         }
 
-
-
         private PointCollection CreateHexagonPoints(double size)
         {
             var points = new PointCollection();
@@ -370,53 +418,35 @@ namespace HiveGameWPFApp.Views
             return points;
         }
 
-        private void HighlightAvailableMoves(Polygon lastPlacedCell)
-        {
-            ResetHighlights();
-            if (lastPlacedCell != null && selectedPiece != null)
-            {
-                var position = (Point)lastPlacedCell.Tag;
-                var adjacentOffsets = new List<Point>
-                {
-                new Point(position.X - 1, position.Y),
-                new Point(position.X + 1, position.Y),
-                new Point(position.X, position.Y - 1),
-                new Point(position.X, position.Y + 1),
-                new Point(position.X - 1, position.Y + 1),
-                new Point(position.X + 1, position.Y - 1)
-                };
-                foreach (var offset in adjacentOffsets)
-                {
-                    if (cellDictionary.TryGetValue(offset, out Polygon cell) && selectedPiece.Piece.IsValidMove(selectedPiece.Position, offset, board))
-                    {
-                        cell.Fill = Brushes.LightGreen;
-                        cell.IsEnabled = true;
-                        cell.MouseDown += Cell_MouseDown;
-                    }
-                }
-            }
-        }
-
-
         private void Cell_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (selectedPiece != null && sender is Polygon cell)
+            var hexagon = sender as Polygon;
+            if (hexagon != null)
             {
-                var targetPosition = (Point)cell.Tag;
-                if (!isFirstPiecePlaced || selectedPiece.Piece.IsValidMove(selectedPiece.Position, targetPosition, board))
+                Point clickedCell = (Point)hexagon.Tag;
+
+                if (board.ContainsKey(clickedCell))
                 {
-                    PlacePieceOnCell(cell);
-                }
-                else if (isFirstPiecePlaced || selectedPiece.Piece.IsValidMove(selectedPiece.Position, targetPosition, board))
+                    var piece = board[clickedCell]; // Obtén la pieza en la celda
+                    if (selectedPiece != null)
+                    {
+                        // Si ya hay una pieza seleccionada, mueve la pieza seleccionada a la nueva celda
+                        MovePieceToCell(selectedPiece, clickedCell);
+                    }
+                    else
+                    {
+                        // Si no hay ninguna pieza seleccionada, selecciona la pieza en la celda
+                        SelectPiece(clickedCell);
+                    }
+                }else
                 {
-                    PlacePieceOnCell(cell);
+                        PlacePieceOnCell(hexagon);
+                    
                 }
             }
+            
+
         }
-
-
-
-
         private void PlacePieceOnCell(Polygon cell)
         {
             if (cell != null)
@@ -426,6 +456,7 @@ namespace HiveGameWPFApp.Views
                     Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
                     Width = 48,
                     Height = 48,
+                    Tag = selectedPiece,
                 };
 
                 foreach (var polygon in GameBoardGrid.Children.OfType<Polygon>())
@@ -449,11 +480,8 @@ namespace HiveGameWPFApp.Views
                 selectedPiece = null;
                 ResetHighlights();
 
-
             }
         }
-
-
 
         private void SendPiecePositionToServer(Logic.GamePiece gamePiece)
         {
@@ -525,7 +553,6 @@ namespace HiveGameWPFApp.Views
                 }
             }
         }
-
         private void ResetHighlights()
         {
             foreach (UIElement element in GameBoardGrid.Children)
@@ -556,7 +583,6 @@ namespace HiveGameWPFApp.Views
                 }
             }
         }
-
         private void DisconnectGuestPlayer()
         {
             LoggerManager logger = new LoggerManager(this.GetType());
@@ -592,7 +618,6 @@ namespace HiveGameWPFApp.Views
                 ReturnToLoginView();
             }
         }
-
         private void DisconnectNormalPlayer()
         {
             LoggerManager logger = new LoggerManager(this.GetType());
@@ -636,7 +661,6 @@ namespace HiveGameWPFApp.Views
                 ReturnToLoginView();
             }
         }
-
         private void GoToMainView()
         {
             MatchSingleton.Instance.ResetSingleton();
@@ -783,10 +807,12 @@ namespace HiveGameWPFApp.Views
                 if(numberOfPlayer == 1)
                 {
                     stckp_Player1.IsEnabled = true;
+                    EnablePiecesOnBoard();
                 }
                 else
                 {
                     stckp_Player2.IsEnabled = true;
+                    EnablePiecesOnBoard();
                 }
             }
             else
@@ -801,10 +827,35 @@ namespace HiveGameWPFApp.Views
                 if (numberOfPlayer == 1)
                 {
                     stckp_Player1.IsEnabled = false;
+                    EnablePiecesOnBoard();
                 }
                 else
                 {
                     stckp_Player2.IsEnabled = false;
+                    EnablePiecesOnBoard();
+                }
+                DisablePiecesOnBoard();
+            }
+        }
+
+        private void EnablePiecesOnBoard()
+        {
+            foreach (UIElement element in GameBoardGrid.Children)
+            {
+                if (element is Image image && image.Tag is Logic.GamePiece)
+                {
+                    image.IsEnabled = true;
+                }
+            }
+        }
+
+        private void DisablePiecesOnBoard()
+        {
+            foreach (UIElement element in GameBoardGrid.Children)
+            {
+                if (element is Image image && image.Tag is Logic.GamePiece)
+                {
+                    image.IsEnabled = false;
                 }
             }
         }
