@@ -283,26 +283,19 @@ namespace HiveGameWPFApp.Views
         {
             ResetHighlights();
             var checkedPositions = new HashSet<Point>();
+
             foreach (var piecePosition in board.Keys)
             {
-
-                if (board.TryGetValue(piecePosition, out var currentPlayerPiece) && currentPlayerPiece != null && currentPlayerPiece.playerName == UserProfileSingleton.username)
+                if (board[piecePosition].playerName == UserProfileSingleton.username)
                 {
                     var adjacentOffsets = obtainAdjacentPoints(piecePosition);
+
                     foreach (var offset in adjacentOffsets)
                     {
                         if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
                         {
-                            List<Point> adjacenColliderPoints = obtaintAdjacentColliderPoints(offset, piecePosition);
-                            bool isConnectedToColony = adjacenColliderPoints.Any(adj => board.ContainsKey(adj) && board[adj].playerName == UserProfileSingleton.username);
-                            bool isNearEnemy = false;
-                            foreach (var adj in adjacenColliderPoints)
-                            {
-                                if (board.ContainsKey(adj) && board[adj].playerName != UserProfileSingleton.username)
-                                {
-                                    isNearEnemy = true;
-                                }
-                            }
+                            bool isConnectedToColony = obtainAdjacentPoints(offset).Any(adj => board.ContainsKey(adj) && board[adj].playerName == UserProfileSingleton.username);
+                            bool isNearEnemy = obtainAdjacentPoints(offset).Any(adj => board.ContainsKey(adj) && board[adj].playerName != UserProfileSingleton.username);
                             if (isConnectedToColony && !isNearEnemy)
                             {
                                 cell.Fill = Brushes.LightGreen;
