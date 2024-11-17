@@ -283,38 +283,22 @@
     <Resource Include="Images\Characters\Mexico.png" />
     <Resource Include="Images\Characters\SoundOf.png" />
     <Resource Include="Images\Characters\SoundOn.png" />
-    <Resource Include="Images\Background\GameBoardBackground.png" />
     <Resource Include="Images\Background\GameBoard2Background.png" />
     <Resource Include="Images\Icons\Go out Game.png" />
     <Resource Include="Images\Background\BottonPlay.png" />
     <Resource Include="Images\Background\loginBackground.png" />
-    <Content Include="Images\GamePieces\Ant_Player1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Ant_Player2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Beetle_Player1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Beetle_Player2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Grasshopper_Player1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Grasshopper_Player2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\Icons\Hive.png" />
+    <Resource Include="Images\Background\GameBoardBackground.png" />
+    <Resource Include="Images\GamePieces\Ant_Player1.png" />
+    <Resource Include="Images\GamePieces\Ant_Player2.png" />
+    <Resource Include="Images\GamePieces\Beetle_Player1.png" />
+    <Resource Include="Images\GamePieces\Beetle_Player2.png" />
+    <Resource Include="Images\GamePieces\Grasshopper_Player1.png" />
+    <Resource Include="Images\GamePieces\Grasshopper_Player2.png" />
     <Resource Include="Images\GamePieces\Queen_Player1.png" />
     <Resource Include="Images\GamePieces\Queen_Player2.png" />
-    <Content Include="Images\GamePieces\Spider_Player1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\GamePieces\Spider_Player2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Images\Icons\Hive.png" />
+    <Resource Include="Images\GamePieces\Spider_Player1.png" />
+    <Resource Include="Images\GamePieces\Spider_Player2.png" />
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
