@@ -468,4 +468,13 @@
   <data name="dialogManagerConfirmationLeaveMatch" xml:space="preserve">
     <value>¿Está seguro de abandonar la partida?, su reputación se verá afectada.</value>
   </data>
+  <data name="dialogCouldntObtainPieceName" xml:space="preserve">
+    <value>No se ha podido obtener el tipo de pieza a mover.</value>
+  </data>
+  <data name="dialogBrokeHiveAlert" xml:space="preserve">
+    <value>No puedes mover piezas que rompan la colmena en dos partes.</value>
+  </data>
+  <data name="dialogQueenIsNotInPlay" xml:space="preserve">
+    <value>Debes poner tu Reyna antes o en el cuarto turno. Por favor selecciona donde ponerla.</value>
+  </data>
 </root>
