@@ -194,14 +194,14 @@ namespace HiveGameWPFApp.Views
 
         private void Piece_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(numberOfTurn == 4 && !ValidateQueenPieceIsInGame())
+            if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
             {
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogQueenIsNotInPlay);
-                HighlightAvailableStartingCells();
-            }
-            else
-            {
-                if (sender is Image pieceImage && pieceImage.DataContext is GamePiece piece && piece.playerName == UserProfileSingleton.username)
+                if (numberOfTurn == 4 && !ValidateQueenPieceIsInGame() && piece.Piece.Name != "Queen")
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogQueenIsNotInPlay);
+                    HighlightAvailableStartingCells();
+                }
+                else
                 {
                     selectedPiece = piece;
 
@@ -214,7 +214,6 @@ namespace HiveGameWPFApp.Views
                         }
                         else
                         {
-
                             HigligthStartingFirstTurnOponentCell(new Point(6, 6));
                         }
                     }
@@ -225,7 +224,6 @@ namespace HiveGameWPFApp.Views
                         {
                             HighlightAvailableStartingCells();
                         }
-
                     }
                 }
             }
