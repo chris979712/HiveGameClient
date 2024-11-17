@@ -468,4 +468,13 @@
   <data name="dialogManagerConfirmationLeaveMatch" xml:space="preserve">
     <value>Are you sure to leave the game?, your reputation will be affected.</value>
   </data>
+  <data name="dialogCouldntObtainPieceName" xml:space="preserve">
+    <value>Couldn't obtain the type of piece to move</value>
+  </data>
+  <data name="dialogBrokeHiveAlert" xml:space="preserve">
+    <value>You can't move pieces that can break the hive into two parts.</value>
+  </data>
+  <data name="dialogQueenIsNotInPlay" xml:space="preserve">
+    <value>You have to place your Queen before or in the fourth turn, please select where to place it.</value>
+  </data>
 </root>

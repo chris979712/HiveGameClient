@@ -295,6 +295,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You can&apos;t move pieces that can break the hive into two parts..
+        /// </summary>
+        public static string dialogBrokeHiveAlert {
+            get {
+                return ResourceManager.GetString("dialogBrokeHiveAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You can&apos;t add yourself as a friend..
         /// </summary>
         public static string dialogCanNotAddYourself {
@@ -372,6 +381,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogCouldntLobbyDisconnection {
             get {
                 return ResourceManager.GetString("dialogCouldntLobbyDisconnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Couldn&apos;t obtain the type of piece to move..
+        /// </summary>
+        public static string dialogCouldntObtainPieceName {
+            get {
+                return ResourceManager.GetString("dialogCouldntObtainPieceName", resourceCulture);
             }
         }
         
@@ -606,6 +624,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogNoUsernameFound {
             get {
                 return ResourceManager.GetString("dialogNoUsernameFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You have to place your Queen before or in the fourth turn, please select where to place it..
+        /// </summary>
+        public static string dialogQueenIsNotInPlay {
+            get {
+                return ResourceManager.GetString("dialogQueenIsNotInPlay", resourceCulture);
             }
         }
         
