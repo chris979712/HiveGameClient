@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -238,12 +239,15 @@ namespace HiveGameWPFApp.Views
         private void PieceOnBoard_MouseDown(GamePiece piece)
         {
             string typeOfPiece = piece.Piece.Name;
-            if (!ValidateThatPieceCannotBreakTheHive(piece.Position))
+            if (ValidateThatPieceCannotBreakTheHive(piece.Position))
             {
                 switch (typeOfPiece)
                 {
                     case "Queen":
                         MoveQueen(piece);
+                        break;
+                    case "Spider":
+                        MoveSpider(piece);
                         break;
                     default:
                         DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntObtainPieceName);
@@ -262,14 +266,15 @@ namespace HiveGameWPFApp.Views
             ResetHighlights();
             selectedPiece = piece;  
             var checkedPositions = new HashSet<Point>();
+            Point queenPosition = piece.Position;
+            var queenPiece = board[queenPosition];
+            board.Remove(queenPosition);
             var adjacentPoints = obtainAdjacentPoints(piece.Position);
             foreach (var offset in adjacentPoints)
             {
                 if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
                 {
-                    List<Point> adjacentColliderPositions = obtainAdjacentPoints(offset);
-                    bool isConnectedToColony = adjacentColliderPositions.Any(adj => board.ContainsKey(adj));
-                    if (isConnectedToColony)
+                    if (IsConnectedToHive(offset) && !IsSurrounded(offset))
                     {
                         cell.Fill = Brushes.LightGreen;
                         cell.IsEnabled = true;
@@ -279,12 +284,24 @@ namespace HiveGameWPFApp.Views
                     }
                 }
             }
+            board.Add(queenPosition, queenPiece);
         }
 
         private void MoveSpider(GamePiece piece)
         {
-            // Implementa las reglas de movimiento específicas de la Reina
-            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+            ResetHighlights();
+            selectedPiece = piece;
+            List<Point> posibleMoves = ObtainSpiderMoves(piece.Position);
+            foreach(var posiblePosition in posibleMoves)
+            {
+                if(cellDictionary.TryGetValue(posiblePosition, out Polygon cell))
+                {
+                    cell.Fill = Brushes.Green;
+                    cell.IsEnabled = true;
+                    cell.MouseDown -= Cell_MouseDown;
+                    cell.MouseDown+= PlacePieceThatIsInGame_MouseDown;
+                }
+            }
         }
 
         private void MoveBeetle(GamePiece piece)
@@ -303,6 +320,39 @@ namespace HiveGameWPFApp.Views
         {
             // Implementa las reglas de movimiento específicas de la Reina
             // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+        }
+
+        private List<Point> ObtainSpiderMoves(Point start)
+        {
+            Queue<(Point position, int steps)> queue = new Queue<(Point position, int steps)> ();
+            HashSet<Point> visitedPoint = new HashSet<Point>();
+            List<Point> validMoves = new List<Point>();
+            queue.Enqueue((start, 0));
+            visitedPoint.Add(start);
+            while (queue.Count > 0)
+            {
+                var (currentPosition, currentSteps) = queue.Dequeue ();
+                if(currentSteps < 3)
+                {
+                    var adjacentPoints = obtainAdjacentPoints(currentPosition);
+                    foreach(var adjacent in adjacentPoints)
+                    {
+                        if(!visitedPoint.Contains(adjacent) && !board.ContainsKey(adjacent))
+                        {
+                            if (IsConnectedToHive(adjacent))
+                            {
+                                visitedPoint.Add(adjacent);
+                                queue.Enqueue((adjacent, currentSteps + 1));
+                            }
+                        }
+                    }
+                }
+                else if(currentSteps == 3 && IsConnectedToHive(currentPosition))
+                {
+                    validMoves.Add(currentPosition);
+                }
+            }
+            return validMoves;
         }
 
         private void PlacePieceThatIsInGame_MouseDown(object sender, MouseButtonEventArgs e)
@@ -354,25 +404,44 @@ namespace HiveGameWPFApp.Views
 
         private bool ValidateThatPieceCannotBreakTheHive(Point positionPiece)
         {
-            bool verificationResult = true;
-            int verificationOfMatches = 0;
-            List<Point> points = obtainAdjacentPoints(positionPiece);
-            foreach(var pieceInBoard in board)
+            bool validationResult = false;
+            var piece = board[positionPiece];
+            board.Remove(positionPiece);
+            Point start = board.Keys.FirstOrDefault();
+            HashSet<Point> visited = new HashSet<Point>();
+            CheckConnectedPieces(start, visited);
+            if(visited.Count == board.Count)
             {
-                if (points.Contains(pieceInBoard.Key))
-                {
-                    verificationOfMatches++;
-                }
-            }
-            if(verificationOfMatches >= 2)
-            {
-                verificationResult = true;
+                validationResult = true;
             }
             else
             {
-                verificationResult = false;
+                validationResult = false;
             }
-            return verificationResult;
+            board.Add(positionPiece, piece);
+            return validationResult;
+        }
+
+        private void CheckConnectedPieces(Point start, HashSet<Point> visited)
+        {
+            Stack<Point> stack = new Stack<Point>();
+            stack.Push(start);
+            while(stack.Count > 0)
+            {
+                Point currentPoint = stack.Pop();
+                if (!visited.Contains(currentPoint))
+                {
+                    visited.Add(currentPoint);
+                    List<Point> adjacentPoints = obtainAdjacentPoints(currentPoint);
+                    foreach(var adjacentCollider in adjacentPoints)
+                    {
+                        if(!visited.Contains(adjacentCollider) && board.ContainsKey(adjacentCollider))
+                        {
+                            stack.Push(adjacentCollider);
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -450,6 +519,36 @@ namespace HiveGameWPFApp.Views
                     }
                 }
             }
+        }
+
+        private bool AdjacentCanMakeSurrondedPositions(Point position)
+        {
+            bool validationResult = false;
+            board.Add(position,null);
+            var adjacentPoints = obtainAdjacentPoints(position);
+            foreach(var adjacent in adjacentPoints)
+            {
+                if (!IsSurrounded(adjacent))
+                {
+                    validationResult = true;
+                }
+            }
+            board.Remove(position);
+            return validationResult;
+        }
+
+        private bool IsSurrounded(Point position)
+        {
+            var adjacentPoints = obtainAdjacentPoints(position);
+            int occupiedSides = adjacentPoints.Count(adj => board.ContainsKey(adj));
+            return occupiedSides != 5;
+        }
+
+        private bool IsConnectedToHive(Point position)
+        {
+            var adjacentPoints = obtainAdjacentPoints(position);
+            bool isConnectedToColony = adjacentPoints.Any(adj => board.ContainsKey(adj));
+            return isConnectedToColony;
         }
 
         private List<Point> obtainAdjacentPoints(Point piecePosition)
@@ -914,12 +1013,9 @@ namespace HiveGameWPFApp.Views
             {
                 board.Remove(oldPosition);
             }
-            var imageToRemove = GameBoardGrid.Children.OfType<Image>().
-                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).ToList();
-            foreach (var pieceToQuit in imageToRemove)
-            {
-                GameBoardGrid.Children.Remove(pieceToQuit);
-            }
+            Image imageToRemove = GameBoardGrid.Children.OfType<Image>().
+                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).FirstOrDefault();
+            GameBoardGrid.Children.Remove(imageToRemove);
             GameBoardGrid.Children.Add(pieceImage);
             GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
             board[pieceToAdd.Position] = pieceToAdd;
