@@ -13,7 +13,7 @@
         <Grid >
             <Border>
                 <Border.Background>
-                    <ImageBrush ImageSource="/Images/Background/GameBoard2Background.png" Stretch="UniformToFill" />
+                    <ImageBrush ImageSource="/Images/Background/GameBoardBackground.png" Stretch="UniformToFill" />
                 </Border.Background>
             </Border>
 
