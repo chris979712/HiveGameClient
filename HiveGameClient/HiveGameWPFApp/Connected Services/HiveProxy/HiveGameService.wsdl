@@ -1056,6 +1056,7 @@
       <xs:complexType name="GamePice">
         <xs:sequence>
           <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numberOfPiece" type="xs:int" />
           <xs:element minOccurs="0" name="piece" nillable="true" type="tns:Piece" />
           <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
           <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="position" type="q1:Point" />

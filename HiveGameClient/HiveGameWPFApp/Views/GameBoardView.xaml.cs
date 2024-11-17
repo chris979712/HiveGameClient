@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,32 +39,32 @@ namespace HiveGameWPFApp.Views
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
             {
-                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
-                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
-                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1"),
-                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1"),
-                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1")
+                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1),"player1",1),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1",2),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player1.png", new Point(-1, -1),"player1",3),
+                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1",4),
+                new GamePiece(new Beetle (), "/Images/GamePieces/Beetle_Player1.png", new Point(-1, -1),"player1",5),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1",6),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1",7),
+                new GamePiece(new Ant  (), "/Images/GamePieces/Ant_Player1.png", new Point(-1, -1), "player1",8),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1",9),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1",10),
+                new GamePiece(new Grasshopper  (), "/Images/GamePieces/Grasshopper_Player1.png", new Point(-1, -1),"player1",11)
             };
 
         private List<GamePiece> player2Pieces = new List<GamePiece>
             {
-                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2"),
-                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2"),
-                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2"),
-                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2"),
-                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2"),
-                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2")
+                new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player2.png", new Point(-1, -1), "player2",1),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2",2),
+                new GamePiece(new Spider(), "/Images/GamePieces/Spider_Player2.png", new Point(-1, -1),"player2",3),
+                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2",4),
+                new GamePiece(new Beetle(), "/Images/GamePieces/Beetle_Player2.png", new Point(-1, -1),"player2",5),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2",6),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2",7),
+                new GamePiece(new Ant(), "/Images/GamePieces/Ant_Player2.png", new Point(-1, -1), "player2",8),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2",9),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2",10),
+                new GamePiece(new Grasshopper (), "/Images/GamePieces/Grasshopper_Player2.png", new Point(-1, -1), "player2",11)
             };
 
         public GameBoardView()
@@ -129,8 +130,8 @@ namespace HiveGameWPFApp.Views
                     Tag = piece,
                     DataContext = piece
                 };
-                image.MouseDown += Piece_MouseDown;
                 playerPiecesPanel.Children.Add(image);
+                image.MouseDown += Piece_MouseDown;
             }
         }
 
@@ -194,7 +195,8 @@ namespace HiveGameWPFApp.Views
         {
             if(numberOfTurn == 4 && !ValidateQueenPieceIsInGame())
             {
-                DialogManager.ShowErrorMessageAlert("Debes poner la reyna antes de seguir");
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogQueenIsNotInPlay);
+                HighlightAvailableStartingCells();
             }
             else
             {
@@ -235,54 +237,143 @@ namespace HiveGameWPFApp.Views
 
         private void PieceOnBoard_MouseDown(GamePiece piece)
         {
-                switch (piece.Piece)
+            string typeOfPiece = piece.Piece.Name;
+            if (!ValidateThatPieceCannotBreakTheHive(piece.Position))
+            {
+                switch (typeOfPiece)
                 {
-                    case Queen _:
+                    case "Queen":
+                        MoveQueen(piece);
                         break;
-                    case Spider _:
-                        break;
-                    case Beetle _:
-                        break;
-                    case Ant _:
-                        break;
-                    case Grasshopper _:
-                        break;
-
                     default:
+                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntObtainPieceName);
                         break;
                 }
+            }
+            else
+            {
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogBrokeHiveAlert);
+            }
+           
         }
 
-        private void MoveQueen(Point currentPosition)
+        private void MoveQueen(GamePiece piece)
+        {
+            ResetHighlights();
+            selectedPiece = piece;  
+            var checkedPositions = new HashSet<Point>();
+            var adjacentPoints = obtainAdjacentPoints(piece.Position);
+            foreach (var offset in adjacentPoints)
+            {
+                if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
+                {
+                    List<Point> adjacentColliderPositions = obtainAdjacentPoints(offset);
+                    bool isConnectedToColony = adjacentColliderPositions.Any(adj => board.ContainsKey(adj));
+                    if (isConnectedToColony)
+                    {
+                        cell.Fill = Brushes.LightGreen;
+                        cell.IsEnabled = true;
+                        cell.MouseDown -= Cell_MouseDown;
+                        cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
+                        checkedPositions.Add(offset);
+                    }
+                }
+            }
+        }
+
+        private void MoveSpider(GamePiece piece)
         {
             // Implementa las reglas de movimiento específicas de la Reina
             // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
         }
 
-        private void MoveSpider(Point currentPosition)
+        private void MoveBeetle(GamePiece piece)
         {
             // Implementa las reglas de movimiento específicas de la Reina
             // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
         }
 
-        private void MoveBeetle(Point currentPosition)
+        private void MoveAnt(GamePiece piece)
         {
             // Implementa las reglas de movimiento específicas de la Reina
             // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
         }
 
-        private void MoveAnt(Point currentPosition)
+        private void MoveGrasshopper(GamePiece piece)
         {
             // Implementa las reglas de movimiento específicas de la Reina
             // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
         }
 
-        private void MoveGrasshopper(Point currentPosition)
+        private void PlacePieceThatIsInGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Implementa las reglas de movimiento específicas de la Reina
-            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+            if (selectedPiece != null && sender is Polygon cell && cell != null)
+            {
+                Point oldPosition = selectedPiece.Position;
+                selectedPiece.Position = (Point)cell.Tag;
+                selectedPiece.Piece.Position = oldPosition;
+                var pieceImage = new Image
+                {
+                    Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
+                    Width = 48,
+                    Height = 48,
+                    Tag = selectedPiece,
+                };
+                cell.MouseDown -= PlacePieceThatIsInGame_MouseDown;
+                cell.MouseDown += Cell_MouseDown;
+                double hexX = Canvas.GetLeft(cell);
+                double hexY = Canvas.GetTop(cell);
+                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
+                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
+                Canvas.SetLeft(pieceImage, pieceX);
+                Canvas.SetTop(pieceImage, pieceY);
+                UpdateOldAndNewPlaceInGameBoard(pieceImage, oldPosition);
+                SendPiecePositionToServer(selectedPiece);
+                lastPlacedCell = cell;
+                selectedPiece = null;
+                ResetHighlights();
+            }
         }
 
+        private void UpdateOldAndNewPlaceInGameBoard(Image pieceImage, Point oldPosition)
+        {
+            if (board.ContainsKey(oldPosition))
+            {
+                board.Remove(oldPosition);
+            }
+            var imageToRemove = GameBoardGrid.Children.OfType<Image>().
+                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).ToList();
+            foreach(var pieceToQuit in imageToRemove)
+            {
+                GameBoardGrid.Children.Remove(pieceToQuit);
+            }
+            GameBoardGrid.Children.Add(pieceImage);
+            GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
+            board[pieceToAdd.Position] = pieceToAdd;
+        }
+
+        private bool ValidateThatPieceCannotBreakTheHive(Point positionPiece)
+        {
+            bool verificationResult = true;
+            int verificationOfMatches = 0;
+            List<Point> points = obtainAdjacentPoints(positionPiece);
+            foreach(var pieceInBoard in board)
+            {
+                if (points.Contains(pieceInBoard.Key))
+                {
+                    verificationOfMatches++;
+                }
+            }
+            if(verificationOfMatches >= 2)
+            {
+                verificationResult = true;
+            }
+            else
+            {
+                verificationResult = false;
+            }
+            return verificationResult;
+        }
 
 
         private void HighlightStartingFirstTurnStaterCell(Point position)
@@ -313,7 +404,6 @@ namespace HiveGameWPFApp.Views
                             {
                                 cell.Fill = Brushes.LightGreen;
                                 cell.IsEnabled = true;
-                                cell.MouseDown += Cell_MouseDown;
                                 checkedPositions.Add(offset);
                             }
                         }
@@ -326,7 +416,17 @@ namespace HiveGameWPFApp.Views
         {
             ResetHighlights();
             var checkedPositions = new HashSet<Point>();
-
+            if(numberOfTurn == 4 && !ValidateQueenPieceIsInGame())
+            {
+                if(numberOfPlayer == 1)
+                {
+                    selectedPiece = player1Pieces[0];
+                }
+                else
+                {
+                    selectedPiece = player2Pieces[0];
+                }
+            }
             foreach (var piecePosition in board.Keys)
             {
                 if (board[piecePosition].playerName == UserProfileSingleton.username)
@@ -343,7 +443,7 @@ namespace HiveGameWPFApp.Views
                             {
                                 cell.Fill = Brushes.LightGreen;
                                 cell.IsEnabled = true;
-                                cell.MouseDown += Cell_MouseDown;
+                                cell.MouseDown -= PlacePieceThatIsInGame_MouseDown;
                                 checkedPositions.Add(offset);
                             }
                         }
@@ -425,7 +525,6 @@ namespace HiveGameWPFApp.Views
                 foreach (var polygon in GameBoardGrid.Children.OfType<Polygon>())
                 {
                     polygon.IsEnabled = false;
-                    polygon.MouseDown += Cell_MouseDown;
                 }
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
@@ -453,6 +552,7 @@ namespace HiveGameWPFApp.Views
                 if (cellDictionary.ContainsKey(placeToUnlock) && pieceInBoard.Value.playerName == UserProfileSingleton.username)
                 {
                     cellDictionary[placeToUnlock].IsEnabled = true;
+                    cellDictionary[placeToUnlock].MouseDown += Cell_MouseDown;
                 }
             }
             List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
@@ -475,6 +575,7 @@ namespace HiveGameWPFApp.Views
                 if (cellDictionary.ContainsKey(placeToUnlock))
                 {
                     cellDictionary[placeToUnlock].IsEnabled = false;
+                    cellDictionary[placeToUnlock].MouseDown -= Cell_MouseDown;
                 }
             }
             List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
@@ -493,7 +594,8 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.Piece pieceMoved = new HiveProxy.Piece()
                 {
                     name = gamePiece.Piece.Name,
-                    playerName = gamePiece.Piece.playerName
+                    playerName = gamePiece.Piece.playerName,
+                    position = gamePiece.Piece.Position
                 };
                 HiveProxy.GamePice gamePieceMoved = new HiveProxy.GamePice()
                 {
@@ -501,6 +603,7 @@ namespace HiveGameWPFApp.Views
                     piece = pieceMoved,
                     imagePath = gamePiece.ImagePath,
                     position = gamePiece.Position,
+                    numberOfPiece = gamePiece.pieceNumber,
                 };
                 UserSession userSession = new UserSession()
                 {
@@ -703,14 +806,11 @@ namespace HiveGameWPFApp.Views
                 playerName = piece.playerName,
                 Position = piece.position,
                 ImagePath = piece.imagePath,
+                pieceNumber = piece.numberOfPiece,
             };
+            gamePieceReceived.Piece.Position = piece.piece.position;
             if (piece != null && gamePieceReceived.Position != null)
             {
-                if (board.TryGetValue(gamePieceReceived.Position, out var existingPiece))
-                {
-                    board.Remove(existingPiece.Position);
-                }
-                board[gamePieceReceived.Position] = gamePieceReceived;
                 UpdatePiecePositionOnBoard(gamePieceReceived);
                 RemovePieceReceiveFromPlayerStackPanel(gamePieceReceived);
             }
@@ -771,21 +871,21 @@ namespace HiveGameWPFApp.Views
 
         private void UpdatePiecePositionOnBoard(GamePiece piece)
         {
-            if (cellDictionary.TryGetValue(piece.Position, out var cell))
-            {
-                PlacePieceReceivedOnCell(cell, piece);
-            }
+            cellDictionary.TryGetValue(piece.Position, out var cell);
+            PlacePieceReceivedOnCellToUpdate(cell, piece);
         }
-        private void PlacePieceReceivedOnCell(Polygon cell, GamePiece piece)
+
+        private void PlacePieceReceivedOnCellToUpdate(Polygon cell, GamePiece piece)
         {
-            if (cell != null && piece != null)
+            if(cell != null && piece != null)
             {
+                Point oldPosition = piece.Piece.Position;
                 var pieceImage = new Image
                 {
                     Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
                     Width = 48,
                     Height = 48,
-                    Tag = piece
+                    Tag = piece,
                 };
                 double hexX = Canvas.GetLeft(cell);
                 double hexY = Canvas.GetTop(cell);
@@ -793,12 +893,36 @@ namespace HiveGameWPFApp.Views
                 double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
                 Canvas.SetLeft(pieceImage, pieceX);
                 Canvas.SetTop(pieceImage, pieceY);
-                GameBoardGrid.Children.Add(pieceImage);
-                piece.Position = (Point)cell.Tag;
-                board[piece.Position] = piece;
-                lastPlacedCell = cell;
+                if (board.ContainsKey(piece.Piece.Position))
+                {
+                    UpdateReceivedPiece(pieceImage, oldPosition);
+                }
+                else
+                {
+                    GameBoardGrid.Children.Add(pieceImage);
+                    piece.Position = (Point)cell.Tag;
+                    board[piece.Position] = piece;
+                    lastPlacedCell = cell;
+                }
                 ResetHighlights();
             }
+        }
+
+        private void UpdateReceivedPiece(Image pieceImage, Point oldPosition)
+        {
+            if (board.ContainsKey(oldPosition))
+            {
+                board.Remove(oldPosition);
+            }
+            var imageToRemove = GameBoardGrid.Children.OfType<Image>().
+                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).ToList();
+            foreach (var pieceToQuit in imageToRemove)
+            {
+                GameBoardGrid.Children.Remove(pieceToQuit);
+            }
+            GameBoardGrid.Children.Add(pieceImage);
+            GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
+            board[pieceToAdd.Position] = pieceToAdd;
         }
 
 

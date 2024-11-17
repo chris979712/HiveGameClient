@@ -731,6 +731,9 @@ namespace HiveGameWPFApp.HiveProxy {
         private string imagePathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int numberOfPieceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HiveGameWPFApp.HiveProxy.Piece pieceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -758,6 +761,19 @@ namespace HiveGameWPFApp.HiveProxy {
                 if ((object.ReferenceEquals(this.imagePathField, value) != true)) {
                     this.imagePathField = value;
                     this.RaisePropertyChanged("imagePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int numberOfPiece {
+            get {
+                return this.numberOfPieceField;
+            }
+            set {
+                if ((this.numberOfPieceField.Equals(value) != true)) {
+                    this.numberOfPieceField = value;
+                    this.RaisePropertyChanged("numberOfPiece");
                 }
             }
         }
