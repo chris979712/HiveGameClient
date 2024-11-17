@@ -247,6 +247,9 @@ namespace HiveGameWPFApp.Views
                     case "Spider":
                         MoveSpider(piece);
                         break;
+                    case "Ant":
+                        MoveAnt(piece);
+                        break;
                     default:
                         DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntObtainPieceName);
                         break;
@@ -272,7 +275,7 @@ namespace HiveGameWPFApp.Views
             {
                 if (!board.ContainsKey(offset) && cellDictionary.TryGetValue(offset, out Polygon cell) && !checkedPositions.Contains(offset))
                 {
-                    if (IsConnectedToHive(offset) && !IsSurrounded(offset))
+                    if (IsConnectedToHive(offset) && IsNotSurrounded(offset))
                     {
                         cell.Fill = Brushes.LightGreen;
                         cell.IsEnabled = true;
@@ -289,8 +292,11 @@ namespace HiveGameWPFApp.Views
         {
             ResetHighlights();
             selectedPiece = piece;
-            List<Point> posibleMoves = ObtainSpiderMoves(piece.Position);
-            foreach(var posiblePosition in posibleMoves)
+            List<Point> adjacentToCurrent = obtainAdjacentPoints(piece.Position);
+            List<Point> posibleMoves = ObtainSpiderMoves(piece.Position)
+                .Where(pos => !adjacentToCurrent.Contains(pos))
+                .ToList();
+            foreach (var posiblePosition in posibleMoves)
             {
                 if(cellDictionary.TryGetValue(posiblePosition, out Polygon cell))
                 {
@@ -310,8 +316,21 @@ namespace HiveGameWPFApp.Views
 
         private void MoveAnt(GamePiece piece)
         {
-            // Implementa las reglas de movimiento específicas de la Reina
-            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+            ResetHighlights();
+            selectedPiece = piece;
+            board.Remove(piece.Position);
+            List<Point> possibleMoves = ObtainAntMoves(piece.Position);
+            foreach(var possiblePosition in possibleMoves)
+            {
+                if(cellDictionary.TryGetValue(possiblePosition, out Polygon cell))
+                {
+                    cell.Fill= Brushes.Green;
+                    cell.IsEnabled = true;
+                    cell.MouseDown -= Cell_MouseDown;
+                    cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
+                }
+            }
+            board.Add(piece.Position, piece);
         }
 
         private void MoveGrasshopper(GamePiece piece)
@@ -322,14 +341,14 @@ namespace HiveGameWPFApp.Views
 
         private List<Point> ObtainSpiderMoves(Point start)
         {
-            Queue<(Point position, int steps)> queue = new Queue<(Point position, int steps)> ();
+            Queue<(Point position, Point previousPosition, int steps)> queue = new Queue<(Point position, Point previousPosition, int steps)> ();
             HashSet<Point> visitedPoint = new HashSet<Point>();
             List<Point> validMoves = new List<Point>();
-            queue.Enqueue((start, 0));
+            queue.Enqueue((start, start, 0));
             visitedPoint.Add(start);
             while (queue.Count > 0)
             {
-                var (currentPosition, currentSteps) = queue.Dequeue ();
+                var (currentPosition, previousPosition, currentSteps) = queue.Dequeue ();
                 if(currentSteps < 3)
                 {
                     var adjacentPoints = obtainAdjacentPoints(currentPosition);
@@ -337,10 +356,10 @@ namespace HiveGameWPFApp.Views
                     {
                         if(!visitedPoint.Contains(adjacent) && !board.ContainsKey(adjacent))
                         {
-                            if (IsConnectedToHive(adjacent))
+                            if (IsContinouslyConnected(adjacent,currentPosition,currentPosition))
                             {
                                 visitedPoint.Add(adjacent);
-                                queue.Enqueue((adjacent, currentSteps + 1));
+                                queue.Enqueue((adjacent,currentPosition ,currentSteps + 1));
                             }
                         }
                     }
@@ -351,6 +370,33 @@ namespace HiveGameWPFApp.Views
                 }
             }
             return validMoves;
+        }
+
+        private List<Point> ObtainAntMoves(Point piecePoint)
+        {
+            List<Point> possibleMoves = new List<Point>();
+            HashSet<Point> visitedPoint = new HashSet<Point>();
+            Queue<Point> queue = new Queue<Point>();
+            queue.Enqueue(piecePoint);
+            visitedPoint.Add(piecePoint);
+            while (queue.Count > 0)
+            {
+                var currentPosition = queue.Dequeue();
+                var adjacentPoints = obtainAdjacentPoints(currentPosition);
+                foreach(var adjacent in adjacentPoints)
+                {
+                    if(!visitedPoint.Contains(adjacent)&&
+                        !board.ContainsKey(adjacent)&&
+                        IsConnectedToHive(adjacent)&& 
+                        IsNotSurrounded(adjacent))
+                    {
+                        possibleMoves.Add(adjacent);
+                        visitedPoint.Add(adjacent);
+                        queue.Enqueue(adjacent);
+                    }
+                }
+            }
+            return possibleMoves;
         }
 
         private void PlacePieceThatIsInGame_MouseDown(object sender, MouseButtonEventArgs e)
@@ -519,23 +565,55 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private bool AdjacentCanMakeSurrondedPositions(Point position)
+        private bool HasParallelIsollation(Point position)
         {
-            bool validationResult = false;
-            board.Add(position,null);
+            bool verificationResult = true;
             var adjacentPoints = obtainAdjacentPoints(position);
-            foreach(var adjacent in adjacentPoints)
+            var occupiedAdjacent = adjacentPoints.Where(adj => board.ContainsKey(adj)).ToList();
+            if(occupiedAdjacent.Count < 2)
             {
-                if (!IsSurrounded(adjacent))
+                verificationResult = false;
+            }
+            else
+            {
+                HashSet<Point> visited = new HashSet<Point>();
+                Stack<Point> stack = new Stack<Point>();
+                stack.Push(occupiedAdjacent[0]);
+                visited.Add(occupiedAdjacent[0]);
+                while (stack.Count > 0)
                 {
-                    validationResult = true;
+                    var current = stack.Pop();
+                    var neighbors = obtainAdjacentPoints(current);
+                    foreach (var neighbor in neighbors)
+                    {
+                        if (occupiedAdjacent.Contains(neighbor) && !visited.Contains(neighbor))
+                        {
+                            visited.Add(neighbor);
+                            stack.Push(neighbor);
+                        }
+                    }
+                }
+                if(visited.Count != occupiedAdjacent.Count)
+                {
+                    verificationResult = true;
+                }
+                else
+                {
+                    verificationResult = false;
                 }
             }
-            board.Remove(position);
-            return validationResult;
+            return verificationResult;
         }
 
-        private bool IsSurrounded(Point position)
+        private bool IsContinouslyConnected(Point adjacent, Point previousPosition, Point currentPosition)
+        {
+           var adjacentPoints = obtainAdjacentPoints(adjacent);
+           return adjacentPoints.Any(adj => board.ContainsKey(adj) && 
+                obtainAdjacentPoints(adj).Contains(currentPosition) && 
+                obtainAdjacentPoints(adj).Contains(previousPosition)); ;
+        }
+
+        private bool IsNotSurrounded(Point position)
         {
             var adjacentPoints = obtainAdjacentPoints(position);
             int occupiedSides = adjacentPoints.Count(adj => board.ContainsKey(adj));
