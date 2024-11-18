@@ -37,6 +37,9 @@ namespace HiveGameWPFApp.Views
         private int numberOfTurn = 0;
         private string usernamePlayer1 = "";
         private string usernamePlayer2 = "";
+        private static readonly List<(double dirUp, double dirDown)> HexPairDirecctions = new List<(double,double)>{(0,-1),(1,-1),(1,0),(0,1),(-1,0),(-1,-1)};
+        private static readonly List<(double dirUp, double dirDown)> HexOddDirecctions = new List<(double, double)> { (0,-1),(1,0),(1,1),(0,1),(-1,1),(-1,0)};
+        
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
             {
@@ -250,6 +253,9 @@ namespace HiveGameWPFApp.Views
                     case "Ant":
                         MoveAnt(piece);
                         break;
+                    case "Grasshopper":
+                        MoveGrasshopper(piece);
+                        break;
                     default:
                         DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogCouldntObtainPieceName);
                         break;
@@ -335,8 +341,19 @@ namespace HiveGameWPFApp.Views
 
         private void MoveGrasshopper(GamePiece piece)
         {
-            // Implementa las reglas de movimiento específicas de la Reina
-            // Esto podría incluir verificar celdas adyacentes donde la Reina puede moverse
+            ResetHighlights();
+            selectedPiece = piece;
+            List<Point> possibleMoves = ObtainGrassHopperMoves(piece.Position);
+            foreach (var possiblePosition in possibleMoves)
+            {
+                if (cellDictionary.TryGetValue(possiblePosition, out Polygon cell))
+                {
+                    cell.Fill = Brushes.Green;
+                    cell.IsEnabled = true;
+                    cell.MouseDown -= Cell_MouseDown;
+                    cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
+                }
+            }
         }
 
         private List<Point> ObtainSpiderMoves(Point start)
@@ -397,6 +414,63 @@ namespace HiveGameWPFApp.Views
                 }
             }
             return possibleMoves;
+        }
+
+        private List<Point> ObtainGrassHopperMoves(Point start)
+        {
+            List<Point> validMoves = new List<Point>();
+            var directions = obtainAdjacentPoints(start);
+            foreach(var direction in directions)
+            {
+                if (board.ContainsKey(direction))
+                {
+                    Point currentPosition = MoveInSameDirection(direction, start);
+                    Point nextPosition = MoveInSameDirection(currentPosition, direction);
+                    bool NotfoundPiece = false;
+                    while (!NotfoundPiece)
+                    {
+                        if (board.ContainsKey(currentPosition))
+                        {
+                            NotfoundPiece = false;
+                            Point currentPositionAuxiliar = nextPosition;
+                            nextPosition = MoveInSameDirection(currentPosition, nextPosition);
+                            currentPosition = currentPositionAuxiliar;
+                        }
+                        else if (!board.ContainsKey(currentPosition) && IsConnectedToHive(currentPosition)) 
+                        {
+                            validMoves.Add(currentPosition);
+                            NotfoundPiece = true;
+                        }
+                    }
+                }
+            }
+            return validMoves;
+        }
+
+        private Point MoveInSameDirection(Point current, Point start)
+        {
+            Point pointToMove = new Point(0, 0);
+            double dq = current.X - start.X;
+            double dr = current.Y - start.Y;
+            if (start.X % 2 == 0)
+            {
+                int index = HexPairDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
+                if (index != -1)
+                {
+                    (double dirU, double dirD) = HexOddDirecctions[index];
+                    pointToMove = new Point(current.X + dirU, current.Y + dirD);
+                }
+            }
+            else
+            {
+                int index = HexOddDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
+                if (index != -1)
+                {
+                    (double dirU, double dirD) = HexPairDirecctions[index];
+                    pointToMove = new Point(current.X + dirU, current.Y + dirD);
+                }
+            }
+            return pointToMove;
         }
 
         private void PlacePieceThatIsInGame_MouseDown(object sender, MouseButtonEventArgs e)
