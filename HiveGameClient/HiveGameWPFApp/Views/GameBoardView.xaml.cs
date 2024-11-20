@@ -198,7 +198,7 @@ namespace HiveGameWPFApp.Views
                     }
                     else
                     {
-                        DialogManager.ShowErrorMessageAlert("Para mover una pieza del tablero primero debes poner la reyna");
+                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogFourFirstTurn);
                     }
                 }
             }
@@ -357,6 +357,12 @@ namespace HiveGameWPFApp.Views
                         if (gamePiece.Position == possiblePosition)
                         {
                             cell.Fill = Brushes.Green;
+                        }
+                        else if(gamePiece.Position == possiblePosition && gamePiece.playerName != UserProfileSingleton.username)
+                        {
+                            cell.Fill = Brushes.Green;
+                            imageOnBoard.IsEnabled = true;
+                            imageOnBoard.MouseDown += PieceSelected_MouseDown;
                         }
                     }
                     isBeetleMoved = true;
@@ -560,6 +566,7 @@ namespace HiveGameWPFApp.Views
                 selectedPiece = null;
                 ResetHighlights();
             }
+            isBeetleMoved = false;
             e.Handled = true;
         }
 
@@ -1014,6 +1021,7 @@ namespace HiveGameWPFApp.Views
                 }
             }
         }
+
         private void ResetHighlights()
         {
             foreach (UIElement element in GameBoardGrid.Children)
@@ -1028,6 +1036,14 @@ namespace HiveGameWPFApp.Views
             foreach (var cell in cellDictionary)
             {
                 cell.Value.IsEnabled = false;
+            }
+            foreach (UIElement element in GameBoardGrid.Children)
+            {
+                if (element is Image image && image.Tag is Logic.GamePiece gamePiece && gamePiece.playerName != UserProfileSingleton.username)
+                {
+                    image.IsEnabled = false;
+                    image.MouseDown -= PieceSelected_MouseDown;
+                }
             }
         }
 

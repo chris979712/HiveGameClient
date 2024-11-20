@@ -502,6 +502,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a To move a piece, you first need to place your Queen..
+        /// </summary>
+        public static string dialogFourFirstTurn {
+            get {
+                return ResourceManager.GetString("dialogFourFirstTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Your friend has been deleted.
         /// </summary>
         public static string dialogFriendDeleted {
