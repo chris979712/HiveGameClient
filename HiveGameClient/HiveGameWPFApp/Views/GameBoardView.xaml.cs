@@ -37,8 +37,9 @@ namespace HiveGameWPFApp.Views
         private string usernamePlayer1 = "";
         private string usernamePlayer2 = "";
         private bool isFirstPiecePlaced = false;
-        private static readonly List<(double dirUp, double dirDown)> HexPairDirecctions = new List<(double,double)>{(0,-1),(1,-1),(1,0),(0,1),(-1,0),(-1,-1)};
-        private static readonly List<(double dirUp, double dirDown)> HexOddDirecctions = new List<(double, double)> { (0,-1),(1,0),(1,1),(0,1),(-1,1),(-1,0)};
+        private static readonly List<(double dirUp, double dirDown)> hexPairDirecctions = new List<(double,double)>{(0,-1),(1,-1),(1,0),(0,1),(-1,0),(-1,-1)};
+        private static readonly List<(double dirUp, double dirDown)> hexOddDirecctions = new List<(double, double)> { (0,-1),(1,0),(1,1),(0,1),(-1,1),(-1,0)};
+        private static readonly Dictionary<int, Image> piecesCapturedByTheBeetle = new Dictionary<int, Image>();
         
 
         private List<GamePiece> player1Pieces = new List<GamePiece>
@@ -450,19 +451,19 @@ namespace HiveGameWPFApp.Views
             double dr = current.Y - start.Y;
             if (start.X % 2 == 0)
             {
-                int index = HexPairDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
+                int index = hexPairDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
                 if (index != -1)
                 {
-                    (double dirU, double dirD) = HexOddDirecctions[index];
+                    (double dirU, double dirD) = hexOddDirecctions[index];
                     pointToMove = new Point(current.X + dirU, current.Y + dirD);
                 }
             }
             else
             {
-                int index = HexOddDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
+                int index = hexOddDirecctions.FindIndex(dir => dir.dirUp == dq && dir.dirDown == dr);
                 if (index != -1)
                 {
-                    (double dirU, double dirD) = HexPairDirecctions[index];
+                    (double dirU, double dirD) = hexPairDirecctions[index];
                     pointToMove = new Point(current.X + dirU, current.Y + dirD);
                 }
             }
@@ -1115,6 +1116,7 @@ namespace HiveGameWPFApp.Views
             if(cell != null && piece != null)
             {
                 Point oldPosition = piece.Piece.Position;
+                Point newPosition = piece.Position;
                 var pieceImage = new Image
                 {
                     Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
@@ -1130,7 +1132,7 @@ namespace HiveGameWPFApp.Views
                 Canvas.SetTop(pieceImage, pieceY);
                 if (board.ContainsKey(piece.Piece.Position))
                 {
-                    UpdateReceivedPiece(pieceImage, oldPosition);
+                    UpdateReceivedPiece(pieceImage, oldPosition,newPosition);
                 }
                 else
                 {
@@ -1142,18 +1144,30 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void UpdateReceivedPiece(Image pieceImage, Point oldPosition)
+        private void UpdateReceivedPiece(Image pieceImage, Point oldPosition, Point newPosition)
         {
             if (board.ContainsKey(oldPosition))
             {
                 board.Remove(oldPosition);
             }
-            Image imageToRemove = GameBoardGrid.Children.OfType<Image>().
-                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).FirstOrDefault();
-            GameBoardGrid.Children.Remove(imageToRemove);
-            GameBoardGrid.Children.Add(pieceImage);
-            GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
-            board[pieceToAdd.Position] = pieceToAdd;
+            var listOfElements = GameBoardGrid.Children.OfType<Image>().ToList();
+            Image imageToQuite = new Image();
+            foreach (var element in listOfElements)
+            {
+                GamePiece pieceToQuit = (GamePiece)element.Tag;
+                if(pieceToQuit.Position == oldPosition)
+                {
+                    imageToQuite = element;
+                    break;
+                }
+            }
+            if(imageToQuite != null)
+            {
+                GameBoardGrid.Children.Remove(imageToQuite);
+                GameBoardGrid.Children.Add(pieceImage);
+                GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
+                board[pieceToAdd.Position] = pieceToAdd;
+            }
         }
 
 
