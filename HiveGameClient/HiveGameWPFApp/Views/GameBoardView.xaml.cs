@@ -302,13 +302,12 @@ namespace HiveGameWPFApp.Views
                 {
                     if (IsConnectedToHive(offset) && IsNotSurrounded(offset))
                     {
-                        cell.Fill = Brushes.LightGreen;
+                        cell.Fill = Brushes.Green;
                         cell.IsEnabled = true;
                         cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
                         checkedPositions.Add(offset);
                     }
                 }
-                isBeetleMoved = false;
             }
             board.Add(queenPosition, queenPiece);
         }
@@ -330,7 +329,6 @@ namespace HiveGameWPFApp.Views
                     cell.IsEnabled = true;
                     cell.MouseDown+= PlacePieceThatIsInGame_MouseDown;
                 }
-                isBeetleMoved = false;
             }
             board.Add(piece.Position, piece);
         }
@@ -339,7 +337,9 @@ namespace HiveGameWPFApp.Views
         {
             ResetHighlights();
             selectedPiece = piece;
-            List<Point> possibleMoves = ObtainBeetleMoves(piece.Position);
+            board.Remove(piece.Position);
+            bool isOnAnotherPiece = piecesCapturedByTheBeetle.Any(gamePiece => gamePiece.Key == (piece.pieceNumber,piece.playerName));
+            List<Point> possibleMoves = ObtainBeetleMoves(piece.Position, isOnAnotherPiece);
             foreach(var possiblePosition in possibleMoves)
             {
                 if(cellDictionary.TryGetValue(possiblePosition, out Polygon cell) && !board.ContainsKey(possiblePosition))
@@ -354,21 +354,21 @@ namespace HiveGameWPFApp.Views
                     foreach (Image imageOnBoard in imagesOnBoard)
                     {
                         GamePiece gamePiece = (GamePiece)imageOnBoard.Tag;
-                        if (gamePiece.Position == possiblePosition)
-                        {
-                            cell.Fill = Brushes.Green;
-                        }
-                        else if(gamePiece.Position == possiblePosition && gamePiece.playerName != UserProfileSingleton.username)
+                        if(gamePiece.Position == possiblePosition && gamePiece.playerName != UserProfileSingleton.username)
                         {
                             cell.Fill = Brushes.Green;
                             imageOnBoard.IsEnabled = true;
                             imageOnBoard.MouseDown += PieceSelected_MouseDown;
                         }
+                        else if (gamePiece.Position == possiblePosition && gamePiece.playerName == UserProfileSingleton.username)
+                        {
+                            cell.Fill = Brushes.Green;
+                        }
                     }
                     isBeetleMoved = true;
                 }
             }
-            
+            board.Add(piece.Position, piece);
         }
 
         private void MoveAnt(GamePiece piece)
@@ -385,7 +385,6 @@ namespace HiveGameWPFApp.Views
                     cell.IsEnabled = true;
                     cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
                 }
-                isBeetleMoved = false;
             }
             board.Add(piece.Position, piece);
         }
@@ -404,7 +403,6 @@ namespace HiveGameWPFApp.Views
                     cell.IsEnabled = true;
                     cell.MouseDown += PlacePieceThatIsInGame_MouseDown;
                 }
-                isBeetleMoved = false;
             }
             board.Add(piece.Position, piece);
         }
@@ -442,15 +440,30 @@ namespace HiveGameWPFApp.Views
             return validMoves;
         }
 
-        private List<Point> ObtainBeetleMoves(Point piecePostion)
+        private List<Point> ObtainBeetleMoves(Point piecePostion, bool isOnAnotherPiece)
         {
             List<Point> adjacentMoves = ObtainAdjacentPoints(piecePostion);
             List<Point> possibleMoves = new List <Point>();
-            foreach(var adjacent in adjacentMoves)
+            if (isOnAnotherPiece)
             {
-                if (IsConnectedToHive(adjacent))
+                board.Add(selectedPiece.Position,selectedPiece);
+                foreach (var adjacent in adjacentMoves)
                 {
-                    possibleMoves.Add(adjacent);
+                    if (IsConnectedToHive(adjacent))
+                    {
+                        possibleMoves.Add(adjacent);
+                    }
+                }
+                board.Remove(selectedPiece.Position);
+            }
+            else
+            {
+                foreach (var adjacent in adjacentMoves)
+                {
+                    if (IsConnectedToHiveBeetle(adjacent))
+                    {
+                        possibleMoves.Add(adjacent);
+                    }
                 }
             }
             return possibleMoves;
@@ -545,22 +558,19 @@ namespace HiveGameWPFApp.Views
             if (selectedPiece != null && sender is Polygon cell && cell != null)
             {
                 Point oldPosition = selectedPiece.Position;
+                Image imageOfPiece = ObtainImageCreation(cell,selectedPiece);
                 selectedPiece.Position = (Point)cell.Tag;
                 selectedPiece.Piece.Position = oldPosition;
-                var pieceImage = new Image
+                if (piecesCapturedByTheBeetle.ContainsKey((selectedPiece.pieceNumber, selectedPiece.playerName)))
                 {
-                    Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
-                    Width = 48,
-                    Height = 48,
-                    Tag = selectedPiece,
-                };
-                double hexX = Canvas.GetLeft(cell);
-                double hexY = Canvas.GetTop(cell);
-                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
-                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
-                Canvas.SetLeft(pieceImage, pieceX);
-                Canvas.SetTop(pieceImage, pieceY);
-                UpdateOldAndNewPlaceInGameBoard(pieceImage, oldPosition);
+                    Image pieceContainedByTheBeetle = piecesCapturedByTheBeetle[(selectedPiece.pieceNumber,selectedPiece.playerName)];
+                    UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
+                    ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle);
+                }
+                else
+                {
+                    UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
+                }
                 SendPiecePositionToServer(selectedPiece);
                 lastPlacedCell = cell;
                 selectedPiece = null;
@@ -568,6 +578,52 @@ namespace HiveGameWPFApp.Views
             }
             isBeetleMoved = false;
             e.Handled = true;
+        }
+
+        private Image ObtainImageCreation(Polygon cell, GamePiece piece)
+        {
+            Image pieceImage = new Image
+            {
+                Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
+                Width = 48,
+                Height = 48,
+                Tag = piece,
+            };
+            double hexX = Canvas.GetLeft(cell);
+            double hexY = Canvas.GetTop(cell);
+            double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
+            double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
+            Canvas.SetLeft(pieceImage, pieceX);
+            Canvas.SetTop(pieceImage, pieceY);
+            return pieceImage;
+        }
+
+        private void ReturnOriginalPositionOfPieceCapturedByTheBeetle(Image pieceCapturedByTheBeetle)
+        {
+            GamePiece pieceToReturn = pieceCapturedByTheBeetle.Tag as GamePiece;
+            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
+            Image imageWhereBeetleIs = new Image();
+            foreach (var imageOnBeetle in imagesOfPieces)
+            {
+                GamePiece piece = imageOnBeetle.Tag as GamePiece;
+                if (piece.pieceNumber == selectedPiece.pieceNumber && piece.playerName == UserProfileSingleton.username)
+                {
+                    imageWhereBeetleIs = imageOnBeetle;
+                }
+            }
+            if (GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
+            {
+                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemove = childrenGrids.IndexOf(pieceCapturedByTheBeetle);
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            }
+            GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
+            piecesCapturedByTheBeetle.Remove((selectedPiece.pieceNumber, selectedPiece.playerName));
+            if (board.ContainsKey(pieceToReturn.Position))
+            {
+                board.Remove(pieceToReturn.Position);
+            }
+            board.Add(pieceToReturn.Position, pieceToReturn);
         }
 
         private void PieceSelectedByBeetle(Image imagePiece)
@@ -581,6 +637,7 @@ namespace HiveGameWPFApp.Views
                     if(piece.pieceNumber == selectedPiece.pieceNumber && piece.playerName == UserProfileSingleton.username)
                     {
                         imageWhereBeetleIs = imageOnBeetle;
+                        break;
                     }
                 }
                 if (imageWhereBeetleIs != null)
@@ -591,12 +648,25 @@ namespace HiveGameWPFApp.Views
                         GamePiece originalPiece = placeOriginalPieceImage.Tag as GamePiece;
                         board.Remove(originalPiece.Position);
                         board.Add(originalPiece.Position, originalPiece);
-                        GameBoardGrid.Children.Remove(imageWhereBeetleIs);
+                        if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
+                        {
+                            List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                            int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
+                            GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
+                        }
+                        if (GameBoardGrid.Children.Contains(placeOriginalPieceImage))
+                        {
+                            List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                            int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(placeOriginalPieceImage);
+                            GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
+                        }
                         GameBoardGrid.Children.Add(placeOriginalPieceImage);
                         piecesCapturedByTheBeetle.Remove((selectedPiece.pieceNumber, selectedPiece.playerName));
                     }
                     piecesCapturedByTheBeetle.Add((selectedPiece.pieceNumber, selectedPiece.playerName), imagePiece);
-                    GameBoardGrid.Children.Remove(imageWhereBeetleIs);
+                    List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                    int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
+                    GameBoardGrid.Children.RemoveAt(indexToRemove);
                     board.Remove(pieceToKeepSafe.Position);
                     board.Remove(selectedPiece.Position);
                     Point oldPosition = selectedPiece.Position;
@@ -611,19 +681,7 @@ namespace HiveGameWPFApp.Views
 
         private void UpdateGameboardGridByBeetle(Polygon cell, GamePiece piece)
         {
-            var pieceImage = new Image
-            {
-                Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
-                Width = 48,
-                Height = 48,
-                Tag = selectedPiece,
-            };
-            double hexX = Canvas.GetLeft(cell);
-            double hexY = Canvas.GetTop(cell);
-            double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
-            double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
-            Canvas.SetLeft(pieceImage, pieceX);
-            Canvas.SetTop(pieceImage, pieceY);
+            Image pieceImage = ObtainImageCreation(cell, selectedPiece);
             GameBoardGrid.Children.Add(pieceImage);
             board[selectedPiece.Position] = selectedPiece;
             SendPiecePositionToServer(selectedPiece);
@@ -639,11 +697,21 @@ namespace HiveGameWPFApp.Views
             {
                 board.Remove(oldPosition);
             }
-            var imageToRemove = GameBoardGrid.Children.OfType<Image>().
-                Where(img => img.Tag is GamePiece gamePiece && gamePiece.Piece.Position == oldPosition).ToList();
-            foreach(var pieceToQuit in imageToRemove)
+            var imagesOnGameBoardGrid = GameBoardGrid.Children.OfType<Image>().ToList();
+            Image imageToRemove = new Image();
+            foreach (var imageOnGrid in imagesOnGameBoardGrid)
             {
-                GameBoardGrid.Children.Remove(pieceToQuit);
+                GamePiece piece = imageOnGrid.Tag as GamePiece;
+                if (piece.Piece.Position == oldPosition)
+                {
+                    imageToRemove = imageOnGrid;
+                    break;
+                }
+            }
+            if (GameBoardGrid.Children.Contains(imageToRemove)) {
+                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemove = childrenGrids.IndexOf(imageToRemove);
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
             GameBoardGrid.Children.Add(pieceImage);
             GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
@@ -814,6 +882,15 @@ namespace HiveGameWPFApp.Views
             return verificationResult;
         }
 
+        private bool IsConnectedToHiveBeetle(Point position)
+        {
+            Point oldBeetlePosition = selectedPiece.Piece.Position;
+            GamePiece auxiliarPiece = new GamePiece();
+            var adjacentPoints = ObtainAdjacentPoints(position);
+            bool isConnectedToColony = adjacentPoints.Any(adj => board.ContainsKey(adj));
+            return isConnectedToColony;
+        }
+
         private bool IsContinouslyConnected(Point adjacent, Point previousPosition, Point currentPosition)
         {
            var adjacentPoints = ObtainAdjacentPoints(adjacent);
@@ -827,7 +904,7 @@ namespace HiveGameWPFApp.Views
             var adjacentPoints = ObtainAdjacentPoints(position);
             int occupiedSides = adjacentPoints.Count(adj => board.ContainsKey(adj));
             return occupiedSides != 5;
-        }
+        } 
 
         private bool IsConnectedToHive(Point position)
         {
@@ -899,24 +976,12 @@ namespace HiveGameWPFApp.Views
         {
             if (cell != null)
             {
-                selectedPiece.Position = (Point)cell.Tag;
-                var pieceImage = new Image
-                {
-                    Source = new BitmapImage(new Uri(selectedPiece.ImagePath, UriKind.Relative)),
-                    Width = 48,
-                    Height = 48,
-                    Tag = selectedPiece,
-                };
                 foreach (var polygon in GameBoardGrid.Children.OfType<Polygon>())
                 {
                     polygon.IsEnabled = false;
                 }
-                double hexX = Canvas.GetLeft(cell);
-                double hexY = Canvas.GetTop(cell);
-                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
-                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
-                Canvas.SetLeft(pieceImage, pieceX);
-                Canvas.SetTop(pieceImage, pieceY);
+                selectedPiece.Position = (Point)cell.Tag;
+                Image pieceImage = ObtainImageCreation(cell, selectedPiece);
                 GameBoardGrid.Children.Add(pieceImage);
                 board[selectedPiece.Position] = selectedPiece;
                 RemovePieceFromPlayer(selectedPiece);
@@ -1024,6 +1089,7 @@ namespace HiveGameWPFApp.Views
 
         private void ResetHighlights()
         {
+            isBeetleMoved = false;
             foreach (UIElement element in GameBoardGrid.Children)
             {
                 if (element is Polygon cell)
@@ -1261,19 +1327,7 @@ namespace HiveGameWPFApp.Views
             {
                 Point oldPosition = piece.Piece.Position;
                 Point newPosition = piece.Position;
-                var pieceImage = new Image
-                {
-                    Source = new BitmapImage(new Uri(piece.ImagePath, UriKind.Relative)),
-                    Width = 48,
-                    Height = 48,
-                    Tag = piece,
-                };
-                double hexX = Canvas.GetLeft(cell);
-                double hexY = Canvas.GetTop(cell);
-                double pieceX = hexX + (cell.ActualWidth - pieceImage.Width) / 1;
-                double pieceY = hexY + (cell.ActualHeight - pieceImage.Height) / 1;
-                Canvas.SetLeft(pieceImage, pieceX);
-                Canvas.SetTop(pieceImage, pieceY);
+                Image pieceImage = ObtainImageCreation(cell,piece);
                 if (board.ContainsKey(piece.Piece.Position))
                 {
                     UpdateReceivedPiece(pieceImage, oldPosition,newPosition);
@@ -1307,7 +1361,9 @@ namespace HiveGameWPFApp.Views
             }
             if(imageToQuite != null)
             {
-                GameBoardGrid.Children.Remove(imageToQuite);
+                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemove = childrenGrids.IndexOf(imageToQuite);
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
                 GameBoardGrid.Children.Add(pieceImage);
                 GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
                 board[pieceToAdd.Position] = pieceToAdd;
