@@ -1,0 +1,6 @@
+﻿C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\ClientTest\ValidatorTest.cs
+C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\ClientTest\Properties\AssemblyInfo.cs
+C:\Users\chris\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.visualstudio.testadapter.dll
+C:\Users\chris\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.reporters.net452.dll
+C:\Users\chris\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.utility.net452.dll
+C:\Users\chris\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.abstractions.dll

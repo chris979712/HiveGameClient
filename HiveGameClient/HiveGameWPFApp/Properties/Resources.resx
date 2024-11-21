@@ -477,4 +477,7 @@
   <data name="dialogQueenIsNotInPlay" xml:space="preserve">
     <value>You have to place your Queen before or in the fourth turn, please select where to place it.</value>
   </data>
+  <data name="dialogFourFirstTurn" xml:space="preserve">
+    <value>To move a piece, you first need to place your Queen.</value>
+  </data>
 </root>
