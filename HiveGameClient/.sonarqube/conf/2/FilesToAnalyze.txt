@@ -1,0 +1,6 @@
+﻿C:\Users\cumpl\Downloads\PROYECTO-HIVE\HiveGameClient\HiveGameClient\ClientTest\ValidatorTest.cs
+C:\Users\cumpl\Downloads\PROYECTO-HIVE\HiveGameClient\HiveGameClient\ClientTest\Properties\AssemblyInfo.cs
+C:\Users\cumpl\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.visualstudio.testadapter.dll
+C:\Users\cumpl\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.reporters.net452.dll
+C:\Users\cumpl\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.runner.utility.net452.dll
+C:\Users\cumpl\.nuget\packages\xunit.runner.visualstudio\2.4.1\build\_common\xunit.abstractions.dll
