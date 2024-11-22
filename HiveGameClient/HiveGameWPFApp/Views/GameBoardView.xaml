@@ -52,7 +52,7 @@
                     <TextBlock x:Name="txtbl_PlayerName1" Text="{x:Static p:Resources.txtbl_Player1}" FontSize="30" FontFamily="Impact"  Margin="40"/>
                     <StackPanel x:Name="stckp_Player1Pieces" Orientation="Horizontal" Margin="10" Cursor="Hand"/>
                 </StackPanel>
-                <Canvas x:Name="GameBoardGrid" Width="450" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Canvas x:Name="GameBoardGrid" Width="450" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand"/>
             </DockPanel>
         </Grid>
     </DockPanel>

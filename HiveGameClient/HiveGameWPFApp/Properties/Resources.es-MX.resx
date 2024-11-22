@@ -477,4 +477,7 @@
   <data name="dialogQueenIsNotInPlay" xml:space="preserve">
     <value>Debes poner tu Reyna antes o en el cuarto turno. Por favor selecciona donde ponerla.</value>
   </data>
+  <data name="dialogFourFirstTurn" xml:space="preserve">
+    <value>Para mover una pieza, primero debes mover a tu reyna</value>
+  </data>
 </root>
