@@ -188,7 +188,7 @@ namespace HiveGameWPFApp.Views
                 GamePiece piece = (GamePiece)imagePiece.Tag;
                 if (isBeetleMoved==true)
                 {
-                    PieceSelectedByBeetle(imagePiece);
+                    PieceSelectedByBeetle(imagePiece, selectedPiece);
                 }
                 else
                 {
@@ -245,7 +245,14 @@ namespace HiveGameWPFApp.Views
 
         private bool ValidateQueenPieceIsInGame()
         {
-            if(board.Values.Any(piece => piece != null && piece.Piece.Name.Equals("Queen") && piece.Piece.playerName == UserProfileSingleton.username))
+            List<GamePiece> piecesCaptured = new List<GamePiece>();
+            foreach(var entry in piecesCapturedByTheBeetle)
+            {
+                var imageOnDictionary = entry.Value;
+                piecesCaptured.Add(imageOnDictionary.Tag as GamePiece);
+            }
+            if(board.Values.Any(piece => piece != null && piece.Piece.Name.Equals("Queen") && piece.Piece.playerName == UserProfileSingleton.username 
+            || piecesCaptured.Any(pieceCaptured => pieceCaptured.playerName == UserProfileSingleton.username && pieceCaptured.Piece.Name == "Queen")))
             {
                 isQueenInGame = true;
             }
@@ -565,12 +572,13 @@ namespace HiveGameWPFApp.Views
                 {
                     Image pieceContainedByTheBeetle = piecesCapturedByTheBeetle[(selectedPiece.pieceNumber,selectedPiece.playerName)];
                     UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
-                    ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle);
+                    ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle, selectedPiece);
                 }
                 else
                 {
                     UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
                 }
+                EliminateDuplicatedImagesIfExists(oldPosition);
                 SendPiecePositionToServer(selectedPiece);
                 lastPlacedCell = cell;
                 selectedPiece = null;
@@ -578,6 +586,28 @@ namespace HiveGameWPFApp.Views
             }
             isBeetleMoved = false;
             e.Handled = true;
+        }
+
+        private void EliminateDuplicatedImagesIfExists(Point oldPosition)
+        {
+            if (!board.ContainsKey(oldPosition))
+            {
+                var imagesToRemove = GameBoardGrid.Children
+                    .OfType<Image>()
+                    .Where(image =>
+                        image.Tag is GamePiece piece && piece.Position == oldPosition)
+                    .ToList();
+                for (int indexOfImage = 0; indexOfImage < imagesToRemove.Count; indexOfImage++)
+                {
+                    Image imageToQuit = imagesToRemove[indexOfImage];
+                    List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                    int indexToRemove = childrenGrids.IndexOf(imageToQuit);
+                    if (indexToRemove != -1)
+                    {
+                        GameBoardGrid.Children.RemoveAt(indexToRemove);
+                    }
+                }
+            }
         }
 
         private Image ObtainImageCreation(Polygon cell, GamePiece piece)
@@ -598,19 +628,10 @@ namespace HiveGameWPFApp.Views
             return pieceImage;
         }
 
-        private void ReturnOriginalPositionOfPieceCapturedByTheBeetle(Image pieceCapturedByTheBeetle)
+        private void ReturnOriginalPositionOfPieceCapturedByTheBeetle(Image pieceCapturedByTheBeetle, GamePiece beetlePiece)
         {
             GamePiece pieceToReturn = pieceCapturedByTheBeetle.Tag as GamePiece;
             List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
-            Image imageWhereBeetleIs = new Image();
-            foreach (var imageOnBeetle in imagesOfPieces)
-            {
-                GamePiece piece = imageOnBeetle.Tag as GamePiece;
-                if (piece.pieceNumber == selectedPiece.pieceNumber && piece.playerName == UserProfileSingleton.username)
-                {
-                    imageWhereBeetleIs = imageOnBeetle;
-                }
-            }
             if (GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
             {
                 List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
@@ -618,7 +639,7 @@ namespace HiveGameWPFApp.Views
                 GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
             GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
-            piecesCapturedByTheBeetle.Remove((selectedPiece.pieceNumber, selectedPiece.playerName));
+            piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
             if (board.ContainsKey(pieceToReturn.Position))
             {
                 board.Remove(pieceToReturn.Position);
@@ -626,7 +647,7 @@ namespace HiveGameWPFApp.Views
             board.Add(pieceToReturn.Position, pieceToReturn);
         }
 
-        private void PieceSelectedByBeetle(Image imagePiece)
+        private void PieceSelectedByBeetle(Image imagePiece, GamePiece beetlePiece)
         {
                 GamePiece pieceToKeepSafe = imagePiece.Tag as GamePiece;
                 List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
@@ -634,7 +655,7 @@ namespace HiveGameWPFApp.Views
                 foreach (var imageOnBeetle in imagesOfPieces)
                 {
                     GamePiece piece = imageOnBeetle.Tag as GamePiece;
-                    if(piece.pieceNumber == selectedPiece.pieceNumber && piece.playerName == UserProfileSingleton.username)
+                    if(piece.pieceNumber == beetlePiece.pieceNumber && piece.playerName == beetlePiece.playerName)
                     {
                         imageWhereBeetleIs = imageOnBeetle;
                         break;
@@ -642,49 +663,68 @@ namespace HiveGameWPFApp.Views
                 }
                 if (imageWhereBeetleIs != null)
                 {
-                    if (piecesCapturedByTheBeetle.ContainsKey((selectedPiece.pieceNumber, selectedPiece.playerName)))
+                    if (piecesCapturedByTheBeetle.ContainsKey((beetlePiece.pieceNumber, beetlePiece.playerName)))
                     {
-                        Image placeOriginalPieceImage = piecesCapturedByTheBeetle[(selectedPiece.pieceNumber, selectedPiece.playerName)];
-                        GamePiece originalPiece = placeOriginalPieceImage.Tag as GamePiece;
-                        board.Remove(originalPiece.Position);
-                        board.Add(originalPiece.Position, originalPiece);
-                        if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
-                        {
-                            List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
-                            int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
-                            GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
-                        }
-                        if (GameBoardGrid.Children.Contains(placeOriginalPieceImage))
-                        {
-                            List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
-                            int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(placeOriginalPieceImage);
-                            GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
-                        }
-                        GameBoardGrid.Children.Add(placeOriginalPieceImage);
-                        piecesCapturedByTheBeetle.Remove((selectedPiece.pieceNumber, selectedPiece.playerName));
+                        RestoreOriginalPieceCapturedByTheBeetle(imageWhereBeetleIs, beetlePiece);
                     }
-                    piecesCapturedByTheBeetle.Add((selectedPiece.pieceNumber, selectedPiece.playerName), imagePiece);
-                    List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
-                    int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
-                    GameBoardGrid.Children.RemoveAt(indexToRemove);
-                    board.Remove(pieceToKeepSafe.Position);
-                    board.Remove(selectedPiece.Position);
-                    Point oldPosition = selectedPiece.Position;
+                    else
+                    {
+                        PieceToReplaceByTheBeetle(beetlePiece, pieceToKeepSafe, imageWhereBeetleIs);
+                    }
+                    piecesCapturedByTheBeetle.Add((beetlePiece.pieceNumber, beetlePiece.playerName), imagePiece);
+                    Point oldPosition = beetlePiece.Position;
                     Polygon cell = cellDictionary[pieceToKeepSafe.Position];
-                    selectedPiece.Position = pieceToKeepSafe.Position;
-                    selectedPiece.Piece.Position = oldPosition;
-                    UpdateGameboardGridByBeetle(cell, selectedPiece);
+                    beetlePiece.Position = pieceToKeepSafe.Position;
+                    beetlePiece.Piece.Position = oldPosition;
+                    UpdateGameboardGridByBeetle(cell, beetlePiece);
                 }
                 isBeetleMoved = false;
+        }
+
+        private void PieceToReplaceByTheBeetle(GamePiece beetlePiece, GamePiece pieceToKeepSafe, Image imageWhereBeetleIs)
+        {
+            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
+            if (indexToRemove != -1)
+            {
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            }
+            board.Remove(pieceToKeepSafe.Position);
+            if (board.ContainsKey(beetlePiece.Position) && board[beetlePiece.Position] == beetlePiece)
+            {
+                board.Remove(beetlePiece.Position);
+            }
+        }
+
+        private void RestoreOriginalPieceCapturedByTheBeetle(Image imageWhereBeetleIs, GamePiece beetlePiece)
+        {
+            Image originalPieceImage = piecesCapturedByTheBeetle[(beetlePiece.pieceNumber, beetlePiece.playerName)];
+            GamePiece originalPiece = originalPieceImage.Tag as GamePiece;
+            board.Remove(originalPiece.Position);
+            board.Add(originalPiece.Position, originalPiece);
+            if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
+            {
+                List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
+                GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
+            }
+            if (GameBoardGrid.Children.Contains(originalPieceImage))
+            {
+                List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(originalPieceImage);
+                GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
+            }
+            GameBoardGrid.Children.Add(originalPieceImage);
+            piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
         }
 
 
         private void UpdateGameboardGridByBeetle(Polygon cell, GamePiece piece)
         {
-            Image pieceImage = ObtainImageCreation(cell, selectedPiece);
+            Image pieceImage = ObtainImageCreation(cell, piece);
             GameBoardGrid.Children.Add(pieceImage);
-            board[selectedPiece.Position] = selectedPiece;
-            SendPiecePositionToServer(selectedPiece);
+            board[piece.Position] = piece;
+            SendPiecePositionToServer(piece);
             lastPlacedCell = cell;
             selectedPiece = null;
             ResetHighlights();
@@ -698,19 +738,20 @@ namespace HiveGameWPFApp.Views
                 board.Remove(oldPosition);
             }
             var imagesOnGameBoardGrid = GameBoardGrid.Children.OfType<Image>().ToList();
+            GamePiece pieceToMove = pieceImage.Tag as GamePiece;
             Image imageToRemove = new Image();
             foreach (var imageOnGrid in imagesOnGameBoardGrid)
             {
                 GamePiece piece = imageOnGrid.Tag as GamePiece;
-                if (piece.Piece.Position == oldPosition)
+                if (piece.Piece.Position == oldPosition && piece.pieceNumber == pieceToMove.pieceNumber && piece.playerName == pieceToMove.playerName)
                 {
                     imageToRemove = imageOnGrid;
                     break;
                 }
             }
-            if (GameBoardGrid.Children.Contains(imageToRemove)) {
-                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
-                int indexToRemove = childrenGrids.IndexOf(imageToRemove);
+            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            int indexToRemove = childrenGrids.IndexOf(imageToRemove);
+            if(indexToRemove != -1) { 
                 GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
             GameBoardGrid.Children.Add(pieceImage);
@@ -721,22 +762,30 @@ namespace HiveGameWPFApp.Views
         private bool ValidateThatPieceCannotBreakTheHive(Point positionPiece)
         {
             bool validationResult = false;
-            if(positionPiece!=new Point(-1, -1))
+            GamePiece verifyIfPieceIsNotABeetle = board[positionPiece];
+            if (piecesCapturedByTheBeetle.ContainsKey((verifyIfPieceIsNotABeetle.pieceNumber, verifyIfPieceIsNotABeetle.playerName)))
             {
-                var piece = board[positionPiece];
-                board.Remove(positionPiece);
-                Point start = board.Keys.FirstOrDefault();
-                HashSet<Point> visited = new HashSet<Point>();
-                CheckConnectedPieces(start, visited);
-                if (visited.Count == board.Count)
+                validationResult = true;
+            }
+            else
+            {
+                if (positionPiece != new Point(-1, -1))
                 {
-                    validationResult = true;
+                    var piece = board[positionPiece];
+                    board.Remove(positionPiece);
+                    Point start = board.Keys.FirstOrDefault();
+                    HashSet<Point> visited = new HashSet<Point>();
+                    CheckConnectedPieces(start, visited);
+                    if (visited.Count == board.Count)
+                    {
+                        validationResult = true;
+                    }
+                    else
+                    {
+                        validationResult = false;
+                    }
+                    board.Add(positionPiece, piece);
                 }
-                else
-                {
-                    validationResult = false;
-                }
-                board.Add(positionPiece, piece);
             }
             return validationResult;
         }
@@ -1315,11 +1364,203 @@ namespace HiveGameWPFApp.Views
             }
         }
 
+        private void UpdateBeetleOnAPieceReceived(GamePiece piece, Image imageOfPieceToSafe)
+        {
+            GamePiece pieceToKeepSafe = imageOfPieceToSafe.Tag as GamePiece;
+            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
+            Image imageWhereBeetleIs = new Image();
+            foreach (var imageOnBeetle in imagesOfPieces)
+            {
+                GamePiece beetlePiece = imageOnBeetle.Tag as GamePiece;
+                if (beetlePiece.pieceNumber == piece.pieceNumber && beetlePiece.playerName == piece.playerName)
+                {
+                    imageWhereBeetleIs = imageOnBeetle;
+                    break;
+                }
+            }
+            if (imageWhereBeetleIs != null)
+            {
+                if (piecesCapturedByTheBeetle.ContainsKey((piece.pieceNumber, piece.playerName)))
+                {
+                    RestoreOriginalPieceCapturedByTheBeetleReceived(imageWhereBeetleIs, piece);
+                }
+                else
+                {
+                    PieceToReplaceByTheBeetleReceived(piece, pieceToKeepSafe, imageWhereBeetleIs);
+                }
+                RemoveExistingPieceInBoard(piece);
+                piecesCapturedByTheBeetle.Add((piece.pieceNumber, piece.playerName), imageOfPieceToSafe);
+                Polygon cellOfPieceToSafe = cellDictionary[pieceToKeepSafe.Position];
+                UpdateGameboardOfBeetlePieceReceivedToGrid(cellOfPieceToSafe, piece);
+            }
+        }
+
+        private void RestoreOriginalPieceCapturedByTheBeetleReceived(Image imageWhereBeetleIs, GamePiece beetlePiece)
+        {
+            Image originalPieceImage = piecesCapturedByTheBeetle[(beetlePiece.pieceNumber, beetlePiece.playerName)];
+            GamePiece originalPiece = originalPieceImage.Tag as GamePiece;
+            board.Remove(originalPiece.Position);
+            board.Add(originalPiece.Position, originalPiece);
+            if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
+            {
+                List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
+                GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
+            }
+            if (GameBoardGrid.Children.Contains(originalPieceImage))
+            {
+                List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(originalPieceImage);
+                GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
+            }
+            GameBoardGrid.Children.Add(originalPieceImage);
+            piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
+        }
+
+        private void PieceToReplaceByTheBeetleReceived(GamePiece beetlePiece, GamePiece pieceToKeepSafe, Image imageWhereBeetleIs)
+        {
+            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
+            if (indexToRemove != -1)
+            {
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            }
+            Image imageToRemove = new Image();
+            foreach (UIElement child in GameBoardGrid.Children)
+            {
+                if (child is Image image && image.Tag is GamePiece piece)
+                {
+                    if (piece.pieceNumber == pieceToKeepSafe.pieceNumber && piece.playerName == pieceToKeepSafe.playerName && pieceToKeepSafe.Position == piece.Position)
+                    {
+                        imageToRemove = image;
+                        break;
+                    }
+                }
+            }
+            if (imageToRemove != null)
+            {
+                GameBoardGrid.Children.Remove(imageToRemove);
+            }
+            board.Remove(pieceToKeepSafe.Position);
+            if (board.ContainsKey(beetlePiece.Position) && board[beetlePiece.Position] == beetlePiece)
+            {
+                board.Remove(beetlePiece.Position);
+            }
+        }
+
+        private void RemoveExistingPieceInBoard(GamePiece piece)
+        {
+            if (board.ContainsKey(piece.Piece.Position) && board[piece.Piece.Position].pieceNumber == piece.pieceNumber && board[piece.Piece.Position].playerName == piece.playerName)
+            {
+                board.Remove(piece.Piece.Position);
+            }
+        }
+
+        private void UpdateGameboardOfBeetlePieceReceivedToGrid(Polygon cell, GamePiece piece)
+        {
+            Image pieceImage = ObtainImageCreation(cell, piece);
+            GameBoardGrid.Children.Add(pieceImage);
+            board[piece.Position] = piece;
+            lastPlacedCell = cell;
+        }
+
+        private Image ObtainImageOfPieceToSafe(GamePiece piece)
+        {
+            Image imageOfPieceToSafe = new Image();
+            var listOfImages = GameBoardGrid.Children.OfType<Image>().ToList();
+            foreach(var imageOnGrid in listOfImages)
+            {
+                if(imageOnGrid.Tag is GamePiece gamePiece && gamePiece.Position == piece.Position)
+                {
+                    imageOfPieceToSafe = imageOnGrid;
+                }
+            }
+            return imageOfPieceToSafe;
+        }
+
+        private void UpdateOldAndNewPlaceInGameBoardReceived(Image pieceImage, Point oldPosition)
+        {
+            if (board.ContainsKey(oldPosition))
+            {
+                board.Remove(oldPosition);
+            }
+            var imagesOnGameBoardGrid = GameBoardGrid.Children.OfType<Image>().ToList();
+            GamePiece pieceToMove = pieceImage.Tag as GamePiece;
+            Image imageToRemove = new Image();
+            foreach (var imageOnGrid in imagesOnGameBoardGrid)
+            {
+                GamePiece piece = imageOnGrid.Tag as GamePiece;
+                if (piece.Piece.Position == oldPosition && piece.pieceNumber == pieceToMove.pieceNumber && piece.playerName == pieceToMove.playerName)
+                {
+                    imageToRemove = imageOnGrid;
+                    break;
+                }
+            }
+            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            int indexToRemove = childrenGrids.IndexOf(imageToRemove);
+            if (indexToRemove != -1)
+            {
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            }
+            GameBoardGrid.Children.Add(pieceImage);
+            GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
+            board[pieceToAdd.Position] = pieceToAdd;
+        }
+
+        private void ReturnOriginalPositionOfPieceCapturedByTheBeetleReceived(Image pieceCapturedByTheBeetle, GamePiece beetlePiece)
+        {
+            GamePiece pieceToReturn = pieceCapturedByTheBeetle.Tag as GamePiece;
+            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
+            if (GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
+            {
+                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemove = childrenGrids.IndexOf(pieceCapturedByTheBeetle);
+                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            }
+            GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
+            piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
+            if (board.ContainsKey(pieceToReturn.Position))
+            {
+                board.Remove(pieceToReturn.Position);
+            }
+            board.Add(pieceToReturn.Position, pieceToReturn);
+        }
+
+
+        private void VerifyIfBeetleIsOnAPieceToPlaceIt(GamePiece piece)
+        {
+            Point oldPosition = piece.Piece.Position; 
+            Polygon cell = cellDictionary[piece.Position];
+            Image imageOfPiece = ObtainImageCreation(cell, piece);
+            if(piecesCapturedByTheBeetle.ContainsKey((piece.pieceNumber, piece.playerName))){
+                Image pieceContainedByTheBeetle = piecesCapturedByTheBeetle[(piece.pieceNumber,piece.playerName)];
+                UpdateOldAndNewPlaceInGameBoardReceived(imageOfPiece, oldPosition);
+                List<Image> images = GameBoardGrid.Children.OfType<Image>().ToList();
+                ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle, piece);
+            }
+            else
+            {
+                UpdateOldAndNewPlaceInGameBoardReceived(imageOfPiece,oldPosition);
+            }
+        }
+
         private void UpdatePiecePositionOnBoard(GamePiece piece)
         {
             cellDictionary.TryGetValue(piece.Position, out var cell);
-            PlacePieceReceivedOnCellToUpdate(cell, piece);
-        }
+            if (piece.Piece.Name == "Beetle" && board.ContainsKey(piece.Position))
+            {
+                Image imageOfPieceToSafe = ObtainImageOfPieceToSafe(piece);
+                UpdateBeetleOnAPieceReceived(piece, imageOfPieceToSafe);
+            }
+            else if(piece.Piece.Name == "Beetle" && piecesCapturedByTheBeetle.ContainsKey((piece.pieceNumber,piece.playerName)))
+            {
+                VerifyIfBeetleIsOnAPieceToPlaceIt(piece);
+            }
+            else
+            {
+                PlacePieceReceivedOnCellToUpdate(cell, piece);
+            }
+         }
 
         private void PlacePieceReceivedOnCellToUpdate(Polygon cell, GamePiece piece)
         {
@@ -1338,7 +1579,6 @@ namespace HiveGameWPFApp.Views
                     board[piece.Position] = piece;
                     lastPlacedCell = cell;
                 }
-                ResetHighlights();
             }
         }
 
@@ -1349,24 +1589,49 @@ namespace HiveGameWPFApp.Views
                 board.Remove(oldPosition);
             }
             var listOfElements = GameBoardGrid.Children.OfType<Image>().ToList();
+            GamePiece piece = pieceImage.Tag as GamePiece;
             Image imageToQuite = new Image();
             foreach (var element in listOfElements)
             {
                 GamePiece pieceToQuit = (GamePiece)element.Tag;
-                if(pieceToQuit.Position == oldPosition)
+                if(pieceToQuit.Position == oldPosition && pieceToQuit.pieceNumber == piece.pieceNumber && pieceToQuit.playerName == piece.playerName)
                 {
                     imageToQuite = element;
                     break;
                 }
             }
-            if(imageToQuite != null)
+            EliminateDuplicatedImagesIfExistsReceived(oldPosition);
+            if (imageToQuite != null)
             {
                 List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemove = childrenGrids.IndexOf(imageToQuite);
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                if(indexToRemove != -1)
+                {
+                    GameBoardGrid.Children.RemoveAt(indexToRemove);
+                }   
                 GameBoardGrid.Children.Add(pieceImage);
                 GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
                 board[pieceToAdd.Position] = pieceToAdd;
+            }
+        }
+
+        private void EliminateDuplicatedImagesIfExistsReceived(Point oldPosition)
+        {
+
+            var imagesToRemove = GameBoardGrid.Children
+                .OfType<Image>()
+                .Where(image =>
+                        image.Tag is GamePiece piece && piece.Position == oldPosition)
+                .ToList();
+            for (int indexOfImage = 0; indexOfImage < imagesToRemove.Count; indexOfImage++)
+            {
+                Image imageToQuit = imagesToRemove[indexOfImage];
+                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                int indexToRemove = childrenGrids.IndexOf(imageToQuit);
+                if (indexToRemove != -1)
+                {
+                    GameBoardGrid.Children.RemoveAt(indexToRemove);
+                }
             }
         }
 
