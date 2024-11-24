@@ -299,6 +299,9 @@
     <Resource Include="Images\GamePieces\Queen_Player2.png" />
     <Resource Include="Images\GamePieces\Spider_Player1.png" />
     <Resource Include="Images\GamePieces\Spider_Player2.png" />
+    <Resource Include="Images\Characters\loading.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

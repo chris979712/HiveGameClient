@@ -34,6 +34,7 @@
 
                         <Border x:Name="brd_Password" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0">
                             <PasswordBox x:Name="pwb_Password"
+                                     MaxLength="255"
                                      FontSize="16"
                                      FontWeight="Medium"
                                      FontFamily="Segoe UI Variable Display"
@@ -87,6 +88,7 @@
 
                         <Border x:Name="brd_PasswordConfirm" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0">
                             <PasswordBox x:Name="pwb_ConfirmPassword"
+                                     MaxLength="255"
                                      FontSize="16"
                                      FontWeight="Medium"
                                      FontFamily="Segoe UI Variable Display"
@@ -157,6 +159,7 @@
                        VerticalAlignment="Top" />
 
                     <TextBox x:Name="txtb_Username"
+                         MaxLength="50"
                          Width="348"
                          Height="40"
                          HorizontalAlignment="Left"
@@ -183,6 +186,7 @@
                        VerticalAlignment="Top" />
 
                     <TextBox x:Name="txtb_Email"
+                         MaxLength="250"
                          Width="348"
                          Height="40"
                          HorizontalAlignment="Left"
