@@ -853,11 +853,29 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a ¡Defeat!.
+        /// </summary>
+        public static string lbl_Defeat {
+            get {
+                return ResourceManager.GetString("lbl_Defeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Description.
         /// </summary>
         public static string lbl_Description {
             get {
                 return ResourceManager.GetString("lbl_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¡Draw!.
+        /// </summary>
+        public static string lbl_Draw {
+            get {
+                return ResourceManager.GetString("lbl_Draw", resourceCulture);
             }
         }
         
@@ -1047,6 +1065,15 @@ namespace HiveGameWPFApp.Properties {
         public static string lbl_UserEmail {
             get {
                 return ResourceManager.GetString("lbl_UserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¡Absolute victory!.
+        /// </summary>
+        public static string lbl_Winner {
+            get {
+                return ResourceManager.GetString("lbl_Winner", resourceCulture);
             }
         }
         
