@@ -480,4 +480,10 @@
   <data name="dialogFourFirstTurn" xml:space="preserve">
     <value>Para mover una pieza, primero debes mover a tu reyna</value>
   </data>
+  <data name="dialogDrawMatchResult" xml:space="preserve">
+    <value>Partida terminada ha habido un empate.</value>
+  </data>
+  <data name="DialogWinnerMessage" xml:space="preserve">
+    <value>La partida ha terminado, el ganador es </value>
+  </data>
 </root>
