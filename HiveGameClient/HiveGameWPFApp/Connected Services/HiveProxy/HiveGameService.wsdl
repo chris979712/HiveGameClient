@@ -825,6 +825,14 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="FinishOfTheMatch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="winner" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="MovePiece">
         <xs:complexType>
           <xs:sequence>
@@ -850,10 +858,25 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="LeaveMatchFinished">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+            <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="session" nillable="true" type="q50:UserSession" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LeaveMatchFinishedResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="LeaveMatchFinishedResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="ChargePlayerGameBoard">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="side" nillable="true" type="q50:PlayerSide" />
+            <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="side" nillable="true" type="q51:PlayerSide" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -865,7 +888,7 @@
       <xs:element name="ReceivePieceMoved">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="piece" nillable="true" type="q51:GamePice" />
+            <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="piece" nillable="true" type="q52:GamePice" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -889,7 +912,7 @@
       <xs:element name="ReceivePlayersToMatch">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userSession" nillable="true" type="q52:ArrayOfUserSession" />
+            <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="userSession" nillable="true" type="q53:ArrayOfUserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -906,6 +929,18 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="ReceivePlayerHasLeftNotificationResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveFinalMatchResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="winner" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReceiveFinalMatchResultResponse">
         <xs:complexType>
           <xs:sequence />
         </xs:complexType>
@@ -1384,6 +1419,9 @@
   <wsdl:message name="IGameManager_ConnectToGameBoard_InputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToGameBoard" />
   </wsdl:message>
+  <wsdl:message name="IGameManager_FinishOfTheMatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishOfTheMatch" />
+  </wsdl:message>
   <wsdl:message name="IGameManager_MovePiece_InputMessage">
     <wsdl:part name="parameters" element="tns:MovePiece" />
   </wsdl:message>
@@ -1392,6 +1430,12 @@
   </wsdl:message>
   <wsdl:message name="IGameManager_LeaveTheGame_InputMessage">
     <wsdl:part name="parameters" element="tns:LeaveTheGame" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_LeaveMatchFinished_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveMatchFinished" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_LeaveMatchFinished_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveMatchFinishedResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManager_ChargePlayerGameBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ChargePlayerGameBoard" />
@@ -1422,6 +1466,12 @@
   </wsdl:message>
   <wsdl:message name="IGameManager_ReceivePlayerHasLeftNotification_InputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceivePlayerHasLeftNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceiveFinalMatchResult_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveFinalMatchResult" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_ReceiveFinalMatchResult_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveFinalMatchResultResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserManager">
     <wsdl:operation name="AddUser">
@@ -1646,6 +1696,9 @@
     <wsdl:operation name="ConnectToGameBoard">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ConnectToGameBoard" message="tns:IGameManager_ConnectToGameBoard_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="FinishOfTheMatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/FinishOfTheMatch" message="tns:IGameManager_FinishOfTheMatch_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MovePiece">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/MovePiece" message="tns:IGameManager_MovePiece_InputMessage" />
     </wsdl:operation>
@@ -1654,6 +1707,10 @@
     </wsdl:operation>
     <wsdl:operation name="LeaveTheGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/LeaveTheGame" message="tns:IGameManager_LeaveTheGame_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeaveMatchFinished">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/LeaveMatchFinished" message="tns:IGameManager_LeaveMatchFinished_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/LeaveMatchFinishedResponse" message="tns:IGameManager_LeaveMatchFinished_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ChargePlayerGameBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ChargePlayerGameBoard" message="tns:IGameManager_ChargePlayerGameBoard_OutputCallbackMessage" />
@@ -1674,6 +1731,10 @@
     <wsdl:operation name="ReceivePlayerHasLeftNotification">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotification" message="tns:IGameManager_ReceivePlayerHasLeftNotification_OutputCallbackMessage" />
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotificationResponse" message="tns:IGameManager_ReceivePlayerHasLeftNotification_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveFinalMatchResult">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ReceiveFinalMatchResult" message="tns:IGameManager_ReceiveFinalMatchResult_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/ReceiveFinalMatchResultResponse" message="tns:IGameManager_ReceiveFinalMatchResult_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IUserManager" type="tns:IUserManager">
@@ -2167,6 +2228,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="FinishOfTheMatch">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/FinishOfTheMatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="MovePiece">
       <soap12:operation soapAction="http://tempuri.org/IGameManager/MovePiece" style="document" />
       <wsdl:input>
@@ -2184,6 +2251,15 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="LeaveMatchFinished">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/LeaveMatchFinished" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ChargePlayerGameBoard">
       <soap12:operation soapAction="http://tempuri.org/IGameManager/ChargePlayerGameBoard" style="document" />
@@ -2223,6 +2299,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReceivePlayerHasLeftNotification">
       <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveFinalMatchResult">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/ReceiveFinalMatchResult" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

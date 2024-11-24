@@ -421,6 +421,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Match has finished there was a draw, well played..
+        /// </summary>
+        public static string dialogDrawMatchResult {
+            get {
+                return ResourceManager.GetString("dialogDrawMatchResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The email that you want to save, is already registered in another account..
         /// </summary>
         public static string dialogEmailAlreadyRegistered {
@@ -714,6 +723,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogUserHasLeftTheMatch {
             get {
                 return ResourceManager.GetString("dialogUserHasLeftTheMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The match has finished the winner is .
+        /// </summary>
+        public static string DialogWinnerMessage {
+            get {
+                return ResourceManager.GetString("DialogWinnerMessage", resourceCulture);
             }
         }
         
