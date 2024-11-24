@@ -12,6 +12,7 @@ using System.Web.SessionState;
 using HiveGameWPFApp.HiveProxy;
 using System.Windows.Media.Imaging;
 using log4net.Repository.Hierarchy;
+using System.Threading.Tasks;
 
 namespace HiveGameWPFApp.Views
 {
