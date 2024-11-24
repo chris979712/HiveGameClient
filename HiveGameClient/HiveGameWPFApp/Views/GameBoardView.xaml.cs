@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.ServiceModel;
 using System.Text;
@@ -17,6 +18,7 @@ using System.Windows.Forms;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -199,7 +201,7 @@ namespace HiveGameWPFApp.Views
                     }
                     else
                     {
-                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogFourFirstTurn);
+                        ShowInfoMessage(Properties.Resources.dialogFourFirstTurn);
                     }
                 }
             }
@@ -212,7 +214,7 @@ namespace HiveGameWPFApp.Views
             {
                 if (numberOfTurn == 4 && !ValidateQueenPieceIsInGame() && piece.Piece.Name != "Queen" && !isQueenInGame)
                 {
-                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogQueenIsNotInPlay);
+                    ShowInfoMessage(Properties.Resources.dialogQueenIsNotInPlay);
                     HighlightAvailableStartingCells();
                 }
                 else
@@ -290,10 +292,24 @@ namespace HiveGameWPFApp.Views
             }
             else
             {
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogBrokeHiveAlert);
+                ShowInfoMessage(Properties.Resources.dialogBrokeHiveAlert);
             }
            
         }
+
+        public void ShowInfoMessage(string message)
+        {
+            InfoMessage.Text = message;
+            InfoMessage.Visibility = Visibility.Visible;
+            Storyboard infoAnimation = (Storyboard)FindResource("InfoMessageAnimation");
+            infoAnimation.Completed += (s, e) =>
+            {
+
+                InfoMessage.Visibility = Visibility.Collapsed;
+            };
+            infoAnimation.Begin();
+        }
+
 
         private void MoveQueen(GamePiece piece)
         {
@@ -1918,14 +1934,37 @@ namespace HiveGameWPFApp.Views
         public void ReceiveFinalMatchResult(string winner)
         {
             LockGameBoardAndStackPanels();
-            if(winner == "Draw")
+            if (winner == "Draw")
             {
-                DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogDrawMatchResult);
+                ShowVictoryMessage("Draw");
+
             }
             else
             {
-                DialogManager.ShowSuccessMessageAlert(Properties.Resources.DialogWinnerMessage + " " + winner);
+                ShowVictoryMessage(winner);
+
             }
+        }
+
+        private void ShowVictoryMessage(string result)
+        {
+            if (result == "Draw")
+            {
+                txt_VictoryMessage.Text = Properties.Resources.lbl_Draw;
+            }
+            else if (result == UserProfileSingleton.username)
+            {
+                txt_VictoryMessage.Text = Properties.Resources.lbl_Winner;
+            }
+            else
+            {
+                txt_VictoryMessage.Text = Properties.Resources.lbl_Defeat;
+            }
+
+            VictoryOverlay.Visibility = Visibility.Visible;
+
+            Storyboard victoryStoryboard = (Storyboard)FindResource("VictoryAnimation");
+            victoryStoryboard.Begin();
         }
 
         private void LockGameBoardAndStackPanels()
