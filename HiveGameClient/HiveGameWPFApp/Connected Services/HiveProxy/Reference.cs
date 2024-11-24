@@ -2034,6 +2034,12 @@ namespace HiveGameWPFApp.HiveProxy {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/ConnectToGameBoard")]
         System.Threading.Tasks.Task ConnectToGameBoardAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/FinishOfTheMatch")]
+        void FinishOfTheMatch(string codeMatch, string winner);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/FinishOfTheMatch")]
+        System.Threading.Tasks.Task FinishOfTheMatchAsync(string codeMatch, string winner);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/MovePiece")]
         void MovePiece(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
         
@@ -2051,6 +2057,12 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/LeaveTheGame")]
         System.Threading.Tasks.Task LeaveTheGameAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/LeaveMatchFinished", ReplyAction="http://tempuri.org/IGameManager/LeaveMatchFinishedResponse")]
+        int LeaveMatchFinished(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/LeaveMatchFinished", ReplyAction="http://tempuri.org/IGameManager/LeaveMatchFinishedResponse")]
+        System.Threading.Tasks.Task<int> LeaveMatchFinishedAsync(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2070,6 +2082,9 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotification", ReplyAction="http://tempuri.org/IGameManager/ReceivePlayerHasLeftNotificationResponse")]
         void ReceivePlayerHasLeftNotification(bool doPlayerLeftTheGame);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceiveFinalMatchResult", ReplyAction="http://tempuri.org/IGameManager/ReceiveFinalMatchResultResponse")]
+        void ReceiveFinalMatchResult(string winner);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2108,6 +2123,14 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.ConnectToGameBoardAsync(session, codeMatch);
         }
         
+        public void FinishOfTheMatch(string codeMatch, string winner) {
+            base.Channel.FinishOfTheMatch(codeMatch, winner);
+        }
+        
+        public System.Threading.Tasks.Task FinishOfTheMatchAsync(string codeMatch, string winner) {
+            return base.Channel.FinishOfTheMatchAsync(codeMatch, winner);
+        }
+        
         public void MovePiece(HiveGameWPFApp.HiveProxy.GamePice piece, HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
             base.Channel.MovePiece(piece, session, codeMatch);
         }
@@ -2130,6 +2153,14 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task LeaveTheGameAsync(HiveGameWPFApp.HiveProxy.UserSession session, string codeMatch) {
             return base.Channel.LeaveTheGameAsync(session, codeMatch);
+        }
+        
+        public int LeaveMatchFinished(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session) {
+            return base.Channel.LeaveMatchFinished(codeMatch, session);
+        }
+        
+        public System.Threading.Tasks.Task<int> LeaveMatchFinishedAsync(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session) {
+            return base.Channel.LeaveMatchFinishedAsync(codeMatch, session);
         }
     }
 }

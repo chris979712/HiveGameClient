@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace HiveGameWPFApp.Views
 {
@@ -560,6 +561,62 @@ namespace HiveGameWPFApp.Views
             return pointToMove;
         }
 
+        private string GetIfItsFinalMatchResults()
+        {
+            string winnerResult = "NoBody";
+            GamePiece queenPlayerOne = ObtainQueenOfPlayers(usernamePlayer1);
+            GamePiece queenPlayerTwo = ObtainQueenOfPlayers(usernamePlayer2);
+            if(queenPlayerOne == null)
+            {
+                queenPlayerOne = ObtainQueenOfPlayersCapturedByABeetle(usernamePlayer1);
+            }
+            if(queenPlayerTwo == null)
+            {
+                queenPlayerTwo = ObtainQueenOfPlayersCapturedByABeetle(usernamePlayer2);
+            }
+            if(queenPlayerOne != null && queenPlayerTwo != null)
+            {
+                if (IsSourrounded(queenPlayerOne.Position) && IsSourrounded(queenPlayerTwo.Position))
+                {
+                    winnerResult = "Draw";
+                }
+                else if(IsSourrounded(queenPlayerOne.Position))
+                {
+                    winnerResult = usernamePlayer2;
+                }
+                else if (IsSourrounded(queenPlayerTwo.Position))
+                {
+                    winnerResult = usernamePlayer1;
+                }
+            }
+
+            return winnerResult;
+        }
+
+        private bool IsSourrounded(Point positionPiece)
+        {
+            List<Point> adjacentPoints = ObtainAdjacentPoints(positionPiece);
+            int numberOfColliderPointsExisted = 0;
+            foreach(var point in adjacentPoints)
+            {
+                if (board.ContainsKey(point))
+                {
+                    numberOfColliderPointsExisted++;
+                }
+            }
+            return numberOfColliderPointsExisted == 6;
+        }
+
+        private GamePiece ObtainQueenOfPlayers(string usernameOfPlayer)
+        {
+            return board.Values.FirstOrDefault(piece => piece.playerName == usernameOfPlayer && piece.pieceNumber == 1);
+        }
+
+        private GamePiece ObtainQueenOfPlayersCapturedByABeetle(string usernameOfPlayer)
+        {
+            return piecesCapturedByTheBeetle.Values.Select(image => image.Tag as GamePiece).FirstOrDefault(gamePiece => gamePiece != null && gamePiece.pieceNumber == 1 && gamePiece.playerName == usernameOfPlayer);
+        }
+
         private void PlacePieceThatIsInGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (selectedPiece != null && sender is Polygon cell && cell != null)
@@ -580,12 +637,41 @@ namespace HiveGameWPFApp.Views
                 }
                 EliminateDuplicatedImagesIfExists(oldPosition);
                 SendPiecePositionToServer(selectedPiece);
+                string isThereAWinner = GetIfItsFinalMatchResults();
+                if(isThereAWinner != "NoBody")
+                {
+                    SendFinishOfMatchNotification(isThereAWinner);
+                }
                 lastPlacedCell = cell;
                 selectedPiece = null;
                 ResetHighlights();
             }
             isBeetleMoved = false;
             e.Handled = true;
+        }
+
+        private void SendFinishOfMatchNotification(string result)
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                gameManagerClient.FinishOfTheMatch(MatchSingleton.codeMatch, result);
+            }
+            catch (EndpointNotFoundException endPointException)
+            {
+                logger.LogError(endPointException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogError(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+            }
+            catch (CommunicationException communicationException)
+            {
+                logger.LogError(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+            }
         }
 
         private void EliminateDuplicatedImagesIfExists(Point oldPosition)
@@ -1212,6 +1298,8 @@ namespace HiveGameWPFApp.Views
                 ReturnToLoginView();
             }
         }
+
+
         private void DisconnectNormalPlayer()
         {
             LoggerManager logger = new LoggerManager(this.GetType());
@@ -1827,5 +1915,32 @@ namespace HiveGameWPFApp.Views
             this.NavigationService.Navigate(loginView);
         }
 
+        public void ReceiveFinalMatchResult(string winner)
+        {
+            LockGameBoardAndStackPanels();
+            if(winner == "Draw")
+            {
+                DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogDrawMatchResult);
+            }
+            else
+            {
+                DialogManager.ShowSuccessMessageAlert(Properties.Resources.DialogWinnerMessage + " " + winner);
+            }
+        }
+
+        private void LockGameBoardAndStackPanels()
+        {
+            stckp_Player1.IsEnabled = false;
+            stckp_Player2.IsEnabled = false;
+            stckp_Player1Pieces.IsEnabled = false;
+            stckp_Player2Pieces.IsEnabled = false;
+            foreach(UIElement element in GameBoardGrid.Children)
+            {
+                if (element is Image image)
+                {
+                    image.IsEnabled = false;
+                }
+            }
+        }
     }
 }
