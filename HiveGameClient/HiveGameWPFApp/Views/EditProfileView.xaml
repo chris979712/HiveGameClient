@@ -49,6 +49,7 @@
                         HorizontalAlignment="Left" 
                         Margin="747,210,0,0" 
                         VerticalAlignment="Top"/>
+                    
                     <TextBox x:Name="txtb_Nickname"
                          MaxLength="50"
                          Width="347"
@@ -67,6 +68,7 @@
                             <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
                         </TextBox.Effect>
                     </TextBox>
+                    
                     <Label x:Name="lbl_Description" Content="{x:Static p:Resources.lbl_Description}"
                         Foreground="#FFC300"
                         FontWeight="Bold"

@@ -21,9 +21,9 @@ namespace HiveGameWPFApp.Views
 {
     public partial class MainMenu : Page
     {
-        private MediaPlayer mediaPlayer;
-        private VideoDrawing videoDrawing;
-        private DrawingBrush drawingBrush;
+        private MediaPlayer _mediaPlayer;
+        private VideoDrawing _videoDrawing;
+        private DrawingBrush _drawingBrush;
         public MainMenu()
         {
             InitializeComponent();
@@ -40,39 +40,39 @@ namespace HiveGameWPFApp.Views
 
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
 
-            mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-            videoDrawing = new VideoDrawing
+            _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+            _videoDrawing = new VideoDrawing
             {
                 Rect = new Rect(0, 0, videoCanvas.Width, videoCanvas.Height),
-                Player = mediaPlayer
+                Player = _mediaPlayer
             };
 
-            drawingBrush = new DrawingBrush(videoDrawing);
-            videoCanvas.Background = drawingBrush;
+            _drawingBrush = new DrawingBrush(_videoDrawing);
+            videoCanvas.Background = _drawingBrush;
 
-            mediaPlayer.Play();
+            _mediaPlayer.Play();
         }
 
         private void MainMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayer != null)
+            if (_mediaPlayer != null)
             {
-                mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-                mediaPlayer.Stop();
-                mediaPlayer.Close();
-                mediaPlayer = null;
+                _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+                _mediaPlayer.Stop();
+                _mediaPlayer.Close();
+                _mediaPlayer = null;
             }
         }
 
         private void MediaElement_MediaEnded(object sender, EventArgs e)
         {
-            if (mediaPlayer != null)
+            if (_mediaPlayer != null)
             {
-                mediaPlayer.Position = TimeSpan.Zero;
-                mediaPlayer.Play();
+                _mediaPlayer.Position = TimeSpan.Zero;
+                _mediaPlayer.Play();
             }
         }
 
