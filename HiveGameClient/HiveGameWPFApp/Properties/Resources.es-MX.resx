@@ -241,7 +241,7 @@
     <value>Cancelar</value>
   </data>
   <data name="dialogCouldntSendEmail" xml:space="preserve">
-    <value>There has been an error while sending email message. Try it again.</value>
+    <value>Se ha producido un error al enviar el mensaje de correo electrónico. Inténtalo de nuevo.</value>
   </data>
   <data name="dialogEmailVerificationMessage" xml:space="preserve">
     <value>Correo enviado. Por favor verifica tu cuenta de correo para poder ver el código de verificación.</value>
@@ -485,5 +485,14 @@
   </data>
   <data name="DialogWinnerMessage" xml:space="preserve">
     <value>La partida ha terminado, el ganador es </value>
+  </data>
+  <data name="lbl_Winner" xml:space="preserve">
+    <value>¡Victoria Absoluta!</value>
+  </data>
+  <data name="lbl_Defeat" xml:space="preserve">
+    <value>¡Derrota!</value>
+  </data>
+  <data name="lbl_Draw" xml:space="preserve">
+    <value>¡Empate!</value>
   </data>
 </root>

@@ -486,4 +486,13 @@
   <data name="DialogWinnerMessage" xml:space="preserve">
     <value>The match has finished the winner is </value>
   </data>
+  <data name="lbl_Winner" xml:space="preserve">
+    <value>¡Absolute victory!</value>
+  </data>
+  <data name="lbl_Defeat" xml:space="preserve">
+    <value>¡Defeat!</value>
+  </data>
+  <data name="lbl_Draw" xml:space="preserve">
+    <value>¡Draw!</value>
+  </data>
 </root>

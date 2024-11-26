@@ -137,7 +137,7 @@
 
                     <StackPanel x:Name="stck_AddNewFriend" Visibility="Visible">
                         <DockPanel Width="393" Margin="10">
-                            <TextBox x:Name="txtb_SearchFriend" Width="278" DockPanel.Dock="Left" 
+                            <TextBox x:Name="txtb_SearchFriend" Width="278" DockPanel.Dock="Left" MaxLength="50"
                             Background="#1C1C1C" FontSize="18" Foreground="White" BorderBrush="#FFC300" BorderThickness="2" Height="37">
                                 <TextBox.Effect>
                                     <DropShadowEffect Color="Black" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>

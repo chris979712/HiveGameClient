@@ -11,43 +11,46 @@ namespace HiveGameWPFApp
 {
     public partial class App : Application
     {
-        public static MediaPlayer MediaPlayer = new MediaPlayer();
-        private static string currentMusicPath = string.Empty;
-        private static bool isMusicPlaying = true;
+        private static readonly MediaPlayer _mediaPlayer = new MediaPlayer();
+        private static string _currentMusicPath = string.Empty;
+        private static bool _isMusicPlaying = true;
+
+        public static MediaPlayer MediaPlayer => _mediaPlayer;
+
         public static void PlayMusic(string musicPath)
         {
-            if (currentMusicPath == musicPath) return;
+            if (_currentMusicPath == musicPath) return;
 
-            MediaPlayer.Stop();
-            MediaPlayer.Open(new Uri(musicPath, UriKind.RelativeOrAbsolute));
-            MediaPlayer.MediaEnded -= MediaPlayer_MediaEnded;
-            MediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            MediaPlayer.Play();
-            currentMusicPath = musicPath;
-            MediaPlayer.Volume = 0.09;
-            isMusicPlaying = true;
+            _mediaPlayer.Stop();
+            _mediaPlayer.Open(new Uri(musicPath, UriKind.RelativeOrAbsolute));
+            _mediaPlayer.MediaEnded -= MediaPlayer_MediaEnded;
+            _mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            _mediaPlayer.Play();
+            _currentMusicPath = musicPath;
+            _mediaPlayer.Volume = 0.09;
+            _isMusicPlaying = true;
         }
 
         private static void MediaPlayer_MediaEnded(object sender, EventArgs e)
         {
-            MediaPlayer.Position = TimeSpan.Zero; 
-            MediaPlayer.Play();
+            _mediaPlayer.Position = TimeSpan.Zero;
+            _mediaPlayer.Play();
         }
 
         public static void ToggleMusic()
         {
-            if (isMusicPlaying)
+            if (_isMusicPlaying)
             {
-                MediaPlayer.Pause();
-                isMusicPlaying = false;
+                _mediaPlayer.Pause();
+                _isMusicPlaying = false;
             }
             else
             {
-                MediaPlayer.Play();
-                isMusicPlaying = true;
+                _mediaPlayer.Play();
+                _isMusicPlaying = true;
             }
         }
 
-        public static bool IsMusicPlaying => isMusicPlaying;
+        public static bool IsMusicPlaying => _isMusicPlaying;
     }
-}
+ }

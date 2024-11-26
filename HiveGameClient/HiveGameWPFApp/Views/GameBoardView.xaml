@@ -16,13 +16,54 @@
                     <ImageBrush ImageSource="/Images/Background/GameBoardBackground.png" Stretch="UniformToFill" />
                 </Border.Background>
             </Border>
-
+            
+            <Grid Panel.ZIndex="100">
+                <TextBlock x:Name="InfoMessage"
+               Text="Este es un mensaje de información"
+               FontSize="20"
+               FontFamily="Impact"
+               Foreground="White"
+               Background="#CC000000"
+               Padding="10"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="10"
+               Visibility="Collapsed"
+               Opacity="0">
+                </TextBlock>
+            </Grid>
 
             <Grid>
                 <Image Name="img_GoOut" Source="/Images/Icons/Go out Game.png" 
                    MouseDown="Image_MouseDown" 
                    Cursor="Hand" Margin="-9,10,1161,596" RenderTransformOrigin="0.5,0.506"/>
             </Grid>
+
+
+            <Grid x:Name="VictoryOverlay"
+              Visibility="Collapsed"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Panel.ZIndex="100">
+                
+                <TextBlock x:Name="txt_VictoryMessage"
+               Text="¡Victoria absoluta!"
+               FontSize="25"
+               FontFamily="Impact"
+               Foreground="Black"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               RenderTransformOrigin="0.5,0.5" Cursor="">
+                    <TextBlock.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+            </Grid>
+
+
+
+
             <TextBlock x:Name="txtbl_TurnOf" Foreground="Black" TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_TurnOf}" FontSize="40" FontFamily="Impact"  Margin="992,336,152,340" />
             <TextBlock x:Name="txtbl_PlayerName" TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_Player1}" FontSize="30" FontFamily="Impact"  Margin="992,390,124,290"/>
 
@@ -56,4 +97,41 @@
             </DockPanel>
         </Grid>
     </DockPanel>
+    <Page.Resources>
+        <Storyboard x:Key="VictoryAnimation">
+            <DoubleAnimation Storyboard.TargetName="txt_VictoryMessage"
+                             Storyboard.TargetProperty="RenderTransform.ScaleX"
+                             From="0.5" To="6"
+                             Duration="0:0:4" AutoReverse="False" />
+            <DoubleAnimation Storyboard.TargetName="txt_VictoryMessage"
+                             Storyboard.TargetProperty="RenderTransform.ScaleY"
+                             From="0.5" To="6"
+                             Duration="0:0:4" AutoReverse="False" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="txt_VictoryMessage"
+                                           Storyboard.TargetProperty="RenderTransform.ScaleY">
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="5.2" />
+                <EasingDoubleKeyFrame KeyTime="0:0:3.5" Value="5" />
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="5.1" />
+                <EasingDoubleKeyFrame KeyTime="0:0:4.5" Value="5" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="InfoMessageAnimation">
+            <DoubleAnimation Storyboard.TargetName="InfoMessage"
+                         Storyboard.TargetProperty="Opacity"
+                         From="0" To="1"
+                         Duration="0:0:0.5" />
+            <DoubleAnimation Storyboard.TargetName="InfoMessage"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1" To="1"
+                         BeginTime="0:0:4" 
+                Duration="0:0:0.5" />
+                <DoubleAnimation Storyboard.TargetName="InfoMessage"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1" To="0"
+                         BeginTime="0:0:3"
+                         Duration="0:0:0.5" />
+        </Storyboard>
+    </Page.Resources>
+
 </Page>
