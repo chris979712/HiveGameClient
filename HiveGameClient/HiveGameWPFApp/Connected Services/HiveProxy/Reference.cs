@@ -1004,10 +1004,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task<HiveGameWPFApp.HiveProxy.Profile> GetUserProfileAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateLoginCredentials", ReplyAction="http://tempuri.org/IUserManager/UpdateLoginCredentialsResponse")]
-        int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile);
+        int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount oldAccessProfile, HiveGameWPFApp.HiveProxy.AccessAccount newAccessProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdateLoginCredentials", ReplyAction="http://tempuri.org/IUserManager/UpdateLoginCredentialsResponse")]
-        System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile);
+        System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount oldAccessProfile, HiveGameWPFApp.HiveProxy.AccessAccount newAccessProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManager/UpdatePlusUserReputation", ReplyAction="http://tempuri.org/IUserManager/UpdatePlusUserReputationResponse")]
         int UpdatePlusUserReputation(string username, int reputation);
@@ -1097,12 +1097,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.GetUserProfileAsync(username, password);
         }
         
-        public int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile) {
-            return base.Channel.UpdateLoginCredentials(profile, updatedProfile);
+        public int UpdateLoginCredentials(HiveGameWPFApp.HiveProxy.AccessAccount oldAccessProfile, HiveGameWPFApp.HiveProxy.AccessAccount newAccessProfile) {
+            return base.Channel.UpdateLoginCredentials(oldAccessProfile, newAccessProfile);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount profile, HiveGameWPFApp.HiveProxy.AccessAccount updatedProfile) {
-            return base.Channel.UpdateLoginCredentialsAsync(profile, updatedProfile);
+        public System.Threading.Tasks.Task<int> UpdateLoginCredentialsAsync(HiveGameWPFApp.HiveProxy.AccessAccount oldAccessProfile, HiveGameWPFApp.HiveProxy.AccessAccount newAccessProfile) {
+            return base.Channel.UpdateLoginCredentialsAsync(oldAccessProfile, newAccessProfile);
         }
         
         public int UpdatePlusUserReputation(string username, int reputation) {
