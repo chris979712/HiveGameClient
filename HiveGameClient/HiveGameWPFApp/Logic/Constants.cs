@@ -21,12 +21,7 @@ namespace HiveGameWPFApp.Logic
 
         public const string DEFAULT_IMAGE_GUEST = " ";
 
-        private static bool _isInMatch = false;
+        public static bool isInMatch = false;
 
-        public static bool IsInMatch
-        {
-            get => _isInMatch;
-            set => _isInMatch = value;
-        }
     }
 }

@@ -10,7 +10,7 @@ namespace HiveGameWPFApp.Logic
     public  class UserProfileSingleton
     {
 
-        private static readonly UserProfileSingleton singletonInstance = new UserProfileSingleton();
+        private static readonly UserProfileSingleton _singletonInstance = new UserProfileSingleton();
         public static string username { get; set; }
         public static string password { get; set; }
         public static string email {  get; set; }
@@ -22,7 +22,7 @@ namespace HiveGameWPFApp.Logic
         public static int idAssociatedAccount { get; set; }
         public static string description { get; set; }
 
-        public static UserProfileSingleton Instance => singletonInstance;
+        public static UserProfileSingleton Instance => _singletonInstance;
 
         public void CreateInstance(Profile profile)
         {
