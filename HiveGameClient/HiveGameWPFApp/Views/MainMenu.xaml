@@ -34,7 +34,7 @@
                         </Viewbox>
                     </Grid>
                 </Border>
-                <StackPanel Margin="520,169,-15,88">
+                <StackPanel Margin="535,185,-15,105">
                     <Canvas x:Name="videoCanvas" Width="774" Height="458" />
                 </StackPanel>
                 <Button x:Name="btn_Play" Content="{x:Static p:Resources.btn_Play}"

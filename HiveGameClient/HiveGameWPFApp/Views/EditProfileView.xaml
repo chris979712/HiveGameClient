@@ -50,6 +50,7 @@
                         Margin="747,210,0,0" 
                         VerticalAlignment="Top"/>
                     <TextBox x:Name="txtb_Nickname"
+                         MaxLength="50"
                          Width="347"
                          Height="40"
                          HorizontalAlignment="Left"
@@ -75,6 +76,7 @@
                         VerticalAlignment="Top"/>
 
                     <TextBox x:Name="txtb_Description"
+                         MaxLength="250"
                          Width="347"
                          Height="80"
                          HorizontalAlignment="Left"

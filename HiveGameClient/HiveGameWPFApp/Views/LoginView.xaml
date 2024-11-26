@@ -30,7 +30,7 @@
                        VerticalAlignment="Top"/>
 
 
-                <TextBox x:Name="txtb_Username" Width="347" Height="40"
+                <TextBox x:Name="txtb_Username" Width="347" Height="40" MaxLength="49"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
                          Margin="847,287,0,0" Background="#1C1C1C" Foreground="White"
                          BorderBrush="#FFC300" BorderThickness="2" Padding="5" FontSize="16">
@@ -54,7 +54,7 @@
 
 
                     <Border x:Name="brd_Password" CornerRadius="5" BorderBrush="#FFC300" BorderThickness="2" Height="40" Grid.Column="0">
-                        <PasswordBox x:Name="pwb_Password" FontSize="16" FontWeight="Medium"
+                        <PasswordBox x:Name="pwb_Password" FontSize="16" FontWeight="Medium" MaxLength="255"
                                      FontFamily="Segoe UI Variable Display" Background="#1C1C1C"
                                      Foreground="White" BorderThickness="0" Padding="5">
                             <PasswordBox.Effect>
