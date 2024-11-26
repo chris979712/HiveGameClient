@@ -24,5 +24,7 @@ namespace HiveGameWPFApp.Logic
             MessageBoxResult result = MessageBox.Show(confirmMessage, Properties.Resources.dialogTitleConfirmation, MessageBoxButton.OKCancel, MessageBoxImage.Question);
             return result == MessageBoxResult.OK;
         }
+
     }
+
 }

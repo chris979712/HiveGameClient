@@ -8,12 +8,9 @@ namespace HiveGameWPFApp.Logic
 {
     public class MatchSingleton
     {
-        private static readonly MatchSingleton SingletonInstance = new MatchSingleton();
-
+        private static readonly MatchSingleton _SingletonInstance = new MatchSingleton();
         public static string codeMatch {  get; set; }
-
-        public static MatchSingleton Instance => SingletonInstance;
-
+        public static MatchSingleton Instance => _SingletonInstance;
         public void CreateInstance(string code)
         {
             codeMatch = code;

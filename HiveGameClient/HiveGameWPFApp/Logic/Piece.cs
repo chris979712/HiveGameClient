@@ -10,19 +10,17 @@ namespace HiveGameWPFApp.Logic
     public abstract class Piece
     {
         public string Name { get; set; }
-
         public Point Position { get; set; }
-
         public string playerName { get; set; }
-
         public abstract bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board);
-
         public override bool Equals(object obj)
         {
+
             if (obj is Piece other)
             {
                 return this.Name == other.Name && this.Position.Equals(other.Position);
             }
+
             return false;
         }
     }
@@ -38,6 +36,7 @@ namespace HiveGameWPFApp.Logic
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
         {
             var validOffsets = new List<Point>
+
             {
                 new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1),
                 new Point(-1, 1), new Point(1, -1)
@@ -58,7 +57,9 @@ namespace HiveGameWPFApp.Logic
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
         {
+
             var distance = Math.Abs(to.X - from.X) + Math.Abs(to.Y - from.Y);
+
             if (distance != 3) return false;
             
             return !board.ContainsKey(to);  
@@ -74,7 +75,7 @@ namespace HiveGameWPFApp.Logic
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
         {
-            return board.ContainsKey(from) && !board.ContainsKey(to);  // Asegúrese de que el destino esté vacío
+            return board.ContainsKey(from) && !board.ContainsKey(to); 
         }
     }
     public class Ant : Piece
@@ -87,6 +88,7 @@ namespace HiveGameWPFApp.Logic
 
         public override bool IsValidMove(Point from, Point to, Dictionary<Point, Piece> board)
         {
+
             var xDiff = to.X - from.X;
             var yDiff = to.Y - from.Y;
             var direction = new Point(xDiff, yDiff);
@@ -100,6 +102,7 @@ namespace HiveGameWPFApp.Logic
     {
         public Grasshopper()
         {
+
             Name = "Grasshopper";
             playerName = " ";
         }
@@ -119,7 +122,7 @@ namespace HiveGameWPFApp.Logic
                 {
                     x += stepX;
                     y += stepY;
-                    if (board.ContainsKey(new Point(x, y))) return true;  // Si hay una pieza en el camino, el salto es válido
+                    if (board.ContainsKey(new Point(x, y))) return true; 
                 }
             }
 
@@ -132,6 +135,7 @@ namespace HiveGameWPFApp.Logic
 
         public bool PlacePiece(Point position, Piece piece)
         {
+
             if (!piece.IsValidMove(piece.Position, position, board)) return false;
 
             board[position] = piece;
@@ -140,6 +144,7 @@ namespace HiveGameWPFApp.Logic
 
         public bool RemovePiece(Point position)
         {
+
             if (board.ContainsKey(position))
             {
                 board.Remove(position);
@@ -150,6 +155,7 @@ namespace HiveGameWPFApp.Logic
 
         public Piece GetPieceAt(Point position)
         {
+
             return board.ContainsKey(position) ? board[position] : null;
         }
     }
