@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HiveGameWPFApp.Logic
 {
     public static class Constants
@@ -22,7 +21,12 @@ namespace HiveGameWPFApp.Logic
 
         public const string DEFAULT_IMAGE_GUEST = " ";
 
-        public static bool isInMatch = false;
+        private static bool _isInMatch = false;
 
+        public static bool IsInMatch
+        {
+            get => _isInMatch;
+            set => _isInMatch = value;
+        }
     }
 }
