@@ -151,7 +151,7 @@ namespace HiveGameWPFApp.Views
             double hexagonSize = 26;
             double xOffset = hexagonSize * Math.Sqrt(3);
             double yOffset = hexagonSize * 1.5;
-            GameBoardGrid.Children.Clear();
+            canva_GameBoardGrid.Children.Clear();
             cellDictionary.Clear();
             for (int row = 0; row < rows; row++)
             {
@@ -168,7 +168,7 @@ namespace HiveGameWPFApp.Views
                     if (row % 2 == 1) x += xOffset / 2;
                     Canvas.SetLeft(hexagon, x);
                     Canvas.SetTop(hexagon, y);
-                    GameBoardGrid.Children.Add(hexagon);
+                    canva_GameBoardGrid.Children.Add(hexagon);
                     cellDictionary[new Point(row, col)] = hexagon;
                 }
             }
@@ -298,13 +298,13 @@ namespace HiveGameWPFApp.Views
 
         public void ShowInfoMessage(string message)
         {
-            InfoMessage.Text = message;
-            InfoMessage.Visibility = Visibility.Visible;
+            txtBlock_InfoMessage.Text = message;
+            txtBlock_InfoMessage.Visibility = Visibility.Visible;
             Storyboard infoAnimation = (Storyboard)FindResource("InfoMessageAnimation");
             infoAnimation.Completed += (s, e) =>
             {
 
-                InfoMessage.Visibility = Visibility.Collapsed;
+                txtBlock_InfoMessage.Visibility = Visibility.Collapsed;
             };
             infoAnimation.Begin();
         }
@@ -373,7 +373,7 @@ namespace HiveGameWPFApp.Views
                 }
                 else if (board.ContainsKey(possiblePosition))
                 {
-                    List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
+                    List<Image> imagesOnBoard = canva_GameBoardGrid.Children.OfType<Image>().ToList();
                     foreach (Image imageOnBoard in imagesOnBoard)
                     {
                         GamePiece gamePiece = (GamePiece)imageOnBoard.Tag;
@@ -693,7 +693,7 @@ namespace HiveGameWPFApp.Views
         {
             if (!board.ContainsKey(oldPosition))
             {
-                var imagesToRemove = GameBoardGrid.Children
+                var imagesToRemove = canva_GameBoardGrid.Children
                     .OfType<Image>()
                     .Where(image =>
                         image.Tag is GamePiece piece && piece.Position == oldPosition)
@@ -701,11 +701,11 @@ namespace HiveGameWPFApp.Views
                 for (int indexOfImage = 0; indexOfImage < imagesToRemove.Count; indexOfImage++)
                 {
                     Image imageToQuit = imagesToRemove[indexOfImage];
-                    List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                    List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                     int indexToRemove = childrenGrids.IndexOf(imageToQuit);
                     if (indexToRemove != -1)
                     {
-                        GameBoardGrid.Children.RemoveAt(indexToRemove);
+                        canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
                     }
                 }
             }
@@ -732,14 +732,15 @@ namespace HiveGameWPFApp.Views
         private void ReturnOriginalPositionOfPieceCapturedByTheBeetle(Image pieceCapturedByTheBeetle, GamePiece beetlePiece)
         {
             GamePiece pieceToReturn = pieceCapturedByTheBeetle.Tag as GamePiece;
-            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
-            if (GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
+            List<Image> imagesOfPieces = canva_GameBoardGrid.Children.OfType<Image>().ToList();
+            if (canva_GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
             {
-                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemove = childrenGrids.IndexOf(pieceCapturedByTheBeetle);
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
-            GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
+
+            canva_GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
             piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
             if (board.ContainsKey(pieceToReturn.Position))
             {
@@ -751,7 +752,7 @@ namespace HiveGameWPFApp.Views
         private void PieceSelectedByBeetle(Image imagePiece, GamePiece beetlePiece)
         {
             GamePiece pieceToKeepSafe = imagePiece.Tag as GamePiece;
-            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
+            List<Image> imagesOfPieces = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             Image imageWhereBeetleIs = new Image();
             foreach (var imageOnBeetle in imagesOfPieces)
             {
@@ -784,11 +785,11 @@ namespace HiveGameWPFApp.Views
 
         private void PieceToReplaceByTheBeetle(GamePiece beetlePiece, GamePiece pieceToKeepSafe, Image imageWhereBeetleIs)
         {
-            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
             int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
             if (indexToRemove != -1)
             {
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
             board.Remove(pieceToKeepSafe.Position);
             if (board.ContainsKey(beetlePiece.Position) && board[beetlePiece.Position] == beetlePiece)
@@ -803,19 +804,19 @@ namespace HiveGameWPFApp.Views
             GamePiece originalPiece = originalPieceImage.Tag as GamePiece;
             board.Remove(originalPiece.Position);
             board.Add(originalPiece.Position, originalPiece);
-            if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
+            if (canva_GameBoardGrid.Children.Contains(imageWhereBeetleIs))
             {
-                List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrid = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
-                GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
             }
-            if (GameBoardGrid.Children.Contains(originalPieceImage))
+            if (canva_GameBoardGrid.Children.Contains(originalPieceImage))
             {
-                List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGridNewPiece = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(originalPieceImage);
-                GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
             }
-            GameBoardGrid.Children.Add(originalPieceImage);
+            canva_GameBoardGrid.Children.Add(originalPieceImage);
             piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
         }
 
@@ -823,7 +824,7 @@ namespace HiveGameWPFApp.Views
         private void UpdateGameboardGridByBeetle(Polygon cell, GamePiece piece)
         {
             Image pieceImage = ObtainImageCreation(cell, piece);
-            GameBoardGrid.Children.Add(pieceImage);
+            canva_GameBoardGrid.Children.Add(pieceImage);
             board[piece.Position] = piece;
             SendPiecePositionToServer(piece);
             lastPlacedCell = cell;
@@ -838,7 +839,7 @@ namespace HiveGameWPFApp.Views
             {
                 board.Remove(oldPosition);
             }
-            var imagesOnGameBoardGrid = GameBoardGrid.Children.OfType<Image>().ToList();
+            var imagesOnGameBoardGrid = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             GamePiece pieceToMove = pieceImage.Tag as GamePiece;
             Image imageToRemove = new Image();
             foreach (var imageOnGrid in imagesOnGameBoardGrid)
@@ -850,12 +851,12 @@ namespace HiveGameWPFApp.Views
                     break;
                 }
             }
-            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
             int indexToRemove = childrenGrids.IndexOf(imageToRemove);
-            if (indexToRemove != -1) {
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+            if(indexToRemove != -1) { 
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
-            GameBoardGrid.Children.Add(pieceImage);
+            canva_GameBoardGrid.Children.Add(pieceImage);
             GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
             board[pieceToAdd.Position] = pieceToAdd;
         }
@@ -1126,13 +1127,13 @@ namespace HiveGameWPFApp.Views
         {
             if (cell != null)
             {
-                foreach (var polygon in GameBoardGrid.Children.OfType<Polygon>())
+                foreach (var polygon in canva_GameBoardGrid.Children.OfType<Polygon>())
                 {
                     polygon.IsEnabled = false;
                 }
                 selectedPiece.Position = (Point)cell.Tag;
                 Image pieceImage = ObtainImageCreation(cell, selectedPiece);
-                GameBoardGrid.Children.Add(pieceImage);
+                canva_GameBoardGrid.Children.Add(pieceImage);
                 board[selectedPiece.Position] = selectedPiece;
                 RemovePieceFromPlayer(selectedPiece);
                 SendPiecePositionToServer(selectedPiece);
@@ -1153,8 +1154,8 @@ namespace HiveGameWPFApp.Views
                     cellDictionary[placeToUnlock].IsEnabled = true;
                 }
             }
-            List<Image> imagesOnBoard = GameBoardGrid.Children.OfType<Image>().ToList();
-            foreach (Image imageOnBoard in imagesOnBoard)
+            List<Image> imagesOnBoard = canva_GameBoardGrid.Children.OfType<Image>().ToList();
+            foreach(Image imageOnBoard in imagesOnBoard)
             {
                 GamePiece piece = (GamePiece)imageOnBoard.Tag;
                 if (piece.playerName == UserProfileSingleton.username)
@@ -1240,7 +1241,7 @@ namespace HiveGameWPFApp.Views
         private void ResetHighlights()
         {
             isBeetleMoved = false;
-            foreach (UIElement element in GameBoardGrid.Children)
+            foreach (UIElement element in canva_GameBoardGrid.Children)
             {
                 if (element is Polygon cell)
                 {
@@ -1253,7 +1254,7 @@ namespace HiveGameWPFApp.Views
             {
                 cell.Value.IsEnabled = false;
             }
-            foreach (UIElement element in GameBoardGrid.Children)
+            foreach (UIElement element in canva_GameBoardGrid.Children)
             {
                 if (element is Image image && image.Tag is Logic.GamePiece gamePiece && gamePiece.playerName != UserProfileSingleton.username)
                 {
@@ -1462,7 +1463,7 @@ namespace HiveGameWPFApp.Views
                 DockPanel.SetDock(stckp_Player1,Dock.Bottom);
                 DockPanel.SetDock(stckp_Player2, Dock.Top);
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
-                txtbl_PlayerName1.Text = UserProfileSingleton.username;
+                txtBlock_PlayerName1.Text = UserProfileSingleton.username;
                 stckp_Player2.IsEnabled = false;      
                 numberOfPlayer = 1;
             }
@@ -1472,7 +1473,7 @@ namespace HiveGameWPFApp.Views
                 DockPanel.SetDock(stckp_Player1,Dock.Top);
                 stckp_Player1.IsEnabled = false;
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
-                txtbl_PlayerName2.Text = UserProfileSingleton.username;
+                txtBlock_PlayerName2.Text = UserProfileSingleton.username;
                 numberOfPlayer = 2;
             }
             DockPanel dockPanel = (DockPanel)this.Content;
@@ -1560,7 +1561,7 @@ namespace HiveGameWPFApp.Views
         private void UpdateBeetleOnAPieceReceived(GamePiece piece, Image imageOfPieceToSafe)
         {
             GamePiece pieceToKeepSafe = imageOfPieceToSafe.Tag as GamePiece;
-            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
+            List<Image> imagesOfPieces = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             Image imageWhereBeetleIs = new Image();
             foreach (var imageOnBeetle in imagesOfPieces)
             {
@@ -1594,32 +1595,32 @@ namespace HiveGameWPFApp.Views
             GamePiece originalPiece = originalPieceImage.Tag as GamePiece;
             board.Remove(originalPiece.Position);
             board.Add(originalPiece.Position, originalPiece);
-            if (GameBoardGrid.Children.Contains(imageWhereBeetleIs))
+            if (canva_GameBoardGrid.Children.Contains(imageWhereBeetleIs))
             {
-                List<UIElement> childrenGrid = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrid = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemoveBeetle = childrenGrid.IndexOf(imageWhereBeetleIs);
-                GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemoveBeetle);
             }
-            if (GameBoardGrid.Children.Contains(originalPieceImage))
+            if (canva_GameBoardGrid.Children.Contains(originalPieceImage))
             {
-                List<UIElement> childrenGridNewPiece = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGridNewPiece = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemoveNewPiece = childrenGridNewPiece.IndexOf(originalPieceImage);
-                GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemoveNewPiece);
             }
-            GameBoardGrid.Children.Add(originalPieceImage);
+            canva_GameBoardGrid.Children.Add(originalPieceImage);
             piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
         }
 
         private void PieceToReplaceByTheBeetleReceived(GamePiece beetlePiece, GamePiece pieceToKeepSafe, Image imageWhereBeetleIs)
         {
-            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
             int indexToRemove = childrenGrids.IndexOf(imageWhereBeetleIs);
             if (indexToRemove != -1)
             {
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
             Image imageToRemove = new Image();
-            foreach (UIElement child in GameBoardGrid.Children)
+            foreach (UIElement child in canva_GameBoardGrid.Children)
             {
                 if (child is Image image && image.Tag is GamePiece piece)
                 {
@@ -1632,7 +1633,7 @@ namespace HiveGameWPFApp.Views
             }
             if (imageToRemove != null)
             {
-                GameBoardGrid.Children.Remove(imageToRemove);
+                canva_GameBoardGrid.Children.Remove(imageToRemove);
             }
             board.Remove(pieceToKeepSafe.Position);
             if (board.ContainsKey(beetlePiece.Position) && board[beetlePiece.Position] == beetlePiece)
@@ -1652,7 +1653,7 @@ namespace HiveGameWPFApp.Views
         private void UpdateGameboardOfBeetlePieceReceivedToGrid(Polygon cell, GamePiece piece)
         {
             Image pieceImage = ObtainImageCreation(cell, piece);
-            GameBoardGrid.Children.Add(pieceImage);
+            canva_GameBoardGrid.Children.Add(pieceImage);
             board[piece.Position] = piece;
             lastPlacedCell = cell;
         }
@@ -1660,7 +1661,7 @@ namespace HiveGameWPFApp.Views
         private Image ObtainImageOfPieceToSafe(GamePiece piece)
         {
             Image imageOfPieceToSafe = new Image();
-            var listOfImages = GameBoardGrid.Children.OfType<Image>().ToList();
+            var listOfImages = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             foreach(var imageOnGrid in listOfImages)
             {
                 if(imageOnGrid.Tag is GamePiece gamePiece && gamePiece.Position == piece.Position)
@@ -1677,7 +1678,7 @@ namespace HiveGameWPFApp.Views
             {
                 board.Remove(oldPosition);
             }
-            var imagesOnGameBoardGrid = GameBoardGrid.Children.OfType<Image>().ToList();
+            var imagesOnGameBoardGrid = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             GamePiece pieceToMove = pieceImage.Tag as GamePiece;
             Image imageToRemove = new Image();
             foreach (var imageOnGrid in imagesOnGameBoardGrid)
@@ -1689,13 +1690,13 @@ namespace HiveGameWPFApp.Views
                     break;
                 }
             }
-            List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+            List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
             int indexToRemove = childrenGrids.IndexOf(imageToRemove);
             if (indexToRemove != -1)
             {
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
-            GameBoardGrid.Children.Add(pieceImage);
+            canva_GameBoardGrid.Children.Add(pieceImage);
             GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
             board[pieceToAdd.Position] = pieceToAdd;
         }
@@ -1703,14 +1704,14 @@ namespace HiveGameWPFApp.Views
         private void ReturnOriginalPositionOfPieceCapturedByTheBeetleReceived(Image pieceCapturedByTheBeetle, GamePiece beetlePiece)
         {
             GamePiece pieceToReturn = pieceCapturedByTheBeetle.Tag as GamePiece;
-            List<Image> imagesOfPieces = GameBoardGrid.Children.OfType<Image>().ToList();
-            if (GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
+            List<Image> imagesOfPieces = canva_GameBoardGrid.Children.OfType<Image>().ToList();
+            if (canva_GameBoardGrid.Children.Contains(pieceCapturedByTheBeetle))
             {
-                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemove = childrenGrids.IndexOf(pieceCapturedByTheBeetle);
-                GameBoardGrid.Children.RemoveAt(indexToRemove);
+                canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
             }
-            GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
+            canva_GameBoardGrid.Children.Add(pieceCapturedByTheBeetle);
             piecesCapturedByTheBeetle.Remove((beetlePiece.pieceNumber, beetlePiece.playerName));
             if (board.ContainsKey(pieceToReturn.Position))
             {
@@ -1728,7 +1729,7 @@ namespace HiveGameWPFApp.Views
             if(piecesCapturedByTheBeetle.ContainsKey((piece.pieceNumber, piece.playerName))){
                 Image pieceContainedByTheBeetle = piecesCapturedByTheBeetle[(piece.pieceNumber,piece.playerName)];
                 UpdateOldAndNewPlaceInGameBoardReceived(imageOfPiece, oldPosition);
-                List<Image> images = GameBoardGrid.Children.OfType<Image>().ToList();
+                List<Image> images = canva_GameBoardGrid.Children.OfType<Image>().ToList();
                 ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle, piece);
             }
             else
@@ -1768,7 +1769,7 @@ namespace HiveGameWPFApp.Views
                 }
                 else
                 {
-                    GameBoardGrid.Children.Add(pieceImage);
+                    canva_GameBoardGrid.Children.Add(pieceImage);
                     board[piece.Position] = piece;
                     lastPlacedCell = cell;
                 }
@@ -1781,7 +1782,7 @@ namespace HiveGameWPFApp.Views
             {
                 board.Remove(oldPosition);
             }
-            var listOfElements = GameBoardGrid.Children.OfType<Image>().ToList();
+            var listOfElements = canva_GameBoardGrid.Children.OfType<Image>().ToList();
             GamePiece piece = pieceImage.Tag as GamePiece;
             Image imageToQuite = new Image();
             foreach (var element in listOfElements)
@@ -1796,13 +1797,13 @@ namespace HiveGameWPFApp.Views
             EliminateDuplicatedImagesIfExistsReceived(oldPosition);
             if (imageToQuite != null)
             {
-                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemove = childrenGrids.IndexOf(imageToQuite);
                 if(indexToRemove != -1)
                 {
-                    GameBoardGrid.Children.RemoveAt(indexToRemove);
+                    canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
                 }   
-                GameBoardGrid.Children.Add(pieceImage);
+                canva_GameBoardGrid.Children.Add(pieceImage);
                 GamePiece pieceToAdd = pieceImage.Tag as GamePiece;
                 board[pieceToAdd.Position] = pieceToAdd;
             }
@@ -1811,7 +1812,7 @@ namespace HiveGameWPFApp.Views
         private void EliminateDuplicatedImagesIfExistsReceived(Point oldPosition)
         {
 
-            var imagesToRemove = GameBoardGrid.Children
+            var imagesToRemove = canva_GameBoardGrid.Children
                 .OfType<Image>()
                 .Where(image =>
                         image.Tag is GamePiece piece && piece.Position == oldPosition)
@@ -1819,11 +1820,11 @@ namespace HiveGameWPFApp.Views
             for (int indexOfImage = 0; indexOfImage < imagesToRemove.Count; indexOfImage++)
             {
                 Image imageToQuit = imagesToRemove[indexOfImage];
-                List<UIElement> childrenGrids = GameBoardGrid.Children.OfType<UIElement>().ToList();
+                List<UIElement> childrenGrids = canva_GameBoardGrid.Children.OfType<UIElement>().ToList();
                 int indexToRemove = childrenGrids.IndexOf(imageToQuit);
                 if (indexToRemove != -1)
                 {
-                    GameBoardGrid.Children.RemoveAt(indexToRemove);
+                    canva_GameBoardGrid.Children.RemoveAt(indexToRemove);
                 }
             }
         }
@@ -1833,7 +1834,7 @@ namespace HiveGameWPFApp.Views
         {
             if (isTurn)
             {
-                txtbl_PlayerName.Text = UserProfileSingleton.username;
+                txtBlock_PlayerName.Text = UserProfileSingleton.username;
                 if(numberOfPlayer == 1)
                 {
                     stckp_Player1.IsEnabled = true;
@@ -1854,7 +1855,7 @@ namespace HiveGameWPFApp.Views
                 {
                     if (usersInGame[indexUsersInMatch].username != UserProfileSingleton.username)
                     {
-                        txtbl_PlayerName.Text = usersInGame[indexUsersInMatch].username;
+                        txtBlock_PlayerName.Text = usersInGame[indexUsersInMatch].username;
                     }
                 }
                 if (numberOfPlayer == 1)
@@ -1873,7 +1874,7 @@ namespace HiveGameWPFApp.Views
 
         private void EnablePiecesOnBoard()
         {
-            foreach (UIElement element in GameBoardGrid.Children)
+            foreach (UIElement element in canva_GameBoardGrid.Children)
             {
                 if (element is Image image && image.Tag is Logic.GamePiece gamePiece && gamePiece.playerName == UserProfileSingleton.username)
                 {
@@ -1885,7 +1886,7 @@ namespace HiveGameWPFApp.Views
 
         private void DisablePiecesOnBoard()
         {
-            foreach (UIElement element in GameBoardGrid.Children)
+            foreach (UIElement element in canva_GameBoardGrid.Children)
             {
                 if (element is Image image && image.Tag is Logic.GamePiece)
                 {
@@ -1924,7 +1925,7 @@ namespace HiveGameWPFApp.Views
             usernamePlayer1 = usersInGame[0].username;
             if (IsPlayer1SlotAvailable(user))
             {
-                txtbl_PlayerName1.Text = user.username;
+                txtBlock_PlayerName1.Text = user.username;
                 img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
             }
             if (usersInGame.Count == 2)
@@ -1932,7 +1933,7 @@ namespace HiveGameWPFApp.Views
                 usernamePlayer2 = usersInGame[1].username;
                 if (IsPlayer2SlotAvailable(user))
                 {
-                    txtbl_PlayerName2.Text = user.username;
+                    txtBlock_PlayerName2.Text = user.username;
                     img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
                 }
             }
@@ -1943,16 +1944,16 @@ namespace HiveGameWPFApp.Views
 
         private bool IsPlayer1SlotAvailable(UserSession user)
         {
-            return txtbl_PlayerName1.Text == Properties.Resources.txtbl_Player1 &&
-                   txtbl_PlayerName2.Text == UserProfileSingleton.username &&
-                   !user.username.Equals(txtbl_PlayerName2.Text);
+            return txtBlock_PlayerName1.Text == Properties.Resources.txtbl_Player1 &&
+                   txtBlock_PlayerName2.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtBlock_PlayerName2.Text);
         }
 
         private bool IsPlayer2SlotAvailable(UserSession user)
         {
-            return txtbl_PlayerName2.Text == Properties.Resources.txtbl_Player2 &&
-                   txtbl_PlayerName1.Text == UserProfileSingleton.username &&
-                   !user.username.Equals(txtbl_PlayerName1.Text);
+            return txtBlock_PlayerName2.Text == Properties.Resources.txtbl_Player2 &&
+                   txtBlock_PlayerName1.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtBlock_PlayerName1.Text);
         }
 
         public void ReceivePlayerHasLeftNotification(bool doPlayerLeftTheGame)
@@ -2139,18 +2140,18 @@ namespace HiveGameWPFApp.Views
         {
             if (result == "Draw")
             {
-                txt_VictoryMessage.Text = Properties.Resources.lbl_Draw;
+                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Draw;
             }
             else if (result == UserProfileSingleton.username)
             {
-                txt_VictoryMessage.Text = Properties.Resources.lbl_Winner;
+                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Winner;
             }
             else
             {
-                txt_VictoryMessage.Text = Properties.Resources.lbl_Defeat;
+                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Defeat;
             }
 
-            VictoryOverlay.Visibility = Visibility.Visible;
+            grd_VictoryOverlay.Visibility = Visibility.Visible;
 
             Storyboard victoryStoryboard = (Storyboard)FindResource("VictoryAnimation");
             victoryStoryboard.Begin();
@@ -2162,7 +2163,7 @@ namespace HiveGameWPFApp.Views
             stckp_Player2.IsEnabled = false;
             stckp_Player1Pieces.IsEnabled = false;
             stckp_Player2Pieces.IsEnabled = false;
-            foreach(UIElement element in GameBoardGrid.Children)
+            foreach(UIElement element in canva_GameBoardGrid.Children)
             {
                 if (element is Image image)
                 {

@@ -34,11 +34,7 @@ namespace HiveGameWPFApp.Views
         }
 
         private void LoadSampleData()
-        {
-            
-
-            
-        }
+        {}
 
         private void BtnPersonalStatistics_Click(object sender, RoutedEventArgs e)
         {
