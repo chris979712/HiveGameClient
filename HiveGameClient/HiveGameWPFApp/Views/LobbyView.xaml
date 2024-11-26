@@ -98,7 +98,7 @@
                         </Button.Effect>
                     </Button>
 
-                    <TextBlock x:Name="txtb_CharCount"
+                    <TextBlock x:Name="txtBlock_CharCount"
                                Text="0/100"
                                Foreground="White"
                                FontWeight="Bold"
@@ -195,7 +195,7 @@
                             <Image Source="/Images/Icons/RefreshIcon2.png" Stretch="Uniform"/>
                         </Button>
                     </StackPanel>
-                    <ListView x:Name="lstv_ActiveFriendsList" Grid.Row="2"
+                    <ListView x:Name="lvw_ActiveFriendsList" Grid.Row="2"
                       Background="#1C1C1C" BorderThickness="0" 
                       Foreground="White" MaxWidth="400" MinHeight="100" 
                       MaxHeight="300" VerticalAlignment="Stretch" 

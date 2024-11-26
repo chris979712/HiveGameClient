@@ -23,7 +23,7 @@ namespace HiveGameWPFApp.Views
     public partial class GameCodeView : Page
     {
 
-        private string codeLobby;
+        private string _codeLobby;
         public GameCodeView()
         {
             InitializeComponent();
@@ -89,11 +89,11 @@ namespace HiveGameWPFApp.Views
             txtb_Code.BorderBrush = Brushes.Yellow;
             if (ValidateField())
             {
-                codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "");
-                int validationResultLobby = ValidateExistingLobby(codeLobby);
+                _codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "");
+                int validationResultLobby = ValidateExistingLobby(_codeLobby);
                 if (validationResultLobby == Constants.DATA_MATCHES)
                 {
-                    ValidateCapacityOfLobby(codeLobby);
+                    ValidateCapacityOfLobby(_codeLobby);
                 }
                 else if(validationResultLobby == Constants.NO_DATA_MATCHES)
                 {
