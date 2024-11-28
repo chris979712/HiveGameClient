@@ -495,4 +495,10 @@
   <data name="lbl_Draw" xml:space="preserve">
     <value>¡Draw!</value>
   </data>
+  <data name="dialogMessageLanguagechange" xml:space="preserve">
+    <value>Changes will take effect when you restart the game. Do you wish to continue?</value>
+  </data>
+  <data name="lbl_LanguageChange" xml:space="preserve">
+    <value>Language Change</value>
+  </data>
 </root>

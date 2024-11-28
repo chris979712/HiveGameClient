@@ -273,10 +273,10 @@
                         VerticalAlignment="Top" />
                 <Image x:Name="img_Mexico" Source="/Images/Characters/Mexico.png" Margin="37,144,516,78" Visibility="Visible"
                            
-                           Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+                           Cursor="Hand" RenderTransformOrigin="0.5,0.506" MouseLeftButtonDown="ChangeLanguage_Click"/>
                 <Image x:Name="img_EU" Source="/Images/Characters/EU.png" Margin="222,144,330,78" Visibility="Visible"
            
-                        Cursor="Hand" RenderTransformOrigin="0.5,0.506"/>
+                        Cursor="Hand" RenderTransformOrigin="0.5,0.506" MouseLeftButtonDown="ChangeLanguage_Click"/>
             </Grid>
 
 
