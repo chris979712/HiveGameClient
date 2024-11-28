@@ -22,8 +22,8 @@ namespace HiveGameWPFApp.Views
 {
     public partial class EditCredentialsView : Page
     {
-        private DispatcherTimer timer;
-        private int timeLeft = 60;
+        private DispatcherTimer _timer;
+        private int _timeLeft = 60;
 
         public EditCredentialsView()
         {
@@ -40,18 +40,19 @@ namespace HiveGameWPFApp.Views
         }
         private void StartTimer()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timeLeft--;
-            txt_Timer.Text = Properties.Resources.txt_Timer + timeLeft;
-            if (timeLeft <= 0)
+            _timeLeft--;
+            txt_Timer.Text = Properties.Resources.txt_Timer + _timeLeft;
+
+            if (_timeLeft <= 0)
             {
-                timer.Stop();
+                _timer.Stop();
                 txt_Timer.Visibility = Visibility.Collapsed;
                 txt_ResendLink.Visibility = Visibility.Visible;
                 txt_ResendCodeClick.Visibility = Visibility.Visible;
@@ -66,6 +67,7 @@ namespace HiveGameWPFApp.Views
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox currentTextBox = (TextBox)sender;
+
             if (currentTextBox.Text.Length == 1)
             {
                 MoveToNextTextBox(currentTextBox);
@@ -97,14 +99,19 @@ namespace HiveGameWPFApp.Views
 
         private void MoveToNextTextBox(TextBox currentTextBox)
         {
+
             if (currentTextBox == (TextBox)brd_BubbleOne.Child)
                 ((TextBox)brd_BubbleTwo.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleTwo.Child)
                 ((TextBox)brd_BubbleThree.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleThree.Child)
                 ((TextBox)brd_BubbleFour.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleFour.Child)
                 ((TextBox)brd_BubbleFive.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleFive.Child)
                 ((TextBox)brd_BubbleSix.Child).Focus();
         }
@@ -113,12 +120,16 @@ namespace HiveGameWPFApp.Views
         {
             if (currentTextBox == (TextBox)brd_BubbleSix.Child)
                 ((TextBox)brd_BubbleFive.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleFive.Child)
                 ((TextBox)brd_BubbleFour.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleFour.Child)
                 ((TextBox)brd_BubbleThree.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleThree.Child)
                 ((TextBox)brd_BubbleTwo.Child).Focus();
+
             else if (currentTextBox == (TextBox)brd_BubbleTwo.Child)
                 ((TextBox)brd_BubbleOne.Child).Focus();
         }
@@ -136,6 +147,7 @@ namespace HiveGameWPFApp.Views
         private void ValidateCode()
         {
             string enteredCode = GetEnteredCode();
+
             if (IsValidCode(enteredCode))
             {
                 ShowNewPasswordSection();
@@ -159,6 +171,7 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
             bool isValid = false;
+
             try
             {
                 UserVerificator verificationUser = new UserVerificator();
@@ -181,6 +194,7 @@ namespace HiveGameWPFApp.Views
                 logger.LogError(communicationException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
+
             return isValid;
         }
 
@@ -196,6 +210,7 @@ namespace HiveGameWPFApp.Views
             txt_Email.BorderBrush = Brushes.White;
             brd_Password.BorderBrush = Brushes.Yellow;
             brd_ConfirmPassword.BorderBrush = Brushes.Yellow;
+
             if (ValidateFields())
             {
                 if (ValidateSamePasswords())
@@ -221,6 +236,7 @@ namespace HiveGameWPFApp.Views
             bool emailVerification = Validator.ValidateEmail(txt_Email.Text);
             bool passwordVerificaton = Validator.ValidatePassword(pwb_Password.Password);
             bool passwordConfirmVerification = Validator.ValidatePassword(pwb_ConfirmPassword.Password);
+           
             if (!emailVerification)
             {
                 txt_Email.BorderBrush = Brushes.Red;
@@ -233,12 +249,14 @@ namespace HiveGameWPFApp.Views
             {
                 brd_ConfirmPassword.BorderBrush = Brushes.Red;
             }
+
             return emailVerification && passwordVerificaton && passwordConfirmVerification;
         }
 
         private bool ValidateSamePasswords()
         {
             bool samePasswords = false;
+
             if (pwb_ConfirmPassword.Password == pwb_Password.Password)
             {
                 samePasswords = true;
@@ -251,6 +269,7 @@ namespace HiveGameWPFApp.Views
             bool resultVerification = false;
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+            
             try
             {
                 int resultVerificationCredentials = userManagerClient.VerifyCredentials(UserProfileSingleton.username, txt_Email.Text);
@@ -291,6 +310,7 @@ namespace HiveGameWPFApp.Views
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
+           
             try
             {
                 AccessAccount oldAccesAccount = new AccessAccount()
@@ -371,6 +391,7 @@ namespace HiveGameWPFApp.Views
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.EmailVerificationManagerClient emailVerificationManager = new HiveProxy.EmailVerificationManagerClient();
+            
             try
             {
                 int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);

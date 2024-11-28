@@ -23,7 +23,7 @@ namespace HiveGameWPFApp.Views
 {
     public partial class FriendsListView : Page
     {
-        private static Profile[] friendsObtained;
+        private static Profile[] _friendsObtained;
         public FriendsListView()
         {
             InitializeComponent();
@@ -50,15 +50,16 @@ namespace HiveGameWPFApp.Views
                 {
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
-                friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
-                if (friendsObtained.Length == 0)
+                _friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
+               
+                if (_friendsObtained.Length == 0)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
                 }
-                else if (friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
+                else if (_friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
-                } else if (friendsObtained.Length >= Constants.DATA_MATCHES)
+                } else if (_friendsObtained.Length >= Constants.DATA_MATCHES)
                 {
                     LoadFriendsInformation();
                 }
@@ -86,20 +87,20 @@ namespace HiveGameWPFApp.Views
             HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
             try
             {
-                for (int indexUsersProfile = 0; indexUsersProfile < friendsObtained.Length; indexUsersProfile++)
+                for (int indexUsersProfile = 0; indexUsersProfile < _friendsObtained.Length; indexUsersProfile++)
                 {
                     UserSession userSession = new UserSession()
                     {
-                        username = friendsObtained[indexUsersProfile].username,
-                        idAccount = friendsObtained[indexUsersProfile].idAccount
+                        username = _friendsObtained[indexUsersProfile].username,
+                        idAccount = _friendsObtained[indexUsersProfile].idAccount
                     };
                     bool stateFriend = userSessionManagerClient.VerifyConnectivity(userSession);
                     ProfileUser profileUser = new ProfileUser()
                     {
-                        idProfile = friendsObtained[indexUsersProfile].idProfile,
-                        idAccount = friendsObtained[indexUsersProfile].idAccount,
-                        username = friendsObtained[indexUsersProfile].username,
-                        imageProfile = friendsObtained[indexUsersProfile].imagePath,
+                        idProfile = _friendsObtained[indexUsersProfile].idProfile,
+                        idAccount = _friendsObtained[indexUsersProfile].idAccount,
+                        username = _friendsObtained[indexUsersProfile].username,
+                        imageProfile = _friendsObtained[indexUsersProfile].imagePath,
                         state = stateFriend
                     };
                     lvw_FriendsList.Items.Add(profileUser);
@@ -128,6 +129,7 @@ namespace HiveGameWPFApp.Views
             HiveProxy.FriendRequestManagerClient friendRequestManagerClient = new HiveProxy.FriendRequestManagerClient();
             LoggerManager logger = new LoggerManager(this.GetType());
             lvw_FriendRequests.Items.Clear();
+            
             try
             {
                 Profile userProfile = new Profile()
@@ -184,6 +186,7 @@ namespace HiveGameWPFApp.Views
         {
             if (VerifyField())
             {
+
                 if (txtb_SearchFriend.Text == UserProfileSingleton.username)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogCanNotAddYourself);
@@ -203,10 +206,12 @@ namespace HiveGameWPFApp.Views
         {
             lvw_FriendToAdd.Items.Clear();
             bool usernameField = Validator.ValidateUsername(txtb_SearchFriend.Text);
+            
             if (!usernameField)
             {
                 txtb_SearchFriend.BorderBrush = Brushes.Red;
             }
+
             return usernameField;
         }
 
@@ -214,9 +219,11 @@ namespace HiveGameWPFApp.Views
         {
             HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
             LoggerManager logger = new LoggerManager(this.GetType());
+            
             try
             {
                 Profile userProfileObtained = userManagerClient.GetUserProfileByUsername(txtb_SearchFriend.Text);
+                
                 if (userProfileObtained.idProfile >= 1)
                 {
                     Profile profileObtained = new Profile()
@@ -225,6 +232,7 @@ namespace HiveGameWPFApp.Views
                     };
                     int verificationFriendRequestExisted = VerifyExistingFriendRequest(profileObtained);
                     bool areFriends = false;
+                    
                     if (verificationFriendRequestExisted == 0)
                     {
                         areFriends = false;
@@ -269,6 +277,7 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.FriendRequestManagerClient friendRequestManagerClient = new HiveProxy.FriendRequestManagerClient();
             int verificationResult = Constants.ERROR_OPERATION;
+            
             try
             {
                 Profile searcherProfile = new Profile()
@@ -299,6 +308,7 @@ namespace HiveGameWPFApp.Views
         {
             Button clickedButton = sender as Button;
             ProfileUser profileUser = clickedButton.DataContext as ProfileUser;
+            
             if (profileUser != null)
             {
                 SendAcceptFriendRequest(profileUser);
@@ -314,6 +324,7 @@ namespace HiveGameWPFApp.Views
         {
             Button clickedButton = sender as Button;
             ProfileUser profileUser = clickedButton.DataContext as ProfileUser;
+            
             if (profileUser != null)
             {
                 SendDeclineFriendRequest(profileUser);

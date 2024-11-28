@@ -46,14 +46,14 @@ namespace HiveGameWPFApp.Views
             btn_Start.Visibility = Visibility.Collapsed;
             stckp_Friends.Visibility = Visibility.Collapsed;
             stckp_SearchFriends.Visibility = Visibility.Collapsed;
-            lstv_ActiveFriendsList.Visibility = Visibility.Collapsed;
+            lvw_ActiveFriendsList.Visibility = Visibility.Collapsed;
         }
 
         private void ShowCreatorActions()
         {
             stckp_Friends.Visibility = Visibility.Visible;
             stckp_SearchFriends.Visibility = Visibility.Visible;
-            lstv_ActiveFriendsList.Visibility = Visibility.Visible;
+            lvw_ActiveFriendsList.Visibility = Visibility.Visible;
             btn_SendOffPlayer.Visibility = Visibility.Collapsed;
             btn_Start.Visibility = Visibility.Collapsed;
         }
@@ -386,7 +386,7 @@ namespace HiveGameWPFApp.Views
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
                 }
                 txtb_MessageInput.Clear();
-                txtb_CharCount.Text = "0/100"; 
+                txtBlock_CharCount.Text = "0/100"; 
             }
         }
 
@@ -434,7 +434,7 @@ namespace HiveGameWPFApp.Views
         private void TxtMessageInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             int currentLength = txtb_MessageInput.Text.Length;
-            txtb_CharCount.Text = $"{currentLength}/100";
+            txtBlock_CharCount.Text = $"{currentLength}/100";
             if (currentLength == 100)
             {
                 txtb_MessageInput.IsReadOnly = true;
@@ -522,7 +522,7 @@ namespace HiveGameWPFApp.Views
         public void ObtainConnectedFriends(UserSession[] connectedFriends)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            lstv_ActiveFriendsList.Items.Clear();
+            lvw_ActiveFriendsList.Items.Clear();
             try
             {
                 HiveProxy.FriendshipManagerClient friendshipManagerClient = new HiveProxy.FriendshipManagerClient();
@@ -555,10 +555,10 @@ namespace HiveGameWPFApp.Views
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    lstv_ActiveFriendsList.Items.Clear();
+                    lvw_ActiveFriendsList.Items.Clear();
                     for(int indexFriends = 0; friends.Count > indexFriends; indexFriends++)
                     {
-                        lstv_ActiveFriendsList.Items.Add(friends[indexFriends]);
+                        lvw_ActiveFriendsList.Items.Add(friends[indexFriends]);
                     }
                 });
             }
@@ -738,7 +738,7 @@ namespace HiveGameWPFApp.Views
             txt_SearchFriend.BorderBrush = Brushes.Yellow;
             if (ValidateField())
             {
-                List<Friend> friends = lstv_ActiveFriendsList.Items.Cast<Friend>().ToList();
+                List<Friend> friends = lvw_ActiveFriendsList.Items.Cast<Friend>().ToList();
                 Friend foundedFriend = new Friend();
                 foundedFriend.username = "Not online";
                 for(int friendsIndex=0; friendsIndex<friends.Count; friendsIndex++)
@@ -750,8 +750,8 @@ namespace HiveGameWPFApp.Views
                 }
                 if (foundedFriend.username != "Not online")
                 {
-                    lstv_ActiveFriendsList.Items.Clear();
-                    lstv_ActiveFriendsList.Items.Add(foundedFriend);
+                    lvw_ActiveFriendsList.Items.Clear();
+                    lvw_ActiveFriendsList.Items.Add(foundedFriend);
                 }
                 else
                 {

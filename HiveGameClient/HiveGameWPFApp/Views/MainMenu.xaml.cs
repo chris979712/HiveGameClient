@@ -21,9 +21,10 @@ namespace HiveGameWPFApp.Views
 {
     public partial class MainMenu : Page
     {
-        private MediaPlayer mediaPlayer;
-        private VideoDrawing videoDrawing;
-        private DrawingBrush drawingBrush;
+        private MediaPlayer _mediaPlayer;
+        private VideoDrawing _videoDrawing;
+        private DrawingBrush _drawingBrush;
+        private Image _selectedImage = null;
         public MainMenu()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace HiveGameWPFApp.Views
             Unloaded += MainMenu_Unloaded;
             App.PlayMusic("Audio/MainMenu.mp3");
             UpdateButtonVisibility();
-
+            SetLanguageButtons();
             btn_EditCredentials.Visibility = Visibility.Collapsed;
             btn_EditProfile.Visibility = Visibility.Collapsed;
             lbl_Username.Content = UserProfileSingleton.username;
@@ -40,39 +41,39 @@ namespace HiveGameWPFApp.Views
 
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
+            _mediaPlayer = new MediaPlayer();
+            _mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
 
-            mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-            videoDrawing = new VideoDrawing
+            _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+            _videoDrawing = new VideoDrawing
             {
                 Rect = new Rect(0, 0, videoCanvas.Width, videoCanvas.Height),
-                Player = mediaPlayer
+                Player = _mediaPlayer
             };
 
-            drawingBrush = new DrawingBrush(videoDrawing);
-            videoCanvas.Background = drawingBrush;
+            _drawingBrush = new DrawingBrush(_videoDrawing);
+            videoCanvas.Background = _drawingBrush;
 
-            mediaPlayer.Play();
+            _mediaPlayer.Play();
         }
 
         private void MainMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (mediaPlayer != null)
+            if (_mediaPlayer != null)
             {
-                mediaPlayer.MediaEnded += MediaElement_MediaEnded;
-                mediaPlayer.Stop();
-                mediaPlayer.Close();
-                mediaPlayer = null;
+                _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
+                _mediaPlayer.Stop();
+                _mediaPlayer.Close();
+                _mediaPlayer = null;
             }
         }
 
         private void MediaElement_MediaEnded(object sender, EventArgs e)
         {
-            if (mediaPlayer != null)
+            if (_mediaPlayer != null)
             {
-                mediaPlayer.Position = TimeSpan.Zero;
-                mediaPlayer.Play();
+                _mediaPlayer.Position = TimeSpan.Zero;
+                _mediaPlayer.Play();
             }
         }
 
@@ -299,6 +300,45 @@ namespace HiveGameWPFApp.Views
         {
             StatisticsView statisticsView = new StatisticsView();
             this.NavigationService.Navigate(statisticsView);
+        }
+
+
+        private void SetLanguageButtons()
+        {
+
+            string currentLanguage = Properties.Settings.Default.Language;
+
+            if (currentLanguage == "es-MX")
+            {
+                img_Mexico.IsEnabled = false;
+                img_EU.IsEnabled = true;
+            }
+            else
+            {
+                img_Mexico.IsEnabled = true;
+                img_EU.IsEnabled = false;
+            }
+        }
+
+        private void ChangeLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            string newLanguage = (sender as Button).Content.ToString() == "Español" ? "es-MX" : "en-US";
+            
+            MessageBoxResult result = MessageBox.Show(
+               Properties.Resources.dialogMessageLanguagechange,
+               Properties.Resources.lbl_LanguageChange,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                App.ChangeLanguage(newLanguage);
+
+               
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
         }
 
 
