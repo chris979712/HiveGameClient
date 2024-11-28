@@ -583,6 +583,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Changes will take effect when you restart the game. Do you wish to continue?.
+        /// </summary>
+        public static string dialogMessageLanguagechange {
+            get {
+                return ResourceManager.GetString("dialogMessageLanguagechange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Unable to find the account. Please verify to type the correct email and password..
         /// </summary>
         public static string dialogMissmatchesCredentials {
@@ -912,6 +921,15 @@ namespace HiveGameWPFApp.Properties {
         public static string lbl_GameCode {
             get {
                 return ResourceManager.GetString("lbl_GameCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Language Change.
+        /// </summary>
+        public static string lbl_LanguageChange {
+            get {
+                return ResourceManager.GetString("lbl_LanguageChange", resourceCulture);
             }
         }
         

@@ -495,4 +495,10 @@
   <data name="lbl_Draw" xml:space="preserve">
     <value>¡Empate!</value>
   </data>
+  <data name="dialogMessageLanguagechange" xml:space="preserve">
+    <value>Los cambios se aplicarán al reiniciar el juego. ¿Deseas continuar?</value>
+  </data>
+  <data name="lbl_LanguageChange" xml:space="preserve">
+    <value>Cambio de Idioma</value>
+  </data>
 </root>
