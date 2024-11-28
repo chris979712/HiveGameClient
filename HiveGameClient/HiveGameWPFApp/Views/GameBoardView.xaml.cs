@@ -1282,6 +1282,7 @@ namespace HiveGameWPFApp.Views
             }
             else
             {
+                Constants.isInMatch = false;
                 LeaveFinishedMatch();
             }
 
@@ -2041,6 +2042,7 @@ namespace HiveGameWPFApp.Views
                     RegisterMatchResult(winner);
                 }
             }
+            Constants.isInMatch = false;
         }
 
         private void RegisterMatchResult(string winner)
