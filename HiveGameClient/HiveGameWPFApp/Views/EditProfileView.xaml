@@ -23,7 +23,7 @@
                            MouseDown="Image_MouseDown" 
                            Cursor="Hand" Margin="28,19,1168,616"/>
 
-                    <Button x:Name="btn_Confirm" Content="CONFIRM"
+                    <Button x:Name="btn_Confirm" Content="{x:Static p:Resources.btn_Acept}"
                          Width="347" Height="47" FontSize="26" FontFamily="Impact"
                           Foreground="Black"
                          HorizontalAlignment="Left" VerticalAlignment="Top"
