@@ -311,33 +311,38 @@ namespace HiveGameWPFApp.Views
             if (currentLanguage == "es-MX")
             {
                 img_Mexico.IsEnabled = false;
+                img_Mexico.Visibility = Visibility.Collapsed;
                 img_EU.IsEnabled = true;
             }
             else
             {
                 img_Mexico.IsEnabled = true;
                 img_EU.IsEnabled = false;
+                img_EU.Visibility = Visibility.Collapsed;
             }
         }
 
         private void ChangeLanguage_Click(object sender, RoutedEventArgs e)
         {
-            string newLanguage = (sender as Button).Content.ToString() == "Español" ? "es-MX" : "en-US";
-            
-            MessageBoxResult result = MessageBox.Show(
-               Properties.Resources.dialogMessageLanguagechange,
-               Properties.Resources.lbl_LanguageChange,
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question
-            );
-
-            if (result == MessageBoxResult.Yes)
+            if (sender is Image image)
             {
-                App.ChangeLanguage(newLanguage);
+                string newLanguage = image.Name == "img_Mexico" ? "es-MX" : "en-US";
 
-               
-                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-                Application.Current.Shutdown();
+                MessageBoxResult result = MessageBox.Show(
+                   Properties.Resources.dialogMessageLanguagechange,
+                   Properties.Resources.lbl_LanguageChange,
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.ChangeLanguage(newLanguage);
+
+
+                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                    Application.Current.Shutdown();
+                }
             }
         }
 

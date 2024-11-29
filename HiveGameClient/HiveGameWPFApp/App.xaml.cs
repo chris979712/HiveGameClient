@@ -24,24 +24,25 @@ namespace HiveGameWPFApp
         {
             base.OnStartup(e);
 
-            string systemLanguage = CultureInfo.CurrentCulture.Name;
+            string savedLanguage = HiveGameWPFApp.Properties.Settings.Default.Language;
 
-            if (systemLanguage.StartsWith("es"))
+            if (string.IsNullOrEmpty(savedLanguage))
             {
-                ChangeLanguage("es-MX");
+                savedLanguage = CultureInfo.CurrentCulture.Name.StartsWith("es") ? "es-MX" : "en-US";
+                HiveGameWPFApp.Properties.Settings.Default.Language = savedLanguage;
+                HiveGameWPFApp.Properties.Settings.Default.Save();
             }
-            else
-            {
-                ChangeLanguage("en-US");
-            }
+
+            ChangeLanguage(savedLanguage);
         }
+
 
         public static void ChangeLanguage(string cultureCode)
         {
             CultureInfo culture = new CultureInfo(cultureCode);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
-
+            HiveGameWPFApp.Properties.Settings.Default.Reset();
             HiveGameWPFApp.Properties.Settings.Default.Language = cultureCode;
             HiveGameWPFApp.Properties.Settings.Default.Save();
         }
