@@ -724,7 +724,7 @@
       <xs:element name="DeleteUserAsConnectedFriend">
         <xs:complexType>
           <xs:sequence>
-            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="username" nillable="true" type="q39:UserSession" />
+            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" minOccurs="0" name="user" nillable="true" type="q39:UserSession" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>

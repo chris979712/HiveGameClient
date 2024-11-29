@@ -26,8 +26,8 @@
 
                 <Label x:Name="lbl_Username" Content="{x:Static p:Resources.globalLbl_UserName}"
                        Foreground="#FFC300" FontWeight="Bold" FontSize="25"
-                       HorizontalAlignment="Left" Margin="956,238,0,0"
-                       VerticalAlignment="Top"/>
+                       HorizontalAlignment="Left" Margin="906,238,0,0"
+                       VerticalAlignment="Top" Height="44" Width="238"/>
 
 
                 <TextBox x:Name="txtb_Username" Width="347" Height="40" MaxLength="49"
@@ -42,7 +42,7 @@
 
                 <Label x:Name="lbl_Password" Content="{x:Static p:Resources.globalLbl_Password}"
                        Foreground="#FFC300" FontWeight="Bold" FontSize="25"
-                       HorizontalAlignment="Left" Margin="963,0,0,0"
+                       HorizontalAlignment="Left" Margin="951,0,0,0"
                        VerticalAlignment="Center"/>
 
 
