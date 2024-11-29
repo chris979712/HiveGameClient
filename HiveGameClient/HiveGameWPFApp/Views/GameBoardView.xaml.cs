@@ -2158,7 +2158,7 @@ namespace HiveGameWPFApp.Views
 
             grd_VictoryOverlay.Visibility = Visibility.Visible;
 
-            Storyboard victoryStoryboard = (Storyboard)FindResource("VictoryAnimation");
+            Storyboard victoryStoryboard = (Storyboard)FindResource("storyb_VictoryAnimation");
             victoryStoryboard.Begin();
         }
 
