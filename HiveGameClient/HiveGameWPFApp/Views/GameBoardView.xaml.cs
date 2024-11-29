@@ -300,7 +300,7 @@ namespace HiveGameWPFApp.Views
         {
             txtBlock_InfoMessage.Text = message;
             txtBlock_InfoMessage.Visibility = Visibility.Visible;
-            Storyboard infoAnimation = (Storyboard)FindResource("InfoMessageAnimation");
+            Storyboard infoAnimation = (Storyboard)FindResource("storyb_InfoMessageAnimation");
             infoAnimation.Completed += (s, e) =>
             {
 
@@ -2153,7 +2153,7 @@ namespace HiveGameWPFApp.Views
 
             grd_VictoryOverlay.Visibility = Visibility.Visible;
 
-            Storyboard victoryStoryboard = (Storyboard)FindResource("VictoryAnimation");
+            Storyboard victoryStoryboard = (Storyboard)FindResource("storyb_VictoryAnimation");
             victoryStoryboard.Begin();
         }
 

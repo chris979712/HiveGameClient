@@ -1855,10 +1855,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task JoinAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
-        int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession username);
+        int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriend", ReplyAction="http://tempuri.org/IFriendsManager/DeleteUserAsConnectedFriendResponse")]
-        System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession username);
+        System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1912,12 +1912,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.JoinAsConnectedFriendAsync(user);
         }
         
-        public int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession username) {
-            return base.Channel.DeleteUserAsConnectedFriend(username);
+        public int DeleteUserAsConnectedFriend(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.DeleteUserAsConnectedFriend(user);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession username) {
-            return base.Channel.DeleteUserAsConnectedFriendAsync(username);
+        public System.Threading.Tasks.Task<int> DeleteUserAsConnectedFriendAsync(HiveGameWPFApp.HiveProxy.UserSession user) {
+            return base.Channel.DeleteUserAsConnectedFriendAsync(user);
         }
     }
     
