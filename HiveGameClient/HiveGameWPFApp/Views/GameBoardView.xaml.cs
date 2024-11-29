@@ -190,7 +190,11 @@ namespace HiveGameWPFApp.Views
                 GamePiece piece = (GamePiece)imagePiece.Tag;
                 if (isBeetleMoved == true)
                 {
-                    PieceSelectedByBeetle(imagePiece, selectedPiece);
+                    List<Point> adjacentPoints = ObtainAdjacentPoints(piece.Position);
+                    if (adjacentPoints.Contains(selectedPiece.Position))
+                    {
+                        PieceSelectedByBeetle(imagePiece, selectedPiece);
+                    }
                 }
                 else
                 {
@@ -300,10 +304,9 @@ namespace HiveGameWPFApp.Views
         {
             txtBlock_InfoMessage.Text = message;
             txtBlock_InfoMessage.Visibility = Visibility.Visible;
-            Storyboard infoAnimation = (Storyboard)FindResource("InfoMessageAnimation");
+            Storyboard infoAnimation = (Storyboard)FindResource("storyb_InfoMessageAnimation");
             infoAnimation.Completed += (s, e) =>
             {
-
                 txtBlock_InfoMessage.Visibility = Visibility.Collapsed;
             };
             infoAnimation.Begin();
