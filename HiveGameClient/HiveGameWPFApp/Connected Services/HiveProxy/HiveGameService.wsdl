@@ -3,10 +3,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IUserManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -15,10 +11,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendshipManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -27,10 +19,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendRequestManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -39,10 +27,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IChatManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -51,10 +35,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_ILeaderBoardManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -63,10 +43,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IEmailVerificationManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -75,10 +51,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IEmailInvitationManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -87,10 +59,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IUserSessionManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -99,10 +67,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IMatchCreatorManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -111,10 +75,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendsManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -123,10 +83,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_ILobbyManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -135,10 +91,6 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IGameManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
-          <wsrm:InactivityTimeout Milliseconds="600000" />
-          <wsrm:AcknowledgementInterval Milliseconds="200" />
-        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -2318,75 +2270,75 @@
   </wsdl:binding>
   <wsdl:service name="HiveGameService">
     <wsdl:port name="NetTcpBinding_IUserManager" binding="tns:NetTcpBinding_IUserManager">
-      <soap12:address location="net.tcp://localhost:1441/UserService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/UserService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/UserService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/UserService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IFriendshipManager" binding="tns:NetTcpBinding_IFriendshipManager">
-      <soap12:address location="net.tcp://localhost:1441/FriendshipService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/FriendshipService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/FriendshipService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/FriendshipService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IFriendRequestManager" binding="tns:NetTcpBinding_IFriendRequestManager">
-      <soap12:address location="net.tcp://localhost:1441/FriendRequestService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/FriendRequestService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/FriendRequestService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/FriendRequestService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IChatManager" binding="tns:NetTcpBinding_IChatManager">
-      <soap12:address location="net.tcp://localhost:1441/ChatService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/ChatService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/ChatService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/ChatService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ILeaderBoardManager" binding="tns:NetTcpBinding_ILeaderBoardManager">
-      <soap12:address location="net.tcp://localhost:1441/LeaderBoardService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/LeaderBoardService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/LeaderBoardService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/LeaderBoardService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IEmailVerificationManager" binding="tns:NetTcpBinding_IEmailVerificationManager">
-      <soap12:address location="net.tcp://localhost:1441/EmailVerificationService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/EmailVerificationService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/EmailVerificationService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/EmailVerificationService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IEmailInvitationManager" binding="tns:NetTcpBinding_IEmailInvitationManager">
-      <soap12:address location="net.tcp://localhost:1441/EmailInvitationService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/EmailInvitationService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/EmailInvitationService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/EmailInvitationService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IUserSessionManager" binding="tns:NetTcpBinding_IUserSessionManager">
-      <soap12:address location="net.tcp://localhost:1441/UserSessionService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/UserSessionService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/UserSessionService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/UserSessionService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IMatchCreatorManager" binding="tns:NetTcpBinding_IMatchCreatorManager">
-      <soap12:address location="net.tcp://localhost:1441/MatchCreatorService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/MatchCreatorService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/MatchCreatorService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/MatchCreatorService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IFriendsManager" binding="tns:NetTcpBinding_IFriendsManager">
-      <soap12:address location="net.tcp://localhost:1441/FriendsService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/FriendsService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/FriendsService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/FriendsService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ILobbyManager" binding="tns:NetTcpBinding_ILobbyManager">
-      <soap12:address location="net.tcp://localhost:1441/LobbyService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/LobbyService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/LobbyService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/LobbyService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IGameManager" binding="tns:NetTcpBinding_IGameManager">
-      <soap12:address location="net.tcp://localhost:1441/GameService" />
+      <soap12:address location="net.tcp://192.168.230.26:1441/GameService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1441/GameService</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.230.26:1441/GameService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
