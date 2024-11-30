@@ -90,7 +90,7 @@ namespace HiveGameWPFApp.Views
             }
             InitializeBoard();
             ConnectToGameBoard();
-            Constants.isInMatch = true;
+            Constants.IsInMatch = true;
             numberOfTurn = 0;
         }
 
@@ -1307,7 +1307,7 @@ namespace HiveGameWPFApp.Views
             }
             else
             {
-                Constants.isInMatch = false;
+                Constants.IsInMatch = false;
                 LeaveFinishedMatch();
             }
 
@@ -2082,7 +2082,7 @@ namespace HiveGameWPFApp.Views
                     RegisterMatchResult(winner);
                 }
             }
-            Constants.isInMatch = false;
+            Constants.IsInMatch = false;
         }
 
         private void RegisterMatchResult(string winner)
