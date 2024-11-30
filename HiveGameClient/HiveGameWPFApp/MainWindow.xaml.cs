@@ -82,7 +82,7 @@ namespace HiveGameWPFApp
 
         }
 
-        private UserSession VerifyExistingUserSession()
+        private static UserSession VerifyExistingUserSession()
         {
             int idAccount;
             string username;

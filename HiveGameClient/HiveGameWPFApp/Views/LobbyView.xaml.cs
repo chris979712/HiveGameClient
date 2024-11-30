@@ -213,7 +213,6 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
-                HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
                 Profile guestToDisconnect = new Profile()
                 {
                     username = UserProfileSingleton.username,
@@ -577,11 +576,6 @@ namespace HiveGameWPFApp.Views
         public void ReceivePlayersToLobby(UserSession[] user)
         {
             usersInLobby = user.ToList();
-            UserSession userSessionRequest = new UserSession()
-            {
-                username = UserProfileSingleton.username,
-                idAccount = UserProfileSingleton.idAccount,
-            };
             if (user[0].idAccount == -2)
             {
                 bool isKicked = false;
@@ -770,16 +764,6 @@ namespace HiveGameWPFApp.Views
                     idCreatorAccount = UserProfileSingleton.idAccount,
                     codeMatch = matchLobbyCode,
                     stateMatch = "Started"
-                };
-                Profile profile = new Profile()
-                {
-                    username = UserProfileSingleton.username
-                };
-                UserSession session = new UserSession()
-                {
-                    username = UserProfileSingleton.username,
-                    codeMatch = matchLobbyCode,
-                    idAccount = UserProfileSingleton.idAccount,
                 };
                 MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
                 matchCreatorManagerClient.UpdateMatchState(matchCreator);
