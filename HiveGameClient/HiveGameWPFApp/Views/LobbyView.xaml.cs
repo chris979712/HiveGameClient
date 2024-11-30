@@ -160,18 +160,10 @@ namespace HiveGameWPFApp.Views
                 try
                 {
                     bool isKicked = false;
-                    if (UserProfileSingleton.idAccount != Constants.DEFAULT_GUEST_ID)
-                    {
-                        MatchSingleton.Instance.ResetSingleton();
-                        KickPlayerFromLobby(userSession, isKicked);
-                        RedirectRespectivePlayers(isKicked);
-                    }
-                    else
-                    {
-                        MatchSingleton.Instance.ResetSingleton();
-                        KickPlayerFromLobby(userSession, isKicked);
-                        RedirectRespectivePlayers(isKicked);
-                    }
+                    MatchSingleton.Instance.ResetSingleton();
+                    KickPlayerFromLobby(userSession, isKicked);
+                    RedirectRespectivePlayers(isKicked);
+
                     matchLobbyCode = "0";
                 }
                 catch (EndpointNotFoundException endPointException)
@@ -529,11 +521,11 @@ namespace HiveGameWPFApp.Views
             try
             {
                 HiveProxy.FriendshipManagerClient friendshipManagerClient = new HiveProxy.FriendshipManagerClient();
-                Profile userProfile = new Profile()
+                Profile userProfileRequest = new Profile()
                 {
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
-                Profile[] friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
+                Profile[] friendsObtained = friendshipManagerClient.GetAllFriends(userProfileRequest);
                 List<Friend> friends = new List<Friend>();
                 UserSessionComparer comparer = new UserSessionComparer();
                 for (int friendsIndex = 0; friendsObtained.Length > friendsIndex; friendsIndex++)
@@ -585,7 +577,7 @@ namespace HiveGameWPFApp.Views
         public void ReceivePlayersToLobby(UserSession[] user)
         {
             usersInLobby = user.ToList();
-            UserSession userSession = new UserSession()
+            UserSession userSessionRequest = new UserSession()
             {
                 username = UserProfileSingleton.username,
                 idAccount = UserProfileSingleton.idAccount,
