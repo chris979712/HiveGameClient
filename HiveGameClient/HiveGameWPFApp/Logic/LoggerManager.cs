@@ -17,7 +17,7 @@ namespace HiveGameWPFApp.Logic
             Logger = LogManager.GetLogger(type);
         }
 
-        public ILog GetLogger(Type type)
+        public static ILog GetLogger(Type type)
         {
             return LogManager.GetLogger(type);
         }
