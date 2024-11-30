@@ -34,5 +34,17 @@ namespace HiveGameWPFApp.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("On")]
+        public string Sound {
+            get {
+                return ((string)(this["Sound"]));
+            }
+            set {
+                this["Sound"] = value;
+            }
+        }
     }
 }

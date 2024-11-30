@@ -23,7 +23,7 @@ namespace HiveGameWPFApp.Views
 {
     public partial class FriendsListView : Page
     {
-        private static Profile[] _friendsObtained;
+        private Profile[] friendsObtained;
         public FriendsListView()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace HiveGameWPFApp.Views
         }
         private void setAsConnectedFriend()
         {
-            LoggerManager logger = new LoggerManager(this.GetType());
+
             Profile userProfile = new Profile()
             {
                 idAccesAccount = UserProfileSingleton.idAccount,
@@ -50,16 +50,16 @@ namespace HiveGameWPFApp.Views
                 {
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
-                _friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
+                friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
                
-                if (_friendsObtained.Length == 0)
+                if (friendsObtained.Length == 0)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
                 }
-                else if (_friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
+                else if (friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
-                } else if (_friendsObtained.Length >= Constants.DATA_MATCHES)
+                } else if (friendsObtained.Length >= Constants.DATA_MATCHES)
                 {
                     LoadFriendsInformation();
                 }
@@ -87,20 +87,20 @@ namespace HiveGameWPFApp.Views
             HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
             try
             {
-                for (int indexUsersProfile = 0; indexUsersProfile < _friendsObtained.Length; indexUsersProfile++)
+                for (int indexUsersProfile = 0; indexUsersProfile < friendsObtained.Length; indexUsersProfile++)
                 {
                     UserSession userSession = new UserSession()
                     {
-                        username = _friendsObtained[indexUsersProfile].username,
-                        idAccount = _friendsObtained[indexUsersProfile].idAccount
+                        username = friendsObtained[indexUsersProfile].username,
+                        idAccount = friendsObtained[indexUsersProfile].idAccount
                     };
                     bool stateFriend = userSessionManagerClient.VerifyConnectivity(userSession);
                     ProfileUser profileUser = new ProfileUser()
                     {
-                        idProfile = _friendsObtained[indexUsersProfile].idProfile,
-                        idAccount = _friendsObtained[indexUsersProfile].idAccount,
-                        username = _friendsObtained[indexUsersProfile].username,
-                        imageProfile = _friendsObtained[indexUsersProfile].imagePath,
+                        idProfile = friendsObtained[indexUsersProfile].idProfile,
+                        idAccount = friendsObtained[indexUsersProfile].idAccount,
+                        username = friendsObtained[indexUsersProfile].username,
+                        imageProfile = friendsObtained[indexUsersProfile].imagePath,
                         state = stateFriend
                     };
                     lvw_FriendsList.Items.Add(profileUser);
@@ -549,22 +549,14 @@ namespace HiveGameWPFApp.Views
             lvw_FriendToAdd.Items.Add(profileUser);
         }
 
-        private class ProfileUser
+        private sealed class ProfileUser
         {
             public int idProfile {  get; set; }
             public int idAccount { get; set; }
             public string username { get; set; }
-            public string nickname { get; set; }
             public string imageProfile { get; set; }
             public bool state { get; set; }
             public bool areFriends { get; set; }
-        }
-
-        private class FriendRequest
-        {
-            public int idAccount { set; get; }
-            public string nickname { set; get; }
-            public string imageProfile { set; get; }
         }
 
         private void BtnFriends_Click(object sender, RoutedEventArgs e)

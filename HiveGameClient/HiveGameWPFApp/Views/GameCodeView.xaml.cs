@@ -89,7 +89,7 @@ namespace HiveGameWPFApp.Views
             txtb_Code.BorderBrush = Brushes.Yellow;
             if (ValidateField())
             {
-                _codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "");
+                _codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
                 int validationResultLobby = ValidateExistingLobby(_codeLobby);
                 if (validationResultLobby == Constants.DATA_MATCHES)
                 {
@@ -189,7 +189,7 @@ namespace HiveGameWPFApp.Views
         private void Txtb_Username_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
            
-            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]$");
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]$", RegexOptions.None, TimeSpan.FromMilliseconds(500));
         }
 
         private void Txtb_Username_TextChanged(object sender, TextChangedEventArgs e)
