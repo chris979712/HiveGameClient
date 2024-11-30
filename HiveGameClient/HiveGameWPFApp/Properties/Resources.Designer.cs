@@ -1211,5 +1211,14 @@ namespace HiveGameWPFApp.Properties {
                 return ResourceManager.GetString("txtbl_TurnOf", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a pack://siteoforigin:,,,/Video/VideoMenu.mp4.
+        /// </summary>
+        public static string Uri {
+            get {
+                return ResourceManager.GetString("Uri", resourceCulture);
+            }
+        }
     }
 }
