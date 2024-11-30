@@ -55,7 +55,7 @@ namespace HiveGameWPFApp
             {
                 UserSessionManagerClient sessionManager = new UserSessionManagerClient();
                 UserSession session = VerifyExistingUserSession();
-                if (Constants.isInMatch)
+                if (Constants.IsInMatch)
                 {
                     sessionManager.Disconnect(session,true);
                 }

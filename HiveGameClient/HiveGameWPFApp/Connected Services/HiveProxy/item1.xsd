@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HiveGameService.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1442/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+  <xs:complexType name="Profile">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AccessAccount">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="createdDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+          <xs:element minOccurs="0" name="idProfile" type="xs:int" />
+          <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Profile" nillable="true" type="tns:Profile" />
+  <xs:complexType name="AccessAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idAccesAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reputation" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccessAccount" nillable="true" type="tns:AccessAccount" />
+  <xs:complexType name="ArrayOfProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile" nillable="true" type="tns:Profile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProfile" nillable="true" type="tns:ArrayOfProfile" />
+  <xs:complexType name="Message">
+    <xs:sequence>
+      <xs:element name="text" nillable="true" type="xs:string" />
+      <xs:element name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:complexType name="ArrayOfMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+  <xs:complexType name="LeaderBoardPlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="imageProfile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalDrawMatches" type="xs:int" />
+      <xs:element minOccurs="0" name="totalLostMatches" type="xs:int" />
+      <xs:element minOccurs="0" name="totalMatches" type="xs:int" />
+      <xs:element minOccurs="0" name="totalWonMatches" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LeaderBoardPlayer" nillable="true" type="tns:LeaderBoardPlayer" />
+  <xs:complexType name="ArrayOfLeaderBoardPlayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LeaderBoardPlayer" nillable="true" type="tns:LeaderBoardPlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLeaderBoardPlayer" nillable="true" type="tns:ArrayOfLeaderBoardPlayer" />
+  <xs:complexType name="UserVerificator">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserVerificator" nillable="true" type="tns:UserVerificator" />
+  <xs:complexType name="UserSession">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserSession" nillable="true" type="tns:UserSession" />
+  <xs:complexType name="MatchCreator">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codeMatch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dateMatch" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idCreatorAccount" type="xs:int" />
+      <xs:element minOccurs="0" name="stateMatch" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatchCreator" nillable="true" type="tns:MatchCreator" />
+  <xs:complexType name="ArrayOfUserSession">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserSession" nillable="true" type="tns:UserSession" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserSession" nillable="true" type="tns:ArrayOfUserSession" />
+  <xs:complexType name="GameMatch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idAccount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GameMatch" nillable="true" type="tns:GameMatch" />
+  <xs:complexType name="GamePice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="imagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numberOfPiece" type="xs:int" />
+      <xs:element minOccurs="0" name="piece" nillable="true" type="tns:Piece" />
+      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="position" type="q1:Point" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GamePice" nillable="true" type="tns:GamePice" />
+  <xs:complexType name="Piece">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="playerName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="position" type="q2:Point" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Piece" nillable="true" type="tns:Piece" />
+  <xs:complexType name="PlayerSide">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerOne" type="xs:boolean" />
+      <xs:element minOccurs="0" name="playerTwo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerSide" nillable="true" type="tns:PlayerSide" />
+</xs:schema>
