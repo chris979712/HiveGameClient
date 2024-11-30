@@ -3,7 +3,6 @@ using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
-using System.Windows;
 using HiveGameWPFApp.HiveProxy;
 
 namespace HiveGameWPFApp
@@ -48,7 +46,6 @@ namespace HiveGameWPFApp
         {
             var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2.5));
             NavigationFrame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
-            string pageName = e.Content.GetType().Name;
         }
         
         private void MainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -116,9 +113,5 @@ namespace HiveGameWPFApp
             return sessionPlayer;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

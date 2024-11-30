@@ -36,8 +36,10 @@ namespace HiveGameWPFApp.Views
             ConnectAsFriendJoined();
             ConnectToTheLobby();
             lbl_GameCode.Content = matchLobbyCode;
-
-            App.PlayMusic("Audio/lobby.mp3");
+            if (App.IsMusicPlaying)
+            {
+                App.PlayMusic("Audio/lobby.mp3");
+            }
         }
 
         private void HideFullLobbyActions()
@@ -298,14 +300,14 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        public void ReceiveMessage(Message[] message)
+        public void ReceiveMessage(Message[] messages)
         {
             ChatMessagesPanel.Children.Clear();   
-            for (int indexListMessage = 0; indexListMessage < message.Length; indexListMessage++)
+            for (int indexListMessage = 0; indexListMessage < messages.Length; indexListMessage++)
             {
-                if (message[indexListMessage].username.Equals(userProfile.username))
+                if (messages[indexListMessage].username.Equals(userProfile.username))
                 {
-                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
+                    string messageReceived = $"{messages[indexListMessage].username}: {messages[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
                     Border messageContainer = new Border
                     {
                         Background = new SolidColorBrush(Colors.White),
@@ -328,7 +330,7 @@ namespace HiveGameWPFApp.Views
                 }
                 else
                 {
-                    string messageReceived = $"{message[indexListMessage].username}: {message[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
+                    string messageReceived = $"{messages[indexListMessage].username}: {messages[indexListMessage].text} {DateTime.Now.ToString("HH:mm")}";
                     Border messageContainer = new Border
                     {
                         Background = new SolidColorBrush(Colors.White),
@@ -495,12 +497,12 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
-                UserSession userProfile = new UserSession()
+                UserSession userSession = new UserSession()
                 {
                     idAccount = UserProfileSingleton.idAccount,
                     username = UserProfileSingleton.username
                 };
-                friendsManagerClient.GetFriendsList(userProfile);
+                friendsManagerClient.GetFriendsList(userSession);
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -579,27 +581,27 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        public void ReceivePlayersToLobby(UserSession[] users)
+        public void ReceivePlayersToLobby(UserSession[] user)
         {
-            usersInLobby = users.ToList();
+            usersInLobby = user.ToList();
             UserSession userSession = new UserSession()
             {
                 username = UserProfileSingleton.username,
                 idAccount = UserProfileSingleton.idAccount,
             };
-            if (users[0].idAccount == -2)
+            if (user[0].idAccount == -2)
             {
                 bool isKicked = false;
                 DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogHostHasLeft);
                 RedirectRespectivePlayers(isKicked);
             }
-            else if (users.Length == 1)
+            else if (user.Length == 1)
             {
-                ChargeOnePlayerProfile(users[0]);
+                ChargeOnePlayerProfile(user[0]);
             }
-            else if (users.Length == 2)
+            else if (user.Length == 2)
             {
-                ChargeTwoPlayersProfile(users);
+                ChargeTwoPlayersProfile(user);
             }
         }
 
@@ -839,7 +841,7 @@ namespace HiveGameWPFApp.Views
             this.NavigationService.Navigate(gameBoardView);
         }
 
-        private class Friend
+        private sealed class Friend
         {
             public int idAccount {  get; set; }
             public string username {  get; set; }

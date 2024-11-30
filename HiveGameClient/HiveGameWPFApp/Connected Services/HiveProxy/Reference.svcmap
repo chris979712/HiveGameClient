@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="a7e44037-2571-46a5-b63c-b7132ec6342a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="b47c7936-ca80-46cf-ad39-d3d180c7ca92" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,7 +22,7 @@
     <MetadataSource Address="http://localhost:1442/?singleWsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HiveGameService.wsdl" MetadataType="Wsdl" ID="371d24cf-fe50-42e3-846f-274eb5665260" SourceId="1" SourceUrl="http://localhost:1442/?singleWsdl" />
+    <MetadataFile FileName="HiveGameService.wsdl" MetadataType="Wsdl" ID="672b271d-8f2e-49c6-b663-463bc8dedc35" SourceId="1" SourceUrl="http://localhost:1442/?singleWsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

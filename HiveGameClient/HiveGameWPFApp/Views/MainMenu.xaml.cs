@@ -24,15 +24,18 @@ namespace HiveGameWPFApp.Views
         private MediaPlayer _mediaPlayer;
         private VideoDrawing _videoDrawing;
         private DrawingBrush _drawingBrush;
-        private Image _selectedImage = null;
         public MainMenu()
         {
             InitializeComponent();
             Loaded += MainMenu_Loaded;
             Unloaded += MainMenu_Unloaded;
-            App.PlayMusic("Audio/MainMenu.mp3");
+
+            if (App.IsMusicPlaying)
+                App.PlayMusic("Audio/MainMenu.mp3");
+
             UpdateButtonVisibility();
             SetLanguageButtons();
+
             btn_EditCredentials.Visibility = Visibility.Collapsed;
             btn_EditProfile.Visibility = Visibility.Collapsed;
             lbl_Username.Content = UserProfileSingleton.username;
@@ -42,7 +45,8 @@ namespace HiveGameWPFApp.Views
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
             _mediaPlayer = new MediaPlayer();
-            _mediaPlayer.Open(new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4"));
+            var resourceUri = new Uri("pack://application:,,,/Video/VideoMenu.mp4");
+            _mediaPlayer.Open(resourceUri);
 
             _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
             _videoDrawing = new VideoDrawing

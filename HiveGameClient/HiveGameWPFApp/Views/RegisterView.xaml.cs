@@ -57,7 +57,7 @@ namespace HiveGameWPFApp.Views
                     if (insertionResult == 1)
                     {
                         DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogAccountCreated);
-                        ReturnToLogin();
+                        GoToLoginView();
                     }
                 }
                 else
@@ -204,21 +204,25 @@ namespace HiveGameWPFApp.Views
         {
             if (isPassword)
             {
-                brd_Password.Visibility = isVisible ? Visibility.Collapsed : Visibility.Visible;
-                brd_PasswordDisplay.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
-
-                if (isVisible) txtb_PasswordDisplay.Text = pwb_Password.Password;
-                else pwb_Password.Password = txtb_PasswordDisplay.Text;
+                ToggleVisibility(isVisible, brd_Password, brd_PasswordDisplay, txtb_PasswordDisplay, pwb_Password);
             }
             else
             {
-                pwb_ConfirmPassword.Visibility = isVisible ? Visibility.Collapsed : Visibility.Visible;
-                brd_PasswordDisplayConfirm.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
-
-                if (isVisible) txtb_ConfirmPasswordDisplay.Text = pwb_ConfirmPassword.Password;
-                else pwb_ConfirmPassword.Password = txtb_ConfirmPasswordDisplay.Text;
+                ToggleVisibility(isVisible, pwb_ConfirmPassword, brd_PasswordDisplayConfirm, txtb_ConfirmPasswordDisplay, pwb_ConfirmPassword);
             }
         }
+
+        private void ToggleVisibility(bool isVisible, UIElement passwordElement, UIElement displayElement, TextBox displayTextBox, PasswordBox passwordBox)
+        {
+            passwordElement.Visibility = isVisible ? Visibility.Collapsed : Visibility.Visible;
+            displayElement.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (isVisible)
+                displayTextBox.Text = passwordBox.Password;
+            else
+                passwordBox.Password = displayTextBox.Text;
+        }
+
 
         private void UpdatePetImageBasedOnPassword()
         {
@@ -237,10 +241,6 @@ namespace HiveGameWPFApp.Views
             img_Pet.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }
 
-        public void ReturnToLogin()
-        {
-            LoginView loginView = new LoginView();
-            this.NavigationService.Navigate(loginView);
-        }
+
     }
 }

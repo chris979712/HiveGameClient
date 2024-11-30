@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace HiveGameWPFApp.Logic
 {
-    public class Hasher
+    public static class Hasher
     {
         public static string hashToSHA1(string textToHash)
         {
 
             StringBuilder stringHashBuilder = new StringBuilder();
             byte[] inputBytes = Encoding.UTF8.GetBytes(textToHash);
-            using(SHA1 sha1 = SHA1.Create())
+            using (SHA256 sha256 = SHA256.Create())
 
             {
-                byte[] hashBytes = sha1.ComputeHash(inputBytes);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
                 string hexaDecimalFormat = "x2";
 
                 for(int indexBytes = 0;  indexBytes < hashBytes.Length; indexBytes++)

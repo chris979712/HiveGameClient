@@ -16,7 +16,7 @@ namespace HiveGameWPFApp
 
         private static readonly MediaPlayer _mediaPlayer = new MediaPlayer();
         private static string _currentMusicPath = string.Empty;
-        private static bool _isMusicPlaying = true;
+        private static bool _isMusicPlaying = HiveGameWPFApp.Properties.Settings.Default.Sound == "On";
 
         public static MediaPlayer MediaPlayer => _mediaPlayer;
 
@@ -34,6 +34,11 @@ namespace HiveGameWPFApp
             }
 
             ChangeLanguage(savedLanguage);
+
+            if (_isMusicPlaying && !string.IsNullOrEmpty(_currentMusicPath))
+            {
+                PlayMusic(_currentMusicPath);
+            }
         }
 
 
@@ -50,7 +55,7 @@ namespace HiveGameWPFApp
 
         public static void PlayMusic(string musicPath)
         {
-            if (_currentMusicPath == musicPath) return;
+            if (_currentMusicPath == musicPath || !_isMusicPlaying) return;
 
             _mediaPlayer.Stop();
             _mediaPlayer.Open(new Uri(musicPath, UriKind.RelativeOrAbsolute));
@@ -59,7 +64,6 @@ namespace HiveGameWPFApp
             _mediaPlayer.Play();
             _currentMusicPath = musicPath;
             _mediaPlayer.Volume = 0.09;
-            _isMusicPlaying = true;
         }
 
         private static void MediaPlayer_MediaEnded(object sender, EventArgs e)
@@ -74,14 +78,23 @@ namespace HiveGameWPFApp
             {
                 _mediaPlayer.Pause();
                 _isMusicPlaying = false;
+                HiveGameWPFApp.Properties.Settings.Default.Sound = "Off";
+                HiveGameWPFApp.Properties.Settings.Default.Save();
             }
             else
             {
                 _mediaPlayer.Play();
                 _isMusicPlaying = true;
+                HiveGameWPFApp.Properties.Settings.Default.Sound = "On";
+                HiveGameWPFApp.Properties.Settings.Default.Save();
             }
+
+            
         }
 
+
         public static bool IsMusicPlaying => _isMusicPlaying;
+
+
     }
  }

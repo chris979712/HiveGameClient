@@ -11,34 +11,23 @@ namespace HiveGameWPFApp.Logic
     public partial class GamePiece
     {
         public Piece Piece { get; set; }
-        public int pieceNumber {  get; set; }
+        public int PieceNumber {  get; set; }
         public string ImagePath { get; set; }
         public Point Position { get; set; }
-        public string playerName { get; set; }
+        public string PlayerName { get; set; }
         public GamePiece(Piece piece, string imagePath, Point position, string playername, int pieceNumber)
         {
 
             Piece = piece;
             ImagePath = imagePath;
             Position = position;
-            playerName = playername;
-            this.pieceNumber = pieceNumber;
+            PlayerName = playername;
+            this.PieceNumber = pieceNumber;
 
         }
 
         public GamePiece()
         {
-
-        }
-
-        public override bool Equals(object obj)
-        {
-
-            if (obj is GamePiece other)
-            {
-                return this.Position.Equals(other.Position) && this.playerName == other.playerName;
-            }
-            return false;
 
         }
 

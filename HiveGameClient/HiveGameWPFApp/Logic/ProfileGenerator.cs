@@ -8,13 +8,15 @@ namespace HiveGameWPFApp.Logic
 {
     public static class ProfileGenerator
     {
+        private static readonly Random _random = new Random(); 
+
         public static string RandomDescriptionGenerator()
         {
             string[] defaultDescriptions = { "Hi, im new at this.","Always looking for the next challenge.","Exploring the world" +
                     "one step at a time.","sometimes shy, but always watching.","Growing, learning and improving","Passionate about"+
                     " technology and good stories"+"Coffee lover and rainy days enthusiast" };
-            Random random = new Random();
-            int randomIndex = random.Next(defaultDescriptions.Length);
+            
+            int randomIndex = _random.Next(defaultDescriptions.Length);
             return defaultDescriptions[randomIndex];
         }
 
@@ -22,15 +24,15 @@ namespace HiveGameWPFApp.Logic
         {
             string[] defaultAvatars = { "/Images/Avatars/Avatar1.png", "/Images/Avatars/Avatar2.png", "/Images/Avatars/Avatar3.png",
                 "/Images/Avatars/Avatar4.png", "/Images/Avatars/Avatar5.png", "/Images/Avatars/Avatar6.png" };
-            Random random = new Random();
-            int randomIndex = random.Next(defaultAvatars.Length);
+            
+            int randomIndex = _random.Next(defaultAvatars.Length);
             return defaultAvatars[randomIndex];
         }
 
         public static string RandomChooserUsername()
         {
-            Random random = new Random();
-            int randomIndexNumber = random.Next(1,1000000);
+           
+            int randomIndexNumber = _random.Next(1,1000000);
             string defaultUsername = "Guest"+randomIndexNumber;
             return defaultUsername;
         }

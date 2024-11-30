@@ -235,7 +235,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Audio\Game.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -302,6 +301,12 @@
     <Resource Include="Images\Characters\loading.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <None Include="Connected Services\HiveProxy\configuration91.svcinfo" />
+    <None Include="Connected Services\HiveProxy\configuration.svcinfo" />
+    <None Include="Connected Services\HiveProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Video\VideoMenu.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -324,12 +329,6 @@
     <Resource Include="Images\Icons\Visible.png" />
     <Resource Include="Images\Icons\Code Swarm.png" />
     <Resource Include="Images\Icons\Lobby.png" />
-    <None Include="Connected Services\HiveProxy\configuration91.svcinfo" />
-    <None Include="Connected Services\HiveProxy\configuration.svcinfo" />
-    <None Include="Connected Services\HiveProxy\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
