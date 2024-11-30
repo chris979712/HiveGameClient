@@ -154,7 +154,8 @@ namespace HiveGameWPFApp.Views
                 UserSession userSession = new UserSession()
                 {
                     username = UserProfileSingleton.username,
-                    idAccount = UserProfileSingleton.idAccount
+                    idAccount = UserProfileSingleton.idAccount,
+                    codeMatch = MatchSingleton.codeMatch   
                 };
                 try
                 {

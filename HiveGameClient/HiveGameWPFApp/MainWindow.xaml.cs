@@ -88,7 +88,7 @@ namespace HiveGameWPFApp
             string username;
             string codematch;
             UserSession sessionPlayer = new UserSession();
-            if(UserProfileSingleton.idAccount == 0)
+            if(UserProfileSingleton.username == null)
             {
                 idAccount = 0;
                 username = "Not online player";

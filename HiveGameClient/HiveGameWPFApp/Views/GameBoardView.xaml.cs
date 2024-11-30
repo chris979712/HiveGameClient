@@ -198,7 +198,11 @@ namespace HiveGameWPFApp.Views
                 GamePiece piece = (GamePiece)imagePiece.Tag;
                 if (isBeetleMoved)
                 {
-                    PieceSelectedByBeetle(imagePiece, selectedPiece);
+                    List<Point> adjacentPoints = ObtainAdjacentPoints(piece.Position);
+                    if (adjacentPoints.Contains(selectedPiece.Position))
+                    {
+                        PieceSelectedByBeetle(imagePiece, selectedPiece);
+                    }
                 }
                 else
                 {
@@ -338,7 +342,6 @@ namespace HiveGameWPFApp.Views
             Storyboard infoAnimation = (Storyboard)FindResource("storyb_InfoMessageAnimation");
             infoAnimation.Completed += (s, e) =>
             {
-
                 txtBlock_InfoMessage.Visibility = Visibility.Collapsed;
             };
             infoAnimation.Begin();
@@ -1315,6 +1318,7 @@ namespace HiveGameWPFApp.Views
             }
             else
             {
+                Constants.isInMatch = false;
                 LeaveFinishedMatch();
             }
 
@@ -2089,6 +2093,7 @@ namespace HiveGameWPFApp.Views
                     RegisterMatchResult(winner);
                 }
             }
+            Constants.isInMatch = false;
         }
 
         private void RegisterMatchResult(string winner)
