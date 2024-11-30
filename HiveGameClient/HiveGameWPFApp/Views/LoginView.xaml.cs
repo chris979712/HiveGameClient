@@ -189,8 +189,9 @@ namespace HiveGameWPFApp.Views
             }
         }
 
-        private void GenerateGuestProfile()
+        private int GenerateGuestProfile()
         {
+            int creationResult = Constants.ERROR_OPERATION;
             LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
@@ -217,6 +218,7 @@ namespace HiveGameWPFApp.Views
                 };
                 UserProfileSingleton.Instance.CreateInstance(profileGuest);
                 userSessionManagerClient.ConnectToGame(guestSession);
+                creationResult = Constants.SUCCES_OPERATION;
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -233,13 +235,17 @@ namespace HiveGameWPFApp.Views
                 logger.LogError(communicationException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
+            return creationResult;
         }
 
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
-            GenerateGuestProfile();
-            GameCodeView gameCodeView = new GameCodeView();
-            this.NavigationService.Navigate(gameCodeView);
+            int creationResult = GenerateGuestProfile();
+            if(creationResult != Constants.ERROR_OPERATION)
+            {
+                GameCodeView gameCodeView = new GameCodeView();
+                this.NavigationService.Navigate(gameCodeView);
+            }
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
