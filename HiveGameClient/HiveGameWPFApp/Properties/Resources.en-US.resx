@@ -501,4 +501,7 @@
   <data name="lbl_LanguageChange" xml:space="preserve">
     <value>Language Change</value>
   </data>
+  <data name="Uri" xml:space="preserve">
+    <value>pack://siteoforigin:,,,/Video/VideoMenu.mp4</value>
+  </data>
 </root>

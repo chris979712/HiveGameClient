@@ -45,7 +45,7 @@ namespace HiveGameWPFApp.Views
         private void MainMenu_Loaded(object sender, RoutedEventArgs e)
         {
             _mediaPlayer = new MediaPlayer();
-            var resourceUri = new Uri("pack://siteoforigin:,,,/Video/VideoMenu.mp4");
+            var resourceUri = new Uri(Properties.Resources.Uri);
             _mediaPlayer.Open(resourceUri);
 
             _mediaPlayer.MediaEnded += MediaElement_MediaEnded;
