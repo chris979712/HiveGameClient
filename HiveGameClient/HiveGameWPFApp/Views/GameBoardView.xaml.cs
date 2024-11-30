@@ -500,22 +500,20 @@ namespace HiveGameWPFApp.Views
         }
 
         private void EnqueueAdjacentPoints(
-            Queue<(Point position, Point previousPosition, int steps)> queue,
-            HashSet<Point> visitedPoints,
-            Point currentPosition,
-            int currentSteps)
+                Queue<(Point position, Point previousPosition, int steps)> queue,
+                HashSet<Point> visitedPoints,
+                Point currentPosition,
+                int currentSteps)
         {
-            var adjacentPoints = ObtainAdjacentPoints(currentPosition);
+                var adjacentPoints = ObtainAdjacentPoints(currentPosition);
 
-            foreach (var adjacent in adjacentPoints)
-            {
-                if (IsValidMove(adjacent, visitedPoints, currentPosition))
+                foreach (var adjacent in adjacentPoints.Where(adj => IsValidMove(adj, visitedPoints, currentPosition)))
                 {
                     visitedPoints.Add(adjacent);
                     queue.Enqueue((adjacent, currentPosition, currentSteps + 1));
                 }
-            }
         }
+
 
         private bool IsValidMove(Point adjacent, HashSet<Point> visitedPoints, Point currentPosition)
         {
@@ -524,35 +522,27 @@ namespace HiveGameWPFApp.Views
                    IsContinouslyConnected(adjacent, currentPosition, currentPosition);
         }
 
-
-        private List<Point> ObtainBeetleMoves(Point piecePostion, bool isOnAnotherPiece)
+        private List<Point> ObtainBeetleMoves(Point piecePosition, bool isOnAnotherPiece)
         {
-            List<Point> adjacentMoves = ObtainAdjacentPoints(piecePostion);
+            List<Point> adjacentMoves = ObtainAdjacentPoints(piecePosition);
             List<Point> possibleMoves = new List<Point>();
+
             if (isOnAnotherPiece)
             {
                 board.Add(selectedPiece.Position, selectedPiece);
-                foreach (var adjacent in adjacentMoves)
-                {
-                    if (IsConnectedToHive(adjacent))
-                    {
-                        possibleMoves.Add(adjacent);
-                    }
-                }
+
+                possibleMoves.AddRange(adjacentMoves.Where(adj => IsConnectedToHive(adj)));
+
                 board.Remove(selectedPiece.Position);
             }
             else
             {
-                foreach (var adjacent in adjacentMoves)
-                {
-                    if (IsConnectedToHiveBeetle(adjacent))
-                    {
-                        possibleMoves.Add(adjacent);
-                    }
-                }
+                possibleMoves.AddRange(adjacentMoves.Where(adj => IsConnectedToHiveBeetle(adj)));
             }
+
             return possibleMoves;
         }
+
 
         private List<Point> ObtainAntMoves(Point piecePoint)
         {
@@ -585,32 +575,32 @@ namespace HiveGameWPFApp.Views
         {
             List<Point> validMoves = new List<Point>();
             var directions = ObtainAdjacentPoints(start);
-            foreach (var direction in directions)
+
+            foreach (var direction in directions.Where(direction => board.ContainsKey(direction)))
             {
-                if (board.ContainsKey(direction))
+                Point currentPosition = MoveInSameDirection(direction, start);
+                Point nextPosition = MoveInSameDirection(currentPosition, direction);
+                bool notFoundPiece = false;
+
+                while (!notFoundPiece)
                 {
-                    Point currentPosition = MoveInSameDirection(direction, start);
-                    Point nextPosition = MoveInSameDirection(currentPosition, direction);
-                    bool NotfoundPiece = false;
-                    while (!NotfoundPiece)
+                    if (board.ContainsKey(currentPosition))
                     {
-                        if (board.ContainsKey(currentPosition))
-                        {
-                            NotfoundPiece = false;
-                            Point currentPositionAuxiliar = nextPosition;
-                            nextPosition = MoveInSameDirection(currentPosition, nextPosition);
-                            currentPosition = currentPositionAuxiliar;
-                        }
-                        else if (!board.ContainsKey(currentPosition) && IsConnectedToHive(currentPosition))
-                        {
-                            validMoves.Add(currentPosition);
-                            NotfoundPiece = true;
-                        }
+                        Point currentPositionAuxiliar = nextPosition;
+                        nextPosition = MoveInSameDirection(currentPosition, nextPosition);
+                        currentPosition = currentPositionAuxiliar;
+                    }
+                    else if (!board.ContainsKey(currentPosition) && IsConnectedToHive(currentPosition))
+                    {
+                        validMoves.Add(currentPosition);
+                        notFoundPiece = true;
                     }
                 }
             }
+
             return validMoves;
         }
+
 
         private Point MoveInSameDirection(Point current, Point start)
         {
@@ -1001,18 +991,17 @@ namespace HiveGameWPFApp.Views
             {
                 if (!board.ContainsKey(offset) &&
                     cellDictionary.TryGetValue(offset, out var cell) &&
-                    !checkedPositions.Contains(offset))
+                    !checkedPositions.Contains(offset) &&
+                    obtaintAdjacentColliderPoints(offset, piecePosition).Exists(adj => board.ContainsKey(adj)))
                 {
-                    if (obtaintAdjacentColliderPoints(offset, piecePosition).Any(adj => board.ContainsKey(adj)))
-                    {
-                        cell.Fill = Brushes.LightGreen;
-                        cell.IsEnabled = true;
-                        cell.MouseDown += Cell_MouseDown;
-                        checkedPositions.Add(offset);
-                    }
+                    cell.Fill = Brushes.LightGreen;
+                    cell.IsEnabled = true;
+                    cell.MouseDown += Cell_MouseDown;
+                    checkedPositions.Add(offset);
                 }
             }
         }
+
 
         private void HighlightAvailableStartingCells()
         {
@@ -1062,12 +1051,12 @@ namespace HiveGameWPFApp.Views
 
         private bool IsConnectedToColony(Point offset)
         {
-            return ObtainAdjacentPoints(offset).Any(adj => board.ContainsKey(adj) && board[adj].PlayerName == UserProfileSingleton.username);
+            return ObtainAdjacentPoints(offset).Exists(adj => board.ContainsKey(adj) && board[adj].PlayerName == UserProfileSingleton.username);
         }
 
         private bool IsNearEnemy(Point offset)
         {
-            return ObtainAdjacentPoints(offset).Any(adj => board.ContainsKey(adj) && board[adj].PlayerName != UserProfileSingleton.username);
+            return ObtainAdjacentPoints(offset).Exists(adj => board.ContainsKey(adj) && board[adj].PlayerName != UserProfileSingleton.username);
         }
 
         private bool IsConnectedToHiveBeetle(Point position)
