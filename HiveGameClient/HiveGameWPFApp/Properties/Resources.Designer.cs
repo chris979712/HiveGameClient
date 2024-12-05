@@ -475,6 +475,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Connection to the server has been lost. You will be returned to login..
+        /// </summary>
+        public static string dialogErrorConnection {
+            get {
+                return ResourceManager.GetString("dialogErrorConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Couldn&apos;t close users session, please try again..
         /// </summary>
         public static string dialogErrorInDisconnection {

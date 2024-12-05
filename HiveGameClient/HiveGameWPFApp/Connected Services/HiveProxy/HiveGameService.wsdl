@@ -3,6 +3,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IUserManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -11,6 +15,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendshipManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -19,6 +27,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendRequestManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -27,6 +39,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IChatManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -35,6 +51,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_ILeaderBoardManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -43,6 +63,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IEmailVerificationManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -51,6 +75,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IEmailInvitationManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -59,6 +87,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IUserSessionManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -67,6 +99,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IMatchCreatorManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -75,6 +111,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IFriendsManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -83,6 +123,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_ILobbyManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -91,6 +135,10 @@
   <wsp:Policy wsu:Id="NetTcpBinding_IGameManager_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
@@ -825,6 +873,18 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="CheckConnection">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckConnectionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CheckConnectionResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="ChargePlayerGameBoard">
         <xs:complexType>
           <xs:sequence>
@@ -1389,6 +1449,12 @@
   <wsdl:message name="IGameManager_LeaveMatchFinished_OutputMessage">
     <wsdl:part name="parameters" element="tns:LeaveMatchFinishedResponse" />
   </wsdl:message>
+  <wsdl:message name="IGameManager_CheckConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckConnection" />
+  </wsdl:message>
+  <wsdl:message name="IGameManager_CheckConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckConnectionResponse" />
+  </wsdl:message>
   <wsdl:message name="IGameManager_ChargePlayerGameBoard_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ChargePlayerGameBoard" />
   </wsdl:message>
@@ -1663,6 +1729,10 @@
     <wsdl:operation name="LeaveMatchFinished">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/LeaveMatchFinished" message="tns:IGameManager_LeaveMatchFinished_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/LeaveMatchFinishedResponse" message="tns:IGameManager_LeaveMatchFinished_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManager/CheckConnection" message="tns:IGameManager_CheckConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/CheckConnectionResponse" message="tns:IGameManager_CheckConnection_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ChargePlayerGameBoard">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameManager/ChargePlayerGameBoard" message="tns:IGameManager_ChargePlayerGameBoard_OutputCallbackMessage" />
@@ -2206,6 +2276,15 @@
     </wsdl:operation>
     <wsdl:operation name="LeaveMatchFinished">
       <soap12:operation soapAction="http://tempuri.org/IGameManager/LeaveMatchFinished" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <soap12:operation soapAction="http://tempuri.org/IGameManager/CheckConnection" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,6 +24,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using TimersTimer = System.Timers.Timer;
+
 
 namespace HiveGameWPFApp.Views
 {
@@ -35,6 +38,9 @@ namespace HiveGameWPFApp.Views
         private Dictionary<Point, Polygon> cellDictionary = new Dictionary<Point, Polygon>();
         private Dictionary<Point, Logic.GamePiece> board = new Dictionary<Point, Logic.GamePiece>();
         private List<UserSession> usersInGame;
+        private TimersTimer turnTimeoutTimer;
+        private bool hasOtherPlayerMoved = false;  
+        private bool isOtherPlayerTurn = false;
         private int numberOfPlayer = 0;
         private int numberOfTurn = 0;
         private string _winnerName = "";
@@ -1507,6 +1513,8 @@ namespace HiveGameWPFApp.Views
 
         public void ReceivePieceMoved(HiveProxy.GamePice piece)
         {
+            hasOtherPlayerMoved = true;
+            StopTurnTimeoutTimer();
             Logic.Piece pieceReceived = CreateConcretePieceType(piece);
             Logic.GamePiece gamePieceReceived = new Logic.GamePiece()
             {
@@ -1855,8 +1863,11 @@ namespace HiveGameWPFApp.Views
         {
             if (isTurn)
             {
+                StopTurnTimeoutTimer();
                 txtBlock_PlayerName.Text = UserProfileSingleton.username;
-                if(numberOfPlayer == 1)
+                isOtherPlayerTurn = false; 
+                hasOtherPlayerMoved = false;
+                if (numberOfPlayer == 1)
                 {
                     stckp_Player1.IsEnabled = true;
                     EnablePiecesOnBoard();
@@ -1872,6 +1883,7 @@ namespace HiveGameWPFApp.Views
             }
             else
             {
+                StartTurnTimeoutTimer();
                 for (int indexUsersInMatch = 0; indexUsersInMatch < usersInGame.Count; indexUsersInMatch++)
                 {
                     if (usersInGame[indexUsersInMatch].username != UserProfileSingleton.username)
@@ -1879,6 +1891,9 @@ namespace HiveGameWPFApp.Views
                         txtBlock_PlayerName.Text = usersInGame[indexUsersInMatch].username;
                     }
                 }
+
+                isOtherPlayerTurn = true;
+
                 if (numberOfPlayer == 1)
                 {
                     stckp_Player1.IsEnabled = false;
@@ -1890,6 +1905,43 @@ namespace HiveGameWPFApp.Views
                     EnablePiecesOnBoard();
                 }
                 DisablePiecesOnBoard();
+            }
+        }
+
+        private void StartTurnTimeoutTimer()
+        {
+            turnTimeoutTimer = new TimersTimer(20000);
+            turnTimeoutTimer.Elapsed += OnTurnTimeout;
+            turnTimeoutTimer.AutoReset = false; 
+            turnTimeoutTimer.Enabled = true;
+        }
+
+        private void StopTurnTimeoutTimer()
+        {
+            if (turnTimeoutTimer != null)
+            {
+                turnTimeoutTimer.Stop();
+                turnTimeoutTimer.Dispose();
+                turnTimeoutTimer = null;
+            }
+        }
+
+        private void OnTurnTimeout(object sender, ElapsedEventArgs e)
+        {
+            if (isOtherPlayerTurn && !hasOtherPlayerMoved) 
+            {
+                try
+                {
+                    bool isConnected = gameManagerClient.CheckConnection();
+                    if (!isConnected)
+                    {
+                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                    }
+                }
+                catch (Exception)
+                {
+                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                }
             }
         }
 
