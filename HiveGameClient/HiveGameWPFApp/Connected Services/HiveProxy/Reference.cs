@@ -2063,6 +2063,12 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/LeaveMatchFinished", ReplyAction="http://tempuri.org/IGameManager/LeaveMatchFinishedResponse")]
         System.Threading.Tasks.Task<int> LeaveMatchFinishedAsync(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckConnection", ReplyAction="http://tempuri.org/IGameManager/CheckConnectionResponse")]
+        bool CheckConnection();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckConnection", ReplyAction="http://tempuri.org/IGameManager/CheckConnectionResponse")]
+        System.Threading.Tasks.Task<bool> CheckConnectionAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2161,6 +2167,14 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task<int> LeaveMatchFinishedAsync(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session) {
             return base.Channel.LeaveMatchFinishedAsync(codeMatch, session);
+        }
+        
+        public bool CheckConnection() {
+            return base.Channel.CheckConnection();
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckConnectionAsync() {
+            return base.Channel.CheckConnectionAsync();
         }
     }
 }
