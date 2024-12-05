@@ -1233,12 +1233,13 @@ namespace HiveGameWPFApp.Views
             catch (TimeoutException timeOutException)
             {
                 logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                ReturnToLoginView();
             }
             catch (CommunicationException communicationException)
             {
                 logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -1510,23 +1511,24 @@ namespace HiveGameWPFApp.Views
             DockPanel dockPanel = (DockPanel)this.Content;
             dockPanel.UpdateLayout();
         }
+       
 
         public void ReceivePieceMoved(HiveProxy.GamePice piece)
         {
             hasOtherPlayerMoved = true;
             StopTurnTimeoutTimer();
-            Logic.Piece pieceReceived = CreateConcretePieceType(piece);
-            Logic.GamePiece gamePieceReceived = new Logic.GamePiece()
+            if (piece != null)
             {
-                Piece = pieceReceived,
-                PlayerName = piece.playerName,
-                Position = piece.position,
-                ImagePath = piece.imagePath,
-                PieceNumber = piece.numberOfPiece,
-            };
-            gamePieceReceived.Piece.Position = piece.piece.position;
-            if (piece != null && gamePieceReceived.Position != null)
-            {
+                Logic.Piece pieceReceived = CreateConcretePieceType(piece);
+                Logic.GamePiece gamePieceReceived = new Logic.GamePiece()
+                {
+                    Piece = pieceReceived,
+                    PlayerName = piece.playerName,
+                    Position = piece.position,
+                    ImagePath = piece.imagePath,
+                    PieceNumber = piece.numberOfPiece,
+                };
+                gamePieceReceived.Piece.Position = piece.piece.position;
                 GamePiece pieceToAdd = gamePieceReceived;
                 Point pointOfPieceToAdd = gamePieceReceived.Position;
                 Point previousPositionPlaced = gamePieceReceived.Piece.Position;
@@ -1910,7 +1912,7 @@ namespace HiveGameWPFApp.Views
 
         private void StartTurnTimeoutTimer()
         {
-            turnTimeoutTimer = new TimersTimer(20000);
+            turnTimeoutTimer = new TimersTimer(10000);
             turnTimeoutTimer.Elapsed += OnTurnTimeout;
             turnTimeoutTimer.AutoReset = false; 
             turnTimeoutTimer.Enabled = true;
@@ -1928,6 +1930,7 @@ namespace HiveGameWPFApp.Views
 
         private void OnTurnTimeout(object sender, ElapsedEventArgs e)
         {
+            LoggerManager logger = new LoggerManager(this.GetType());
             if (isOtherPlayerTurn && !hasOtherPlayerMoved) 
             {
                 try
@@ -1935,14 +1938,24 @@ namespace HiveGameWPFApp.Views
                     bool isConnected = gameManagerClient.CheckConnection();
                     if (!isConnected)
                     {
-                        DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                        NotifyDisconnection();
                     }
                 }
-                catch (Exception)
+                catch (TimeoutException timeOutException)
                 {
-                    DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                    logger.LogError(timeOutException);
+                    NotifyDisconnection();
                 }
             }
+        }
+
+        private void NotifyDisconnection()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                ReturnToLoginView();
+            });
         }
 
         private void EnablePiecesOnBoard()
