@@ -565,6 +565,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a  has lost connection. You will be redirected..
+        /// </summary>
+        public static string dialogLostConnection {
+            get {
+                return ResourceManager.GetString("dialogLostConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Are you sure to leave the game?, your reputation will be affected..
         /// </summary>
         public static string dialogManagerConfirmationLeaveMatch {
