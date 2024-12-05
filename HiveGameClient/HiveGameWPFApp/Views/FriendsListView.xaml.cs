@@ -27,16 +27,6 @@ namespace HiveGameWPFApp.Views
         public FriendsListView()
         {
             InitializeComponent();
-            setAsConnectedFriend();
-        }
-        private void setAsConnectedFriend()
-        {
-
-            Profile userProfile = new Profile()
-            {
-                idAccesAccount = UserProfileSingleton.idAccount,
-                username = UserProfileSingleton.username
-            };
         }
 
         private void LoadFriendships()
@@ -51,7 +41,6 @@ namespace HiveGameWPFApp.Views
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
                 friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
-               
                 if (friendsObtained.Length == 0)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
@@ -59,7 +48,8 @@ namespace HiveGameWPFApp.Views
                 else if (friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
-                } else if (friendsObtained.Length >= Constants.DATA_MATCHES)
+                } 
+                else
                 {
                     LoadFriendsInformation();
                 }
@@ -145,7 +135,7 @@ namespace HiveGameWPFApp.Views
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
-                else if (friendRequestsObtained.Length >= Constants.DATA_MATCHES)
+                else
                 {
                     LoadUsersInformation(friendRequestsObtained);
                 }
@@ -277,7 +267,6 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.FriendRequestManagerClient friendRequestManagerClient = new HiveProxy.FriendRequestManagerClient();
             int verificationResult = Constants.ERROR_OPERATION;
-            
             try
             {
                 Profile searcherProfile = new Profile()
