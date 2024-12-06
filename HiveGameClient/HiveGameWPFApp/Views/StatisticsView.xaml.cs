@@ -29,14 +29,7 @@ namespace HiveGameWPFApp.Views
         public StatisticsView()
         {
             InitializeComponent();
-            LoadSampleData();
 
-        }
-
-        private void LoadSampleData()
-        {
-            // Alternativamente, podría dejarse vacío intencionalmente si los datos se cargan dinámicamente desde
-            // una base de datos o servicio externo, y este método sirve como un marcador de posición para eso.
         }
 
         private void BtnPersonalStatistics_Click(object sender, RoutedEventArgs e)
