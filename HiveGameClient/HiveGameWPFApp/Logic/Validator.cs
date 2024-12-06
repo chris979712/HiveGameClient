@@ -12,8 +12,8 @@ namespace HiveGameWPFApp.Logic
     public static class Validator
     {
 
-        private static Regex _passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?]).{8,}$",RegexOptions.None,TimeSpan.FromMilliseconds(1000));
-        private static Regex _usernameRegex = new Regex("^[A-Za-zñÑ0-9_]{5,50}$",RegexOptions.None, TimeSpan.FromMilliseconds(1000));
+        private static Regex _passwordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':""\\|,.<>\/?])[^ ]{8,}$", RegexOptions.None, TimeSpan.FromMilliseconds(1000));
+        private static Regex _usernameRegex = new Regex("^[A-Za-zñÑ0-9_]{5,50}$", RegexOptions.None, TimeSpan.FromMilliseconds(1000));
         private static Regex _nicknameRegex = new Regex("^[A-Za-zñÑ0-9_]{5,50}$", RegexOptions.None, TimeSpan.FromMilliseconds(1000));
         private static Regex _dateRegex = new Regex(@"^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$", RegexOptions.None, TimeSpan.FromMilliseconds(1000));
         private static Regex _codeLobbyMatchRegex = new Regex(@"^[0-9]{6}$", RegexOptions.None, TimeSpan.FromMilliseconds(1000));
@@ -49,7 +49,7 @@ namespace HiveGameWPFApp.Logic
         public static bool ValidatePassword(string password) 
         {
             bool isValid = false;
-            string cleanedPassword = Regex.Replace(password.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
+            string cleanedPassword = Regex.Replace(password.Trim(), @"\s+", " ", RegexOptions.None, TimeSpan.FromMilliseconds(500));
             if (!string.IsNullOrWhiteSpace(cleanedPassword) && ValidateRegexPattern(cleanedPassword, _passwordRegex))
             {
                 isValid = true;
@@ -60,7 +60,7 @@ namespace HiveGameWPFApp.Logic
         public static bool ValidateUsername(string username)
         {
             bool isValid = false;
-            string cleanedUsername = Regex.Replace(username.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
+            string cleanedUsername = Regex.Replace(username.Trim(), @"\s+", " ", RegexOptions.None, TimeSpan.FromMilliseconds(500));
             if (!string.IsNullOrWhiteSpace(cleanedUsername) && ValidateRegexPattern(cleanedUsername, _usernameRegex))
             {
                 isValid = true;
@@ -71,7 +71,7 @@ namespace HiveGameWPFApp.Logic
         public static bool ValidateEmail(string email)
         {
             bool isValid = false;
-            string cleanedEmail = Regex.Replace(email.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
+            string cleanedEmail = Regex.Replace(email.Trim(), @"\s+", " ", RegexOptions.None, TimeSpan.FromMilliseconds(500));
             if (!string.IsNullOrWhiteSpace(cleanedEmail)&&cleanedEmail.Length<254&& ValidateRegexPattern(cleanedEmail, _emailRegex))
             {
                 isValid=true;
@@ -82,7 +82,7 @@ namespace HiveGameWPFApp.Logic
         public static bool ValidateNickName(string nickName)
         {
             bool isValid = false;
-            string cleanedNickName = Regex.Replace(nickName.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
+            string cleanedNickName = Regex.Replace(nickName.Trim(), @"\s+", " ", RegexOptions.None, TimeSpan.FromMilliseconds(500));
             if(!string.IsNullOrWhiteSpace(cleanedNickName) && ValidateRegexPattern(cleanedNickName, _nicknameRegex))
             {
                 isValid =true;

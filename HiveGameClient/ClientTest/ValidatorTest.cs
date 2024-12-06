@@ -49,7 +49,7 @@ namespace ClientTest
         [Fact]
         public void ValidatePasswordFailTestSuccess()
         {
-            string password = "Hello123";
+            string password = "Hello 123*";
             bool validatorResult = Validator.ValidatePassword(password); 
             Assert.False(validatorResult);
         }
@@ -65,7 +65,7 @@ namespace ClientTest
         [Fact]
         public void ValidateUsernameFailTestSuccess()
         {
-            string username = "Chris25?¿*";
+            string username = "Chris2500*";
             bool validationResult = Validator.ValidateUsername(username);
             Assert.False(validationResult);
         }
