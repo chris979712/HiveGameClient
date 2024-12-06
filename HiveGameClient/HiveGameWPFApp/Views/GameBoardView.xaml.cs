@@ -708,7 +708,7 @@ namespace HiveGameWPFApp.Views
             try
             {
                 connectionVerification = _gameManagerClient.CheckPersonalConnection();
-            } 
+            }
             catch(TimeoutException timeOutException)
             {
                 logger.LogWarn(timeOutException);
@@ -1222,7 +1222,7 @@ namespace HiveGameWPFApp.Views
             catch (TimeoutException timeOutException)
             {
                 logger.LogWarn(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutExceptionGameBoard);
                 ReturnToLoginView();
             }
             catch (CommunicationException communicationException)
