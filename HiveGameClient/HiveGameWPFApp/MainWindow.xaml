@@ -7,11 +7,11 @@
         mc:Ignorable="d">
 
     <Window.Resources>
-        <Storyboard x:Key="FadeOutAnimation">
+        <Storyboard x:Key="storyb_FadeOutAnimation">
             <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1.5" />
         </Storyboard>
 
-        <Storyboard x:Key="FadeInAnimation">
+        <Storyboard x:Key="storyb_FadeInAnimation">
             <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5" />
         </Storyboard>
     </Window.Resources>
@@ -23,7 +23,7 @@
                           Volume="0.1" Stretch="Fill"
                           MediaEnded="IntroVideo_MediaEnded"/>
 
-            <Frame x:Name="NavigationFrame" NavigationUIVisibility="Hidden"
+            <Frame x:Name="fra_NavigationFrame" NavigationUIVisibility="Hidden"
                    Opacity="1" Navigating="NavigationFrame_Navigating"
                    Navigated="NavigationFrame_Navigated" />
         </Grid>

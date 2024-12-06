@@ -32,20 +32,20 @@ namespace HiveGameWPFApp
         private void IntroVideo_MediaEnded(object sender, RoutedEventArgs e)
         {
 
-            NavigationFrame.Navigate(new Views.LoginView());
+            fra_NavigationFrame.Navigate(new Views.LoginView());
 
         }
 
         private void NavigationFrame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            var fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1.5));
-            NavigationFrame.BeginAnimation(Frame.OpacityProperty, fadeOutAnimation);
+            var storyb_FadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1.5));
+            fra_NavigationFrame.BeginAnimation(Frame.OpacityProperty, storyb_FadeOutAnimation);
         }
 
         private void NavigationFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2.5));
-            NavigationFrame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+            var storyb_FadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2.5));
+            fra_NavigationFrame.BeginAnimation(Frame.OpacityProperty, storyb_FadeInAnimation);
         }
         
         private void MainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)

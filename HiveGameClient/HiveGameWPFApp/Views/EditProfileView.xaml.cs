@@ -22,7 +22,7 @@ namespace HiveGameWPFApp.Views
 
     public partial class EditProfileView : Page
     {
-        private string imageRouteProfile = UserProfileSingleton.imageRoute;
+        private string _imageRouteProfile = UserProfileSingleton.imageRoute;
 
         public EditProfileView()
         {
@@ -58,7 +58,7 @@ namespace HiveGameWPFApp.Views
             {
                 string selectedImage = selectedItem.Tag.ToString();
                 img_ProfilePic.Source = new BitmapImage(new Uri(selectedImage, UriKind.Relative));
-                imageRouteProfile = selectedImage;
+                _imageRouteProfile = selectedImage;
                 popup_Profile.IsOpen = false;
             }
         }
@@ -89,7 +89,7 @@ namespace HiveGameWPFApp.Views
             Profile profileToUpdate = new Profile();
             profileToUpdate.nickname = txtb_Nickname.Text;
             profileToUpdate.description = txtb_Description.Text;
-            profileToUpdate.imagePath = imageRouteProfile;
+            profileToUpdate.imagePath = _imageRouteProfile;
             try
             {
                 HiveProxy.UserManagerClient userManager = new HiveProxy.UserManagerClient();
@@ -99,7 +99,7 @@ namespace HiveGameWPFApp.Views
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
                     UserProfileSingleton.nickname = txtb_Nickname.Text;
                     UserProfileSingleton.description = txtb_Description.Text;
-                    UserProfileSingleton.imageRoute = imageRouteProfile;
+                    UserProfileSingleton.imageRoute = _imageRouteProfile;
                     GoToMainMenuView();
                 }else if(modificationResult == -1)
                 {
@@ -126,7 +126,7 @@ namespace HiveGameWPFApp.Views
         private bool ValidateModification()
         {
             return txtb_Description.Text == UserProfileSingleton.description && txtb_Nickname.Text == UserProfileSingleton.nickname &&
-                imageRouteProfile == UserProfileSingleton.imageRoute;
+                _imageRouteProfile == UserProfileSingleton.imageRoute;
         }
 
         public bool ValidateFields()

@@ -57,6 +57,7 @@ namespace HiveGameWPFApp.Views
         private const string _QueenPieceName = "Queen";
         public const string BeetlePieceName = "Beetle";
         private static readonly Dictionary<(int, string), Image> _piecesCapturedByTheBeetle = new Dictionary<(int, string), Image>();
+
         private List<GamePiece> _player1Pieces = new List<GamePiece>
             {
                 new GamePiece(new Queen(), "/Images/GamePieces/Queen_Player1.png", new Point(-1, -1),_Player1Id,1),
