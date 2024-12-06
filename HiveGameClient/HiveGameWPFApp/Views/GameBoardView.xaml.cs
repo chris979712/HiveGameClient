@@ -1459,7 +1459,7 @@ namespace HiveGameWPFApp.Views
                 DockPanel.SetDock(stckp_Player1,Dock.Bottom);
                 DockPanel.SetDock(stckp_Player2, Dock.Top);
                 img_ProfilePic1.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
-                txtBlock_PlayerName1.Text = UserProfileSingleton.username;
+                txtb_PlayerName1.Text = UserProfileSingleton.username;
                 stckp_Player2.IsEnabled = false;      
                 _numberOfPlayer = 1;
             }
@@ -1469,7 +1469,7 @@ namespace HiveGameWPFApp.Views
                 DockPanel.SetDock(stckp_Player1,Dock.Top);
                 stckp_Player1.IsEnabled = false;
                 img_ProfilePic2.Source = new BitmapImage(new Uri(UserProfileSingleton.imageRoute, UriKind.Relative));
-                txtBlock_PlayerName2.Text = UserProfileSingleton.username;
+                txtb_PlayerName2.Text = UserProfileSingleton.username;
                 _numberOfPlayer = 2;
             }
             DockPanel dockPanel = (DockPanel)this.Content;
@@ -1818,7 +1818,7 @@ namespace HiveGameWPFApp.Views
             if (isTurn)
             {
                 StopTurnTimeoutTimer();
-                txtBlock_PlayerName.Text = UserProfileSingleton.username;
+                txtb_PlayerName.Text = UserProfileSingleton.username;
                 _isOtherPlayerTurn = false; 
                 _hasOtherPlayerMoved = false;
                 if (_numberOfPlayer == 1)
@@ -1842,7 +1842,7 @@ namespace HiveGameWPFApp.Views
                 {
                     if (_usersInGame[indexUsersInMatch].username != UserProfileSingleton.username)
                     {
-                        txtBlock_PlayerName.Text = _usersInGame[indexUsersInMatch].username;
+                        txtb_PlayerName.Text = _usersInGame[indexUsersInMatch].username;
                     }
                 }
                 _isOtherPlayerTurn = true;
@@ -1959,7 +1959,7 @@ namespace HiveGameWPFApp.Views
             _usernamePlayer1 = _usersInGame[0].username;
             if (IsPlayer1SlotAvailable(user))
             {
-                txtBlock_PlayerName1.Text = user.username;
+                txtb_PlayerName1.Text = user.username;
                 img_ProfilePic1.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
             }
             if (_usersInGame.Count == 2)
@@ -1967,7 +1967,7 @@ namespace HiveGameWPFApp.Views
                 _usernamePlayer2 = _usersInGame[1].username;
                 if (IsPlayer2SlotAvailable(user))
                 {
-                    txtBlock_PlayerName2.Text = user.username;
+                    txtb_PlayerName2.Text = user.username;
                     img_ProfilePic2.Source = new BitmapImage(new Uri(profileUser.imagePath, UriKind.Relative));
                 }
             }
@@ -1977,16 +1977,16 @@ namespace HiveGameWPFApp.Views
 
         private bool IsPlayer1SlotAvailable(UserSession user)
         {
-            return txtBlock_PlayerName1.Text == Properties.Resources.txtbl_Player1 &&
-                   txtBlock_PlayerName2.Text == UserProfileSingleton.username &&
-                   !user.username.Equals(txtBlock_PlayerName2.Text);
+            return txtb_PlayerName1.Text == Properties.Resources.txtbl_Player1 &&
+                   txtb_PlayerName2.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtb_PlayerName2.Text);
         }
 
         private bool IsPlayer2SlotAvailable(UserSession user)
         {
-            return txtBlock_PlayerName2.Text == Properties.Resources.txtbl_Player2 &&
-                   txtBlock_PlayerName1.Text == UserProfileSingleton.username &&
-                   !user.username.Equals(txtBlock_PlayerName1.Text);
+            return txtb_PlayerName2.Text == Properties.Resources.txtbl_Player2 &&
+                   txtb_PlayerName1.Text == UserProfileSingleton.username &&
+                   !user.username.Equals(txtb_PlayerName1.Text);
         }
 
         public void ReceivePlayerHasLeftNotification(bool doPlayerLeftTheGame)
@@ -2199,15 +2199,15 @@ namespace HiveGameWPFApp.Views
         {
             if (result == "Draw")
             {
-                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Draw;
+                txtb_VictoryMessage.Text = Properties.Resources.lbl_Draw;
             }
             else if (result == UserProfileSingleton.username)
             {
-                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Winner;
+                txtb_VictoryMessage.Text = Properties.Resources.lbl_Winner;
             }
             else
             {
-                txtBlock_VictoryMessage.Text = Properties.Resources.lbl_Defeat;
+                txtb_VictoryMessage.Text = Properties.Resources.lbl_Defeat;
             }
             grd_VictoryOverlay.Visibility = Visibility.Visible;
             Storyboard victoryStoryboard = (Storyboard)FindResource("storyb_VictoryAnimation");
