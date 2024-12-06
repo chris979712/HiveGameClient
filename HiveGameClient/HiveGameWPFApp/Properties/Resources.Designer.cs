@@ -466,7 +466,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Failed to find the endpoint. Please check the server configuration and try again..
+        ///   Busca una cadena traducida similar a Could not establish connection to the server. Please check your network settings and try again..
         /// </summary>
         public static string dialogEndPointException {
             get {

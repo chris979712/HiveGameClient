@@ -668,7 +668,8 @@ namespace HiveGameWPFApp.Views
         {
             if (_selectedPiece != null && sender is Polygon cell && cell != null)
             {
-                if (VerifyConnectivityBeforeSendingPiece())
+                bool verifyThereIsConnection = VerifyConnectivityBeforeSendingPiece();
+                if (verifyThereIsConnection)
                 {
                     Point oldPosition = _selectedPiece.Position;
                     Image imageOfPiece = ObtainImageCreation(cell, _selectedPiece);
@@ -685,7 +686,7 @@ namespace HiveGameWPFApp.Views
                         UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
                     }
                     EliminateDuplicatedImagesIfExists(oldPosition);
-                    VerifyConnectivityBeforeSendingPiece();
+                   
                     SendPiecePositionToServer(_selectedPiece);
                     _winnerName = GetIfItsFinalMatchResults();
                     if (_winnerName != "NoBody")
@@ -1941,7 +1942,7 @@ namespace HiveGameWPFApp.Views
         {
             Dispatcher.Invoke(() =>
             {
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogErrorConnection);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutExceptionGameBoard);
                 ReturnToLoginView();
             });
         }
