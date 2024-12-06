@@ -2,5 +2,5 @@ projectKey=HiveClient
 serverUrl=http://localhost:9000
 serverVersion=10.7.0.96327
 dashboardUrl=http://localhost:9000/dashboard?id=HiveClient
-ceTaskId=4076c41d-bc6a-4059-b1eb-b78176cdf869
-ceTaskUrl=http://localhost:9000/api/ce/task?id=4076c41d-bc6a-4059-b1eb-b78176cdf869
+ceTaskId=bce9170e-7e1a-4ecd-8eb1-3cf730b81259
+ceTaskUrl=http://localhost:9000/api/ce/task?id=bce9170e-7e1a-4ecd-8eb1-3cf730b81259

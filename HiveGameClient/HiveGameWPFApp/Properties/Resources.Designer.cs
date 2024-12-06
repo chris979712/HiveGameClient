@@ -853,7 +853,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character..
+        ///   Busca una cadena traducida similar a Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character. Remember it cannot include white spaces..
         /// </summary>
         public static string globalTxtb_PasswordIndications {
             get {
