@@ -61,7 +61,7 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
                 HiveProxy.EmailVerificationManagerClient emailVerificationManagerClient = new EmailVerificationManagerClient();
                 Profile userProfile = userManagerClient.GetUserProfileByUsername(txtb_Username.Text);
-                if(userProfile.idProfile == Constants.ERROR_OPERATION)
+                if(userProfile.idProfile == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -69,7 +69,7 @@ namespace HiveGameWPFApp.Views
                 {
                     UserProfileSingleton.Instance.CreateInstance(userProfile);
                     int resultEmailSended = emailVerificationManagerClient.SendVerificationEmail(userProfile.email);
-                    if(resultEmailSended == Constants.SUCCES_OPERATION)
+                    if(resultEmailSended == Constants.SuccesOperation)
                     {
                         DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
                         EditCredentialsView editCredentialsView = new EditCredentialsView();
@@ -106,15 +106,15 @@ namespace HiveGameWPFApp.Views
             {
                 HiveProxy.UserManagerClient userManagerClient = new HiveProxy.UserManagerClient();
                 int resultValidation = userManagerClient.VerifyExistingAccesAccount(txtb_Email.Text,txtb_Username.Text);
-                if(resultValidation == Constants.DATA_MATCHES)
+                if(resultValidation == Constants.DataMatches)
                 {
                     validation = true;
                 }
-                else if(resultValidation == Constants.NO_DATA_MATCHES)
+                else if(resultValidation == Constants.NoDataMatches)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogCouldntFindUserAccount);
                 }
-                else if(resultValidation == Constants.ERROR_OPERATION)
+                else if(resultValidation == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }

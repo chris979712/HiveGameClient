@@ -219,7 +219,7 @@ namespace HiveGameWPFApp.Views
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
                 int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect, matchLobbyCode);
-                if (profileDisconnectionFromChat == Constants.SUCCES_OPERATION)
+                if (profileDisconnectionFromChat == Constants.SuccesOperation)
                 {
                     MainMenu mainMenu = new MainMenu();
                     this.NavigationService.Navigate(mainMenu);
@@ -264,7 +264,7 @@ namespace HiveGameWPFApp.Views
                 };
                 int profileDisconnectionFromChat = chatManager.DisconectPlayerFromChat(guestToDisconnect, matchLobbyCode);
                 int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession, false);
-                if(profileDisconnectionFromChat == Constants.SUCCES_OPERATION && profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
+                if(profileDisconnectionFromChat == Constants.SuccesOperation && profileDisconnectionFromGame == Constants.SuccesOperation)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();
                     LoginView loginView = new LoginView();
@@ -398,7 +398,7 @@ namespace HiveGameWPFApp.Views
                     email = friendToInvite.email,
                 };
                 int resultInvitation = emailInvitationManagerClient.SendEmailInvitation(userToInvite);
-                if(resultInvitation == Constants.SUCCES_OPERATION)
+                if(resultInvitation == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailInvitationSend);
                 }
@@ -453,7 +453,7 @@ namespace HiveGameWPFApp.Views
                 try
                 {
                     bool isKicked = true;
-                    if (userToKick.idAccount != Constants.DEFAULT_GUEST_ID)
+                    if (userToKick.idAccount != Constants.DefaultGuestId)
                     {
                         MatchSingleton.Instance.ResetSingleton();
                         KickPlayerFromLobby(userToKick, isKicked);
@@ -602,7 +602,7 @@ namespace HiveGameWPFApp.Views
             };
             try
             {
-                if (UserProfileSingleton.idAccount != Constants.DEFAULT_GUEST_ID)
+                if (UserProfileSingleton.idAccount != Constants.DefaultGuestId)
                 {
                     MatchSingleton.Instance.ResetSingleton();
                     KickPlayerFromLobby(userSession, isKicked);
@@ -671,7 +671,7 @@ namespace HiveGameWPFApp.Views
                 Profile profileUserHost = userManagerClient.GetUserProfileByUsername(users[0].username);
                 txtb_HostName.Text = profileUserHost.nickname;
                 img_AvatarHost.Source = new BitmapImage(new Uri(profileUserHost.imagePath, UriKind.Relative));
-                if (users[1].idAccount == Constants.DEFAULT_GUEST_ID)
+                if (users[1].idAccount == Constants.DefaultGuestId)
                 {
                     txtb_GuestName.Text = users[1].username;
                     img_AvatarGuest.Source = new BitmapImage(new Uri("/Images/Avatars/Avatar1.png", UriKind.Relative));
@@ -800,7 +800,7 @@ namespace HiveGameWPFApp.Views
         public void ReceiveKickedNotification()
         {
             DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogYouveBeenKick);
-            if(UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
+            if(UserProfileSingleton.idAccount == Constants.DefaultGuestId)
             {
                 LoginView loginView = new LoginView();
                 this.NavigationService.Navigate(loginView);

@@ -394,6 +394,15 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a An error has ocurred trying to connect with the data base. Couldn&apos;t save match results..
+        /// </summary>
+        public static string dialogCouldntSaveMatchInfo {
+            get {
+                return ResourceManager.GetString("dialogCouldntSaveMatchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a There has been an error while sending email message. Try it again..
         /// </summary>
         public static string dialogCouldntSendEmail {
@@ -403,7 +412,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a An error has ocurred with the database, please try again..
+        ///   Busca una cadena traducida similar a An error has ocurred connecting with the database, please try again..
         /// </summary>
         public static string dialogDataBaseError {
             get {

@@ -45,7 +45,7 @@ namespace HiveGameWPFApp.Views
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
                 }
-                else if (friendsObtained[0].idProfile == Constants.ERROR_OPERATION)
+                else if (friendsObtained[0].idProfile == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 } 
@@ -127,11 +127,11 @@ namespace HiveGameWPFApp.Views
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
                 Profile[] friendRequestsObtained = friendRequestManagerClient.GetFriendRequests(userProfile);
-                if (friendRequestsObtained.Length == Constants.NO_DATA_MATCHES)
+                if (friendRequestsObtained.Length == Constants.NoDataMatches)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendRequest);
                 }
-                else if (friendRequestsObtained[0].idProfile == Constants.ERROR_OPERATION)
+                else if (friendRequestsObtained[0].idProfile == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -237,10 +237,10 @@ namespace HiveGameWPFApp.Views
                     {
                         DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                     }
-                }else if(userProfileObtained.idProfile == Constants.NO_DATA_MATCHES)
+                }else if(userProfileObtained.idProfile == Constants.NoDataMatches)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoUsernameFound);
-                }else if(userProfileObtained.idProfile == Constants.ERROR_OPERATION)
+                }else if(userProfileObtained.idProfile == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -266,7 +266,7 @@ namespace HiveGameWPFApp.Views
         {
             LoggerManager logger = new LoggerManager(this.GetType());
             HiveProxy.FriendRequestManagerClient friendRequestManagerClient = new HiveProxy.FriendRequestManagerClient();
-            int verificationResult = Constants.ERROR_OPERATION;
+            int verificationResult = Constants.ErrorOperation;
             try
             {
                 Profile searcherProfile = new Profile()
@@ -354,12 +354,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultCreation = friendRequestManagerClient.AcceptFriendRequest(playerOne, playerTwo);
-                if (resultCreation == Constants.SUCCES_OPERATION)
+                if (resultCreation == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogAcceptFriendRequest);
                     lvw_FriendRequests.Items.Clear();
                 }
-                else if (resultCreation == Constants.ERROR_OPERATION)
+                else if (resultCreation == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -396,12 +396,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultCreation = friendRequestManagerClient.DeclineFriendRequest(playerOne, playerTwo);
-                if (resultCreation == Constants.SUCCES_OPERATION)
+                if (resultCreation == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogDeclinedFriendRequest);
                     lvw_FriendRequests.Items.Clear();
                 }
-                else if (resultCreation == Constants.ERROR_OPERATION)
+                else if (resultCreation == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -438,12 +438,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultCreation = friendRequestManagerClient.CreateFriendRequest(playerOne, playerTwo);
-                if(resultCreation == Constants.SUCCES_OPERATION)
+                if(resultCreation == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogFriendRequestSended);
                     lvw_FriendToAdd.Items.Clear();
                 }
-                else if(resultCreation == Constants.ERROR_OPERATION)
+                else if(resultCreation == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
@@ -498,12 +498,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultCreation = friendShipManagerClient.DeleteFriend(removingPlayer, friendToRemove);
-                if (resultCreation == Constants.SUCCES_OPERATION)
+                if (resultCreation == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogFriendDeleted);
                     LoadFriendships();
                 }
-                else if (resultCreation == Constants.ERROR_OPERATION)
+                else if (resultCreation == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
