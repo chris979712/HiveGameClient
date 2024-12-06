@@ -147,7 +147,7 @@
                        FontWeight="Bold"
                        FontSize="25"
                        HorizontalAlignment="Left"
-                       Margin="218,444,0,0"
+                       Margin="202,444,0,0"
                        VerticalAlignment="Top" />
 
                     <Label x:Name="lbl_Username" Content="{x:Static p:Resources.globalLbl_UserName}"

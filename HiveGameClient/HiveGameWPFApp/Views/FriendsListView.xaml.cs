@@ -23,7 +23,7 @@ namespace HiveGameWPFApp.Views
 {
     public partial class FriendsListView : Page
     {
-        private Profile[] friendsObtained;
+        private Profile[] _friendsObtained;
         public FriendsListView()
         {
             InitializeComponent();
@@ -40,12 +40,12 @@ namespace HiveGameWPFApp.Views
                 {
                     idAccesAccount = UserProfileSingleton.idAccount
                 };
-                friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
-                if (friendsObtained.Length == 0)
+                _friendsObtained = friendshipManagerClient.GetAllFriends(userProfile);
+                if (_friendsObtained.Length == 0)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNoFriendsAdded);
                 }
-                else if (friendsObtained[0].idProfile == Constants.ErrorOperation)
+                else if (_friendsObtained[0].idProfile == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 } 
@@ -77,20 +77,20 @@ namespace HiveGameWPFApp.Views
             HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
             try
             {
-                for (int indexUsersProfile = 0; indexUsersProfile < friendsObtained.Length; indexUsersProfile++)
+                for (int indexUsersProfile = 0; indexUsersProfile < _friendsObtained.Length; indexUsersProfile++)
                 {
                     UserSession userSession = new UserSession()
                     {
-                        username = friendsObtained[indexUsersProfile].username,
-                        idAccount = friendsObtained[indexUsersProfile].idAccount
+                        username = _friendsObtained[indexUsersProfile].username,
+                        idAccount = _friendsObtained[indexUsersProfile].idAccount
                     };
                     bool stateFriend = userSessionManagerClient.VerifyConnectivity(userSession);
                     ProfileUser profileUser = new ProfileUser()
                     {
-                        idProfile = friendsObtained[indexUsersProfile].idProfile,
-                        idAccount = friendsObtained[indexUsersProfile].idAccount,
-                        username = friendsObtained[indexUsersProfile].username,
-                        imageProfile = friendsObtained[indexUsersProfile].imagePath,
+                        idProfile = _friendsObtained[indexUsersProfile].idProfile,
+                        idAccount = _friendsObtained[indexUsersProfile].idAccount,
+                        username = _friendsObtained[indexUsersProfile].username,
+                        imageProfile = _friendsObtained[indexUsersProfile].imagePath,
                         state = stateFriend
                     };
                     lvw_FriendsList.Items.Add(profileUser);

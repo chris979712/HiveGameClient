@@ -21,7 +21,7 @@
                    FontWeight="Bold"
                    FontSize="27"
                    HorizontalAlignment="Left"
-                   Margin="296,245,0,0"
+                   Margin="206,245,0,0"
                    VerticalAlignment="Top" />
                 <TextBox x:Name="txtb_Username"
                      MaxLength="50"
