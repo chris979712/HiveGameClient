@@ -668,33 +668,53 @@ namespace HiveGameWPFApp.Views
         {
             if (_selectedPiece != null && sender is Polygon cell && cell != null)
             {
-                Point oldPosition = _selectedPiece.Position;
-                Image imageOfPiece = ObtainImageCreation(cell, _selectedPiece);
-                _selectedPiece.Position = (Point)cell.Tag;
-                _selectedPiece.Piece.Position = oldPosition;
-                if (_piecesCapturedByTheBeetle.ContainsKey((_selectedPiece.PieceNumber, _selectedPiece.PlayerName)))
+                if (VerifyConnectivityBeforeSendingPiece())
                 {
-                    Image pieceContainedByTheBeetle = _piecesCapturedByTheBeetle[(_selectedPiece.PieceNumber, _selectedPiece.PlayerName)];
-                    UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
-                    ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle, _selectedPiece);
+                    Point oldPosition = _selectedPiece.Position;
+                    Image imageOfPiece = ObtainImageCreation(cell, _selectedPiece);
+                    _selectedPiece.Position = (Point)cell.Tag;
+                    _selectedPiece.Piece.Position = oldPosition;
+                    if (_piecesCapturedByTheBeetle.ContainsKey((_selectedPiece.PieceNumber, _selectedPiece.PlayerName)))
+                    {
+                        Image pieceContainedByTheBeetle = _piecesCapturedByTheBeetle[(_selectedPiece.PieceNumber, _selectedPiece.PlayerName)];
+                        UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
+                        ReturnOriginalPositionOfPieceCapturedByTheBeetle(pieceContainedByTheBeetle, _selectedPiece);
+                    }
+                    else
+                    {
+                        UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
+                    }
+                    EliminateDuplicatedImagesIfExists(oldPosition);
+                    VerifyConnectivityBeforeSendingPiece();
+                    SendPiecePositionToServer(_selectedPiece);
+                    _winnerName = GetIfItsFinalMatchResults();
+                    if (_winnerName != "NoBody")
+                    {
+                        SendFinishOfMatchNotification(_winnerName);
+                    }
+                    _lastPlacedCell = cell;
+                    _selectedPiece = null;
+                    ResetHighlights();
                 }
-                else
-                {
-                    UpdateOldAndNewPlaceInGameBoard(imageOfPiece, oldPosition);
-                }
-                EliminateDuplicatedImagesIfExists(oldPosition);
-                SendPiecePositionToServer(_selectedPiece);
-                _winnerName = GetIfItsFinalMatchResults();
-                if (_winnerName != "NoBody")
-                {
-                    SendFinishOfMatchNotification(_winnerName);
-                }
-                _lastPlacedCell = cell;
-                _selectedPiece = null;
-                ResetHighlights();
             }
             _isBeetleMoved = false;
             e.Handled = true;
+        }
+
+        private bool VerifyConnectivityBeforeSendingPiece()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            bool connectionVerification = false;
+            try
+            {
+                connectionVerification = _gameManagerClient.CheckPersonalConnection();
+            } 
+            catch(TimeoutException timeOutException)
+            {
+                logger.LogWarn(timeOutException);
+                NotifyDisconnection();
+            }
+            return connectionVerification;
         }
 
         private void SendFinishOfMatchNotification(string result)
@@ -1124,7 +1144,8 @@ namespace HiveGameWPFApp.Views
 
         private void PlacePieceOnCell(Polygon cell)
         {
-            if (cell != null)
+            bool verifyServerConnectivity = VerifyConnectivityBeforeSendingPiece();
+            if (verifyServerConnectivity)
             {
                 foreach (var polygon in canva_GameBoardGrid.Children.OfType<Polygon>())
                 {
