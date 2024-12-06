@@ -398,6 +398,11 @@ namespace HiveGameWPFApp.Views
                 if (resultEmailSend == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
+                    _timeLeft = 60;
+                    StartTimer();
+                    txt_Timer.Visibility = Visibility.Visible;
+                    txt_ResendLink.Visibility = Visibility.Collapsed;
+                    txt_ResendCodeClick.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
