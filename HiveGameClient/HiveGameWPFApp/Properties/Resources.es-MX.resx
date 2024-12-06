@@ -507,4 +507,7 @@
   <data name="dialogErrorConnection" xml:space="preserve">
     <value>Se ha perdido la conexión con el servidor. Volverás al inicio de sesión.</value>
   </data>
+  <data name="dialogLostConnection" xml:space="preserve">
+    <value> ha perdido la conexión. Serás redirigido.</value>
+  </data>
 </root>
