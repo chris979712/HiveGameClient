@@ -36,6 +36,10 @@ C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClien
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\HiveGameService.wsdl
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\HiveGameWPFApp.HiveProxy.LeaderBoardPlayer.datasource
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\HiveGameWPFApp.HiveProxy.Profile.datasource
+C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\item.xsd
+C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\item1.xsd
+C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\item2.xsd
+C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Connected Services\HiveProxy\item3.xsd
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\packages.config
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Properties\Settings.settings
 C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\App.config

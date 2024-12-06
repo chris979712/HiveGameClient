@@ -2069,6 +2069,12 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckConnection", ReplyAction="http://tempuri.org/IGameManager/CheckConnectionResponse")]
         System.Threading.Tasks.Task<bool> CheckConnectionAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckPersonalConnection", ReplyAction="http://tempuri.org/IGameManager/CheckPersonalConnectionResponse")]
+        bool CheckPersonalConnection();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckPersonalConnection", ReplyAction="http://tempuri.org/IGameManager/CheckPersonalConnectionResponse")]
+        System.Threading.Tasks.Task<bool> CheckPersonalConnectionAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2092,8 +2098,11 @@ namespace HiveGameWPFApp.HiveProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceiveFinalMatchResult", ReplyAction="http://tempuri.org/IGameManager/ReceiveFinalMatchResultResponse")]
         void ReceiveFinalMatchResult(string winner);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/PlayerDisconnected")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/PlayerDisconnected", ReplyAction="http://tempuri.org/IGameManager/PlayerDisconnectedResponse")]
         void PlayerDisconnected(string disconnectedUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/RecieveRequestPingFromOtherPlayer", ReplyAction="http://tempuri.org/IGameManager/RecieveRequestPingFromOtherPlayerResponse")]
+        void RecieveRequestPingFromOtherPlayer();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2178,6 +2187,14 @@ namespace HiveGameWPFApp.HiveProxy {
         
         public System.Threading.Tasks.Task<bool> CheckConnectionAsync(string username) {
             return base.Channel.CheckConnectionAsync(username);
+        }
+        
+        public bool CheckPersonalConnection() {
+            return base.Channel.CheckPersonalConnection();
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckPersonalConnectionAsync() {
+            return base.Channel.CheckPersonalConnectionAsync();
         }
     }
 }
