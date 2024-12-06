@@ -98,7 +98,7 @@
                         </Button.Effect>
                     </Button>
 
-                    <TextBlock x:Name="txtBlock_CharCount"
+                    <TextBlock x:Name="txtb_CharCount"
                                Text="0/100"
                                Foreground="White"
                                FontWeight="Bold"

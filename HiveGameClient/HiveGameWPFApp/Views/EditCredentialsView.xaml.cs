@@ -48,14 +48,14 @@ namespace HiveGameWPFApp.Views
         private void Timer_Tick(object sender, EventArgs e)
         {
             _timeLeft--;
-            txt_Timer.Text = Properties.Resources.txt_Timer + _timeLeft;
+            txtb_Timer.Text = Properties.Resources.txt_Timer + _timeLeft;
 
             if (_timeLeft <= 0)
             {
                 _timer.Stop();
-                txt_Timer.Visibility = Visibility.Collapsed;
-                txt_ResendLink.Visibility = Visibility.Visible;
-                txt_ResendCodeClick.Visibility = Visibility.Visible;
+                txtb_Timer.Visibility = Visibility.Collapsed;
+                txtb_ResendLink.Visibility = Visibility.Visible;
+                txtb_ResendCodeClick.Visibility = Visibility.Visible;
             }
         }
         private void FocusFirstTextBox()
@@ -400,9 +400,9 @@ namespace HiveGameWPFApp.Views
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
                     _timeLeft = 60;
                     StartTimer();
-                    txt_Timer.Visibility = Visibility.Visible;
-                    txt_ResendLink.Visibility = Visibility.Collapsed;
-                    txt_ResendCodeClick.Visibility = Visibility.Collapsed;
+                    txtb_Timer.Visibility = Visibility.Visible;
+                    txtb_ResendLink.Visibility = Visibility.Collapsed;
+                    txtb_ResendCodeClick.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
