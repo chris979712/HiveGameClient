@@ -54,11 +54,11 @@ namespace HiveGameWPFApp.Views
             try
             {
                 LeaderBoardPlayer leaderBoardPlayer = leaderBoardManagerClient.GetPersonalLeaderBoard(UserProfileSingleton.idAccount);
-                if(leaderBoardPlayer.idAccount == Constants.NO_DATA_MATCHES)
+                if(leaderBoardPlayer.idAccount == Constants.NoDataMatches)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogNoPersonalLeaderboard);
                 }
-                else if(leaderBoardPlayer.idAccount == Constants.ERROR_OPERATION)
+                else if(leaderBoardPlayer.idAccount == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }

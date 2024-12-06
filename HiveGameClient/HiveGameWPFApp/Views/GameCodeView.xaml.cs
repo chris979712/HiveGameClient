@@ -32,7 +32,7 @@ namespace HiveGameWPFApp.Views
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
+            if(UserProfileSingleton.idAccount == Constants.DefaultGuestId)
             {
                 LeaveGuestGameLobbyJoin();
             }
@@ -51,11 +51,11 @@ namespace HiveGameWPFApp.Views
                 HiveProxy.UserSessionManagerClient userSessionManagerClient = new HiveProxy.UserSessionManagerClient();
                 UserSession userSession = new UserSession()
                 {
-                    idAccount = Constants.DEFAULT_GUEST_ID,
+                    idAccount = Constants.DefaultGuestId,
                     username = UserProfileSingleton.username
                 };
                 int profileDisconnectionFromGame = userSessionManagerClient.Disconnect(userSession, false);
-                if (profileDisconnectionFromGame == Constants.SUCCES_OPERATION)
+                if (profileDisconnectionFromGame == Constants.SuccesOperation)
                 {
                     UserProfileSingleton.Instance.ResetSingleton();
                     LoginView loginView = new LoginView();
@@ -91,11 +91,11 @@ namespace HiveGameWPFApp.Views
             {
                 _codeLobby = Regex.Replace(txtb_Code.Text.Trim(), @"\s+", "", RegexOptions.None, TimeSpan.FromMilliseconds(500));
                 int validationResultLobby = ValidateExistingLobby(_codeLobby);
-                if (validationResultLobby == Constants.DATA_MATCHES)
+                if (validationResultLobby == Constants.DataMatches)
                 {
                     ValidateCapacityOfLobby(_codeLobby);
                 }
-                else if(validationResultLobby == Constants.NO_DATA_MATCHES)
+                else if(validationResultLobby == Constants.NoDataMatches)
                 {
                     DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogNotExistingCode);
                 }
@@ -144,18 +144,18 @@ namespace HiveGameWPFApp.Views
         private int ValidateExistingLobby(string codeLobby)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            int validationResult = Constants.ERROR_OPERATION;
+            int validationResult = Constants.ErrorOperation;
             try
             {
                 HiveProxy.MatchCreatorManagerClient matchCreatorManagerClient = new MatchCreatorManagerClient();
                 bool validationExistingResult = matchCreatorManagerClient.VerifyExistingCode(codeLobby);
                 if (validationExistingResult)
                 {
-                    validationResult = Constants.DATA_MATCHES;
+                    validationResult = Constants.DataMatches;
                 }
                 else
                 {
-                    validationResult = Constants.NO_DATA_MATCHES;
+                    validationResult = Constants.NoDataMatches;
                 }
             }
             catch (EndpointNotFoundException endPointException)

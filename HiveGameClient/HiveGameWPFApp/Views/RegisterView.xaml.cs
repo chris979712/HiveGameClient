@@ -116,7 +116,7 @@ namespace HiveGameWPFApp.Views
 
         public Profile AddDefaultInformationToProfile(Profile profile)
         {
-            string hashedPassword = Hasher.hashToSHA1(profile.password);
+            string hashedPassword = Hasher.hashToSHA2(profile.password);
 
             Profile newProfile = new Profile
             {

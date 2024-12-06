@@ -96,13 +96,13 @@ namespace HiveGameWPFApp.Views
                         idAccount = UserProfileSingleton.idAccount
                     };
                     int disconnectionResult = userSessionManagerClient.Disconnect(userSession, false);
-                    if(disconnectionResult == Constants.SUCCES_OPERATION)
+                    if(disconnectionResult == Constants.SuccesOperation)
                     {
                         UserProfileSingleton.Instance.ResetSingleton();
                         LoginView login = new LoginView();
                         this.NavigationService.Navigate(login);
                     }
-                    else if(disconnectionResult == Constants.NO_DATA_MATCHES)
+                    else if(disconnectionResult == Constants.NoDataMatches)
                     {
                         DialogManager.ShowWarningMessageAlert(Properties.Resources.dialogCouldntFindUserSession);
                     }
@@ -198,7 +198,7 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
-                if (resultEmailSend == Constants.SUCCES_OPERATION)
+                if (resultEmailSend == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
                     EditCredentialsView editCredentialsView = new EditCredentialsView();
@@ -241,13 +241,13 @@ namespace HiveGameWPFApp.Views
                     stateMatch = "Lobby"
                 };
                 int resultInsertion = matchCreator.CreateMatch(matchCreatorUser);
-                if (resultInsertion == Constants.SUCCES_OPERATION)
+                if (resultInsertion == Constants.SuccesOperation)
                 {
                     MatchSingleton.Instance.CreateInstance(code);
                     LobbyView lobbyView = new LobbyView();
                     this.NavigationService.Navigate(lobbyView);
                 }
-                else if (resultInsertion == Constants.ERROR_OPERATION)
+                else if (resultInsertion == Constants.ErrorOperation)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogDataBaseError);
                 }
