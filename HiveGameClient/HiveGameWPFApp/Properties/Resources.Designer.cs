@@ -574,7 +574,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a  has lost connection. You will be redirected..
+        ///   Busca una cadena traducida similar a &quot;You have lost connection to the services and will not be able to continue the game. The game will be terminated. We apologize for the inconvenience.&quot;.
         /// </summary>
         public static string dialogLostConnection {
             get {
@@ -705,6 +705,15 @@ namespace HiveGameWPFApp.Properties {
         public static string dialogTimeOutException {
             get {
                 return ResourceManager.GetString("dialogTimeOutException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &quot;The connection to the services has been lost. For security reasons and to protect your progress, you will be redirected to login. Please check your internet connection and try again. We apologize for the inconvenience.&quot;.
+        /// </summary>
+        public static string dialogTimeOutExceptionGameBoard {
+            get {
+                return ResourceManager.GetString("dialogTimeOutExceptionGameBoard", resourceCulture);
             }
         }
         
@@ -853,7 +862,7 @@ namespace HiveGameWPFApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character. Remember it cannot include white spaces..
+        ///   Busca una cadena traducida similar a Remember that your password must contain at least 8 characters. Including at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character..
         /// </summary>
         public static string globalTxtb_PasswordIndications {
             get {
