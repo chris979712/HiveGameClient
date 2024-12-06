@@ -18,7 +18,7 @@
             </Border>
             
             <Grid Panel.ZIndex="100">
-                <TextBlock x:Name="txtBlock_InfoMessage"
+                <TextBlock x:Name="txtb_InfoMessage"
                Text="Este es un mensaje de información"
                FontSize="20"
                FontFamily="Impact"
@@ -99,15 +99,15 @@
     </DockPanel>
     <Page.Resources>
         <Storyboard x:Key="storyb_VictoryAnimation">
-            <DoubleAnimation Storyboard.TargetName="txtBlock_VictoryMessage"
+            <DoubleAnimation Storyboard.TargetName="txtb_VictoryMessage"
                              Storyboard.TargetProperty="RenderTransform.ScaleX"
                              From="0.5" To="6"
                              Duration="0:0:4" AutoReverse="False" />
-            <DoubleAnimation Storyboard.TargetName="txtBlock_VictoryMessage"
+            <DoubleAnimation Storyboard.TargetName="txtb_VictoryMessage"
                              Storyboard.TargetProperty="RenderTransform.ScaleY"
                              From="0.5" To="6"
                              Duration="0:0:4" AutoReverse="False" />
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="txtBlock_VictoryMessage"
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="txtb_VictoryMessage"
                                            Storyboard.TargetProperty="RenderTransform.ScaleY">
                 <EasingDoubleKeyFrame KeyTime="0:0:3" Value="5.2" />
                 <EasingDoubleKeyFrame KeyTime="0:0:3.5" Value="5" />
@@ -117,16 +117,16 @@
         </Storyboard>
 
         <Storyboard x:Key="storyb_InfoMessageAnimation">
-            <DoubleAnimation Storyboard.TargetName="txtBlock_InfoMessage"
+            <DoubleAnimation Storyboard.TargetName="txtb_InfoMessage"
                          Storyboard.TargetProperty="Opacity"
                          From="0" To="1"
                          Duration="0:0:0.5" />
-            <DoubleAnimation Storyboard.TargetName="txtBlock_InfoMessage"
+            <DoubleAnimation Storyboard.TargetName="txtb_InfoMessage"
                          Storyboard.TargetProperty="Opacity"
                          From="1" To="1"
                          BeginTime="0:0:4" 
                 Duration="0:0:0.5" />
-            <DoubleAnimation Storyboard.TargetName="txtBlock_InfoMessage"
+            <DoubleAnimation Storyboard.TargetName="txtb_InfoMessage"
                          Storyboard.TargetProperty="Opacity"
                          From="1" To="0"
                          BeginTime="0:0:3"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="e76e2bc9-4cd0-47ad-a710-6bb48f914742" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="59e7a2ab-fb1d-45a7-b5e9-f5d229447310" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:1442/?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.176.26:1442/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="434aadd1-f31c-4539-b71c-060fd96652f7" SourceId="1" SourceUrl="http://localhost:1442/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="761a6274-d93a-40bf-bba3-c2529c0ab804" SourceId="1" SourceUrl="http://localhost:1442/?xsd=xsd2" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="1d81fbbe-6608-41d4-9323-6911884c80a4" SourceId="1" SourceUrl="http://localhost:1442/?xsd=xsd3" />
-    <MetadataFile FileName="HiveGameService.wsdl" MetadataType="Wsdl" ID="54989ea9-432d-4204-9c51-0303cd0ffb61" SourceId="1" SourceUrl="http://localhost:1442/?wsdl" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="70d17bc2-f205-48a0-87c3-d22339f52bf9" SourceId="1" SourceUrl="http://localhost:1442/?xsd=xsd0" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3612005c-9d09-4265-be2e-15b0bc5b2423" SourceId="1" SourceUrl="http://192.168.176.26:1442/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="dd7a2a9a-c8be-44f4-a00e-f18dc9893b34" SourceId="1" SourceUrl="http://192.168.176.26:1442/?xsd=xsd2" />
+    <MetadataFile FileName="HiveGameService.wsdl" MetadataType="Wsdl" ID="3d6e5894-22f7-4bdc-bfc5-d61846443754" SourceId="1" SourceUrl="http://192.168.176.26:1442/?wsdl" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="5fc668a9-6187-43a0-b3d7-a57eb38e5feb" SourceId="1" SourceUrl="http://192.168.176.26:1442/?xsd=xsd3" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="a72caa25-076a-4c64-b2e8-39e5a4a105fe" SourceId="1" SourceUrl="http://192.168.176.26:1442/?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

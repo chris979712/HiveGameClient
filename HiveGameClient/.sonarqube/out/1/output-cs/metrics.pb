@@ -1,23 +1,30 @@
-­
-{C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Properties\AssemblyInfo.csj	#$%&'(,./01r
-"#&)34”
-sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\MainWindow.xaml.cs& 8
-rp	
- "#%')*+,-/012346789:;<=>?@ABCDEFGHIJKLMNOPQRSTVXYZ[\]^_`abcdefghijklmnopqrstuwxz{|x
-‚ %+,1238<=?CHIMNRS^`abfghjnqrstƒ
+®
+{C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Properties\AssemblyInfo.csj	 $%&'()-/012r
+#$'*45
+sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\MainWindow.xaml.cs% 8	rj	
+ !#%'()*+-./013456789:;<=>?@ABCDEFGHIJKLMNOPQSUVWXYZ[\]^_`abcdefghijklmnopqrtux
+‚#)*/059:<@EFJKOP[]^_cdegknopqï
+lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\App.xaml.cs# 8rO	
+ !"$&'()*-./01234589:<=>?@ABCEFGHIKLMNOPQRSTUVWXYZ]`cdx	‚# !$&(01234:<=>?@ABGHMOPQRVWXYƒ
 …C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\VerifyEmailAndUsername.xaml.cs7 8r°	
- "#$%&'()*+,-./012345689:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰ŠŒŽ‘’“”•–—˜™š›x‚;%)*+-/4:?@BFGHJLPVW[\`aglmoqsuw|}‚†‡‰Ž’”–˜¾
-lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\App.xaml.cs 8r0
- !"#%&'()*+,-./01345x‚!"')*./ø
-|C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\GameBoardView.xaml.csÍ :8ëj½¾rˆ	
- !"#$%&'(),-./0123456789;<=>?@ABCDEFGHJKLMNOPQRTUVWXYZ[\]^_`abcdefghijklmnopstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª¬­®¯°±²´µ¶·¸¹º»¼½¾¿ÀÁÂÄÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéëìíîðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦¨©ª«¬­®¯°±²³´µ¶·¸¹»¼¿ÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ØÙÚÛÜÝÞßàáãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòôõö÷øùúûüýþÿ€‚ƒ…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™šœžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°³´µ¶·¸¹º»½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ÙÚÛÜÝÞßàáâãäåæçèéêëìîïðñòóôõö÷øùúûüýþÿ‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§©ª«¬­®¯±²³´µ¶¸¹º»¼½¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíïðñòóôõö÷øúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™›œžŸ ¡¢£¤¥¦§¨©ª«¬­®°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëíîïðñòóôõö÷øùúûüýþÿ€‚ƒ…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›žŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷ùúûüýþÿ€		‚	ƒ	„	…	ˆ	‰	Š	‹	Œ		Ž			‘	’	“	”	•	–	—	˜	™	š	›	œ		ž	Ÿ	 	¡	¢	£	¤	¥	¦	§	¨	©	ª	«	¬	­	®	¯	°	²	³	´	µ	¶	·	¸	¹	º	»	¼	¾	¿	À	Á	Â	Ã	Ä	Å	Æ	Ç	È	Ê	Ë	Ì	Î	Ï	Ð	Ñ	Ò	Ó	Ô	Õ	Ö	×	Ø	Ú	Û	Ü	Ý	ß	à	â	ã	ä	å	æ	ç	è	é	ê	ë	ì	í	î	ï	ð	ñ	ò	ó	ô	õ	ø	ù	ú	û	ü	ý	ÿ	€
+ "#$%&'()*+,-./012345689:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰ŠŒŽ‘’“”•–—˜™š›x‚;%)*+-/4:?@BFGHJLPVW[\`aglmoqsuw|}‚†‡‰Ž’”–˜
+}C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\StatisticsView.xaml.cs, 8j&'rÅ	
+ "$%(*+,-.023456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`bcdefgijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ’“”•—˜™š›œŸ ¢¤¥¦§¨©ª«¬®x
+‚8 ,-.489;=?CGHIJKNSTXY]^defkoprvwxyz}ƒ„ˆ‰Ž”šŸ»
+{C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\RegisterView.xaml.csO 8(r¸	
+ !"$%&'(*+,-./012456789:;<=>?@ABCDEFGHJKLMOPQRTUVWXYZ[\]^_`abcdefghijklmnoprsuvwyz{|}~€‚ƒ…†ˆ‰Š‹Ž‘’“•–—˜™šœžŸ¡¢¤¥¦§¨ª«¬­®°±²³´¶·¸¹»¼½¾¿ÁÂÃÄÆÇÈÉËÌÍÎÏÐÑÒÓÔÕ×ØÙÚÜÝÞßàãäåæçèéêëìíïðñòõöx‚v!',/014689;<AFLRTVWY[]_deijnorw{|~€…Š‘’—˜™šœžŸ¡¦§¬­²³¸½¾ÃÈÍÏÓÙÚÜÝßåçëñò
+~C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\EditProfileView.xaml.cs4 8r¥	
+!"#$&'()*+-./012345789:;<=>?@BCDEFGHIJKLMNOPQRSTVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|~€‚„…†‡ˆ‰Š‹ŒŽ‘“”•–—™šx‚=#()*049;<=>DEGIMRXZ[\`acdefghjoptuyz€†‡ˆŠŒŽ•–“
+xC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\LoginView.xaml.csr 8"r×	
+ !"#%&'()+,-/0123456789:;<>?@ACDEFGHIJLMOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuwxyz|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘“”•–—˜™š›ž ¡¢¤¥¦§¨ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïñòóôõö÷øùûüýþÿ‚ƒ„…‡ˆ‰Š‹Ž‘“”•–—™š›œžŸ ¡¢£¤¥¦§©ª«¬­®°±²³´µ·¸¹º¼½¾¿ÀÁÂx‚±"#'(+-/135:@ACEGILRXY[\^bchimnrsy~…†Š‹“–—™š¢§¨ª¬±²¶·»¼ÂÃÇËÍÏÓÔ×ØÙÛÜÝáâæçëìîóô÷þ„‰Š•–›žŸ£¤¥«¬­²¹¿§0
+|C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\GameBoardView.xaml.csÓ r8r¤ 	
+ !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWYZ[\]^_`abcdeghijklmnopqrstuvwxyz{|}~€‚ƒ…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œž ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼¾¿ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáãäåæçèéêëìíîïðñóôõö÷ùúûüýþÿ€‚ƒ„†‡ˆ‰Š‹ŒŽ‘’”•–—˜™š›žŸ ¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÎÐÑÒÓÔÕÖ×ØÙÚÜÝÞßàáâãäåæçèéêëìíîïðñòóôö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯±²³´µ¶·¸¹º»¼½¾¿ÀÁÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÕÖ×ØÙÚÛÜÞßàáâãäåæçèêëìíîïñòóôõö÷øùúûüýÿ€‚ƒ„†‡ˆ‰Š‹ŒŽ‘’“”•—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉËÌÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†ˆ‰Š‹Œ‘’”•–—™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæèéêëìíîïðñòóôõö÷øúûüýþÿ€‚ƒ„…†‡ˆ‰ŠŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©«¬­®¯°±²³´µ¶·¸º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÐÑÒÓÔÕÖ×ØÙÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõ÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª¬­®¯°±²³´¶·¸¹º»¼½¾¿ÀÁÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÔÕÖ×ØÙÚÛÜÝÞßàáâãåæçèéêëìíîïðñòóôõöøùúûüýþ€‚ƒ…†‡ˆŠ‹ŒŽ‘’“”•–˜™š›œŸ ¡¢£¤¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ€		‚	ƒ	„	…	†	‡	ˆ	‰	Š	‹		Ž			‘	’	“	”	•	–	—	˜	™	š	›	œ		ž	Ÿ	 	¡	¢	£	¤	¥	¦	§	¨	©	ª	«	¬	­	®	¯	°	±	²	³	´	µ	¶	·	¸	¹	º	»	½	¾	¿	À	Á	Â	Ã	Ä	Å	Æ	Ç	È	É	Ê	Ë	Ì	Í	Î	Ï	Ð	Ñ	Ò	Ó	Ô	Õ	×	Ø	Ù	Ú	Û	Ü	Ý	Þ	ß	à	á	â	ã	ä	å	æ	ç	è	é	ê	ë	ì	í	î	ï	ñ	ò	ó	ô	õ	ö	÷	ø	ù	ú	û	ü	ý	þ	ÿ	€
 
 ‚
 ƒ
 „
-†
+…
 ‡
-ˆ
 ‰
 Š
 ‹
@@ -29,7 +36,6 @@ lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClie
 ‘
 ’
 “
-”
 •
 –
 —
@@ -62,7 +68,6 @@ lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClie
 ²
 ³
 ´
-µ
 ¶
 ·
 ¸
@@ -71,6 +76,7 @@ lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClie
 »
 ¼
 ½
+¾
 ¿
 À
 Á
@@ -78,77 +84,146 @@ lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClie
 Ã
 Ä
 Å
+Æ
 Ç
 È
-x¬‚ØLMNOPQV[\]_cdhimnuwxz{~‚‰Š“•–—™ £¤¥¦§®°¶¸º»ÀÂÈÊÌÍÑÓÕ×ØÜâäíòóõøùûüþÿ‚„…Š‘’”–—˜šœžŸ ¡¥ª«¬­®°²´µ¶ÃÄÅÆÇÉËÌÍÐÕÖ×ØÚÜÝÞèéêìíïðòôö÷üþ‰Š‹Ž‘’“”–—˜œ¢£¥§¨ª¬®°±³µ¶»ÁÂÃÅÆÈÉÎÏÑÒÕÚÜÝÞáæçèéêëìíîïðöøúûüþ€‚ˆ‹ŒŽ‘•—™Ÿ ¢£¥¦§©«µ·¸¹¿ÁÃÅÆÈÊËÌÎÏÐÑÛÝßáåèêìîðòóôö÷øù„…†ˆŽ’“”–˜™Ÿ£¦«¬­®³´µº»¼ÂÄÅÆÇÈÉÍÎÏÐÑÒÔÚÜÝÞßàáåæçèéêìòôõ÷üþ†ˆŠ‹ŒŽ‘’“”•–—Ÿ ¢¥¦¨©«²·¸¹½¿ÀÁÅÆÇÉÊÎÏÐÔÕÙÚÛáãåçèìîðòóúüþÿ€ƒ…‹ŒŽ”š ¡¢¤¥¦«¬­±²¶·¸½ÂÃÅÈÉÊÌÍÏÑÖ×ØÜÝáâãèêïñòóôõöøúûüýþÿ‚‡‹ŒŽ‘”•–—˜™ ¡¤¥§¨ª«­®°±³´º»½¿ÁÂÆÈÊÌÍÕÖÛÝàåæçèéêëíñòóõûýÿ€		‚	ƒ	„	Š	Œ				‘	•	–	—	™		Ÿ	¡	¤	¦	§	«	¬	®	´	¶	¸	¹	À	Â	Ä	Å	Ì	Î	Ñ	Ò	Ø	Ú	Ü	ß	ä	å	ç	è	ê	ì	í	ï	ð	ó	ô	ú	û	ü	
-‚
-ƒ
-ˆ
-Š
-Œ
+É
+Ê
+Ë
+Ì
+Í
+Î
+Ï
+Ð
+Ñ
+Ò
+Ó
+Ô
+Õ
+Ö
+×
+Ù
+Ú
+Û
+Ü
+Ý
+Þ
+ß
+à
+á
+â
+ã
+ä
+å
+æ
+ç
+è
+é
+ê
+ë
+ì
+í
+î
+ï
+ð
+ñ
+ò
+ó
+ô
+õ
+ö
+÷
+ø
+ù
+ú
+ü
+ý
+þ
+ÿ
+€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßáâãäåæçèéêëìíîïðñòóôõö÷øùûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÉÊËÌÍÎÐÑÒÓÔÕÖ×ØÚÛÜÝÞßàáâãäæçèéêëíîïðñòóôö÷øùúûüþÿ€‚ƒ„†‡ˆ‰Š‹ŒŽ‘’”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯±²³´µ¶·¸¹º»¼½¾¿ÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚„…†‡ˆ‰Š‹ŒŽ‘’“”•—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÆÇÈÉÊËÌÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëíîïðñòóôö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—™š›œžŸ ¡¢¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¹º»¼½¾ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèêëìíîïðñòôõö÷øúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹Ž‘’“”•–—™š›œžŸ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“•–—˜™š›œžŸ ¡¢£¤¥¦¨©ª«¬­®¯°±²³´µ·¸¹º»¼¾¿ÀÁÂÃÄÅÆÇÉÊx•‚ñ[\]_abcdinoprvw{|€‡‰ŠŒ‘”›œ¥§¨©«¯²µ¶·¸¹ÀÂÄÉËÌÎÏÑÖØÜàåçéíðõöûüþ‚‰‹Œ—™Ÿ ¢£¥§¨ª«°±³¶·¹º¼½¿ÀÂÃÅÆËÒÓÔÕ×ÙÞßáãäåçèéêëíîïðóøùúûüýÿƒ„…ˆŽ‘’”–—˜šœŸ ¢£¤¦¨«®³´µ¶·¹»¼½ÀÅÆÇÈÉËÍÎÏÒÙÚÜÞàâäçíî÷øúû‚ƒˆŠŒŽ’”œž ¡¢¤¥¦§©ª«¯µ¶¸¹»½ÀÁÃÅÆËÑÒÔÖ×ÙÚßàâãæìíîðòôöøúüþ€‚…Š‹Œ‘–›žŸ ¡£¤¥©«¬­®°²³´¶·¼¿ÃÄÈÉÍÎÔÖØÙÛÞßàâìñòóôõö÷üýÿ€ƒ„…‡‰Ž‘“”–—šœ ¢£¤¥¦§¨­®¯±³´¶¼½¾¿ÀÂÃÄÆÈÉÊÌÍÒÓÔÕÖ×ØÝßáâäæçéêíîïðòóôûý„…‡ˆŠŽ“™šœŸ ¡£¥®°±²¸º¼¾ÅÇÈÉÊÌÍÎÏÖØÚÜÞàçéëìíïðñòúûüý‚‡Œ’“”•š›œ¡¢£ª¬­®¯°±µ¶·¸¹º¼ÃÅÆÇÈÉÊÎÏÐÑÒÓÕÛÝÞàåçéëìíîïðñòóôúüýÿ‚	ƒ	…	†	ˆ		”	•	–	š	œ		ž	¢	£	¤	¦	§	«	¬	­	±	²	³	·	¸	¹	¿	Á	Ã	Å	Æ	Ê	Ì	Î	Ð	Ñ	Ù	Ú	Ü	Þ	ß	à	ã	å	ç	é	ë	ì	ó	õ	÷	ù	ý	ƒ
+„
+‹
+
 ‘
-’
-“
-•
-˜
-š
+—
+œ
+
 ž
-Ÿ
  
-¤
+¡
 ¥
-©
-ª
+¦
+§
 «
-­
-¯
-³
-µ
-¹
-Á
+¬
+°
+±
+²
+¸
+¾
+¿
+À
 Â
+Ã
 Ä
-Ã
-{C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\RegisterView.xaml.csT 8+r¼	
- !"$%&'(*+,-./012456789:;<=>?@ABCDEFGHJKLMOPQRTUVWXYZ[\]^_`abcdefghijklmnoprsuvwyz{|}~€‚ƒ…†ˆ‰Š‹Ž‘’“•–—˜™šœžŸ¡¢¤¥¦§¨ª«¬­®°±²³´¶·¸¹»¼½¾¿ÁÂÃÄÆÇÈÉËÌÍÎÏÐÒÓÔÕÖ×ØÚÛÜÝßàáâãäåæçèéëìíîðñòóôõöx'‚z!',/014689;<AFLRTVWY[]_deijnorw{|~€…Š‘’—˜™šœžŸ¡¦§¬­²³¸½¾ÃÈÍÏÐÒÓ×ØÚÛáãçíóŽ
-}C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\StatisticsView.xaml.cs, 8rÆ	
- "$%)+,-./13456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`acdefghjklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘“”•–˜™š›œž ¡£¥¦§¨©ª«¬­¯x
-‚9 -./59:<>@DHIJKLOTUYZ^_efglpqswxyz{~€„…‰ŠŽ•› ô
-wC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\MainMenu.xaml.csw 8r»	
- !#$%&')*+,./01235689;<=>?@ABCDFGHIJKLMOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}€‚ƒ„…†‡ˆŠ‹ŒŽ‘’“•–—˜™š›Ÿ ¡¢£¤¥¦¨©ª«¬­®¯°±²³´¶·¸¹º¼½¾¿ÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰‹ŒŽ‘’“”•–—˜™šœžŸ ¡¢¤¥¦§¨ª«¬­®±²x‚¯ !#$%&+,./1568=?@ABHJKQRSZ[]^`bdfjoptuyz‚ƒ„…†‡ŒŽ‘’—™š¡£¤ª¬­±²¹¾ÃÄÆÈÌÑÒÖ×ÛÜãæêëîïñóõ÷üý‚†‡Ž“”•–—˜™ž §­ò
-~C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\EditProfileView.xaml.cs4 8r¥	
-!"#$&'()*+-./012345789:;<=>?@BCDEFGHIJKLMNOPQRSTVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|~€‚„…†‡ˆ‰Š‹ŒŽ‘“”•–—™šx‚=#()*049;<=>DEGIMRXZ[\`acdefghjoptuyz€†‡ˆŠŒŽ•–ä
-xC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\LobbyView.xaml.csË '8Ir‹	
- !"#$%&()+,-./012456789:;=>?@ABCDEFGHIJKLMNOPQRSTUWXYZ[\]^_`abcdefghijklmnopqrsuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàâäåæçéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯²³´µ¶·¸¹º»¼½¾ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆŠ‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÒÓÔÕÖ×ØÙÚÛÜÝÞàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©«¬­®¯°±²³µ¶·¸¹º»¼½¾¿ÀÁÂÄÅÆÇÈÊËÌÍÏÐÒÔÕØÙÚÛÜÝÞàáâãäåæçêxk‚Í !"#$%&(-./016789:?@ADHIMNRSY^_bfgklpqw|}€„…‰ŠŽ•—š› ¢£¤¨©ª¬°±µ¶º»ÂÅÉÊÎÏÓÔÚàáãäçëðñõöúû‡ˆŒ‘“•™žŸ£¤¨©¯°²´·»ÀÂÃÆÇËÎÒ×ÙÚÝÞæçéíòó÷øüý‚„…‹”–—™¢£§¨¬­´µ¶¸¼ÃÅÈÉÎÐÑÒÖ×ØÝÞâãçèïôõ÷ûü€…†Œ“•˜œŸ£¤¥¦§©¬®¯±·¸¼½ÁÂÈËÌÎÑÒÔÖØÚàãäèêëìðñòôøùýþ‚ƒ‰Ž‘•–š›Ÿ ¦ª«¬­¯°´µ¶¸»¾¿ÃÄÈÉÍÎÔÖ×ØÚÛÜâãåçèêìïñòöû„‡‘“–˜œ¡¢¦§­®°²·¸»ÀÇÜÝâãäåô
-xC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\LoginView.xaml.csm 8 rÂ	
- !"#$&'(*+,-./012345679:;<>?@ABCDEGHJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnoprstuwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–˜™›œŸ ¡¢£¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçéêëìíîðñòóôö÷øùúüýþÿ€‚ƒ„…†ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¥¦§¨©ª¬­®¯±²³´µ¶·x‚§"#&(*,.05;<>@BDGMSTVWY]^cdhimntyz|€…†Š‹Ž‘’”•˜¢£¥§¬­±²¶·½ÁÅÇÉÍÎÑÒÓÕÖÚÛßàäåëíóùþÿ„…Š‹’“”˜™š ¡¢§®´–
-~C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\FriendsListView.xaml.csÜ -8Lr	
- !"#$%&'(*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz|~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦¨©ª«¬­®¯°±²³´µ·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÊËÌÍÎÏÐÑÒÓÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨ª«¬­®¯°±²³´µ¶¹º»¼½¾¿ÀÁÂÃÄÅÈÉÊËÌÍÎÏÐÑÒÓÔÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÔÕÖ×ØÙÚÛÜÝÞßàáâãäæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›žŸ ¡¢£¤¥¦¨©ª«¬­¯°±²³´µ·¸¹º»¼½¿ÀÁÂÃÄÆÇÈÉÊÌÍÎÏÐÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâxE‚õ"%&,.3568:<=?DEIJNOUY]^`cdefinostxy‚‡‰ŠŒŽ’”™šžŸ£¤ª®¯°±³¹»½ÁÆÌÍÎÐÒØÛÜàâäæçéëìðòôõ÷üý‚†‡”–š›Ÿ ¤¥§­®°´¼½¿ÃËÌÎÒØÜàäåçèêìñòö÷ûü‚†ŠŽ‘’”–›œ ¡¥¦¬°´¸¹»¼¾ÀÅÆÊËÏÐÖ×ÚÛÝáèìðôõ÷øúü‚†‡‹Œ”•–—š±²³´¹º»¼ÁÂÃÉÏÕ×ØÚÜÞß„
+È
+É
+Ê
+Î
+Ï
+Ó
+Ô
+Õ
+Û
+á
+â
+ã
+å
+æ
+ç
+ë
+ì
+í
+ñ
+ò
+ö
+÷
+ø
+þ
+ƒ„†‰Š‹Ž’—˜™ž¢£¤©«°²³´µ¶·¹»¼½¾¿ÀÂÃÉÊËÍÑÒÓÔÖØÙÚÛÜÝäåèéëìîïñòôõ÷øþÿƒ…†ŠŒŽ‘™šœžŸ¡¢¥§«­®¯°µ¶·¸¹»¼½¿ÁÂÃÅÆËÌÍÒÓÔÖÜÞàáèéêïðòøú€‚ƒ‰ŠŒŽ‘–˜š›Ÿ ¢£¦§¨ª¬­®³´µ¶·¸¹½ÃÄÆÇÉËÏÕ×ØÙÛßàáèêìíïñòôõøùúûýÿ€†ˆ‰‹Ž’™›œžŸ¡¢£§¨©«¯°²´·¸º»¿ÀÂÈÉÊËÐÒÓÔÚÛßàâçèïñòøúüý„†ˆ‰‘”•œŸ¡¦§©ª¬®¯±²µ¶»¼½ÂÃÄÉËÍÐÑÓÕÙÚÞßãäæìîïð÷üþÿƒ„†ˆ‰‘•›œž£¤¦§¨ª¯°±³¶»ÁÃÇÉÍÎÑÕÚÛÜàáåæçíòó÷øûÿ„…†Š‹‘—™›¡£¤¥ª«¬­®°²¹»¼¾ÀÄë
+wC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\MainMenu.xaml.cs‰ 8%rˆ	
+!"$%'()*+-./01345678:;=>@ABCDEFGHIKLMNOPQRTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚„…†‡ˆ‰Š‹Œ‘’“”•–—˜š›œžŸ ¢¤¥¦§¨©ª«­®¯°±²³´µ¶·¸¹»¼½¾¿ÁÂÃÄÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”–—˜™š›œžŸ¡¢£¤¥¦§©ª«¬­¯°±²³¶·¹»¼½¾¿ÀÁÂÃÄÅÆÇÉÊËÌÍÏÐÑÒÓÔÖ×ØÛÜÝÞßâãx$‚Ø!"$%'()*/01346:;=BDEFGMOPVWX_`bcegikotuyz~†‡ˆ‰Š‹Œ‘’“”•–—œžŸ¦¨©¯±²¶·¾ÃÈÉËÍÑÖ×ÛÜàáèëïðóôöøúü‚†‡‹Œ“˜™š›œž£¥¬²¹»½¾¿ÃÄÅËÍÏÐÑÒÓÖØÛÜ„
 {C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\GameCodeView.xaml.csK 	8r–	
-!"#$%&'()*+,./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTWXYZ[\]^_`abcdefghijkmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±³´µ¶·¸¹º»½¾ÀÁÃÄÅÆÈÊËÌÍÏÑÒÓÔÕÖ×Øx‚a#%*0679:<>BGHLMQRYZ\]^`bdiostvz|‚†‡‹Œ’“—˜šž£¤¨©­®°µ¶¸ºÀÆÈÊÌÏÑÓÔÓ
-‚C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\EditCredentialsView.xaml.cs© 8;r«	
- !"$%&'()*+,-./0123456789:;<=>?@BCDEFGHIJKLNOPQRUVWXYZ[\]^_`bcdefghijklmnpqrstuvwxyz{|~€‚ƒ„…†ˆ‰Š‹ŒŽ‘’“•–—˜™šžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹»¼½¾¿ÀÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÛÜÝÞßàáâãäåæçèéêëìíïðñòóôõö÷ùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘”•–—˜š›œžŸ¡¢£¤¦§¨©ª«x4‚‘ !&'+,-.2346789>?EGIKNPXY^_defghijklmrstuvwxyz{€‚ƒ„…Š‹‘—˜™Ÿ¥¦§«¬°±µ¶¸½¾¿ÄÅÆÇÉËÍÒ×ÝÞßàâäæèêìòôöü€ƒ„†ˆŒ’“—˜œŸ¤ª«¬®¯²³¶·¹º»¼ÀÅÆÊËÏÐÖÜÝßãäèéíîôøùûÿ„…‰ŠŽ—œž£¨Œ
-lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Settings.cs 8j
-r
-	¢
-sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Validator.cs, 	8rs
- !"#$%&()*+,-./013456789:;<>?@ABCDEFGIJKLMNOPQRTUVWXYZ[\]_`abcdefgijklmnopqrtuvwxyz{|}~x‚+#%+,.0679;ABDFLMOQWXZ\bdflmoqwxz|Ó
+!"#$%&'()*+,./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTWXYZ[\]^_`abcdefghijkmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±³´µ¶·¸¹º»½¾ÀÁÃÄÅÆÈÊËÌÍÏÑÒÓÔÕÖ×Øx‚a#%*0679:<>BGHLMQRYZ\]^`bdiostvz|‚†‡‹Œ’“—˜šž£¤¨©­®°µ¶¸ºÀÆÈÊÌÏÑÓÔ«
+xC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\LobbyView.xaml.csÄ '8Irà	
+ !"#$%&'()*+-./012346789:;<=?@ABCDEFGHIJKLMNOPQRSTUVWYZ[\]^_`abcdefghijklmnopqrstuwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“•–—˜™š›œžŸ ¡¢£¤¥§¨©ª«¬­®¯°±²³´µ¶·¸¹»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷ùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÜÞßàáãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©¬­®¯°±²³´µ¶·¸º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”–—˜™š›œž ¡¢£¤¥¦§¨©ª«¬­¯°±²³µ¶·¸º»½¿ÀÃÄÅÆÇÈÉËÌÍÎÏÐÑÒÕxi‚¿ !"#$%&')/012389:;<ABCFJKOPTU[`adhimnrsy~‚†‡‹Œ‘—™œž£¤¥§«¬°±µ¶½ÀÄÅÉÊÎÏÕÚÛÝÞáåêëïðôõû‚†‡‰Š‹“˜™ž¢£©ª¬®±µº¼½ÀÁÅÈÌÑÓÔ×Øàáãçìíñòö÷ûüþÿ…ŠŽ‘“—œ¡¢¦§®¯°²¶½¿ÂÃÈÊËÌÐÑÒ×ØÜÝáâéîïñõöúûÿ€†‡’–—™žŸ ¡£¦¨©«±²¶·»¼ÂÃÆÇÉËÍÏÕØÙÝßàáåæçéíîòó÷øþ‚ƒ„…†Š‹”•›Ÿ ¡¢¤¥©ª«­°³´¸¹½¾ÂÃÉËÌÍÏÐÑ×ØÚÜÝßáäæçëðöùüƒ‡ˆŒ‘’˜™›¢£¦«²ÇÈÍÎÏÐí
+~C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\FriendsListView.xaml.cs× $8Arð	
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqsuvwxy{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œž ¡¢£¤¥¦§¨©ª«¬­¯°±²´µ¶·¸¹º»¼½¾¿ÀÁÃÄÅÆÈÉÊËÍÎÐÑÒÓÕÖ×ÙÚÛÜÝÞßàâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦¨©ª«­®¯°±²³´µ¸¹º»½¾¿ÀÁÂÃÄÅÈÉÊËÌÍÎÏÐÑÒÓÔÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÔÕÖ×ØÙÚÛÜÝÞßàáâãäæçèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›žŸ ¡¢£¤¥§¨©ª«¬­¯°±²³´µ·¸¹º»¼¾¿ÀÁÂÄÅÆÇÈÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚxE‚ë"$)+,.026;<@AEFLPTUWZ[\]`efjkopxy‚„†ˆŒ‘’–—›œ¢¦§¨©«±´¶º¿ÅÆÈÊÍÓ×ÙÝßâäåçéêîðòóõúûÿ€„…‹’”˜™ž¢£¥«­¯³»½¿ÃËÌÎÒØÜàäåçèêìñòö÷ûü‚†ŠŽ‘’”–›œ ¡¥¦¬°´¸¹»¼¾ÀÅÆÊËÏÐÖ×ÚÛÝáèìðôõ÷øúü‚†‡‹Œ”•–—š©ª«¬±²³´¹º»ÁÇÍÏÐÒÔÖ×‰
+lC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Settings.cs 8jr
+	à
+‚C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Views\EditCredentialsView.xaml.cs© 8;r³	
+ !"$%&'()*+,-./012356789:;<=>?@ACDEGHIJKLMNPQRSTWXYZ[\]^_`abdeghjkmnpqstuwxyz|}€‚ƒ…†‡‰Š‹ŒŽ‘“”•—˜™š›œžŸ¡¢£¤¥¦©ª«¬­¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÆÇÉÊËÌÍÎÐÑÒÓÔÖ×ØÙÚÛÜÝÞßàáâãäåæçèêëìíîðñòóôõö÷øùúûýþ€‚„…†‡ˆ‰‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³µ¶·¸º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæèéêëìíîïðñòóôõö÷øùúûüýþÿ€‚ƒ„†‡ˆ‰‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦©ª«¬­¯°±²³´¶·¸¹»¼½¾¿Àx4‚– !&'+,-.235789:?@GIKMPRZ[`aghjkmnpqstyz|}€‚ƒ…†‹ŒŽ•—™£¤¥«²³´¸¹½¾ÂÃÆËÌÍÒÓÔÖØÚÜáæìíîðòôöøúý„†ˆŽ“”–—™›Ÿ ¥¦ª«¯°²·¾¿ÀÂÃÆÇÊËÍÎÏÐÔÙÚÞßãäêðñó÷øüý‚ˆŽ”™šžŸ£¤¬±³¸½ 
+sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Validator.cs, 	8rr
+ !"#$&'()*+,-./123456789:<=>?@ABCDEGHIJKLMNOPRSTUVWXYZ[]^_`abcdeghijklmnoprstuvwxyz{|}x‚*!#)*,.4579?@BDJKMOUVXZ`bdjkmouvxzÓ
 ~C:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\UserProfileSingleton.cs 8r2	
- !"#$%&')*+,-./01234567‚ !"#$%&+,-./01234Œ
-sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Constants.csr	
-°
-sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\GamePiece.cs 8r$	
- "#$%&'()+,x‚$&(¢
-pC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Hasher.cs 8r	
-x‚´
-zC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\ProfileGenerator.cs 8r#	
- !"#$%&‚!#Õ
-oC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Piece.cs/ 8'jMzrž	
- !"#$&'()*+,./013456789;<=>@ABCDEFGHIKLMNOPQRSTUVXYZ[\^`abcdefghiklmnpqrstvwxyz{|~€‚ƒ…†‡‰Š‹Ž‘’“”•—˜™š›žx‚2"#./78=>@GHMTUZ[^`ghmnprstvxyz~‡‰Š‘’”™£
-wC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\DialogManager.cs 8r	
-‚	¼
+ !"#$%&')*+,-./01234567‚ !"#$%&+,-./01234»
 wC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\LoggerManager.cs 
 8
-r. !"#%&'()*+,-./0234567‚"'+/4Ÿ
+r-	
+ !#$%&'()*+,-.012345‚ %)-2£
+sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\GamePiece.cs 8r	
+ "#‚Ÿ
 xC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\MatchSingleton.cs 8r	
-‚
+‚¿
+oC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Piece.cs
+ 8r7	
+ !"%&'()*+,./012345789:;=>?AC‚
+ !*+34=>²
+zC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\ProfileGenerator.cs	 8r!	
+ !#$%&'(‚#%¢
+pC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Hasher.cs 8r	
+!"x‚£
+wC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\DialogManager.cs 8r	
+‚	–
+sC:\Users\chris\OneDrive\Escritorio\Hive\chris979712\HiveGameClient\HiveGameClient\HiveGameWPFApp\Logic\Constants.cs 8r	
+ !

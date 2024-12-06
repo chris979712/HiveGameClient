@@ -331,7 +331,7 @@
     <value>Unirse a una partida</value>
   </data>
   <data name="globalTxtb_PasswordIndications" xml:space="preserve">
-    <value>Recuerda que tu contraseña debe contener al menos 8 caracteres. Incluyendo 1 letra mayúscula, 1 letra minúscula, 1 número y 1 caracter especial.</value>
+    <value>Recuerda que tu contraseña debe contener al menos 8 caracteres. Incluyendo 1 letra mayúscula, 1 letra minúscula, 1 número y 1 caracter especial. Recuerda que no debe contener espacios en blanco.</value>
   </data>
   <data name="lbl_TitleRecoverPassword" xml:space="preserve">
     <value>Recuperar contraseña</value>
