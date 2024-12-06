@@ -709,7 +709,7 @@ namespace HiveGameWPFApp.Views
             {
                 connectionVerification = _gameManagerClient.CheckPersonalConnection();
             }
-            catch (TimeoutException timeOutException)
+            catch(TimeoutException timeOutException)
             {
                 logger.LogWarn(timeOutException);
                 NotifyDisconnection();
@@ -1144,7 +1144,8 @@ namespace HiveGameWPFApp.Views
 
         private void PlacePieceOnCell(Polygon cell)
         {
-            if (cell != null)
+            bool verifyServerConnectivity = VerifyConnectivityBeforeSendingPiece();
+            if (verifyServerConnectivity)
             {
                 foreach (var polygon in canva_GameBoardGrid.Children.OfType<Polygon>())
                 {
