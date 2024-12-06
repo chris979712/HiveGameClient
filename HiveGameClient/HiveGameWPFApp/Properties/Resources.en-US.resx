@@ -151,7 +151,7 @@
     <value>Action confirmation</value>
   </data>
   <data name="dialogEndPointException" xml:space="preserve">
-    <value>Failed to find the endpoint. Please check the server configuration and try again.</value>
+    <value>Could not establish connection to the server. Please check your network settings and try again.</value>
   </data>
   <data name="dialogComunicationException" xml:space="preserve">
     <value>Failed to establish a connection with the server. Please check your internet connection and try it again.</value>
