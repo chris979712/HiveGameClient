@@ -2065,10 +2065,10 @@ namespace HiveGameWPFApp.HiveProxy {
         System.Threading.Tasks.Task<int> LeaveMatchFinishedAsync(string codeMatch, HiveGameWPFApp.HiveProxy.UserSession session);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckConnection", ReplyAction="http://tempuri.org/IGameManager/CheckConnectionResponse")]
-        bool CheckConnection();
+        bool CheckConnection(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/CheckConnection", ReplyAction="http://tempuri.org/IGameManager/CheckConnectionResponse")]
-        System.Threading.Tasks.Task<bool> CheckConnectionAsync();
+        System.Threading.Tasks.Task<bool> CheckConnectionAsync(string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2091,6 +2091,9 @@ namespace HiveGameWPFApp.HiveProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManager/ReceiveFinalMatchResult", ReplyAction="http://tempuri.org/IGameManager/ReceiveFinalMatchResultResponse")]
         void ReceiveFinalMatchResult(string winner);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManager/PlayerDisconnected")]
+        void PlayerDisconnected(string disconnectedUsername);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2169,12 +2172,12 @@ namespace HiveGameWPFApp.HiveProxy {
             return base.Channel.LeaveMatchFinishedAsync(codeMatch, session);
         }
         
-        public bool CheckConnection() {
-            return base.Channel.CheckConnection();
+        public bool CheckConnection(string username) {
+            return base.Channel.CheckConnection(username);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckConnectionAsync() {
-            return base.Channel.CheckConnectionAsync();
+        public System.Threading.Tasks.Task<bool> CheckConnectionAsync(string username) {
+            return base.Channel.CheckConnectionAsync(username);
         }
     }
 }

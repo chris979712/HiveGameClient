@@ -115,18 +115,18 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
             }
         }
 
@@ -727,18 +727,18 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
             }
         }
 
@@ -1222,20 +1222,20 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
                 ReturnToLoginView();
             }
         }
@@ -1344,19 +1344,19 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -1379,19 +1379,19 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -1414,19 +1414,19 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -1459,19 +1459,19 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -1917,11 +1917,11 @@ namespace HiveGameWPFApp.Views
         private void OnTurnTimeout(object sender, ElapsedEventArgs e)
         {
             LoggerManager logger = new LoggerManager(this.GetType());
-            if (isOtherPlayerTurn && !hasOtherPlayerMoved) 
+            if (isOtherPlayerTurn) 
             {
                 try
                 {
-                    bool isConnected = gameManagerClient.CheckConnection();
+                    bool isConnected = gameManagerClient.CheckConnection(usersInGame.First(u => u.username != UserProfileSingleton.username).username);
                     if (!isConnected)
                     {
                         NotifyDisconnection();
@@ -1929,7 +1929,7 @@ namespace HiveGameWPFApp.Views
                 }
                 catch (TimeoutException timeOutException)
                 {
-                    logger.LogError(timeOutException);
+                    logger.LogWarn(timeOutException);
                     NotifyDisconnection();
                 }
             }
@@ -2209,19 +2209,19 @@ namespace HiveGameWPFApp.Views
             }
             catch (EndpointNotFoundException endPointException)
             {
-                logger.LogError(endPointException);
+                logger.LogFatal(endPointException);
                 DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEndPointException);
                 ReturnToLoginView();
             }
             catch (TimeoutException timeOutException)
             {
-                logger.LogError(timeOutException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
+                logger.LogWarn(timeOutException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
             }
             catch (CommunicationException communicationException)
             {
-                logger.LogError(communicationException);
-                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogTimeOutException);
+                logger.LogFatal(communicationException);
+                DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 ReturnToLoginView();
             }
         }
@@ -2261,5 +2261,24 @@ namespace HiveGameWPFApp.Views
                 }
             }
         }
+
+        public void PlayerDisconnected(string disconnectedUsername)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                string message = disconnectedUsername + Properties.Resources.dialogLostConnection;
+                DialogManager.ShowErrorMessageAlert(message);
+
+                if (UserProfileSingleton.idAccount == Constants.DEFAULT_GUEST_ID)
+                {
+                    ReturnToLoginView();
+                }
+                else
+                {
+                    GoToMainView();
+                }
+            });
+        }
+
     }
 }
