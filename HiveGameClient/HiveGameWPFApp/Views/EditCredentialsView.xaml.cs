@@ -320,7 +320,7 @@ namespace HiveGameWPFApp.Views
                     password = UserProfileSingleton.password
                 };
                 string passwordToEncrypt = pwb_Password.Password;
-                string passwordEncripted = Hasher.hashToSHA1(passwordToEncrypt);
+                string passwordEncripted = Hasher.hashToSHA2(passwordToEncrypt);
                 AccessAccount newAccesAccount = new AccessAccount()
                 {
                     idAccesAccount = UserProfileSingleton.idAccount,

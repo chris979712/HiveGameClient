@@ -9,7 +9,7 @@ namespace HiveGameWPFApp.Logic
 {
     public static class Hasher
     {
-        public static string hashToSHA1(string textToHash)
+        public static string hashToSHA2(string textToHash)
         {
 
             StringBuilder stringHashBuilder = new StringBuilder();
@@ -28,7 +28,6 @@ namespace HiveGameWPFApp.Logic
             }
 
             return stringHashBuilder.ToString();
-
         }
 
     }

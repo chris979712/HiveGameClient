@@ -123,7 +123,7 @@ namespace HiveGameWPFApp.Views
 
             try
             {
-                string hashedPassword = Hasher.hashToSHA1(profile.password);
+                string hashedPassword = Hasher.hashToSHA2(profile.password);
                 string username = profile.username;
                 IUserManager userManager = new HiveProxy.UserManagerClient();
                 validationResult = userManager.VerifyPasswordCredentials(username, hashedPassword);
@@ -164,7 +164,7 @@ namespace HiveGameWPFApp.Views
             try
             {
                 IUserManager userManager = new UserManagerClient();
-                string hashedPassword = Hasher.hashToSHA1(profile.password);
+                string hashedPassword = Hasher.hashToSHA2(profile.password);
                 Profile userAccount = userManager.GetUserProfile(profile.username, hashedPassword);
 
                 if (userAccount != null)
