@@ -203,6 +203,7 @@ namespace HiveGameWPFApp.Views
             lbl_ErrorMessage.Visibility = Visibility.Collapsed;
             grd_VerificationPanel.Visibility = Visibility.Collapsed;
             grd_EditionPanel.Visibility = Visibility.Visible;
+            txb_PasswordIndications.Visibility = Visibility.Visible;
         }
 
         private void BtnConfirmChanges_Click(object sender, RoutedEventArgs e)

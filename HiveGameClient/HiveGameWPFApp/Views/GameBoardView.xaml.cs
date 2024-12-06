@@ -4,6 +4,7 @@ using log4net.Repository.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -336,12 +337,12 @@ namespace HiveGameWPFApp.Views
 
         public void ShowInfoMessage(string message)
         {
-            txtBlock_InfoMessage.Text = message;
-            txtBlock_InfoMessage.Visibility = Visibility.Visible;
+            txtb_InfoMessage.Text = message;
+            txtb_InfoMessage.Visibility = Visibility.Visible;
             Storyboard infoAnimation = (Storyboard)FindResource("storyb_InfoMessageAnimation");
             infoAnimation.Completed += (s, e) =>
             {
-                txtBlock_InfoMessage.Visibility = Visibility.Collapsed;
+                txtb_InfoMessage.Visibility = Visibility.Collapsed;
             };
             infoAnimation.Begin();
         }
@@ -1447,9 +1448,12 @@ namespace HiveGameWPFApp.Views
         }
         private void GoToMainView()
         {
-            MatchSingleton.Instance.ResetSingleton();
-            MainMenu mainMenu = new MainMenu();
-            this.NavigationService.Navigate(mainMenu);
+            Dispatcher.Invoke(() =>
+            {
+                MatchSingleton.Instance.ResetSingleton();
+                MainMenu mainMenu = new MainMenu();
+                this.NavigationService.Navigate(mainMenu);
+            }); 
         }
 
         public void ChargePlayerGameBoard(PlayerSide side)
@@ -1883,19 +1887,32 @@ namespace HiveGameWPFApp.Views
             LoggerManager logger = new LoggerManager(this.GetType());
             if (_isOtherPlayerTurn) 
             {
+                bool connection = false;
                 try
                 {
-                    bool isConnected = _gameManagerClient.CheckConnection(_usersInGame.First(u => u.username != UserProfileSingleton.username).username);
-                    if (!isConnected)
-                    {
-                        NotifyDisconnection();
-                    }
-                }
-                catch (TimeoutException timeOutException)
+                    connection = _gameManagerClient.CheckPersonalConnection();
+                }catch(TimeoutException timeOutException)
                 {
                     logger.LogWarn(timeOutException);
                     NotifyDisconnection();
                 }
+                if (connection)
+                {
+                    CheckIfOtherPlayerConnected();
+                }
+            }
+        }
+
+        private void CheckIfOtherPlayerConnected()
+        {
+            LoggerManager logger = new LoggerManager(this.GetType());
+            try
+            {
+                _gameManagerClient.CheckConnection(_usersInGame.First(u => u.username != UserProfileSingleton.username).username);
+            }
+            catch (TimeoutException timeOutException)
+            {
+                logger.LogWarn(timeOutException);
             }
         }
 
@@ -2247,5 +2264,9 @@ namespace HiveGameWPFApp.Views
             });
         }
 
+        public void RecieveRequestPingFromOtherPlayer()
+        {
+            _IsMatchFinished = false;
+        }
     }
 }
