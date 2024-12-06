@@ -273,12 +273,12 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultVerificationCredentials = userManagerClient.VerifyCredentials(UserProfileSingleton.username, txt_Email.Text);
-                if (resultVerificationCredentials == Constants.DATA_MATCHES)
+                if (resultVerificationCredentials == Constants.DataMatches)
                 {
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogEmailAlreadyRegistered);
                     resultVerification = false;
                 }
-                else if (resultVerificationCredentials == Constants.NO_DATA_MATCHES)
+                else if (resultVerificationCredentials == Constants.NoDataMatches)
                 {
                     resultVerification = true;
                 }
@@ -328,7 +328,7 @@ namespace HiveGameWPFApp.Views
                     password = passwordEncripted
                 };
                 int updateResult = userManagerClient.UpdateLoginCredentials(oldAccesAccount, newAccesAccount);
-                if (updateResult == Constants.SUCCES_OPERATION)
+                if (updateResult == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogUpdatedData);
                     UserProfileSingleton.Instance.ResetSingleton();
@@ -395,7 +395,7 @@ namespace HiveGameWPFApp.Views
             try
             {
                 int resultEmailSend = emailVerificationManager.SendVerificationEmail(UserProfileSingleton.email);
-                if (resultEmailSend == Constants.SUCCES_OPERATION)
+                if (resultEmailSend == Constants.SuccesOperation)
                 {
                     DialogManager.ShowSuccessMessageAlert(Properties.Resources.dialogEmailVerificationMessage);
                 }

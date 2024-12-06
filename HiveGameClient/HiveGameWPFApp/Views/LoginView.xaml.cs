@@ -191,7 +191,7 @@ namespace HiveGameWPFApp.Views
 
         private int GenerateGuestProfile()
         {
-            int creationResult = Constants.ERROR_OPERATION;
+            int creationResult = Constants.ErrorOperation;
             LoggerManager logger = new LoggerManager(this.GetType());
             try
             {
@@ -200,7 +200,7 @@ namespace HiveGameWPFApp.Views
                 UserSession guestSession = new UserSession()
                 {
                     username = randomUsername,
-                    idAccount = Constants.DEFAULT_GUEST_ID
+                    idAccount = Constants.DefaultGuestId
                 };
                 while (userSessionManagerClient.VerifyConnectivity(guestSession))
                 {
@@ -208,8 +208,8 @@ namespace HiveGameWPFApp.Views
                 }
                 Profile profileGuest = new Profile()
                 {
-                    idAccesAccount = Constants.DEFAULT_GUEST_ID,
-                    idProfile = Constants.DEFAULT_GUEST_ID,
+                    idAccesAccount = Constants.DefaultGuestId,
+                    idProfile = Constants.DefaultGuestId,
                     username = randomUsername,
                     nickname = randomUsername,
                     description = ProfileGenerator.RandomDescriptionGenerator(),
@@ -218,7 +218,7 @@ namespace HiveGameWPFApp.Views
                 };
                 UserProfileSingleton.Instance.CreateInstance(profileGuest);
                 userSessionManagerClient.ConnectToGame(guestSession);
-                creationResult = Constants.SUCCES_OPERATION;
+                creationResult = Constants.SuccesOperation;
             }
             catch (EndpointNotFoundException endPointException)
             {
@@ -241,7 +241,7 @@ namespace HiveGameWPFApp.Views
         private void BtnGuest_Click(object sender, RoutedEventArgs e)
         {
             int creationResult = GenerateGuestProfile();
-            if(creationResult != Constants.ERROR_OPERATION)
+            if(creationResult != Constants.ErrorOperation)
             {
                 GameCodeView gameCodeView = new GameCodeView();
                 this.NavigationService.Navigate(gameCodeView);
