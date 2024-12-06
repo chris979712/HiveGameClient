@@ -380,7 +380,7 @@ namespace HiveGameWPFApp.Views
                     DialogManager.ShowErrorMessageAlert(Properties.Resources.dialogComunicationException);
                 }
                 txtb_MessageInput.Clear();
-                txtBlock_CharCount.Text = "0/100"; 
+                txtb_CharCount.Text = "0/100"; 
             }
         }
 
@@ -428,7 +428,7 @@ namespace HiveGameWPFApp.Views
         private void TxtMessageInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             int currentLength = txtb_MessageInput.Text.Length;
-            txtBlock_CharCount.Text = $"{currentLength}/100";
+            txtb_CharCount.Text = $"{currentLength}/100";
             if (currentLength == 100)
             {
                 txtb_MessageInput.IsReadOnly = true;
